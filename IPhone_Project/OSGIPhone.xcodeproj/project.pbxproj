@@ -245,8 +245,6 @@
 		9014C54C10C36A1600947117 /* SlideShowConstructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9014C54710C36A1600947117 /* SlideShowConstructor.cpp */; };
 		9014C5BB10C3701F00947117 /* FreeTypeFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9014C5B410C3701F00947117 /* FreeTypeFont.cpp */; };
 		9014C5BC10C3701F00947117 /* FreeTypeFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 9014C5B510C3701F00947117 /* FreeTypeFont.h */; };
-		9014C5BD10C3701F00947117 /* FreeTypeFont3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9014C5B610C3701F00947117 /* FreeTypeFont3D.cpp */; };
-		9014C5BE10C3701F00947117 /* FreeTypeFont3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 9014C5B710C3701F00947117 /* FreeTypeFont3D.h */; };
 		9014C5BF10C3701F00947117 /* FreeTypeLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9014C5B810C3701F00947117 /* FreeTypeLibrary.cpp */; };
 		9014C5C010C3701F00947117 /* FreeTypeLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 9014C5B910C3701F00947117 /* FreeTypeLibrary.h */; };
 		9014C5C110C3701F00947117 /* ReaderWriterFreeType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9014C5BA10C3701F00947117 /* ReaderWriterFreeType.cpp */; };
@@ -291,7 +289,6 @@
 		906D8DAA10B8FF0E0089D3C3 /* DefaultFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 906D8DA010B8FF0E0089D3C3 /* DefaultFont.h */; };
 		906D8DAB10B8FF0E0089D3C3 /* FadeText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 906D8DA110B8FF0E0089D3C3 /* FadeText.cpp */; };
 		906D8DAC10B8FF0E0089D3C3 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 906D8DA210B8FF0E0089D3C3 /* Font.cpp */; };
-		906D8DAD10B8FF0E0089D3C3 /* Font3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 906D8DA310B8FF0E0089D3C3 /* Font3D.cpp */; };
 		906D8DAE10B8FF0E0089D3C3 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 906D8DA410B8FF0E0089D3C3 /* String.cpp */; };
 		906D8DAF10B8FF0E0089D3C3 /* Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 906D8DA510B8FF0E0089D3C3 /* Text.cpp */; };
 		906D8DB010B8FF0E0089D3C3 /* Text3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 906D8DA610B8FF0E0089D3C3 /* Text3D.cpp */; };
@@ -1420,6 +1417,10 @@
 		D471FD8A11EBBC2400F3BD97 /* GLStaticLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D471FD8711EBBC2400F3BD97 /* GLStaticLibrary.cpp */; };
 		D471FD8B11EBBC2400F3BD97 /* GLStaticLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = D471FD8811EBBC2400F3BD97 /* GLStaticLibrary.h */; };
 		D471FD8C11EBBC2400F3BD97 /* Texture2DMultisample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D471FD8911EBBC2400F3BD97 /* Texture2DMultisample.cpp */; };
+		D47D50CA123A7C61002289EA /* Glyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D47D50C6123A7C61002289EA /* Glyph.cpp */; };
+		D47D50CB123A7C61002289EA /* GlyphGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D47D50C7123A7C61002289EA /* GlyphGeometry.cpp */; };
+		D47D50CC123A7C61002289EA /* GlyphGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = D47D50C8123A7C61002289EA /* GlyphGeometry.h */; };
+		D47D50CD123A7C61002289EA /* TextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D47D50C9123A7C61002289EA /* TextNode.cpp */; };
 		D4AE30E21176598000B8E6FB /* StackedMatrixElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30D91176598000B8E6FB /* StackedMatrixElement.cpp */; };
 		D4AE30E31176598000B8E6FB /* StackedQuaternionElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30DA1176598000B8E6FB /* StackedQuaternionElement.cpp */; };
 		D4AE30E41176598000B8E6FB /* StackedRotateAxisElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30DB1176598000B8E6FB /* StackedRotateAxisElement.cpp */; };
@@ -2124,8 +2125,6 @@
 		9014C5AF10C36FD100947117 /* libosgdb_freetype.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosgdb_freetype.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9014C5B410C3701F00947117 /* FreeTypeFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FreeTypeFont.cpp; path = ../src/osgPlugins/freetype/FreeTypeFont.cpp; sourceTree = SOURCE_ROOT; };
 		9014C5B510C3701F00947117 /* FreeTypeFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeTypeFont.h; path = ../src/osgPlugins/freetype/FreeTypeFont.h; sourceTree = SOURCE_ROOT; };
-		9014C5B610C3701F00947117 /* FreeTypeFont3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FreeTypeFont3D.cpp; path = ../src/osgPlugins/freetype/FreeTypeFont3D.cpp; sourceTree = SOURCE_ROOT; };
-		9014C5B710C3701F00947117 /* FreeTypeFont3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeTypeFont3D.h; path = ../src/osgPlugins/freetype/FreeTypeFont3D.h; sourceTree = SOURCE_ROOT; };
 		9014C5B810C3701F00947117 /* FreeTypeLibrary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FreeTypeLibrary.cpp; path = ../src/osgPlugins/freetype/FreeTypeLibrary.cpp; sourceTree = SOURCE_ROOT; };
 		9014C5B910C3701F00947117 /* FreeTypeLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeTypeLibrary.h; path = ../src/osgPlugins/freetype/FreeTypeLibrary.h; sourceTree = SOURCE_ROOT; };
 		9014C5BA10C3701F00947117 /* ReaderWriterFreeType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReaderWriterFreeType.cpp; path = ../src/osgPlugins/freetype/ReaderWriterFreeType.cpp; sourceTree = SOURCE_ROOT; };
@@ -2177,7 +2176,6 @@
 		906D8DA010B8FF0E0089D3C3 /* DefaultFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultFont.h; path = ../src/osgText/DefaultFont.h; sourceTree = SOURCE_ROOT; };
 		906D8DA110B8FF0E0089D3C3 /* FadeText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FadeText.cpp; path = ../src/osgText/FadeText.cpp; sourceTree = SOURCE_ROOT; };
 		906D8DA210B8FF0E0089D3C3 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../src/osgText/Font.cpp; sourceTree = SOURCE_ROOT; };
-		906D8DA310B8FF0E0089D3C3 /* Font3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font3D.cpp; path = ../src/osgText/Font3D.cpp; sourceTree = SOURCE_ROOT; };
 		906D8DA410B8FF0E0089D3C3 /* String.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = String.cpp; path = ../src/osgText/String.cpp; sourceTree = SOURCE_ROOT; };
 		906D8DA510B8FF0E0089D3C3 /* Text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Text.cpp; path = ../src/osgText/Text.cpp; sourceTree = SOURCE_ROOT; };
 		906D8DA610B8FF0E0089D3C3 /* Text3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Text3D.cpp; path = ../src/osgText/Text3D.cpp; sourceTree = SOURCE_ROOT; };
@@ -3267,6 +3265,12 @@
 		D471FD8811EBBC2400F3BD97 /* GLStaticLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLStaticLibrary.h; path = ../src/osg/GLStaticLibrary.h; sourceTree = SOURCE_ROOT; };
 		D471FD8911EBBC2400F3BD97 /* Texture2DMultisample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture2DMultisample.cpp; path = ../src/osg/Texture2DMultisample.cpp; sourceTree = SOURCE_ROOT; };
 		D471FD8D11EBBC3000F3BD97 /* Texture2DMultisample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Texture2DMultisample; path = ../include/osg/Texture2DMultisample; sourceTree = SOURCE_ROOT; };
+		D47D50C6123A7C61002289EA /* Glyph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Glyph.cpp; path = ../src/osgText/Glyph.cpp; sourceTree = SOURCE_ROOT; };
+		D47D50C7123A7C61002289EA /* GlyphGeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GlyphGeometry.cpp; path = ../src/osgText/GlyphGeometry.cpp; sourceTree = SOURCE_ROOT; };
+		D47D50C8123A7C61002289EA /* GlyphGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlyphGeometry.h; path = ../src/osgText/GlyphGeometry.h; sourceTree = SOURCE_ROOT; };
+		D47D50C9123A7C61002289EA /* TextNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextNode.cpp; path = ../src/osgText/TextNode.cpp; sourceTree = SOURCE_ROOT; };
+		D47D50CE123A7CA2002289EA /* Glyph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Glyph; path = ../include/osgText/Glyph; sourceTree = SOURCE_ROOT; };
+		D47D50CF123A7CA2002289EA /* TextNode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TextNode; path = ../include/osgText/TextNode; sourceTree = SOURCE_ROOT; };
 		D4AE30D91176598000B8E6FB /* StackedMatrixElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedMatrixElement.cpp; path = ../src/osgAnimation/StackedMatrixElement.cpp; sourceTree = SOURCE_ROOT; };
 		D4AE30DA1176598000B8E6FB /* StackedQuaternionElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedQuaternionElement.cpp; path = ../src/osgAnimation/StackedQuaternionElement.cpp; sourceTree = SOURCE_ROOT; };
 		D4AE30DB1176598000B8E6FB /* StackedRotateAxisElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedRotateAxisElement.cpp; path = ../src/osgAnimation/StackedRotateAxisElement.cpp; sourceTree = SOURCE_ROOT; };
@@ -3847,8 +3851,6 @@
 			children = (
 				9014C5B410C3701F00947117 /* FreeTypeFont.cpp */,
 				9014C5B510C3701F00947117 /* FreeTypeFont.h */,
-				9014C5B610C3701F00947117 /* FreeTypeFont3D.cpp */,
-				9014C5B710C3701F00947117 /* FreeTypeFont3D.h */,
 				9014C5B810C3701F00947117 /* FreeTypeLibrary.cpp */,
 				9014C5B910C3701F00947117 /* FreeTypeLibrary.h */,
 				9014C5BA10C3701F00947117 /* ReaderWriterFreeType.cpp */,
@@ -3931,11 +3933,14 @@
 		906D8D9210B8FE790089D3C3 /* osgText */ = {
 			isa = PBXGroup;
 			children = (
+				D47D50C6123A7C61002289EA /* Glyph.cpp */,
+				D47D50C7123A7C61002289EA /* GlyphGeometry.cpp */,
+				D47D50C8123A7C61002289EA /* GlyphGeometry.h */,
+				D47D50C9123A7C61002289EA /* TextNode.cpp */,
 				906D8D9410B8FE850089D3C3 /* headers */,
 				906D8D9F10B8FF0E0089D3C3 /* DefaultFont.cpp */,
 				906D8DA110B8FF0E0089D3C3 /* FadeText.cpp */,
 				906D8DA210B8FF0E0089D3C3 /* Font.cpp */,
-				906D8DA310B8FF0E0089D3C3 /* Font3D.cpp */,
 				906D8DA410B8FF0E0089D3C3 /* String.cpp */,
 				906D8DA510B8FF0E0089D3C3 /* Text.cpp */,
 				906D8DA610B8FF0E0089D3C3 /* Text3D.cpp */,
@@ -3948,6 +3953,8 @@
 		906D8D9410B8FE850089D3C3 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D47D50CE123A7CA2002289EA /* Glyph */,
+				D47D50CF123A7CA2002289EA /* TextNode */,
 				906D8DA010B8FF0E0089D3C3 /* DefaultFont.h */,
 				906D8D9510B8FEAB0089D3C3 /* Export */,
 				906D8D9610B8FEAB0089D3C3 /* FadeText */,
@@ -5440,7 +5447,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9014C5BC10C3701F00947117 /* FreeTypeFont.h in Headers */,
-				9014C5BE10C3701F00947117 /* FreeTypeFont3D.h in Headers */,
 				9014C5C010C3701F00947117 /* FreeTypeLibrary.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5624,6 +5630,7 @@
 				906D8DBA10B8FF340089D3C3 /* Text3D in Headers */,
 				906D8DBB10B8FF340089D3C3 /* TextBase in Headers */,
 				906D8DBC10B8FF340089D3C3 /* Version in Headers */,
+				D47D50CC123A7C61002289EA /* GlyphGeometry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6791,7 +6798,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9014C5BB10C3701F00947117 /* FreeTypeFont.cpp in Sources */,
-				9014C5BD10C3701F00947117 /* FreeTypeFont3D.cpp in Sources */,
 				9014C5BF10C3701F00947117 /* FreeTypeLibrary.cpp in Sources */,
 				9014C5C110C3701F00947117 /* ReaderWriterFreeType.cpp in Sources */,
 			);
@@ -6965,12 +6971,14 @@
 				906D8DA910B8FF0E0089D3C3 /* DefaultFont.cpp in Sources */,
 				906D8DAB10B8FF0E0089D3C3 /* FadeText.cpp in Sources */,
 				906D8DAC10B8FF0E0089D3C3 /* Font.cpp in Sources */,
-				906D8DAD10B8FF0E0089D3C3 /* Font3D.cpp in Sources */,
 				906D8DAE10B8FF0E0089D3C3 /* String.cpp in Sources */,
 				906D8DAF10B8FF0E0089D3C3 /* Text.cpp in Sources */,
 				906D8DB010B8FF0E0089D3C3 /* Text3D.cpp in Sources */,
 				906D8DB110B8FF0E0089D3C3 /* TextBase.cpp in Sources */,
 				906D8DB210B8FF0E0089D3C3 /* Version.cpp in Sources */,
+				D47D50CA123A7C61002289EA /* Glyph.cpp in Sources */,
+				D47D50CB123A7C61002289EA /* GlyphGeometry.cpp in Sources */,
+				D47D50CD123A7C61002289EA /* TextNode.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
