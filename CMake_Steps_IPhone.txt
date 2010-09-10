@@ -1,0 +1,31 @@
+Notes on run CMake to generate XCode IPhone SDK prjects, Thomas Hogarth, 30/08/10
+
+Manually set the relevant OSG_BUILD_PLATFORM_IPHONE... option in root CMakeLists file. Can only have one or the other at the moment.
+
+Run CMake
+
+Disable all OpenGL types except either OSG_GLES1_AVALIABLE or OSG_GLES2_AVALIABLE. Also disable OSG_GLU_AVALIABLE
+
+Disable OSG_GL_DISPLAYLISTS_AVALIABLE
+
+Ensure OSG_WINDOWING_SYSTEM is set to IPhone
+
+Change FREETYPE include and library paths to an IPhone version (there is one in the IPhone_Project folder)
+
+Under DYNAMIC ensure you untick DYNAMIC_OPENSCENEGRAPH and DYNAMIC_OPENTHREADS. This will give us the static build we need for IPhone
+
+Under CMake ensure the CMake_OSX_SYSROOT points to your IPhone SDK. Also check that the architecture is armv6/7 for device or i386 for Simulator.
+
+Generate the XCode project
+
+Find osgDB FileUtis.cpp, open the 'Get Info' panel, change File Type to source.cpp.objcpp
+
+When Linking final app against ive plugin, you need to add -lz to the 'Other linker flags' list.
+
+Issues:
+
+Apps and exes don't get created
+
+You can only select Simulator, or Device projects. In the XCode project you will see both types but the sdk they lin to will be the same.
+
+
