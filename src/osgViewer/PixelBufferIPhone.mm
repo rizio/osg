@@ -10,7 +10,8 @@
 #include <iostream>
 #include <osgViewer/api/Cocoa/PixelBufferCocoa>
 #include <osgViewer/api/Cocoa/GraphicsWindowCocoa>
-#include <Cocoa/Cocoa.h>
+//#import <Cocoa/Cocoa.h>
+#import <UIKit/UIKit.h>
 
 namespace osgViewer {
 

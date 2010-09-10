@@ -1,3 +1,5 @@
+IPhone port changes, Thomas Hogarth
+
 Changes for IPhone build
 
 Added 'IPhone_Project' folder to the 'XCode/OpenSceneGraph' folder.
@@ -45,5 +47,20 @@ Possible Compiler bug, when linking to osgText and osgdb_freetypes libs a strang
 Freetype2 lib compiled for IPhone obtained from OpenFrameworks project http://www.openframeworks.cc
 
 Also added basic cocoa replacement for imageio plugin as a temporary fix for imageio using carbon.
+
+
+Changes to files for CMake:
+
+Changed root CMakeLists, added switches for generating iphone projects (OSG_BUILD_PLATFORM_IPHONE and OSG_BUILD_PLATFORM_IPHONE_SIMULATOR)
+
+Added IPHONE_SDKVER to root CMakeLists.
+
+Search IPHONE_PORT@tom for changes.
+
+Moved a copy of the imageio plugin into the proper folder and added _iphone to the end, then altered imageIO's CMakeLists to pick the correct one (this is a temp fix till we merge the two versions)
+
+Changed osgViewer CMakeLists to pick the IPhone implementations.
+
+
 
 

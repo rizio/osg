@@ -100,10 +100,19 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 301909055;
-			PBXWorkspaceStateSaveDate = 301909055;
+			PBXPerProjectTemplateStateSaveDate = 305816364;
+			PBXWorkspaceStateSaveDate = 305816364;
 		};
 		perUserProjectItems = {
+			D42E1EE5123A633B00EBDEF2 /* PBXTextBookmark */ = D42E1EE5123A633B00EBDEF2 /* PBXTextBookmark */;
+			D42E1EE6123A633B00EBDEF2 /* PBXTextBookmark */ = D42E1EE6123A633B00EBDEF2 /* PBXTextBookmark */;
+			D42E1EE7123A633B00EBDEF2 /* PBXTextBookmark */ = D42E1EE7123A633B00EBDEF2 /* PBXTextBookmark */;
+			D42E1EEB123A635C00EBDEF2 /* PBXTextBookmark */ = D42E1EEB123A635C00EBDEF2 /* PBXTextBookmark */;
+			D42E1EEC123A638F00EBDEF2 /* PBXTextBookmark */ = D42E1EEC123A638F00EBDEF2 /* PBXTextBookmark */;
+			D42E1EF0123A647300EBDEF2 /* PBXTextBookmark */ = D42E1EF0123A647300EBDEF2 /* PBXTextBookmark */;
+			D42E1EF1123A647300EBDEF2 /* PBXTextBookmark */ = D42E1EF1123A647300EBDEF2 /* PBXTextBookmark */;
+			D42E1EF3123A647300EBDEF2 /* PBXBookmark */ = D42E1EF3123A647300EBDEF2 /* PBXBookmark */;
+			D42E1EF4123A647300EBDEF2 /* PlistBookmark */ = D42E1EF4123A647300EBDEF2 /* PlistBookmark */;
 			D4530AEC119A9274007453BC = D4530AEC119A9274007453BC /* PBXTextBookmark */;
 			D4530AED119A9274007453BC = D4530AED119A9274007453BC /* PBXTextBookmark */;
 			D4530AEE119A9274007453BC = D4530AEE119A9274007453BC /* PBXTextBookmark */;
@@ -128,10 +137,10 @@
 			D45D329F116A4F9E001C8838 = D45D329F116A4F9E001C8838 /* PBXTextBookmark */;
 			D45D32A0116A4F9E001C8838 = D45D32A0116A4F9E001C8838 /* PBXTextBookmark */;
 			D45D32A1116A4F9E001C8838 = D45D32A1116A4F9E001C8838 /* PBXTextBookmark */;
-			D463F6EF11FEC44C007CA7EC /* PBXTextBookmark */ = D463F6EF11FEC44C007CA7EC /* PBXTextBookmark */;
-			D463F6F011FEC44C007CA7EC /* PBXTextBookmark */ = D463F6F011FEC44C007CA7EC /* PBXTextBookmark */;
-			D463F6F111FEC44C007CA7EC /* PBXBookmark */ = D463F6F111FEC44C007CA7EC /* PBXBookmark */;
-			D463F6F211FEC44C007CA7EC /* PBXTextBookmark */ = D463F6F211FEC44C007CA7EC /* PBXTextBookmark */;
+			D463F6EF11FEC44C007CA7EC = D463F6EF11FEC44C007CA7EC /* PBXTextBookmark */;
+			D463F6F011FEC44C007CA7EC = D463F6F011FEC44C007CA7EC /* PBXTextBookmark */;
+			D463F6F111FEC44C007CA7EC = D463F6F111FEC44C007CA7EC /* PBXBookmark */;
+			D463F6F211FEC44C007CA7EC = D463F6F211FEC44C007CA7EC /* PBXTextBookmark */;
 			D471FD7011EBBA4900F3BD97 = D471FD7011EBBA4900F3BD97 /* PBXTextBookmark */;
 			D471FD7111EBBA4900F3BD97 = D471FD7111EBBA4900F3BD97 /* PBXTextBookmark */;
 			D471FD7211EBBA4900F3BD97 = D471FD7211EBBA4900F3BD97 /* PBXTextBookmark */;
@@ -197,7 +206,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1031, 3133}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1089}";
+			sepNavVisRange = "{0, 1042}";
 		};
 	};
 	9014C5B510C3701F00947117 /* FreeTypeFont.h */ = {
@@ -212,6 +221,13 @@
 			sepNavIntBoundsRect = "{{0, 0}, {1031, 780}}";
 			sepNavSelRange = "{958, 0}";
 			sepNavVisRange = "{70, 1126}";
+		};
+	};
+	9014C5B810C3701F00947117 /* FreeTypeLibrary.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1031, 3094}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1020}";
 		};
 	};
 	90341F3210B7B34E0082188B /* osgdb_obj */ = {
@@ -573,15 +589,106 @@
 	90EEDE7210B9F4F1007F0292 /* osgdb_imageio */ = {
 		activeExec = 0;
 	};
-	90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO.cpp */ = {
+	90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 4394}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1031, 4563}}";
 			sepNavSelRange = "{657, 0}";
-			sepNavVisRange = "{76, 764}";
+			sepNavVisRange = "{76, 659}";
 		};
 	};
 	D2AAC07D0554694100DB518D /* osg */ = {
 		activeExec = 0;
+	};
+	D42E1EE5123A633B00EBDEF2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9014C5B410C3701F00947117 /* FreeTypeFont.cpp */;
+		name = "FreeTypeFont.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1042;
+		vrLoc = 0;
+	};
+	D42E1EE6123A633B00EBDEF2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9014C5B810C3701F00947117 /* FreeTypeLibrary.cpp */;
+		name = "FreeTypeLibrary.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1020;
+		vrLoc = 0;
+	};
+	D42E1EE7123A633B00EBDEF2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */;
+		name = "ReaderWriterImageIO.cpp: 27";
+		rLen = 0;
+		rLoc = 657;
+		rType = 0;
+		vrLen = 659;
+		vrLoc = 76;
+	};
+	D42E1EEB123A635C00EBDEF2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9014C5B410C3701F00947117 /* FreeTypeFont.cpp */;
+		name = "FreeTypeFont.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1042;
+		vrLoc = 0;
+	};
+	D42E1EEC123A638F00EBDEF2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9014C5B410C3701F00947117 /* FreeTypeFont.cpp */;
+		name = "FreeTypeFont.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1042;
+		vrLoc = 0;
+	};
+	D42E1EF0123A647300EBDEF2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9014C5B410C3701F00947117 /* FreeTypeFont.cpp */;
+		name = "FreeTypeFont.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1042;
+		vrLoc = 0;
+	};
+	D42E1EF1123A647300EBDEF2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D42E1EF2123A647300EBDEF2 /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 343;
+		vrLoc = 0;
+	};
+	D42E1EF2123A647300EBDEF2 /* main.m */ = {
+		isa = PBXFileReference;
+		name = main.m;
+		path = "/Users/stephan/Downloads/osg-iphone-git/IPhone_Project/iphoneExamples/iphoneViewer/main.m";
+		sourceTree = "<absolute>";
+	};
+	D42E1EF3123A647300EBDEF2 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 90AF653110C3493D0041F6A7 /* osgIPhoneViewer-Info.plist */;
+	};
+	D42E1EF4123A647300EBDEF2 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 90AF653110C3493D0041F6A7 /* osgIPhoneViewer-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/stephan/Downloads/osg-iphone-git/IPhone_Project/iphoneExamples/iphoneViewer/osgIPhoneViewer-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
 	};
 	D43C18C21168D45F00C537EA /* connectivity_graph.cpp */ = {
 		uiCtxt = {
@@ -642,7 +749,7 @@
 	};
 	D45A15A811ED141500EBB947 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO.cpp */;
+		fRef = 90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */;
 		name = "ReaderWriterImageIO.cpp: 27";
 		rLen = 0;
 		rLoc = 657;

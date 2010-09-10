@@ -1389,7 +1389,7 @@
 		90B90EE010B3BF5E00E10618 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90CBA10B3925800E10618 /* QuartzCore.framework */; };
 		90CAB9E810C3992A00F8B606 /* arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90CAB9E710C3992A00F8B606 /* arial.ttf */; };
 		90EEDE6110B9F071007F0292 /* libosgGA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8E4B10B901570089D3C3 /* libosgGA.a */; };
-		90EEDE7E10B9F554007F0292 /* ReaderWriterImageIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO.cpp */; };
+		90EEDE7E10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */; };
 		90EEDF6110BA01CB007F0292 /* libosgdb_imageio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDE7310B9F4F1007F0292 /* libosgdb_imageio.a */; };
 		90EEDFBF10BA07B8007F0292 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */; };
 		D43C18C51168D45F00C537EA /* MeshOptimizers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18B91168D45F00C537EA /* MeshOptimizers.cpp */; };
@@ -2864,10 +2864,10 @@
 		90AF640810C345190041F6A7 /* tusk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tusk.png; path = iphoneExamples/simple/Resources/images/tusk.png; sourceTree = "<group>"; };
 		90AF642D10C346F00041F6A7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		90AF642E10C346F00041F6A7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		90AF643110C347450041F6A7 /* iphoneViewerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iphoneViewerAppDelegate.h; path = iphoneExamples/iphoneViewer/iphoneViewerAppDelegate.h; sourceTree = "<group>"; };
-		90AF643210C347450041F6A7 /* iphoneViewerAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iphoneViewerAppDelegate.mm; path = iphoneExamples/iphoneViewer/iphoneViewerAppDelegate.mm; sourceTree = "<group>"; };
-		90AF643310C347450041F6A7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iphoneExamples/iphoneViewer/main.m; sourceTree = "<group>"; };
-		90AF643410C347450041F6A7 /* osgPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = osgPlugins.h; path = iphoneExamples/iphoneViewer/osgPlugins.h; sourceTree = "<group>"; };
+		90AF643110C347450041F6A7 /* iphoneViewerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iphoneViewerAppDelegate.h; path = ../examples/osgviewerIPhone/iphoneViewerAppDelegate.h; sourceTree = "<group>"; };
+		90AF643210C347450041F6A7 /* iphoneViewerAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iphoneViewerAppDelegate.mm; path = ../examples/osgviewerIPhone/iphoneViewerAppDelegate.mm; sourceTree = "<group>"; };
+		90AF643310C347450041F6A7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../examples/osgviewerIPhone/main.m; sourceTree = "<group>"; };
+		90AF643410C347450041F6A7 /* osgPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = osgPlugins.h; path = ../examples/osgviewerIPhone/osgPlugins.h; sourceTree = "<group>"; };
 		90AF653110C3493D0041F6A7 /* osgIPhoneViewer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "osgIPhoneViewer-Info.plist"; path = "iphoneExamples/iphoneViewer/osgIPhoneViewer-Info.plist"; sourceTree = "<group>"; };
 		90B906E210B36ACA00E10618 /* AlphaFunc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AlphaFunc; path = ../include/osg/AlphaFunc; sourceTree = SOURCE_ROOT; };
 		90B906E310B36ACA00E10618 /* AnimationPath */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AnimationPath; path = ../include/osg/AnimationPath; sourceTree = SOURCE_ROOT; };
@@ -3218,9 +3218,9 @@
 		90B90E3810B3A16600E10618 /* ViewerEventHandlers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ViewerEventHandlers.cpp; path = ../src/osgViewer/ViewerEventHandlers.cpp; sourceTree = SOURCE_ROOT; };
 		90B90E4D10B3A5E400E10618 /* GraphicsWindowIPhone */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GraphicsWindowIPhone; path = ../include/osgViewer/api/IPhone/GraphicsWindowIPhone; sourceTree = SOURCE_ROOT; };
 		90B90E4E10B3A60E00E10618 /* GraphicsWindowIPhone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GraphicsWindowIPhone.mm; path = ../src/osgViewer/GraphicsWindowIPhone.mm; sourceTree = SOURCE_ROOT; };
-		90CAB9E710C3992A00F8B606 /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = arial.ttf; path = iphoneExamples/iphoneViewer/Resources/arial.ttf; sourceTree = "<group>"; };
+		90CAB9E710C3992A00F8B606 /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = arial.ttf; path = ../examples/osgviewerIPhone/Resources/arial.ttf; sourceTree = "<group>"; };
 		90EEDE7310B9F4F1007F0292 /* libosgdb_imageio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosgdb_imageio.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ReaderWriterImageIO.cpp; path = osgPlugins/imageio/ReaderWriterImageIO.cpp; sourceTree = "<group>"; };
+		90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ReaderWriterImageIO_IPhone.cpp; path = ../src/osgPlugins/imageio/ReaderWriterImageIO_IPhone.cpp; sourceTree = "<group>"; };
 		90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libosg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosg.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3531,6 +3531,7 @@
 		0867D691FE84028FC02AAC07 /* OSGIPone */ = {
 			isa = PBXGroup;
 			children = (
+				90ED0C2712239AE1008F1540 /* CMake */,
 				90AF642C10C346C50041F6A7 /* Common Resources */,
 				90AF63E810C340620041F6A7 /* Libraries */,
 				90B90C6310B3841600E10618 /* IPhone Examples */,
@@ -5261,10 +5262,17 @@
 			name = api;
 			sourceTree = "<group>";
 		};
+		90ED0C2712239AE1008F1540 /* CMake */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CMake;
+			sourceTree = "<group>";
+		};
 		90EEDE7A10B9F525007F0292 /* osgdb_imageio */ = {
 			isa = PBXGroup;
 			children = (
-				90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO.cpp */,
+				90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */,
 			);
 			name = osgdb_imageio;
 			sourceTree = "<group>";
@@ -6569,7 +6577,14 @@
 			isa = PBXProject;
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "OSGIPhone" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* OSGIPone */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
@@ -7337,7 +7352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90EEDE7E10B9F554007F0292 /* ReaderWriterImageIO.cpp in Sources */,
+				90EEDE7E10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7883,6 +7898,7 @@
 				);
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = osg;
+				SDKROOT = iphoneos3.1;
 			};
 			name = Release;
 		};
@@ -8546,6 +8562,7 @@
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = osgUtils;
+				SDKROOT = iphoneos3.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -8659,7 +8676,6 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = osgViewer;
-				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;
 		};
@@ -8695,7 +8711,6 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = osgViewer;
-				SDKROOT = iphoneos3.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -8771,7 +8786,6 @@
 				PREBINDING = NO;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = osg;
-				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
 		};
@@ -8803,7 +8817,6 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = osg;
-				SDKROOT = iphoneos3.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -8842,6 +8855,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = osgViewer;
+				SDKROOT = iphoneos3.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
