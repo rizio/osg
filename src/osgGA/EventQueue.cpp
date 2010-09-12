@@ -344,6 +344,69 @@ void EventQueue::keyRelease(int key, double time)
     addEvent(event);
 }
 
+
+void EventQueue::touchBegan(unsigned int id, float x, float y, double time)
+{
+	osg::notify(osg::ALWAYS) << "touch began id: " << id << " " << x << "/" << y << " at: " << time << std::endl;
+	
+	_accumulateEventState->setButtonMask((1 << id) | _accumulateEventState->getButtonMask());
+	if (id == 1) {
+		_accumulateEventState->setX(x);
+		_accumulateEventState->setY(y);
+	}
+	
+	GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
+    event->setEventType(GUIEventAdapter::PUSH);
+    event->setTime(time);
+	event->setX(x);
+	event->setY(y);
+	event->setTouchId(id);
+  
+    addEvent(event);
+
+}
+		
+		
+void EventQueue::touchMoved(unsigned int id, float x, float y, double time)
+{
+	osg::notify(osg::ALWAYS) << "touch moved id: " << id << " " << x << "/" << y << " at: " << time << std::endl;
+	
+	if (id == 1) {
+		_accumulateEventState->setX(x);
+		_accumulateEventState->setY(y);
+	}
+	
+	GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
+    event->setEventType(GUIEventAdapter::DRAG);
+    event->setTime(time);
+	event->setX(x);
+	event->setY(y);
+	event->setTouchId(id);
+  
+    addEvent(event);
+}
+
+void EventQueue::touchEnded(unsigned int id, float x, float y, unsigned int tap_count, double time)
+{
+	_accumulateEventState->setButtonMask(~(1 << id) & _accumulateEventState->getButtonMask());
+	
+	if (id == 1) {
+		_accumulateEventState->setX(x);
+		_accumulateEventState->setY(y);
+	}
+	
+	osg::notify(osg::ALWAYS) << "touch ended id: " << id << " " << x << "/" << y << " #taps: " << tap_count << " at: " << time << std::endl;
+	GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
+    event->setEventType(GUIEventAdapter::PUSH);
+    event->setTime(time);
+	event->setX(x);
+	event->setY(y);
+	event->setTouchId(id);
+	event->setTapCount(tap_count);
+    addEvent(event);
+}
+		
+
 void EventQueue::closeWindow(double time)
 {
     GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);

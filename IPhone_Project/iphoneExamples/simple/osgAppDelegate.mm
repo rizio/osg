@@ -15,17 +15,18 @@
 //
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
-    osg::setNotifyLevel(osg::INFO);
+    //osg::setNotifyLevel(osg::INFO);
     
 	_root = new osg::MatrixTransform();	
 	osg::ref_ptr<osg::Node> model = (osgDB::readNodeFile("hog.osg"));
 	_root->addChild(model);
 	
-    osg::Geode* geode = new osg::Geode();
+    /*
+	osg::Geode* geode = new osg::Geode();
     osg::ShapeDrawable* drawable = new osg::ShapeDrawable(new osg::Box(osg::Vec3(1,1,1), 1));
     geode->addDrawable(drawable);
     _root->addChild(geode);
-    
+    */
 	_viewer = new osgViewer::Viewer();
 	_viewer->setSceneData(_root.get());
 	_viewer->setCameraManipulator(new osgGA::TrackballManipulator);

@@ -157,6 +157,22 @@ class OSGGA_EXPORT EventQueue : public osg::Referenced
 
         /** Method for adapting keyboard press events. Note, special keys such as Ctrl/Function keys should be adapted to GUIEventAdapter::KeySymbol mappings, with specified time.*/
         void keyRelease(int key, double time);
+			
+		void touchBegan(unsigned int id, float x, float y, double time);
+		void touchBegan(unsigned int id, float x, float y) {
+			touchBegan(id, x, y, getTime());
+		}
+		
+		void touchMoved(unsigned int id, float x, float y, double time);
+		void touchMoved(unsigned int id, float x, float y) {
+			touchMoved(id, x, y, getTime());
+		}
+		
+		void touchEnded(unsigned int id, float x, float y, unsigned int tap_count, double time);
+		void touchEnded(unsigned int id, float x, float y, unsigned int tap_count) {
+			touchEnded(id, x, y, tap_count, getTime());
+		}
+		
 
 
         /** Method for adapting close window events.*/

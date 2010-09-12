@@ -56,8 +56,7 @@ unsigned int IPhoneWindowingSystemInterface::getNumScreens(const osg::GraphicsCo
 
 void IPhoneWindowingSystemInterface::getScreenSettings(const osg::GraphicsContext::ScreenIdentifier& si, osg::GraphicsContext::ScreenSettings & resolution)
 {
-    int id = getDisplayID(si);
-	CGRect lFrame = [[UIScreen mainScreen] bounds];
+    CGRect lFrame = [[UIScreen mainScreen] bounds];
 	
     resolution.width = lFrame.size.width;
     resolution.height = lFrame.size.height;
@@ -71,8 +70,7 @@ void IPhoneWindowingSystemInterface::enumerateScreenSettings(const osg::Graphics
         // Warning! This method has not been tested.
         resolutionList.clear();
 
-        int displayid = getDisplayID(screenIdentifier);
-       // CFArrayRef availableModes = CGDisplayAvailableModes(displayid);
+         // CFArrayRef availableModes = CGDisplayAvailableModes(displayid);
         //unsigned int numberOfAvailableModes = CFArrayGetCount(availableModes);
 
             osg::GraphicsContext::ScreenSettings tmpSR;

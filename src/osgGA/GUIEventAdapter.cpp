@@ -42,7 +42,8 @@ GUIEventAdapter::GUIEventAdapter():
     _modKeyMask(0),
     _mouseYOrientation(Y_INCREASING_DOWNWARDS),
     _scrolling(),
-    _tabletPen()
+    _tabletPen(),
+	_tapCount(0)
 {}
 
 GUIEventAdapter::GUIEventAdapter(const GUIEventAdapter& rhs,const osg::CopyOp& copyop):

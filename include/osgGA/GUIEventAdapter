@@ -443,7 +443,11 @@ public:
         /// set the orientation from a tablet input device as a matrix.
         const osg::Matrix getPenOrientation() const;
 
-
+		void setTouchId(unsigned int id) { _button = id; }
+		unsigned int getTouchId() { return _button; }
+		
+		void setTapCount(unsigned int count) { _tapCount = count; }
+		unsigned int getTapCount() { return _tapCount; }
     protected:
 
         /** Force users to create on heap, so that multiple referencing is safe.*/
@@ -489,6 +493,8 @@ public:
             TabletPen(const TabletPen& rhs) : pressure(rhs.pressure), tiltX(rhs.tiltX), tiltY(rhs.tiltY), rotation(rhs.rotation), tabletPointerType(rhs.tabletPointerType) {}
         };
         TabletPen _tabletPen;
+		
+		unsigned int _tapCount;
 
 };
 

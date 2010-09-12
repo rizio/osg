@@ -16,86 +16,6 @@
 #include "IPhoneUtils.h"
 
 
-// ----------------------------------------------------------------------------------------------------------
-// Basic container to trac the multi touch input state
-// ----------------------------------------------------------------------------------------------------------
-class InputState
-{
-public:
-	InputState(void) {
-		_touches = 0;
-		_tapCount = 0;
-		
-		//stores first/previous touch coords 
-		for(int i=0; i<4; i++)
-		{
-			_initTouch[i] = osg::Vec2(0.0f, 0.0f);
-			_touchTravelVec[i] = osg::Vec2(0.0f, 0.0f);
-		}
-		
-		//the distance between two touches
-		_initTouchDistance = 0.0f;
-		
-		_touchZoom = 0.0f;
-	}
-	~InputState(void) {
-	}
-	
-	enum InputType{
-		
-		TOUCH_BEGIN = 0,
-		TOUCH_MOVED,
-		TOUCH_END,
-		GRAVITY_CHANGED
-	};
-	
-	
-	InputType _type;
-	
-	//touches occuring at this moment
-	int _touches; 
-	int _tapCount;
-	
-	//stores first/previous touch coords 
-	osg::Vec2 _initTouch[4];
-	
-	//the distance between multi touches
-	float _initTouchDistance;
-	
-	//direction/velocity vector of each touch
-	osg::Vec2 _touchTravelVec[4];
-	
-	//pinch occuring
-	float _touchZoom;
-	
-	osg::Vec3 _gravity;
-	
-	int _previousMouseButton;
-	
-	//convert the touch state into a mouse button states are
-	//1 touch only, left mouse
-	//2 touches with no zoom/pinch, middle mouse
-	//2 tocuhes zooming/pinching, right mouse
-	int TouchStateToMouseButton(){
-		//if pinch is above the threhold
-		//if(abs(_touchZoom) > 5)
-		//{return 3;}//return right mouse
-		
-		//otherwise however many touches
-		switch(_touches){
-			case 1:
-				return 1; //left mouse
-			case 2:
-				return 2; //middle mouse
-			case 3:
-				return 3; //middle mouse
-			default:
-				return -1;
-		}
-	}
-				
-	
-};
 
 
 #pragma mark GraphicsWindowIPhoneWindow
@@ -156,7 +76,6 @@ public:
 		/* OpenGL name for the stencil buffer that is attached to viewFramebuffer, if it exists (0 if it does not exist) */
 		GLuint _stencilBuffer;
 	
-		InputState _inputState;
 }
 
 - (void)setGraphicsWindow: (osgViewer::GraphicsWindowIPhone*) win;
@@ -331,26 +250,16 @@ public:
 	
 	NSSet *allTouches = [event allTouches];
     
-	
-	_inputState._type = InputState::TOUCH_BEGIN;
-	_inputState._touches = [allTouches count];
+	double time = _win->getEventQueue()->getTime();
 	
 	for(int i=0; i<[allTouches count]; i++)
 	{
 		
 		UITouch *touch = [[allTouches allObjects] objectAtIndex:i];
 		CGPoint pos = [touch locationInView:touch.view];
-		_inputState._initTouch[i].x() = pos.x;
-		_inputState._initTouch[i].y() = pos.y;
+		
+		_win->getEventQueue()->touchBegan(i, pos.x, pos.y, time);
 	}
-	
-	//press then relevant button
-	int newButton = _inputState.TouchStateToMouseButton();
-	_win->getEventQueue()->mouseButtonPress(_inputState._initTouch[0].x(),  _inputState._initTouch[0].y(), newButton);
-	
-	//store previous mouseButton
-	_inputState._previousMouseButton = newButton;
-
 	
 }
 
@@ -358,67 +267,35 @@ public:
     
     NSSet *allTouches = [event allTouches];
 	
-	_inputState._touchZoom = 0.0f;
-	
-	_inputState._type = InputState::TOUCH_BEGIN;
-	_inputState._touches = [allTouches count];
-	
+	double time = _win->getEventQueue()->getTime();
+
 	for(int i=0; i<[allTouches count]; i++)
 	{
 		
 		UITouch *touch = [[allTouches allObjects] objectAtIndex:i];
 		CGPoint pos = [touch locationInView:touch.view];
-		osg::Vec2 cPos = osg::Vec2(pos.x, pos.y);
-		 _inputState._touchTravelVec[i] = cPos - _inputState._initTouch[i];
-		_inputState._initTouch[i] = cPos;
-	}
-
-	
-	//during touchesMoved we need to check for changes in tocuh count and release/press the relevent mouse buttons
-	int newButton = _inputState.TouchStateToMouseButton();
-	//compare to previous button
-	if(newButton != _inputState._previousMouseButton)
-	{
-		//unpress previous
-		_win->getEventQueue()->mouseButtonRelease(_inputState._initTouch[0].x(),  _inputState._initTouch[0].y(), _inputState._previousMouseButton);
-		//press new
-		_win->getEventQueue()->mouseButtonPress(_inputState._initTouch[0].x(),  _inputState._initTouch[0].y(), newButton);
-	}else{
 		
-		_win->getEventQueue()->mouseMotion(_inputState._initTouch[0].x(), _inputState._initTouch[0].y());
-	}
-	
-	//store previous mouseButton
-	_inputState._previousMouseButton = newButton;
-	
-	_inputState._type = InputState::TOUCH_MOVED;
-		
-	
+		_win->getEventQueue()->touchMoved(i, pos.x, pos.y, time);
 
+	}
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 
-{
+{	
+    NSSet *allTouches = [event allTouches];
 	
-    UITouch *touch = [[event allTouches] anyObject];
-	
-	//unpress previous
-	_win->getEventQueue()->mouseButtonRelease(_inputState._initTouch[0].x(),  _inputState._initTouch[0].y(), _inputState._previousMouseButton);
-
-
-	_inputState._type = InputState::TOUCH_END;
-	
-    _inputState._tapCount = [touch tapCount];
-	
-	//make double tap do space bar so we can get back to home position
-	if( _inputState._tapCount == 2)
+	double time = _win->getEventQueue()->getTime();
+		
+	for(int i=0; i<[allTouches count]; i++)
 	{
-		_win->getEventQueue()->keyPress( osgGA::GUIEventAdapter::KEY_Space, [event timestamp]);
-		_win->getEventQueue()->keyRelease( osgGA::GUIEventAdapter::KEY_Space, [event timestamp]);
+		
+		UITouch *touch = [[allTouches allObjects] objectAtIndex:i];
+		CGPoint pos = [touch locationInView:touch.view];
+		
+		_win->getEventQueue()->touchEnded(i, pos.x, pos.y, [touch tapCount], time);
+
 	}
-	
-	_inputState._initTouchDistance = -1.0f;
 }
 
 
@@ -461,12 +338,15 @@ bool GraphicsWindowIPhone::realizeImplementation()
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     
-    unsigned int style=0;//(NSBorderlessWindowMask);
-    if (_traits->windowDecoration) {
-			[[UIApplication sharedApplication] setStatusBarHidden:NO animated:NO];
-    }else{
-			[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
-	}
+    BOOL bar_hidden = (_traits->windowDecoration) ? NO: YES;
+	#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+	#if __IPHONE_OS_VERSION_MIN_REQUIRED > 30100
+		[[UIApplication sharedApplication] setStatusBarHidden: bar_hidden withAnimation:UIStatusBarAnimationNone];
+	#else
+		[[UIApplication sharedApplication] setStatusBarHidden: bar_hidden animated:NO];
+	#endif
+	#endif
+	
         
     IPhoneWindowingSystemInterface* wsi = dynamic_cast<IPhoneWindowingSystemInterface*>(osg::GraphicsContext::getWindowingSystemInterface());
     int screenLeft(0), screenTop(0);
@@ -630,11 +510,14 @@ bool GraphicsWindowIPhone::setWindowDecorationImplementation(bool flag)
 {
     if (!_realized || !_ownsWindow) return false;
 
-	if (flag) {
-		[[UIApplication sharedApplication] setStatusBarHidden:NO animated:NO];
-    }else{
-		[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
-	}
+	BOOL bar_hidden = (flag) ? NO: YES;
+	#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+	#if __IPHONE_OS_VERSION_MIN_REQUIRED > 30100
+		[[UIApplication sharedApplication] setStatusBarHidden: bar_hidden withAnimation:UIStatusBarAnimationNone];
+	#else
+		[[UIApplication sharedApplication] setStatusBarHidden: bar_hidden animated:NO];
+	#endif
+	#endif
 	
     return true;
 }
