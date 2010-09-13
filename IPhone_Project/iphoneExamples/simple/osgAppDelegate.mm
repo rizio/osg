@@ -4,6 +4,8 @@
 #include <osgGA/TrackballManipulator>
 #include <osg/ShapeDrawable>
 
+#include "DebugTouchPointsEventHandler.h"
+
 #define kAccelerometerFrequency		30.0 // Hz
 #define kFilteringFactor			0.1
 
@@ -28,6 +30,7 @@
     _root->addChild(geode);
     */
 	_viewer = new osgViewer::Viewer();
+	_viewer->addEventHandler(new DebugTouchPointsEventHandler());
 	_viewer->setSceneData(_root.get());
 	_viewer->setCameraManipulator(new osgGA::TrackballManipulator);
 	_viewer->setThreadingModel(osgViewer::Viewer::SingleThreaded);//SingleThreaded DrawThreadPerContext

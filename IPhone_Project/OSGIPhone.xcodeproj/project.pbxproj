@@ -1421,6 +1421,8 @@
 		D47D50CB123A7C61002289EA /* GlyphGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D47D50C7123A7C61002289EA /* GlyphGeometry.cpp */; };
 		D47D50CC123A7C61002289EA /* GlyphGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = D47D50C8123A7C61002289EA /* GlyphGeometry.h */; };
 		D47D50CD123A7C61002289EA /* TextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D47D50C9123A7C61002289EA /* TextNode.cpp */; };
+		D4854073123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D4854071123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h */; };
+		D4854074123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4854072123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm */; };
 		D4AE30E21176598000B8E6FB /* StackedMatrixElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30D91176598000B8E6FB /* StackedMatrixElement.cpp */; };
 		D4AE30E31176598000B8E6FB /* StackedQuaternionElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30DA1176598000B8E6FB /* StackedQuaternionElement.cpp */; };
 		D4AE30E41176598000B8E6FB /* StackedRotateAxisElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30DB1176598000B8E6FB /* StackedRotateAxisElement.cpp */; };
@@ -3271,6 +3273,8 @@
 		D47D50C9123A7C61002289EA /* TextNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextNode.cpp; path = ../src/osgText/TextNode.cpp; sourceTree = SOURCE_ROOT; };
 		D47D50CE123A7CA2002289EA /* Glyph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Glyph; path = ../include/osgText/Glyph; sourceTree = SOURCE_ROOT; };
 		D47D50CF123A7CA2002289EA /* TextNode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TextNode; path = ../include/osgText/TextNode; sourceTree = SOURCE_ROOT; };
+		D4854071123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugTouchPointsEventHandler.h; path = iphoneExamples/simple/DebugTouchPointsEventHandler.h; sourceTree = "<group>"; };
+		D4854072123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = DebugTouchPointsEventHandler.mm; path = iphoneExamples/simple/DebugTouchPointsEventHandler.mm; sourceTree = "<group>"; };
 		D4AE30D91176598000B8E6FB /* StackedMatrixElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedMatrixElement.cpp; path = ../src/osgAnimation/StackedMatrixElement.cpp; sourceTree = SOURCE_ROOT; };
 		D4AE30DA1176598000B8E6FB /* StackedQuaternionElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedQuaternionElement.cpp; path = ../src/osgAnimation/StackedQuaternionElement.cpp; sourceTree = SOURCE_ROOT; };
 		D4AE30DB1176598000B8E6FB /* StackedRotateAxisElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedRotateAxisElement.cpp; path = ../src/osgAnimation/StackedRotateAxisElement.cpp; sourceTree = SOURCE_ROOT; };
@@ -4791,6 +4795,8 @@
 				90AF63F410C343F40041F6A7 /* osgAppDelegate.mm */,
 				90AF63F610C343F40041F6A7 /* osgPlugins.h */,
 				90AF63F110C343F40041F6A7 /* hogboxIPhone_Prefix.pch */,
+				D4854071123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h */,
+				D4854072123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm */,
 			);
 			name = simpleExample;
 			sourceTree = "<group>";
@@ -5912,6 +5918,7 @@
 				90AF63F710C343F40041F6A7 /* hogboxIPhone_Prefix.pch in Headers */,
 				90AF63F910C343F40041F6A7 /* osgAppDelegate.h in Headers */,
 				90AF63FC10C343F40041F6A7 /* osgPlugins.h in Headers */,
+				D4854073123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7333,6 +7340,7 @@
 			files = (
 				90AF63F810C343F40041F6A7 /* main.m in Sources */,
 				90AF63FA10C343F40041F6A7 /* osgAppDelegate.mm in Sources */,
+				D4854074123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8135,8 +8143,8 @@
 					./config,
 					../include,
 					../config/openthreads,
-					"\"$(SRCROOT)/../../../OpenFrameWorks iPhone/libs/freetype/include\"/**",
-					"\"$(SRCROOT)/../../../OpenFrameWorks iPhone/libs/freetype/include/freetype2\"",
+					"\"$(SRCROOT)/3rdParty/include\"",
+					"\"$(SRCROOT)/3rdParty/include/freetype2\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

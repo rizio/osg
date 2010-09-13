@@ -90,9 +90,36 @@
 - (BOOL)becomeFirstResponder;
 - (BOOL)resignFirstResponder;
 
+- (osgGA::GUIEventAdapter::TouchPhase) convertTouchPhase: (UITouchPhase) phase;
+
 @end
 
 @implementation GraphicsWindowIPhoneGLView 
+
+- (osgGA::GUIEventAdapter::TouchPhase) convertTouchPhase: (UITouchPhase) phase 
+{
+	switch(phase) {
+	
+		case UITouchPhaseBegan:
+			return osgGA::GUIEventAdapter::TOUCH_BEGAN;
+			break;
+		case UITouchPhaseMoved:
+			return osgGA::GUIEventAdapter::TOUCH_MOVED;
+			break;
+
+		case UITouchPhaseStationary:
+			return osgGA::GUIEventAdapter::TOUCH_STATIONERY;
+			break;
+
+		case UITouchPhaseEnded:
+		case UITouchPhaseCancelled:
+			return osgGA::GUIEventAdapter::TOUCH_ENDED;
+			break;
+	}
+	
+	return osgGA::GUIEventAdapter::TOUCH_ENDED;
+
+}
 
 
 -(void) setGraphicsWindow: (osgViewer::GraphicsWindowIPhone*) win
@@ -250,15 +277,19 @@
 	
 	NSSet *allTouches = [event allTouches];
     
-	double time = _win->getEventQueue()->getTime();
-	
+	osg::ref_ptr<osgGA::GUIEventAdapter> osg_event(NULL);
+
 	for(int i=0; i<[allTouches count]; i++)
 	{
 		
 		UITouch *touch = [[allTouches allObjects] objectAtIndex:i];
 		CGPoint pos = [touch locationInView:touch.view];
 		
-		_win->getEventQueue()->touchBegan(i, pos.x, pos.y, time);
+		if (!osg_event) {
+			osg_event = _win->getEventQueue()->touchBegan(i, [self convertTouchPhase: [touch phase]], pos.x, pos.y);
+		} else {
+			osg_event->addTouchPoint(i, [self convertTouchPhase: [touch phase]], pos.x, pos.y);
+		}
 	}
 	
 }
@@ -267,7 +298,7 @@
     
     NSSet *allTouches = [event allTouches];
 	
-	double time = _win->getEventQueue()->getTime();
+	osg::ref_ptr<osgGA::GUIEventAdapter> osg_event(NULL);
 
 	for(int i=0; i<[allTouches count]; i++)
 	{
@@ -275,7 +306,12 @@
 		UITouch *touch = [[allTouches allObjects] objectAtIndex:i];
 		CGPoint pos = [touch locationInView:touch.view];
 		
-		_win->getEventQueue()->touchMoved(i, pos.x, pos.y, time);
+		if (!osg_event) {
+			osg_event = _win->getEventQueue()->touchMoved(i, [self convertTouchPhase: [touch phase]], pos.x, pos.y);
+		} else {
+			osg_event->addTouchPoint(i, [self convertTouchPhase: [touch phase]], pos.x, pos.y);
+		}
+
 
 	}
 }
@@ -285,15 +321,19 @@
 {	
     NSSet *allTouches = [event allTouches];
 	
-	double time = _win->getEventQueue()->getTime();
-		
+	osg::ref_ptr<osgGA::GUIEventAdapter> osg_event(NULL);
+	
 	for(int i=0; i<[allTouches count]; i++)
 	{
 		
 		UITouch *touch = [[allTouches allObjects] objectAtIndex:i];
 		CGPoint pos = [touch locationInView:touch.view];
 		
-		_win->getEventQueue()->touchEnded(i, pos.x, pos.y, [touch tapCount], time);
+		if (!osg_event) {
+			osg_event = _win->getEventQueue()->touchEnded(i, [self convertTouchPhase: [touch phase]], pos.x, pos.y, [touch tapCount]);
+		} else {
+			osg_event->addTouchPoint(i, [self convertTouchPhase: [touch phase]], pos.x, pos.y, [touch tapCount]);
+		}
 
 	}
 }

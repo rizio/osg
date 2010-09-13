@@ -254,6 +254,59 @@ public:
             PUCK,
             ERASER
         };
+		
+		enum TouchPhase 
+		{
+			TOUCH_BEGAN,
+			TOUCH_MOVED,
+			TOUCH_STATIONERY,
+			TOUCH_ENDED
+		};
+		
+		class TouchData : public osg::Referenced {
+		public:
+			struct TouchPoint {
+				TouchPhase phase;
+				unsigned int id;
+				float x, y;
+				
+				unsigned int tapCount;
+				TouchPoint() : id(0), phase(TOUCH_ENDED), x(0.0f), y(0.0f), tapCount(0) {}
+				TouchPoint(unsigned int in_id, TouchPhase in_phase, float in_x, float in_y, unsigned int in_tap_count) 
+				:	id(in_id), 
+					phase(in_phase),
+					x(in_x), 
+					y(in_y), 
+					tapCount(in_tap_count) 
+				{
+				}
+			};
+						
+			typedef std::list<TouchPoint> TouchSet;
+			
+			typedef TouchSet::iterator iterator;
+			typedef TouchSet::const_iterator const_iterator;
+			
+			TouchData() : osg::Referenced() {}
+			
+			unsigned int getNumTouches() const { return _touches.size(); }
+						
+			iterator begin() { return _touches.begin(); }
+			const_iterator begin() const { return _touches.begin(); }
+			
+			iterator end() { return _touches.end(); }
+			const_iterator end() const { return _touches.end(); }
+					
+		protected:
+			
+			void addTouchPoint(unsigned int id, TouchPhase phase, float x, float y, unsigned int tap_count) {
+				_touches.push_back(TouchPoint(id, phase, x, y, tap_count));
+			}
+			
+			TouchSet _touches;
+			
+		friend class GUIEventAdapter;	
+		};
         
     public:
 
@@ -443,12 +496,12 @@ public:
         /// set the orientation from a tablet input device as a matrix.
         const osg::Matrix getPenOrientation() const;
 
-		void setTouchId(unsigned int id) { _button = id; }
-		unsigned int getTouchId() { return _button; }
+		void addTouchPoint(unsigned int id, TouchPhase phase, float x, float y, unsigned int tapCount = 0);
 		
-		void setTapCount(unsigned int count) { _tapCount = count; }
-		unsigned int getTapCount() { return _tapCount; }
-    protected:
+		TouchData* getTouchData() const { return _touchData; }
+		bool isMultiTouchEvent() const { return (_touchData.valid()); }
+		
+	protected:
 
         /** Force users to create on heap, so that multiple referencing is safe.*/
         virtual ~GUIEventAdapter();
@@ -493,9 +546,8 @@ public:
             TabletPen(const TabletPen& rhs) : pressure(rhs.pressure), tiltX(rhs.tiltX), tiltY(rhs.tiltY), rotation(rhs.rotation), tabletPointerType(rhs.tabletPointerType) {}
         };
         TabletPen _tabletPen;
-		
-		unsigned int _tapCount;
-
+				
+		osg::ref_ptr<TouchData> _touchData; 
 };
 
 }
