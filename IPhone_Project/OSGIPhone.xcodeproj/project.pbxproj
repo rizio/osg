@@ -1764,13 +1764,6 @@
 			remoteGlobalIDString = 90AF62E010C325CF0041F6A7;
 			remoteInfo = osgdb_osg;
 		};
-		D471FD8311EBBBE400F3BD97 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D4D20A651172226F0026B2AB;
-			remoteInfo = "osg plugins";
-		};
 		D4D20A41117222620026B2AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -6517,7 +6510,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				D471FD8411EBBBE400F3BD97 /* PBXTargetDependency */,
 				903421A110B7CDC30082188B /* PBXTargetDependency */,
 				903421A310B7CDC30082188B /* PBXTargetDependency */,
 				903421A510B7CDC30082188B /* PBXTargetDependency */,
@@ -7754,11 +7746,6 @@
 			target = 90AF62E010C325CF0041F6A7 /* osgdb_osg */;
 			targetProxy = D45D320A1169EECB001C8838 /* PBXContainerItemProxy */;
 		};
-		D471FD8411EBBBE400F3BD97 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D4D20A651172226F0026B2AB /* osg plugins */;
-			targetProxy = D471FD8311EBBBE400F3BD97 /* PBXContainerItemProxy */;
-		};
 		D4D20A42117222620026B2AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9014C53010C3694300947117 /* osgPresentation */;
@@ -7929,7 +7916,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -7943,7 +7930,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -8793,12 +8780,6 @@
 				LD_GENERATE_MAP_FILE = YES;
 				LD_OPENMP_FLAGS = "-fopenmp";
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
-				);
 				PREBINDING = NO;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = osg;
@@ -8825,12 +8806,6 @@
 				);
 				INFOPLIST_FILE = "./iphoneExamples/simple/osgIPhoneExample-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
-				);
 				PREBINDING = NO;
 				PRODUCT_NAME = osg;
 				ZERO_LINK = NO;

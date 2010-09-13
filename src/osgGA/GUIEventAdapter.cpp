@@ -118,5 +118,5 @@ void GUIEventAdapter::addTouchPoint(unsigned int id, TouchPhase phase, float x, 
 		setY(y);
 	}
 	
-	_touchData->addTouchPoint(id, phase, x, y, tapCount);
+	_touchData->addTouchPoint(id, phase, x, _windowHeight - y, tapCount);
 }

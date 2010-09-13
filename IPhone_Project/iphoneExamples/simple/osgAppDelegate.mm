@@ -29,8 +29,37 @@
     geode->addDrawable(drawable);
     _root->addChild(geode);
     */
+	
+	DebugTouchPointsEventHandler* touch_handler = new DebugTouchPointsEventHandler();
+	{
+		unsigned int w(640);
+		unsigned int h(480);
+		osg::GraphicsContext::WindowingSystemInterface* wsi = osg::GraphicsContext::getWindowingSystemInterface();
+		if (wsi) {
+			wsi->getScreenResolution(0, w, h);
+		}
+		//create and attach ortho camera for hud text
+		osg::ref_ptr<osg::Camera> hudCamera = new osg::Camera;
+		
+		// set the projection matrix
+		hudCamera->setProjectionMatrix(osg::Matrix::ortho2D(0,w,0,h));
+		
+		// set the view matrix    
+		hudCamera->setReferenceFrame(osg::Transform::ABSOLUTE_RF);
+		hudCamera->setViewMatrix(osg::Matrix::identity());
+		
+		// only clear the depth buffer
+		hudCamera->setClearMask(GL_DEPTH_BUFFER_BIT);
+		
+		// draw subgraph after main camera view.
+		hudCamera->setRenderOrder(osg::Camera::POST_RENDER);
+		
+		_root->addChild(hudCamera.get());
+		hudCamera->addChild(touch_handler->getDebugNode());
+		
+	}
 	_viewer = new osgViewer::Viewer();
-	_viewer->addEventHandler(new DebugTouchPointsEventHandler());
+	_viewer->addEventHandler(touch_handler);
 	_viewer->setSceneData(_root.get());
 	_viewer->setCameraManipulator(new osgGA::TrackballManipulator);
 	_viewer->setThreadingModel(osgViewer::Viewer::SingleThreaded);//SingleThreaded DrawThreadPerContext

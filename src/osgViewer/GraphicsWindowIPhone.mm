@@ -60,7 +60,6 @@
     @private
         osgViewer::GraphicsWindowIPhone* _win;
 		EAGLContext* _context;
-        unsigned int _cachedModifierFlags;
 	
 		/* The pixel dimensions of the backbuffer */
 		GLint _backingWidth;
@@ -161,6 +160,8 @@
 
 		}
     }
+	self.multipleTouchEnabled = YES;
+	
     return self;
 }
 

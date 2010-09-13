@@ -116,16 +116,12 @@ bool IPhoneWindowingSystemInterface::setScreenSettings(const osg::GraphicsContex
 /** implementation of setScreenResolution, can't change screen res on IPhone */
 bool IPhoneWindowingSystemInterface::setScreenResolutionImpl(const osg::GraphicsContext::ScreenIdentifier& screenIdentifier, unsigned int width, unsigned int height) 
 { 
-    int displayid = getDisplayID(screenIdentifier);
     return true; 
 }
 
 /** implementation of setScreenRefreshRate, don't think you can do this on IPhone */
 bool IPhoneWindowingSystemInterface::setScreenRefreshRateImpl(const osg::GraphicsContext::ScreenIdentifier& screenIdentifier, double refreshRate) { 
     
-    boolean_t  success(false);
-    unsigned width, height;
-    getScreenResolution(screenIdentifier, width, height);
     return true;
 }
 

@@ -11,12 +11,24 @@
 #define DEBUG_TOUCH_POINT_EVENT_HANDLER_HEADER
 
 #include <osgGA/GUIEventHandler>
+#include <osg/Geode>
+#include <osg/Geometry>
 
 class DebugTouchPointsEventHandler : public osgGA::GUIEventHandler {
 public:
 	virtual bool handle (const osgGA::GUIEventAdapter &ea, osgGA::GUIActionAdapter &aa, osg::Object *, osg::NodeVisitor *);
 	
+	osg::Node* getDebugNode() { if (!_node.valid()) createDebugNode(); return _node.get(); }
 
+private:
+	void createDebugNode();
+	void updateDebugNode(osgGA::GUIEventAdapter::TouchData* data);
+	
+	osg::ref_ptr<osg::Node> _node;
+	osg::ref_ptr<osg::Vec3Array>			_vertices;
+	osg::ref_ptr<osg::Vec4Array>			_colors;
+	osg::ref_ptr<osg::DrawArrays>	_da;
+	osg::ref_ptr<osg::Geometry>			_geo;
 };
 
 
