@@ -355,7 +355,8 @@ GUIEventAdapter*  EventQueue::touchBegan(unsigned int id, GUIEventAdapter::Touch
 	
 	GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
     event->setEventType(GUIEventAdapter::PUSH);
-    event->addTouchPoint(id, phase, x, y, 0);
+    event->setTime(time);
+	event->addTouchPoint(id, phase, x, y, 0);
   
     addEvent(event);
 	
