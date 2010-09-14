@@ -1661,7 +1661,8 @@ void Texture::applyTexImage2D_load(State& state, GLenum target, const Image* ima
         glPixelStorei(GL_PACK_ALIGNMENT,image->getPacking());
         gluScaleImage(image->getPixelFormat(),
                       image->s(),image->t(),image->getDataType(),image->data(),
-                      inwidth,inheight,image->getDataType(),dataPtr);
+                      inwidth,inheight,image->getDataType(),
+                      dataPtr);
 #else
         OSG_NOTICE<<"Warning: gluScaleImage(..) not supported, cannot subload image."<<std::endl;
         return;
@@ -1873,8 +1874,7 @@ void Texture::applyTexImage2D_subload(State& state, GLenum target, const Image* 
     
     glPixelStorei(GL_UNPACK_ALIGNMENT,image->getPacking());
     
-    unsigned char* data = (unsigned char*)image->data();
- 
+    unsigned char* dataPtr = (unsigned char*)image->data();
 
     bool needImageRescale = inwidth!=image->s() || inheight!=image->t();
     if (needImageRescale)
@@ -1893,9 +1893,9 @@ void Texture::applyTexImage2D_subload(State& state, GLenum target, const Image* 
         }
 
         unsigned int newTotalSize = osg::Image::computeRowWidthInBytes(inwidth,image->getPixelFormat(),image->getDataType(),image->getPacking())*inheight;
-        data = new unsigned char [newTotalSize];
+        dataPtr = new unsigned char [newTotalSize];
 
-        if (!data)
+        if (!dataPtr)
         {
             OSG_WARN<<"Warning:: Not enough memory to resize image, cannot apply to texture."<<std::endl;
             return;
@@ -1908,7 +1908,8 @@ void Texture::applyTexImage2D_subload(State& state, GLenum target, const Image* 
         glPixelStorei(GL_PACK_ALIGNMENT,image->getPacking());
         gluScaleImage(image->getPixelFormat(),
                       image->s(),image->t(),image->getDataType(),image->data(),
-                      inwidth,inheight,image->getDataType(),data);
+                      inwidth,inheight,image->getDataType(),
+                      dataPtr);
 #else
         OSG_NOTICE<<"Warning: gluScaleImage(..) not supported, cannot subload image."<<std::endl;
         return;
@@ -1920,7 +1921,6 @@ void Texture::applyTexImage2D_subload(State& state, GLenum target, const Image* 
     bool useHardwareMipMapGeneration = mipmappingRequired && (!image->isMipmap() && isHardwareMipmapGenerationEnabled(state));
     bool useGluBuildMipMaps = mipmappingRequired && (!useHardwareMipMapGeneration && !image->isMipmap());
 
-    const unsigned char* dataPtr = image->data();
     GLBufferObject* pbo = image->getOrCreateGLBufferObject(contextID);
     if (pbo && !needImageRescale && !useGluBuildMipMaps)
     {
@@ -2042,7 +2042,7 @@ void Texture::applyTexImage2D_subload(State& state, GLenum target, const Image* 
     if (needImageRescale)
     {
         // clean up the resized image.
-        delete [] data;
+        delete [] dataPtr;
     }
 }
 
