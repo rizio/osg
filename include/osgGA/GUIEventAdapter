@@ -282,7 +282,7 @@ public:
 				}
 			};
 						
-			typedef std::list<TouchPoint> TouchSet;
+			typedef std::vector<TouchPoint> TouchSet;
 			
 			typedef TouchSet::iterator iterator;
 			typedef TouchSet::const_iterator const_iterator;
@@ -296,6 +296,8 @@ public:
 			
 			iterator end() { return _touches.end(); }
 			const_iterator end() const { return _touches.end(); }
+            
+            const TouchPoint get(unsigned int i) const { return _touches[i]; }
 					
 		protected:
 			

@@ -2,6 +2,7 @@
 
 #import "osgAppDelegate.h"
 #include <osgGA/TrackballManipulator>
+#include <osgGA/MultiTouchTrackballManipulator>
 #include <osg/ShapeDrawable>
 
 #include "DebugTouchPointsEventHandler.h"
@@ -61,7 +62,7 @@
 	_viewer = new osgViewer::Viewer();
 	_viewer->addEventHandler(touch_handler);
 	_viewer->setSceneData(_root.get());
-	_viewer->setCameraManipulator(new osgGA::TrackballManipulator);
+	_viewer->setCameraManipulator(new osgGA::MultiTouchTrackballManipulator);
 	_viewer->setThreadingModel(osgViewer::Viewer::SingleThreaded);//SingleThreaded DrawThreadPerContext
 	_viewer->realize();
 	

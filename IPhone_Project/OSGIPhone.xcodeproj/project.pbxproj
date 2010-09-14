@@ -1389,6 +1389,7 @@
 		90EEDE7E10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */; };
 		90EEDF6110BA01CB007F0292 /* libosgdb_imageio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDE7310B9F4F1007F0292 /* libosgdb_imageio.a */; };
 		90EEDFBF10BA07B8007F0292 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */; };
+		D408D59E123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D408D59D123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp */; };
 		D43C18C51168D45F00C537EA /* MeshOptimizers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18B91168D45F00C537EA /* MeshOptimizers.cpp */; };
 		D43C18CE1168D45F00C537EA /* connectivity_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18C21168D45F00C537EA /* connectivity_graph.cpp */; };
 		D43C18CF1168D45F00C537EA /* policy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18C31168D45F00C537EA /* policy.cpp */; };
@@ -1756,6 +1757,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 908EC85E10B78AFD0024EAD9;
 			remoteInfo = osgDB;
+		};
+		D408D5C3123F979200AABF93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90AF62E010C325CF0041F6A7 /* osgdb_osg */;
+			remoteInfo = osgdb_osg;
 		};
 		D45D320A1169EECB001C8838 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3217,6 +3225,8 @@
 		90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libosg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosg.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D408D59C123F8BD100AABF93 /* MultiTouchTrackballManipulator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MultiTouchTrackballManipulator; path = ../include/osgGA/MultiTouchTrackballManipulator; sourceTree = SOURCE_ROOT; };
+		D408D59D123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MultiTouchTrackballManipulator.cpp; path = ../src/osgGA/MultiTouchTrackballManipulator.cpp; sourceTree = SOURCE_ROOT; };
 		D43C18B81168D43200C537EA /* MeshOptimizers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MeshOptimizers; path = ../include/osgUtil/MeshOptimizers; sourceTree = SOURCE_ROOT; };
 		D43C18B91168D45F00C537EA /* MeshOptimizers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeshOptimizers.cpp; path = ../src/osgUtil/MeshOptimizers.cpp; sourceTree = SOURCE_ROOT; };
 		D43C18C21168D45F00C537EA /* connectivity_graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = connectivity_graph.cpp; path = ../src/osgUtil/tristripper/src/connectivity_graph.cpp; sourceTree = SOURCE_ROOT; };
@@ -4047,6 +4057,7 @@
 				906D8E7B10B902440089D3C3 /* GUIEventAdapter.cpp */,
 				906D8E7C10B902440089D3C3 /* GUIEventHandler.cpp */,
 				906D8E7D10B902440089D3C3 /* KeySwitchMatrixManipulator.cpp */,
+				D408D59D123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp */,
 				906D8E7F10B902440089D3C3 /* NodeTrackerManipulator.cpp */,
 				906D8E8010B902440089D3C3 /* SphericalManipulator.cpp */,
 				906D8E8110B902440089D3C3 /* StateSetManipulator.cpp */,
@@ -4061,6 +4072,7 @@
 		906D8E6010B902060089D3C3 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D408D59C123F8BD100AABF93 /* MultiTouchTrackballManipulator */,
 				D471FD5F11EBB92700F3BD97 /* CameraManipulator */,
 				D471FD6011EBB92700F3BD97 /* FirstPersonManipulator */,
 				D471FD6111EBB92700F3BD97 /* OrbitManipulator */,
@@ -6516,6 +6528,7 @@
 				903421A710B7CDC30082188B /* PBXTargetDependency */,
 				906D33BA10BE24E100042D38 /* PBXTargetDependency */,
 				90AF603810C1FDFD0041F6A7 /* PBXTargetDependency */,
+				D408D5C4123F979200AABF93 /* PBXTargetDependency */,
 			);
 			name = simpleExample;
 			productName = osgIPhoneExample;
@@ -7034,6 +7047,7 @@
 				D471FD6811EBB96D00F3BD97 /* FirstPersonManipulator.cpp in Sources */,
 				D471FD6911EBB96D00F3BD97 /* OrbitManipulator.cpp in Sources */,
 				D471FD6A11EBB96D00F3BD97 /* StandardManipulator.cpp in Sources */,
+				D408D59E123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7740,6 +7754,11 @@
 			isa = PBXTargetDependency;
 			target = 908EC85E10B78AFD0024EAD9 /* osgDB */;
 			targetProxy = 90EEDE7810B9F4FA007F0292 /* PBXContainerItemProxy */;
+		};
+		D408D5C4123F979200AABF93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 90AF62E010C325CF0041F6A7 /* osgdb_osg */;
+			targetProxy = D408D5C3123F979200AABF93 /* PBXContainerItemProxy */;
 		};
 		D45D320B1169EECB001C8838 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
