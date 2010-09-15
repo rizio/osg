@@ -24,12 +24,14 @@
 #ifdef __OBJC__
 @class GraphicsWindowIPhoneWindow;
 @class GraphicsWindowIPhoneGLView;
+@class GraphicsWindowIPhoneGLViewController;
 @class EAGLContext;
 @class UIWindow;
 @class UIView;
 #else
 class GraphicsWindowIPhoneGLView;
 class GraphicsWindowIPhoneWindow;
+class GraphicsWindowIPhoneGLViewController;
 class EAGLContext;
 class UIWindow;
 class UIView;
@@ -167,6 +169,7 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
        
         GraphicsWindowIPhoneWindow*      _window;
         GraphicsWindowIPhoneGLView*      _view;
+        GraphicsWindowIPhoneGLViewController* _viewController;
         EAGLContext*					_context;
         bool                            _updateContext;
 		

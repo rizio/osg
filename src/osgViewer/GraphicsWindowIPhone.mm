@@ -78,6 +78,7 @@
 }
 
 - (void)setGraphicsWindow: (osgViewer::GraphicsWindowIPhone*) win;
+- (osgViewer::GraphicsWindowIPhone*) getGraphicsWindow;
 - (void)setOpenGLContext: (EAGLContext*) context;
 
 - (BOOL)createFramebuffer;
@@ -126,6 +127,10 @@
     _win = win;
 }
 
+- (osgViewer::GraphicsWindowIPhone*) getGraphicsWindow {
+    return _win;
+}
+
 -(void) setOpenGLContext: (EAGLContext*) context
 {
     _context = context;
@@ -164,6 +169,8 @@
 	
     return self;
 }
+
+
 
 - (void)layoutSubviews {
     [EAGLContext setCurrentContext:_context];
@@ -303,7 +310,6 @@
 
 	for(int i=0; i<[allTouches count]; i++)
 	{
-		
 		UITouch *touch = [[allTouches allObjects] objectAtIndex:i];
 		CGPoint pos = [touch locationInView:touch.view];
 		
@@ -326,7 +332,6 @@
 	
 	for(int i=0; i<[allTouches count]; i++)
 	{
-		
 		UITouch *touch = [[allTouches allObjects] objectAtIndex:i];
 		CGPoint pos = [touch locationInView:touch.view];
 		
@@ -343,7 +348,52 @@
 @end
 
 
-#pragma mark CocoaWindowAdapter
+
+@interface GraphicsWindowIPhoneGLViewController : UIViewController
+{
+
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
+
+@end
+
+@implementation GraphicsWindowIPhoneGLViewController
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    switch (interfaceOrientation) {
+        case UIDeviceOrientationPortrait:
+        case UIDeviceOrientationPortraitUpsideDown:
+            return YES;
+            break;
+        default:
+            {
+                osgViewer::GraphicsWindowIPhone* win = [(GraphicsWindowIPhoneGLView*)(self.view) getGraphicsWindow];
+                return (win) ? (win->getTraits()->supportsResize) ? YES : NO : NO;
+            }
+            break;
+    };
+    return NO;
+}
+
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration 
+{
+    osgViewer::GraphicsWindowIPhone* win = [(GraphicsWindowIPhoneGLView*)(self.view) getGraphicsWindow];
+    if (win) {
+        CGRect frame = self.view.bounds;
+        //std::cout << frame.origin.x << " " << frame.origin.y << " " << frame.size.width << " " << frame.size.height << std::endl;
+        win->resized (frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+    }
+
+}
+
+
+
+@end
+
 
 
 using namespace osgIPhone; 
@@ -440,12 +490,14 @@ bool GraphicsWindowIPhone::realizeImplementation()
 
 	//create the view to display our context in our window
     GraphicsWindowIPhoneGLView* theView = [[ GraphicsWindowIPhoneGLView alloc ] initWithFrame:[ _window frame ] : this ];
-    //[theView setAutoresizingMask:  (EAGLViewWidthSizable | EAGLViewHeightSizable) ];
+    [theView setAutoresizingMask:  ( UIViewAutoresizingFlexibleWidth |  UIViewAutoresizingFlexibleHeight) ];
     [theView setGraphicsWindow: this];
     [theView setOpenGLContext:_context];
     _view = theView;
     osg::notify(osg::DEBUG_INFO) << "GraphicsWindowIPhone::realizeImplementation / view: " << theView << std::endl;
 
+    _viewController = [[GraphicsWindowIPhoneGLViewController alloc] init];
+    _viewController.view = _view;
 	
 	// Attach view to window
 	[_window addSubview: _view];
@@ -455,7 +507,6 @@ bool GraphicsWindowIPhone::realizeImplementation()
     if (_ownsWindow) {
 		//show window
 		[_window makeKeyAndVisible];
-
     }
 
     [pool release];
@@ -481,6 +532,10 @@ void GraphicsWindowIPhone::closeImplementation()
     
     if (_view) {
         [_view setGraphicsWindow: NULL];
+    }
+    
+    if (_viewController) {
+        [_viewController release];
     }
         
     if (_window) {  
