@@ -66,7 +66,7 @@
 	_viewer->setThreadingModel(osgViewer::Viewer::SingleThreaded);//SingleThreaded DrawThreadPerContext
 	_viewer->realize();
 	
-	//osg::setNotifyLevel(osg::DEBUG_FP);
+	osg::setNotifyLevel(osg::INFO);
 	
 	[NSTimer scheduledTimerWithTimeInterval:1.0/30.0 target:self selector:@selector(updateScene) userInfo:nil repeats:YES]; 
 	

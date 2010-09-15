@@ -49,7 +49,7 @@ void MultiTouchTrackballManipulator::handleMultiTouchDrag(GUIEventAdapter::Touch
     float gap_now((pt_1_now - pt_2_now).length());
     float gap_last((pt_1_last - pt_2_last).length());
     
-    osg::notify(osg::ALWAYS) << gap_now << " " << gap_last << std::endl;
+    // osg::notify(osg::ALWAYS) << gap_now << " " << gap_last << std::endl;
     
     if (abs(gap_last - gap_now) >= zoom_threshold) 
     {
@@ -63,7 +63,7 @@ void MultiTouchTrackballManipulator::handleMultiTouchDrag(GUIEventAdapter::Touch
     
     float scale = 0.2f * _distance * eventTimeDelta;
    
-    osg::notify(osg::ALWAYS) << "drag: " << delta << " scale: " << scale << std::endl;
+    // osg::notify(osg::ALWAYS) << "drag: " << delta << " scale: " << scale << std::endl;
    
     panModel( delta.x() * scale, delta.y() * scale );
 

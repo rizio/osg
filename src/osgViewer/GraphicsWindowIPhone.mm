@@ -363,19 +363,22 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    BOOL result(NO);
+    
     switch (interfaceOrientation) {
         case UIDeviceOrientationPortrait:
         case UIDeviceOrientationPortraitUpsideDown:
-            return YES;
+            result = YES;
             break;
         default:
             {
                 osgViewer::GraphicsWindowIPhone* win = [(GraphicsWindowIPhoneGLView*)(self.view) getGraphicsWindow];
-                return (win) ? (win->getTraits()->supportsResize) ? YES : NO : NO;
+                result = (win) ? (win->getTraits()->supportsResize) ? YES : NO : NO;
             }
             break;
-    };
-    return NO;
+    }
+    osg::notify(osg::INFO) << "shouldAutorotateToInterfaceOrientation for " << interfaceOrientation << ": " << ((result==YES) ? "YES" : "NO") << std::endl;
+    return result;
 }
 
 
@@ -384,7 +387,11 @@
     osgViewer::GraphicsWindowIPhone* win = [(GraphicsWindowIPhoneGLView*)(self.view) getGraphicsWindow];
     if (win) {
         CGRect frame = self.view.bounds;
-        //std::cout << frame.origin.x << " " << frame.origin.y << " " << frame.size.width << " " << frame.size.height << std::endl;
+        osg::notify(osg::INFO) 
+            << "willAnimateRotationToInterfaceOrientation, resize to " 
+            <<  frame.origin.x << " " << frame.origin.y << " " 
+            << frame.size.width << " " << frame.size.height 
+            << std::endl;
         win->resized (frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     }
 
@@ -670,18 +677,7 @@ bool GraphicsWindowIPhone::setWindowRectangleImplementation(int x, int y, int wi
     osg::notify(osg::INFO) << "GraphicsWindowIPhone :: setWindowRectangleImplementation not implemented yet " << std::endl;
     if (!_ownsWindow)
         return false;
-        
-    NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
-        
-    IPhoneWindowingSystemInterface* wsi = dynamic_cast<IPhoneWindowingSystemInterface*>(osg::GraphicsContext::getWindowingSystemInterface());
-    int screenLeft(0), screenTop(0);
-    if (wsi) {
-        wsi->getScreenTopLeft((*_traits), screenLeft, screenTop);
-    }
-
-    CGRect rect = CGRectMake(x+screenLeft,y+screenTop,width, height);    
-    [localPool release];
-    
+            
     return true;
 }
 
@@ -692,30 +688,6 @@ void GraphicsWindowIPhone::checkEvents()
 	
 }
 
-// ----------------------------------------------------------------------------------------------------------
-// 
-// ----------------------------------------------------------------------------------------------------------
-
-void GraphicsWindowIPhone::adaptResize(int x, int y, int w, int h)
-{
-
-    osg::notify(osg::INFO) << "GraphicsWindowIPhone :: adaptResize not implemented yet " << std::endl;
-    IPhoneWindowingSystemInterface* wsi = dynamic_cast<IPhoneWindowingSystemInterface*>(osg::GraphicsContext::getWindowingSystemInterface());
-    int screenLeft(0), screenTop(0);
-    if (wsi) {
-        
-        // get the screen containing the window
-        unsigned int screenNdx = wsi->getScreenContaining(x,y,w,h);
-        
-        // update traits
-        _traits->screenNum = screenNdx;
-        
-        // get top left of screen
-        wsi->getScreenTopLeft((*_traits), screenLeft, screenTop);
-    }
-    
-    resized(x-screenLeft,y-screenTop,w,h);
-}
 
 
 // ----------------------------------------------------------------------------------------------------------
@@ -764,8 +736,6 @@ void GraphicsWindowIPhone::setVSync(bool f)
 
 GraphicsWindowIPhone::~GraphicsWindowIPhone() 
 {
-	//[release _view];
-	//[release _window]
     close();
 }
 
@@ -776,10 +746,6 @@ public:
     CocoaWindowingSystemInterface()
     :    IPhoneWindowingSystemInterface()
     {
-        // register application event handler and AppleEventHandler to get quit-events:
-       // static const EventTypeSpec menueventSpec = {kEventClassCommand, kEventCommandProcess};
-       // OSErr status = InstallEventHandler(GetApplicationEventTarget(), NewEventHandlerUPP(ApplicationEventHandler), 1, &menueventSpec, 0, NULL);
-       // status = AEInstallEventHandler( kCoreEventClass, kAEQuitApplication, NewAEEventHandlerUPP(QuitAppleEventHandler), 0, false);
     }
     
     virtual osg::GraphicsContext* createGraphicsContext(osg::GraphicsContext::Traits* traits) 
