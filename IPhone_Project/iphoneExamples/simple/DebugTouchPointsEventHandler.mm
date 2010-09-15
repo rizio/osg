@@ -23,7 +23,7 @@ bool DebugTouchPointsEventHandler::handle (const osgGA::GUIEventAdapter &ea, osg
 			{
 				osgGA::GUIEventAdapter::TouchData* data = ea.getTouchData();
 				for(osgGA::GUIEventAdapter::TouchData::iterator i = data->begin(); i != data->end(); ++i) {
-					std::cout << ea.getEventType() << " id: " << i->id << " phase: " << i->phase << " " << i->x << "/" << i->y << " tapCount:" << i->tapCount << std::endl;
+					osg::notify(osg::DEBUG_INFO) << ea.getEventType() << " id: " << i->id << " phase: " << i->phase << " " << i->x << "/" << i->y << " tapCount:" << i->tapCount << std::endl;
 				}
 				if (_node.valid()) updateDebugNode(data);
 			}

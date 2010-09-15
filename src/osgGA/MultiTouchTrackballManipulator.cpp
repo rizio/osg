@@ -37,7 +37,7 @@ MultiTouchTrackballManipulator::MultiTouchTrackballManipulator( const MultiTouch
 
 void MultiTouchTrackballManipulator::handleMultiTouchDrag(GUIEventAdapter::TouchData* now, GUIEventAdapter::TouchData* last, const double eventTimeDelta)
 {
-    const float zoom_threshold = 3.0f;
+    const float zoom_threshold = 1.0f;
 
     osg::Vec2 pt_1_now(now->get(0).x,now->get(0).y);
     osg::Vec2 pt_2_now(now->get(1).x,now->get(1).y);
@@ -51,24 +51,23 @@ void MultiTouchTrackballManipulator::handleMultiTouchDrag(GUIEventAdapter::Touch
     
     osg::notify(osg::ALWAYS) << gap_now << " " << gap_last << std::endl;
     
-    if (abs(gap_now - gap_last) > zoom_threshold) 
+    if (abs(gap_last - gap_now) >= zoom_threshold) 
     {
         // zoom gesture
         zoomModel( (gap_last - gap_now) * eventTimeDelta, true );
     } 
-    else 
-    {
-        // drag gesture
-        
-        osg::Vec2 delta = ((pt_1_last - pt_1_now) + (pt_2_last - pt_2_now)) / 2.0f;
-        
-        float scale = 0.3f * _distance * eventTimeDelta;
-       
-	    osg::notify(osg::ALWAYS) << "drag: " << delta << " scale: " << scale << std::endl;
-       
-		panModel( delta.x() * scale, delta.y() * scale );
+    
+    // drag gesture
+    
+    osg::Vec2 delta = ((pt_1_last - pt_1_now) + (pt_2_last - pt_2_now)) / 2.0f;
+    
+    float scale = 0.2f * _distance * eventTimeDelta;
+   
+    osg::notify(osg::ALWAYS) << "drag: " << delta << " scale: " << scale << std::endl;
+   
+    panModel( delta.x() * scale, delta.y() * scale );
 
-    }
+    
 }
 
 
@@ -91,6 +90,7 @@ bool MultiTouchTrackballManipulator::handle( const GUIEventAdapter& ea, GUIActio
                     eventTimeDelta = 0.;
                 }
                 osgGA::GUIEventAdapter::TouchData* data = ea.getTouchData();
+                
                 // three touches or two taps for home position
                 if ((data->getNumTouchPoints() == 3) || ((data->getNumTouchPoints() == 1) && (data->get(0).tapCount >= 2))) {
                     flushMouseEventStack();
@@ -101,7 +101,7 @@ bool MultiTouchTrackballManipulator::handle( const GUIEventAdapter& ea, GUIActio
                 
                 else if (data->getNumTouchPoints() >= 2) 
                 {
-                    if ((_lastTouchData.valid()) && (_lastTouchData->getNumTouchPoints() == 2)) {
+                    if ((_lastTouchData.valid()) && (_lastTouchData->getNumTouchPoints() >= 2)) {
                         handleMultiTouchDrag(data, _lastTouchData, eventTimeDelta);
                     }
                     
@@ -109,6 +109,8 @@ bool MultiTouchTrackballManipulator::handle( const GUIEventAdapter& ea, GUIActio
                 } 
                 
                 _lastTouchData = data; 
+                
+                // check if all touches ended
 				unsigned int num_touches_ended(0);
 				for(osgGA::GUIEventAdapter::TouchData::iterator i = data->begin(); i != data->end(); ++i) {
 					if ((*i).phase == osgGA::GUIEventAdapter::TOUCH_ENDED)
