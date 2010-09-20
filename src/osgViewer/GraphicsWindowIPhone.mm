@@ -363,6 +363,11 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    osgViewer::GraphicsWindowIPhone* win = [(GraphicsWindowIPhoneGLView*)(self.view) getGraphicsWindow];
+   
+    if ((win) && (win->adaptToDeviceOrientation() == false))
+        return NO;
+    
     BOOL result(NO);
     
     switch (interfaceOrientation) {
@@ -372,7 +377,6 @@
             break;
         default:
             {
-                osgViewer::GraphicsWindowIPhone* win = [(GraphicsWindowIPhoneGLView*)(self.view) getGraphicsWindow];
                 result = (win) ? (win->getTraits()->supportsResize) ? YES : NO : NO;
             }
             break;
@@ -467,6 +471,8 @@ bool GraphicsWindowIPhone::realizeImplementation()
             _ownsWindow = false;        
 			_window = windowData->_window;
 		}
+        
+        _adaptToDeviceOrientation = windowData->_adaptToDeviceOrientation;
     } 
     
 

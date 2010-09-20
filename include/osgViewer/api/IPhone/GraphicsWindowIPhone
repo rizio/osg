@@ -54,6 +54,7 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
             _initialized(false),
             _realized(false),
             _ownsWindow(true),
+            _adaptToDeviceOrientation(true),
             _window(NULL),
             _context(NULL)
         {
@@ -131,13 +132,19 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
         class WindowData : public osg::Referenced
         {
             public:
-                WindowData(UIWindow* window = NULL)
-                :   _window(window)
+                WindowData(UIWindow* window = NULL, bool adaptToDeviceOrientation = true)
+                :   _window(window),
+                    _adaptToDeviceOrientation(adaptToDeviceOrientation)
                 {
                 }
+                
+                void setAdaptToDeviceOrientation(bool flag) { _adaptToDeviceOrientation = flag; }
+                
+            private:
 
                 UIWindow*     _window;
-            
+                bool          _adaptToDeviceOrientation;
+        
             friend class GraphicsWindowIPhone;
 
         };
@@ -150,6 +157,11 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
         /** adapts a resize / move of the window, coords in global screen space */
         void adaptResize(int x, int y, int w, int h);
         
+        
+        bool adaptToDeviceOrientation() const { return _adaptToDeviceOrientation; }
+        
+        void setAdaptToDeviceOrientation(bool flag) { _adaptToDeviceOrientation = false; }
+                
     protected:
     
         void init();
@@ -173,7 +185,7 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
         EAGLContext*					_context;
         bool                            _updateContext;
 		
-		bool _ownsWindow;
+		bool _ownsWindow, _adaptToDeviceOrientation;
 		
 };
 
