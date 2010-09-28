@@ -74,6 +74,9 @@
 	
 		/* OpenGL name for the stencil buffer that is attached to viewFramebuffer, if it exists (0 if it does not exist) */
 		GLuint _stencilBuffer;
+        
+        // for multisampled antialiased rendering
+        GLuint _msaaFramebuffer, _msaaRenderBuffer, _msaaDepthBuffer;
 	
 }
 
@@ -180,6 +183,8 @@
 
 
 - (BOOL)createFramebuffer {
+
+    _msaaFramebuffer = _msaaRenderBuffer = 0;
     
     glGenFramebuffersOES(1, &_viewFramebuffer);
     glGenRenderbuffersOES(1, &_viewRenderbuffer);
@@ -213,6 +218,32 @@
 		glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_STENCIL_ATTACHMENT_OES, GL_RENDERBUFFER_OES, _stencilBuffer);
     }	
     
+    //MSAA only available for >= 4.0 sdk
+    
+#ifdef __IPHONE_4_0 && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_4_0)
+    
+    if(_win->getTraits()->sampleBuffers > 0) 
+    {
+        glGenFramebuffersOES(1, &_msaaFramebuffer); 
+        glGenRenderbuffersOES(1, &_msaaRenderBuffer);
+        
+        glBindFramebufferOES(GL_FRAMEBUFFER_OES, _msaaFramebuffer); 
+        glBindRenderbufferOES(GL_RENDERBUFFER_OES, _msaaRenderBuffer);
+        
+        // Samples is the amount of pixels the MSAA buffer uses to make one pixel on the render // buffer. Use a small number like 2 for the 3G and below and 4 or more for newer models
+        
+        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER_OES, _win->getTraits()->samples, GL_RGB5_A1_OES, _backingWidth, _backingHeight);
+        
+        glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_COLOR_ATTACHMENT0_OES, GL_RENDERBUFFER_OES, _msaaRenderBuffer);
+        glGenRenderbuffersOES(1, &_msaaDepthBuffer); 
+        glBindRenderbufferOES(GL_RENDERBUFFER_OES, _msaaDepthBuffer);
+        
+        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER_OES, _win->getTraits()->samples, ( _win->getTraits()->depth == 16) ? GL_DEPTH_COMPONENT16_OES : GL_DEPTH_COMPONENT24_OES, _backingWidth , _backingHeight);
+        glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_DEPTH_ATTACHMENT_OES, GL_RENDERBUFFER_OES, _msaaDepthBuffer);
+    
+    }
+#endif
+    
     if(glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) != GL_FRAMEBUFFER_COMPLETE_OES) {
         NSLog(@"failed to make complete framebuffer object %x", glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES));
         return NO;
@@ -238,6 +269,21 @@
 		glDeleteFramebuffersOES(1, &_stencilBuffer);
 		_stencilBuffer = 0;
 	}
+    
+    if(_msaaRenderBuffer) {
+        glDeleteFramebuffersOES(1, &_msaaRenderBuffer);
+        _msaaRenderBuffer = 0;
+    }
+    
+    if(_msaaDepthBuffer) {
+        glDeleteFramebuffersOES(1, &_msaaDepthBuffer);
+        _msaaDepthBuffer = 0;
+    }
+
+    if(_msaaFramebuffer) {
+        glDeleteFramebuffersOES(1, &_msaaFramebuffer);
+        _msaaFramebuffer = 0;
+    }
 }
 
 //
@@ -245,13 +291,34 @@
 //
 - (void)swapBuffers {
 
-	//swap buffers (sort of i think?)
+
+#ifdef __IPHONE_4_0 && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_4_0)    
+    if(_msaaFramebuffer) 
+    {
+        glBindFramebufferOES(GL_FRAMEBUFFER_OES, _msaaFramebuffer);
+        
+        glBindFramebufferOES(GL_READ_FRAMEBUFFER_APPLE, _msaaFramebuffer); 
+        glBindFramebufferOES(GL_DRAW_FRAMEBUFFER_APPLE, _viewFramebuffer);
+        
+        glResolveMultisampleFramebufferAPPLE();
+        
+        GLenum attachments[] = {GL_DEPTH_ATTACHMENT_OES, GL_COLOR_ATTACHMENT0_OES}; 
+        glDiscardFramebufferEXT(GL_READ_FRAMEBUFFER_APPLE, 2, attachments);
+    }
+#endif
+
+
+  	//swap buffers (sort of i think?)
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, _viewRenderbuffer);
-	//display render in context
+    
+    //display render in context
     [_context presentRenderbuffer:GL_RENDERBUFFER_OES];
-	
-	//re bind the frame buffer for next frames renders
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, _viewFramebuffer);
+    
+#ifdef __IPHONE_4_0 && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_4_0)
+    if (_msaaFramebuffer)
+        glBindFramebufferOES(GL_FRAMEBUFFER_OES, _msaaFramebuffer);;
+#endif
 }
 
 //
@@ -261,7 +328,13 @@
 
 	//bind the frame buffer
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, _viewFramebuffer);
+    
+#ifdef __IPHONE_4_0 && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_4_0)
+    if (_msaaFramebuffer)
+        glBindFramebufferOES(GL_READ_FRAMEBUFFER_APPLE, _msaaFramebuffer);
+#endif
 }
+
 
 - (BOOL)acceptsFirstResponder
 {

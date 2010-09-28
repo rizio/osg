@@ -4,6 +4,7 @@
 #include <osgGA/TrackballManipulator>
 #include <osgGA/MultiTouchTrackballManipulator>
 #include <osg/ShapeDrawable>
+#include <osg/DisplaySettings>
 
 #include "DebugTouchPointsEventHandler.h"
 
@@ -30,7 +31,12 @@
     geode->addDrawable(drawable);
     _root->addChild(geode);
     */
+    
+    // try msaa. available for iOS >= 4.0
+    osg::DisplaySettings* settings = osg::DisplaySettings::instance();
+    settings->setNumMultiSamples(4);
 	
+    
 	DebugTouchPointsEventHandler* touch_handler = new DebugTouchPointsEventHandler();
 	{
 		unsigned int w(640);
