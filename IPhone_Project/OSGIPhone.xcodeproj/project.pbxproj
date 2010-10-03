@@ -1390,6 +1390,10 @@
 		90EEDF6110BA01CB007F0292 /* libosgdb_imageio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDE7310B9F4F1007F0292 /* libosgdb_imageio.a */; };
 		90EEDFBF10BA07B8007F0292 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */; };
 		D408D59E123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D408D59D123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp */; };
+		D411C7C61258C4DC0076F148 /* Style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C51258C4DC0076F148 /* Style.cpp */; };
+		D411C7CA1258C4F10076F148 /* BounceOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C71258C4F10076F148 /* BounceOperator.cpp */; };
+		D411C7CB1258C4F10076F148 /* DomainOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C81258C4F10076F148 /* DomainOperator.cpp */; };
+		D411C7CC1258C4F10076F148 /* SinkOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C91258C4F10076F148 /* SinkOperator.cpp */; };
 		D43C18C51168D45F00C537EA /* MeshOptimizers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18B91168D45F00C537EA /* MeshOptimizers.cpp */; };
 		D43C18CE1168D45F00C537EA /* connectivity_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18C21168D45F00C537EA /* connectivity_graph.cpp */; };
 		D43C18CF1168D45F00C537EA /* policy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18C31168D45F00C537EA /* policy.cpp */; };
@@ -3227,6 +3231,10 @@
 		D2AAC07E0554694100DB518D /* libosg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosg.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D408D59C123F8BD100AABF93 /* MultiTouchTrackballManipulator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MultiTouchTrackballManipulator; path = ../include/osgGA/MultiTouchTrackballManipulator; sourceTree = SOURCE_ROOT; };
 		D408D59D123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MultiTouchTrackballManipulator.cpp; path = ../src/osgGA/MultiTouchTrackballManipulator.cpp; sourceTree = SOURCE_ROOT; };
+		D411C7C51258C4DC0076F148 /* Style.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Style.cpp; path = ../src/osgText/Style.cpp; sourceTree = SOURCE_ROOT; };
+		D411C7C71258C4F10076F148 /* BounceOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BounceOperator.cpp; path = ../src/osgParticle/BounceOperator.cpp; sourceTree = SOURCE_ROOT; };
+		D411C7C81258C4F10076F148 /* DomainOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DomainOperator.cpp; path = ../src/osgParticle/DomainOperator.cpp; sourceTree = SOURCE_ROOT; };
+		D411C7C91258C4F10076F148 /* SinkOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SinkOperator.cpp; path = ../src/osgParticle/SinkOperator.cpp; sourceTree = SOURCE_ROOT; };
 		D43C18B81168D43200C537EA /* MeshOptimizers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MeshOptimizers; path = ../include/osgUtil/MeshOptimizers; sourceTree = SOURCE_ROOT; };
 		D43C18B91168D45F00C537EA /* MeshOptimizers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeshOptimizers.cpp; path = ../src/osgUtil/MeshOptimizers.cpp; sourceTree = SOURCE_ROOT; };
 		D43C18C21168D45F00C537EA /* connectivity_graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = connectivity_graph.cpp; path = ../src/osgUtil/tristripper/src/connectivity_graph.cpp; sourceTree = SOURCE_ROOT; };
@@ -3940,6 +3948,7 @@
 		906D8D9210B8FE790089D3C3 /* osgText */ = {
 			isa = PBXGroup;
 			children = (
+				D411C7C51258C4DC0076F148 /* Style.cpp */,
 				D47D50C6123A7C61002289EA /* Glyph.cpp */,
 				D47D50C7123A7C61002289EA /* GlyphGeometry.cpp */,
 				D47D50C8123A7C61002289EA /* GlyphGeometry.h */,
@@ -4102,6 +4111,9 @@
 		906D8EC210B904BA0089D3C3 /* osgParticle */ = {
 			isa = PBXGroup;
 			children = (
+				D411C7C71258C4F10076F148 /* BounceOperator.cpp */,
+				D411C7C81258C4F10076F148 /* DomainOperator.cpp */,
+				D411C7C91258C4F10076F148 /* SinkOperator.cpp */,
 				906D8EC310B904C50089D3C3 /* headers */,
 				906D8EEC10B905620089D3C3 /* ConnectedParticleSystem.cpp */,
 				906D8EED10B905620089D3C3 /* Emitter.cpp */,
@@ -6991,6 +7003,7 @@
 				D47D50CA123A7C61002289EA /* Glyph.cpp in Sources */,
 				D47D50CB123A7C61002289EA /* GlyphGeometry.cpp in Sources */,
 				D47D50CD123A7C61002289EA /* TextNode.cpp in Sources */,
+				D411C7C61258C4DC0076F148 /* Style.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7075,6 +7088,9 @@
 				906D8F1110B905620089D3C3 /* SmokeEffect.cpp in Sources */,
 				906D8F1210B905620089D3C3 /* SmokeTrailEffect.cpp in Sources */,
 				906D8F1310B905620089D3C3 /* Version.cpp in Sources */,
+				D411C7CA1258C4F10076F148 /* BounceOperator.cpp in Sources */,
+				D411C7CB1258C4F10076F148 /* DomainOperator.cpp in Sources */,
+				D411C7CC1258C4F10076F148 /* SinkOperator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
