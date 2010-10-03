@@ -1597,7 +1597,8 @@ void Text::renderOnlyForegroundText(osg::State& state, const osg::Vec4& colorMul
 
 void Text::renderWithDelayedDepthWrites(osg::State& state, const osg::Vec4& colorMultiplier) const
 {
-    glPushAttrib( _enableDepthWrites ? (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) : GL_DEPTH_BUFFER_BIT);
+#if defined (OSG_GL2_AVAILABLE) || defined(OSG_GL1_AVAILABLE)
+	glPushAttrib( _enableDepthWrites ? (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) : GL_DEPTH_BUFFER_BIT);
     // Render to color buffer without writing to depth buffer.
     glDepthMask(GL_FALSE);
     drawTextWithBackdrop(state,colorMultiplier);
@@ -1610,6 +1611,7 @@ void Text::renderWithDelayedDepthWrites(osg::State& state, const osg::Vec4& colo
         drawTextWithBackdrop(state,colorMultiplier);
     }
     glPopAttrib();
+#endif
 }
 
 void Text::drawTextWithBackdrop(osg::State& state, const osg::Vec4& colorMultiplier) const
