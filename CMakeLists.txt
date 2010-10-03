@@ -63,8 +63,8 @@ PROJECT(OpenSceneGraph)
 
 SET(OPENSCENEGRAPH_MAJOR_VERSION 2)
 SET(OPENSCENEGRAPH_MINOR_VERSION 9)
-SET(OPENSCENEGRAPH_PATCH_VERSION 9)
-SET(OPENSCENEGRAPH_SOVERSION 66)
+SET(OPENSCENEGRAPH_PATCH_VERSION 10)
+SET(OPENSCENEGRAPH_SOVERSION 67)
 
 # set to 0 when not a release candidate, non zero means that any generated 
 # svn tags will be treated as release candidates of given number
@@ -320,7 +320,7 @@ ENDIF(WIN32)
 #luigi#ENDIF(UNIX)
 ########################################################################################################
 
-OPTION(OSG_NOTIFY_DISABLED "Set to ON to build OpenSceneGraph with the noitfy() disabled." OFF)
+OPTION(OSG_NOTIFY_DISABLED "Set to ON to build OpenSceneGraph with the notify() disabled." OFF)
 
 OPTION(OSG_USE_FLOAT_MATRIX "Set to ON to build OpenSceneGraph with float Matrix instead of double." OFF)
 MARK_AS_ADVANCED(OSG_USE_FLOAT_MATRIX)
@@ -551,6 +551,8 @@ IF(NOT APPLE)
 
 ELSE()
     FIND_PACKAGE(QuickTime)
+    FIND_PACKAGE(QTKit)
+    FIND_PACKAGE(CoreVideo)
 ENDIF()
 
 ################################################################################
