@@ -101,6 +101,26 @@ osg::Image* ReadCoreGraphicsImageFromFile(std::string file)
 	
 	//flip vertical
 	image->flipVertical();
+    
+    // 
+    // Reverse the premultiplied alpha for avoiding unexpected darker edges
+    // by Tatsuhiro Nishioka (based on SDL's workaround on the similar issue)
+    // http://bugzilla.libsdl.org/show_bug.cgi?id=868
+    // 
+    int i, j;
+    GLubyte *pixels = (GLubyte *)image->data();
+    for (i = image->t() * image->s(); i--; ) {
+ 
+        GLubyte alpha = pixels[3];
+        if (alpha) {
+            for (j = 0; j < 3; ++j) {
+                pixels[j] = (pixels[j] * 255) / alpha;
+            }
+        }
+        pixels += 4;
+    }
+
+
 	
 	return image;
 	
