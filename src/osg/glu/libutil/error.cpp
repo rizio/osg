@@ -112,8 +112,10 @@ static const struct token_string Errors[] = {
    { GL_INVALID_ENUM, "invalid enumerant" },
    { GL_INVALID_VALUE, "invalid value" },
    { GL_INVALID_OPERATION, "invalid operation" },
+#if defined(OSG_GL2_AVAILABLE) || defined(OSG_GLES1_AVAILABLE)
    { GL_STACK_OVERFLOW, "stack overflow" },
    { GL_STACK_UNDERFLOW, "stack underflow" },
+#endif
    { GL_OUT_OF_MEMORY, "out of memory" },
    { GL_TABLE_TOO_LARGE, "table too large" },
 #ifdef GL_EXT_framebuffer_object

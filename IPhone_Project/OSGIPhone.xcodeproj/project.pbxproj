@@ -1437,6 +1437,32 @@
 		D4AE30E81176598000B8E6FB /* UpdateBone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30DF1176598000B8E6FB /* UpdateBone.cpp */; };
 		D4AE30E91176598000B8E6FB /* UpdateMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30E01176598000B8E6FB /* UpdateMaterial.cpp */; };
 		D4AE30EA1176598000B8E6FB /* UpdateMatrixTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30E11176598000B8E6FB /* UpdateMatrixTransform.cpp */; };
+		D4B7ED5A125F0A2D00AA5895 /* dict-list.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED42125F0A2D00AA5895 /* dict-list.h */; };
+		D4B7ED5B125F0A2D00AA5895 /* dict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED43125F0A2D00AA5895 /* dict.cpp */; };
+		D4B7ED5C125F0A2D00AA5895 /* dict.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED44125F0A2D00AA5895 /* dict.h */; };
+		D4B7ED5D125F0A2D00AA5895 /* geom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED45125F0A2D00AA5895 /* geom.cpp */; };
+		D4B7ED5E125F0A2D00AA5895 /* geom.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED46125F0A2D00AA5895 /* geom.h */; };
+		D4B7ED5F125F0A2D00AA5895 /* memalloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED47125F0A2D00AA5895 /* memalloc.cpp */; };
+		D4B7ED60125F0A2D00AA5895 /* memalloc.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED48125F0A2D00AA5895 /* memalloc.h */; };
+		D4B7ED61125F0A2D00AA5895 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED49125F0A2D00AA5895 /* mesh.cpp */; };
+		D4B7ED62125F0A2D00AA5895 /* mesh.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED4A125F0A2D00AA5895 /* mesh.h */; };
+		D4B7ED63125F0A2D00AA5895 /* normal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED4B125F0A2D00AA5895 /* normal.cpp */; };
+		D4B7ED64125F0A2D00AA5895 /* normal.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED4C125F0A2D00AA5895 /* normal.h */; };
+		D4B7ED65125F0A2D00AA5895 /* priorityq-heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED4D125F0A2D00AA5895 /* priorityq-heap.cpp */; };
+		D4B7ED66125F0A2D00AA5895 /* priorityq-heap.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED4E125F0A2D00AA5895 /* priorityq-heap.h */; };
+		D4B7ED67125F0A2D00AA5895 /* priorityq-sort.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED4F125F0A2D00AA5895 /* priorityq-sort.h */; };
+		D4B7ED68125F0A2D00AA5895 /* priorityq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED50125F0A2D00AA5895 /* priorityq.cpp */; };
+		D4B7ED69125F0A2D00AA5895 /* priorityq.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED51125F0A2D00AA5895 /* priorityq.h */; };
+		D4B7ED6A125F0A2D00AA5895 /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED52125F0A2D00AA5895 /* render.cpp */; };
+		D4B7ED6B125F0A2D00AA5895 /* render.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED53125F0A2D00AA5895 /* render.h */; };
+		D4B7ED6C125F0A2D00AA5895 /* sweep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED54125F0A2D00AA5895 /* sweep.cpp */; };
+		D4B7ED6D125F0A2D00AA5895 /* sweep.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED55125F0A2D00AA5895 /* sweep.h */; };
+		D4B7ED6E125F0A2D00AA5895 /* tess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED56125F0A2D00AA5895 /* tess.cpp */; };
+		D4B7ED6F125F0A2D00AA5895 /* tess.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED57125F0A2D00AA5895 /* tess.h */; };
+		D4B7ED70125F0A2D00AA5895 /* tessmono.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED58125F0A2D00AA5895 /* tessmono.cpp */; };
+		D4B7ED71125F0A2D00AA5895 /* tessmono.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED59125F0A2D00AA5895 /* tessmono.h */; };
+		D4B7ED74125F0A4100AA5895 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED72125F0A4100AA5895 /* error.cpp */; };
+		D4B7ED75125F0A4100AA5895 /* mipmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED73125F0A4100AA5895 /* mipmap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3306,6 +3332,32 @@
 		D4AE30F3117659AA00B8E6FB /* UpdateBone */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = UpdateBone; path = ../include/osgAnimation/UpdateBone; sourceTree = SOURCE_ROOT; };
 		D4AE30F4117659AA00B8E6FB /* UpdateMaterial */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = UpdateMaterial; path = ../include/osgAnimation/UpdateMaterial; sourceTree = SOURCE_ROOT; };
 		D4AE30F5117659AA00B8E6FB /* UpdateMatrixTransform */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = UpdateMatrixTransform; path = ../include/osgAnimation/UpdateMatrixTransform; sourceTree = SOURCE_ROOT; };
+		D4B7ED42125F0A2D00AA5895 /* dict-list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "dict-list.h"; path = "../src/osg/glu/libtess/dict-list.h"; sourceTree = SOURCE_ROOT; };
+		D4B7ED43125F0A2D00AA5895 /* dict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dict.cpp; path = ../src/osg/glu/libtess/dict.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED44125F0A2D00AA5895 /* dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dict.h; path = ../src/osg/glu/libtess/dict.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED45125F0A2D00AA5895 /* geom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geom.cpp; path = ../src/osg/glu/libtess/geom.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED46125F0A2D00AA5895 /* geom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom.h; path = ../src/osg/glu/libtess/geom.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED47125F0A2D00AA5895 /* memalloc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = memalloc.cpp; path = ../src/osg/glu/libtess/memalloc.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED48125F0A2D00AA5895 /* memalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memalloc.h; path = ../src/osg/glu/libtess/memalloc.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED49125F0A2D00AA5895 /* mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mesh.cpp; path = ../src/osg/glu/libtess/mesh.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED4A125F0A2D00AA5895 /* mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mesh.h; path = ../src/osg/glu/libtess/mesh.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED4B125F0A2D00AA5895 /* normal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = normal.cpp; path = ../src/osg/glu/libtess/normal.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED4C125F0A2D00AA5895 /* normal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = normal.h; path = ../src/osg/glu/libtess/normal.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED4D125F0A2D00AA5895 /* priorityq-heap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "priorityq-heap.cpp"; path = "../src/osg/glu/libtess/priorityq-heap.cpp"; sourceTree = SOURCE_ROOT; };
+		D4B7ED4E125F0A2D00AA5895 /* priorityq-heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "priorityq-heap.h"; path = "../src/osg/glu/libtess/priorityq-heap.h"; sourceTree = SOURCE_ROOT; };
+		D4B7ED4F125F0A2D00AA5895 /* priorityq-sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "priorityq-sort.h"; path = "../src/osg/glu/libtess/priorityq-sort.h"; sourceTree = SOURCE_ROOT; };
+		D4B7ED50125F0A2D00AA5895 /* priorityq.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = priorityq.cpp; path = ../src/osg/glu/libtess/priorityq.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED51125F0A2D00AA5895 /* priorityq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = priorityq.h; path = ../src/osg/glu/libtess/priorityq.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED52125F0A2D00AA5895 /* render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = render.cpp; path = ../src/osg/glu/libtess/render.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED53125F0A2D00AA5895 /* render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = render.h; path = ../src/osg/glu/libtess/render.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED54125F0A2D00AA5895 /* sweep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sweep.cpp; path = ../src/osg/glu/libtess/sweep.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED55125F0A2D00AA5895 /* sweep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sweep.h; path = ../src/osg/glu/libtess/sweep.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED56125F0A2D00AA5895 /* tess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tess.cpp; path = ../src/osg/glu/libtess/tess.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED57125F0A2D00AA5895 /* tess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tess.h; path = ../src/osg/glu/libtess/tess.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED58125F0A2D00AA5895 /* tessmono.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tessmono.cpp; path = ../src/osg/glu/libtess/tessmono.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED59125F0A2D00AA5895 /* tessmono.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tessmono.h; path = ../src/osg/glu/libtess/tessmono.h; sourceTree = SOURCE_ROOT; };
+		D4B7ED72125F0A4100AA5895 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = error.cpp; path = ../src/osg/glu/libutil/error.cpp; sourceTree = SOURCE_ROOT; };
+		D4B7ED73125F0A4100AA5895 /* mipmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mipmap.cpp; path = ../src/osg/glu/libutil/mipmap.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4875,6 +4927,32 @@
 		90B9089210B36AF400E10618 /* osg */ = {
 			isa = PBXGroup;
 			children = (
+				D4B7ED72125F0A4100AA5895 /* error.cpp */,
+				D4B7ED73125F0A4100AA5895 /* mipmap.cpp */,
+				D4B7ED42125F0A2D00AA5895 /* dict-list.h */,
+				D4B7ED43125F0A2D00AA5895 /* dict.cpp */,
+				D4B7ED44125F0A2D00AA5895 /* dict.h */,
+				D4B7ED45125F0A2D00AA5895 /* geom.cpp */,
+				D4B7ED46125F0A2D00AA5895 /* geom.h */,
+				D4B7ED47125F0A2D00AA5895 /* memalloc.cpp */,
+				D4B7ED48125F0A2D00AA5895 /* memalloc.h */,
+				D4B7ED49125F0A2D00AA5895 /* mesh.cpp */,
+				D4B7ED4A125F0A2D00AA5895 /* mesh.h */,
+				D4B7ED4B125F0A2D00AA5895 /* normal.cpp */,
+				D4B7ED4C125F0A2D00AA5895 /* normal.h */,
+				D4B7ED4D125F0A2D00AA5895 /* priorityq-heap.cpp */,
+				D4B7ED4E125F0A2D00AA5895 /* priorityq-heap.h */,
+				D4B7ED4F125F0A2D00AA5895 /* priorityq-sort.h */,
+				D4B7ED50125F0A2D00AA5895 /* priorityq.cpp */,
+				D4B7ED51125F0A2D00AA5895 /* priorityq.h */,
+				D4B7ED52125F0A2D00AA5895 /* render.cpp */,
+				D4B7ED53125F0A2D00AA5895 /* render.h */,
+				D4B7ED54125F0A2D00AA5895 /* sweep.cpp */,
+				D4B7ED55125F0A2D00AA5895 /* sweep.h */,
+				D4B7ED56125F0A2D00AA5895 /* tess.cpp */,
+				D4B7ED57125F0A2D00AA5895 /* tess.h */,
+				D4B7ED58125F0A2D00AA5895 /* tessmono.cpp */,
+				D4B7ED59125F0A2D00AA5895 /* tessmono.h */,
 				D45A159D11ECBE1C00EBB947 /* ShaderAttribute.cpp */,
 				D45A159E11ECBE1C00EBB947 /* ShaderComposer.cpp */,
 				D471FD8711EBBC2400F3BD97 /* GLStaticLibrary.cpp */,
@@ -6137,6 +6215,19 @@
 				908EC7A010B776150024EAD9 /* View in Headers */,
 				908EC7A110B776150024EAD9 /* Viewport in Headers */,
 				D471FD8B11EBBC2400F3BD97 /* GLStaticLibrary.h in Headers */,
+				D4B7ED5A125F0A2D00AA5895 /* dict-list.h in Headers */,
+				D4B7ED5C125F0A2D00AA5895 /* dict.h in Headers */,
+				D4B7ED5E125F0A2D00AA5895 /* geom.h in Headers */,
+				D4B7ED60125F0A2D00AA5895 /* memalloc.h in Headers */,
+				D4B7ED62125F0A2D00AA5895 /* mesh.h in Headers */,
+				D4B7ED64125F0A2D00AA5895 /* normal.h in Headers */,
+				D4B7ED66125F0A2D00AA5895 /* priorityq-heap.h in Headers */,
+				D4B7ED67125F0A2D00AA5895 /* priorityq-sort.h in Headers */,
+				D4B7ED69125F0A2D00AA5895 /* priorityq.h in Headers */,
+				D4B7ED6B125F0A2D00AA5895 /* render.h in Headers */,
+				D4B7ED6D125F0A2D00AA5895 /* sweep.h in Headers */,
+				D4B7ED6F125F0A2D00AA5895 /* tess.h in Headers */,
+				D4B7ED71125F0A2D00AA5895 /* tessmono.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7535,6 +7626,19 @@
 				D471FD8C11EBBC2400F3BD97 /* Texture2DMultisample.cpp in Sources */,
 				D45A159F11ECBE1C00EBB947 /* ShaderAttribute.cpp in Sources */,
 				D45A15A011ECBE1C00EBB947 /* ShaderComposer.cpp in Sources */,
+				D4B7ED5B125F0A2D00AA5895 /* dict.cpp in Sources */,
+				D4B7ED5D125F0A2D00AA5895 /* geom.cpp in Sources */,
+				D4B7ED5F125F0A2D00AA5895 /* memalloc.cpp in Sources */,
+				D4B7ED61125F0A2D00AA5895 /* mesh.cpp in Sources */,
+				D4B7ED63125F0A2D00AA5895 /* normal.cpp in Sources */,
+				D4B7ED65125F0A2D00AA5895 /* priorityq-heap.cpp in Sources */,
+				D4B7ED68125F0A2D00AA5895 /* priorityq.cpp in Sources */,
+				D4B7ED6A125F0A2D00AA5895 /* render.cpp in Sources */,
+				D4B7ED6C125F0A2D00AA5895 /* sweep.cpp in Sources */,
+				D4B7ED6E125F0A2D00AA5895 /* tess.cpp in Sources */,
+				D4B7ED70125F0A2D00AA5895 /* tessmono.cpp in Sources */,
+				D4B7ED74125F0A4100AA5895 /* error.cpp in Sources */,
+				D4B7ED75125F0A4100AA5895 /* mipmap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
