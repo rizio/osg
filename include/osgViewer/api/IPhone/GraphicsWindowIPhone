@@ -160,7 +160,7 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
         
         bool adaptToDeviceOrientation() const { return _adaptToDeviceOrientation; }
         
-        void setAdaptToDeviceOrientation(bool flag) { _adaptToDeviceOrientation = false; }
+        void setAdaptToDeviceOrientation(bool flag) { _adaptToDeviceOrientation = flag; }
                 
     protected:
     
