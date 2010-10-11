@@ -49,12 +49,14 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
     public:
     class Implementation;
 
-        GraphicsWindowIPhone(osg::GraphicsContext::Traits* traits):
+        GraphicsWindowIPhone(osg::GraphicsContext::Traits* traits)
+			: GraphicsWindow(),
             _valid(false),
             _initialized(false),
             _realized(false),
             _ownsWindow(true),
             _adaptToDeviceOrientation(true),
+			_viewContentScaleFactor(-1.0f),
             _window(NULL),
             _context(NULL)
         {
@@ -132,18 +134,22 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
         class WindowData : public osg::Referenced
         {
             public:
-                WindowData(UIWindow* window = NULL, bool adaptToDeviceOrientation = true)
+                WindowData(UIWindow* window = NULL, bool adaptToDeviceOrientation = true, float scaleFactor = -1.0f)
                 :   _window(window),
-                    _adaptToDeviceOrientation(adaptToDeviceOrientation)
+                    _adaptToDeviceOrientation(adaptToDeviceOrientation),
+					_viewContentScaleFactor(scaleFactor)
                 {
                 }
                 
                 void setAdaptToDeviceOrientation(bool flag) { _adaptToDeviceOrientation = flag; }
+				
+				void setViewContentScaleFactor(float scaleFactor) { _viewContentScaleFactor = scaleFactor; }
                 
             private:
 
                 UIWindow*     _window;
                 bool          _adaptToDeviceOrientation;
+				float         _viewContentScaleFactor; 
         
             friend class GraphicsWindowIPhone;
 
@@ -161,6 +167,12 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
         bool adaptToDeviceOrientation() const { return _adaptToDeviceOrientation; }
         
         void setAdaptToDeviceOrientation(bool flag) { _adaptToDeviceOrientation = flag; }
+		
+		
+		//
+		//helper funs for converting points to pixels
+		osg::Vec2 pointToPixel(const osg::Vec2& point);
+		osg::Vec2 pixelToPoint(const osg::Vec2& pixel);
                 
     protected:
     
@@ -186,6 +198,8 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
         bool                            _updateContext;
 		
 		bool _ownsWindow, _adaptToDeviceOrientation;
+		
+		float _viewContentScaleFactor;
 		
 };
 
