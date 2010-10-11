@@ -46,7 +46,7 @@ static NSString* toNSString(const std::string& text)
 //
 osg::Image* ReadCoreGraphicsImageFromFile(std::string file)
 {
-	
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	//chop the extension off
 	std::string strExt = osgDB::getFileExtension(file);
 	std::string strPath = osgDB::getFilePath(file);
@@ -121,7 +121,7 @@ osg::Image* ReadCoreGraphicsImageFromFile(std::string file)
     }
 
 
-	
+	[pool release];
 	return image;
 	
 	
