@@ -572,14 +572,12 @@ bool GraphicsWindowIPhone::realizeImplementation()
 	
 	//Get info about the requested screen
     IPhoneWindowingSystemInterface* wsi = dynamic_cast<IPhoneWindowingSystemInterface*>(osg::GraphicsContext::getWindowingSystemInterface());
-    int screenLeft(0), screenTop(0);
-	osg::Vec2 screenSizePoints;
+    osg::Vec2 screenSizePoints;
 	osg::Vec2 screenSizePixels;
 	float screenScaleFactor = 1.0f;
 	UIScreen* screen = nil;
 	osg::GraphicsContext::ScreenSettings screenSettings;
     if (wsi) {
-		wsi->getScreenTopLeft((*_traits), screenLeft, screenTop);
 		wsi->getScreenContentScaleFactor((*_traits), screenScaleFactor);
 		wsi->getScreenSizeInPoints((*_traits), screenSizePoints); 
 		screenSizePixels = osg::Vec2(screenSettings.width, screenSettings.height);

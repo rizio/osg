@@ -38,8 +38,6 @@ public:
 	/** dtor */
 	~IPhoneWindowingSystemInterface();
 
-	/** @return a CGDirectDisplayID for a ScreenIdentifier */
-	int getDisplayID(const osg::GraphicsContext::ScreenIdentifier& si);
 
 	/** @return count of attached screens */
 	virtual unsigned int getNumScreens(const osg::GraphicsContext::ScreenIdentifier& si) ;
@@ -49,10 +47,6 @@ public:
 	virtual void enumerateScreenSettings(const osg::GraphicsContext::ScreenIdentifier& screenIdentifier, osg::GraphicsContext::ScreenSettingsList & resolutionList);
 	
 	virtual bool setScreenSettings (const osg::GraphicsContext::ScreenIdentifier & si, const osg::GraphicsContext::ScreenSettings & settings);
-
-	/** return the top left coord of a specific screen in global screen space */
-	void getScreenTopLeft(const osg::GraphicsContext::ScreenIdentifier& si, int& x, int& y);
-
 
 	/** returns screen-ndx containing rect x,y,w,h, NOT_TESTED@tom */
 	unsigned int getScreenContaining(int x, int y, int w, int h);
@@ -105,8 +99,7 @@ protected:
 
 private:
 	
-	int        _displayCount;
-	std::vector<int> _displayIds;
+
 	
 };
 
