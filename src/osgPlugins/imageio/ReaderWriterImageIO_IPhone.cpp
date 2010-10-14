@@ -74,7 +74,7 @@ osg::Image* ReadCoreGraphicsImageFromFile(std::string file)
     CGContextRef textureContext = CGBitmapContextCreate(textureData, 
 														texWidth, texHeight,
 														8, texWidth * 4,
-														CGImageGetColorSpace(textureImage),
+                                                        CGColorSpaceCreateDeviceRGB(),
 														kCGImageAlphaPremultipliedLast);
 	
 	//copy into texturedata
@@ -107,19 +107,21 @@ osg::Image* ReadCoreGraphicsImageFromFile(std::string file)
     // by Tatsuhiro Nishioka (based on SDL's workaround on the similar issue)
     // http://bugzilla.libsdl.org/show_bug.cgi?id=868
     // 
+    
+    
     int i, j;
     GLubyte *pixels = (GLubyte *)image->data();
     for (i = image->t() * image->s(); i--; ) {
  
         GLubyte alpha = pixels[3];
-        if (alpha) {
+        if (alpha && (alpha < 255)) {
             for (j = 0; j < 3; ++j) {
-                pixels[j] = (pixels[j] * 255) / alpha;
+                pixels[j] = (static_cast<int>(pixels[j]) * 255) / alpha;
             }
         }
         pixels += 4;
     }
-
+    
 
 	[pool release];
 	return image;
