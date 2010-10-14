@@ -205,9 +205,11 @@
 }
 
 - (void)layoutSubviews {
+    /*
     [EAGLContext setCurrentContext:_context];
     [self destroyFramebuffer];
     [self createFramebuffer];
+    */
 }
 
 
@@ -546,7 +548,7 @@ void GraphicsWindowIPhone::init()
     _ownsWindow = false;
     _context = NULL;
     _window = NULL;
-    _updateContext = false;
+    _updateContext = true;
 	//if -1.0 we use the screens scale factor
 	_viewContentScaleFactor = -1.0f;
     _valid = _initialized = true;
@@ -752,15 +754,18 @@ void GraphicsWindowIPhone::closeImplementation()
 
 bool GraphicsWindowIPhone:: makeCurrentImplementation()
 {
-    if (_updateContext)
-    {
-        //[_context update];
-        _updateContext = false; 
-    }
+    
     
 	//bind the context
     [EAGLContext setCurrentContext:_context];
 	
+    if (_updateContext)
+    {
+        [_view destroyFramebuffer];
+        [_view createFramebuffer];
+
+        _updateContext = false; 
+    }
 	//i think we also want to bind the frame buffer here
 	//[_view bindFrameBuffer];
 

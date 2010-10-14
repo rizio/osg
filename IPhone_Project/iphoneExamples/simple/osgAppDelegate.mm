@@ -19,7 +19,7 @@
 //
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
-    //osg::setNotifyLevel(osg::INFO);
+    osg::setNotifyLevel(osg::INFO);
     
 	_root = new osg::MatrixTransform();	
 	osg::ref_ptr<osg::Node> model = (osgDB::readNodeFile("hog.osg"));
@@ -71,7 +71,7 @@
 	_viewer->setCameraManipulator(new osgGA::MultiTouchTrackballManipulator);
 	_viewer->setThreadingModel(osgViewer::Viewer::SingleThreaded);//SingleThreaded DrawThreadPerContext
 	_viewer->realize();
-	
+	_viewer->frame();
 	osg::setNotifyLevel(osg::INFO);
 	
 	[NSTimer scheduledTimerWithTimeInterval:1.0/30.0 target:self selector:@selector(updateScene) userInfo:nil repeats:YES]; 
