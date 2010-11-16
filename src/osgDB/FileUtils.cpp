@@ -51,8 +51,17 @@ typedef char TCHAR;
 	//>OSG_IPHONE
 	//IPhone includes
 	#include "TargetConditionals.h"
-	#if (TARGET_OS_IPHONE) && !(TARGET_IPHONE_SIMULATOR) //only when on device
-		#define stat64 stat
+	
+    #if (TARGET_OS_IPHONE) 
+        #include <Availability.h>
+        // workaround a bug which appears when compiling for SDK < 4.0 and for the simulator
+        #ifdef __IPHONE_4_0 && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_4_0)
+            #define stat64 stat
+        #else 
+            #if !TARGET_IPHONE_SIMULATOR
+                #define stat64 stat
+            #endif
+        #endif
 	#endif
 	//<OSG_IPHONE
 
