@@ -252,6 +252,9 @@ class OSGUTIL_EXPORT RenderStage : public RenderBin
 
         /** clear the references to any dependent cameras.*/
         void clearReferencesToDependentCameras();
+        
+        static void setDefaultFboId(GLuint id);
+        
 
     protected:
 
