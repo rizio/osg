@@ -70,9 +70,15 @@ void IPhoneWindowingSystemInterface::getScreenSettings(const osg::GraphicsContex
     if (si.screenNum == 0) 
     {
         //internal display supports only one mode, UiScreenMode reports wrong sizes for internal display at least for iOS 3.2
+        float scale = 1.0f;
         
-        resolution.width = [screen bounds].size.width;
-		resolution.height = [screen bounds].size.height;
+        #ifdef __IPHONE_4_0 && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_4_0)
+            scale = [screen scale];
+        #endif
+        
+        
+        resolution.width = [screen bounds].size.width * scale;
+		resolution.height = [screen bounds].size.height * scale;
 		resolution.colorDepth = 24; 
 		resolution.refreshRate = 60; //i've read 60 is max, not sure if thats true        
     } 
@@ -115,8 +121,14 @@ void IPhoneWindowingSystemInterface::enumerateScreenSettings(const osg::Graphics
     {
         //internal display supports only one mode, UiScreenMode reports wrong sizes for internal screen at least for iOS 3.2
         osg::GraphicsContext::ScreenSettings resolution;
-        resolution.width = [screen bounds].size.width;
-		resolution.height = [screen bounds].size.height;
+        
+        float scale = 1.0f;
+        #ifdef __IPHONE_4_0 && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_4_0)
+            scale = [screen scale];
+        #endif
+        
+        resolution.width = [screen bounds].size.width * scale;
+		resolution.height = [screen bounds].size.height * scale;
 		resolution.colorDepth = 24; 
 		resolution.refreshRate = 60; //i've read 60 is max, not sure if thats true
 		resolutionList.push_back(resolution);
@@ -125,7 +137,7 @@ void IPhoneWindowingSystemInterface::enumerateScreenSettings(const osg::Graphics
     } 
     else 
     {
-        // external display my support more resolutions:
+        // external display may support more resolutions:
 
         //get the screen mode
         NSArray* modesArray = [screen availableModes];
