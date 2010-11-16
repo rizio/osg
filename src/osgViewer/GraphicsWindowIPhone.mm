@@ -3,7 +3,6 @@
 #include <iostream>
 //#include <osgViewer/api/IPhone/PixelBufferIPhone>
 #include <osgViewer/api/IPhone/GraphicsWindowIPhone>
-#include <osgUtil/RenderStage>
 
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
@@ -222,7 +221,7 @@
     glGenRenderbuffersOES(1, &_viewRenderbuffer);
     
     // set the default id for osg to switch back after using fbos.
-    osgUtil::RenderStage::setDefaultFboId(_viewFramebuffer);
+    _win->setDefaultFboId(_viewFramebuffer);
     
     glBindFramebufferOES(GL_FRAMEBUFFER_OES, _viewFramebuffer);
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, _viewRenderbuffer);
@@ -264,7 +263,7 @@
         glGenFramebuffersOES(1, &_msaaFramebuffer); 
         glGenRenderbuffersOES(1, &_msaaRenderBuffer);
         
-        osgUtil::RenderStage::setDefaultFboId(_msaaFramebuffer);
+        _win->setDefaultFboId(_msaaFramebuffer);
         
         glBindFramebufferOES(GL_FRAMEBUFFER_OES, _msaaFramebuffer); 
         glBindRenderbufferOES(GL_RENDERBUFFER_OES, _msaaRenderBuffer);

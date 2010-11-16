@@ -30,13 +30,6 @@ using namespace osg;
 using namespace osgUtil;
 
 
-static GLuint s_default_fbo_id = 0;
-
-
-void RenderStage::setDefaultFboId(GLuint i) {
-    s_default_fbo_id = i;
-}
-
 
 
 // register a RenderStage prototype with the RenderBin prototype list.
@@ -534,7 +527,7 @@ void RenderStage::runCameraSetUp(osg::RenderInfo& renderInfo)
                 OSG_NOTICE<<"RenderStage::runCameraSetUp(), FBO setup failed, FBO status= 0x"<<std::hex<<status<<std::dec<<std::endl;
 
                 fbo_supported = false;
-                fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, s_default_fbo_id);
+                fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT,  getGraphicsContext()->getDefaultFboId());
                 fbo = 0;
                 
                 // clean up.
@@ -1060,7 +1053,7 @@ void RenderStage::drawInner(osg::RenderInfo& renderInfo,RenderLeaf*& previous, b
         if (getDisableFboAfterRender())
         {
             // switch off the frame buffer object
-            fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, s_default_fbo_id);
+            fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, getGraphicsContext()->getDefaultFboId());
         }
 
         doCopyTexture = true;
