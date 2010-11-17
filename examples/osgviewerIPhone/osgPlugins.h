@@ -4,7 +4,7 @@
 #include <osgDB/Registry>
 
 //windowing system
-USE_GRAPICSWINDOW_IMPLEMENTATION(IPhone)
+USE_GRAPICSWINDOW_IMPLEMENTATION(IOS)
 
 
 //plugins
