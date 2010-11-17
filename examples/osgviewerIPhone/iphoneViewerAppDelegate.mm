@@ -9,7 +9,7 @@
 #include <osgGA/TrackballManipulator>
 #include <osg/ShapeDrawable>
 //inckude the iphone specific windowing stuff
-#include <osgViewer/api/IPhone/GraphicsWindowIPhone> 
+#include <osgViewer/api/IOS/GraphicsWindowIOS> 
 
 
 #define kAccelerometerFrequency		30.0 // Hz
@@ -45,7 +45,7 @@
 	osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
 	
 	// Init the Windata Variable that holds the handle for the Window to display OSG in.
-	osg::ref_ptr<osg::Referenced> windata = new osgViewer::GraphicsWindowIPhone::WindowData(_window);
+	osg::ref_ptr<osg::Referenced> windata = new osgViewer::GraphicsWindowIOS::WindowData(_window);
 	
 	// Setup the traits parameters
 	traits->x = 0;
