@@ -1,5 +1,5 @@
 /*
- *  IphoneUtils.h
+ *  IOSUtils.h
  *  OpenSceneGraph
  *
  *  Created by Thomas Hogarth on 25.11.09.
@@ -7,14 +7,14 @@
  * By default we create a full res buffer across all devices and if now viewContentScaleFator is given We use the screens ScaleFactor.
  * This means that for backward compatibility you need to set the windowData _viewContentScaleFactor to 1.0f and set the screen res to the
  * res that of the older gen device.
- * http://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/SupportingResolutionIndependence/SupportingResolutionIndependence.html#//apple_ref/doc/uid/TP40007072-CH10-SW11
+ * http://developer.apple.com/library/ios/documentation/IOS/Conceptual/IOSOSProgrammingGuide/SupportingResolutionIndependence/SupportingResolutionIndependence.html#//apple_ref/doc/uid/TP40007072-CH10-SW11
  *
  */
 
 #ifdef __APPLE__ 
  
-#ifndef IPHONE_UTILS_HEADER_
-#define IPHONE_UTILS_HEADER_
+#ifndef IOS_UTILS_HEADER_
+#define IOS_UTILS_HEADER_
 
 #ifdef __OBJC__
 @class UIScreen;
@@ -26,17 +26,17 @@ class UIScreen;
 #include <osg/GraphicsContext>
 #include <osgViewer/GraphicsWindow>
 
-namespace osgIPhone {
+namespace osgIOS {
 
 
 
-struct IPhoneWindowingSystemInterface : public osg::GraphicsContext::WindowingSystemInterface
+struct IOSWindowingSystemInterface : public osg::GraphicsContext::WindowingSystemInterface
 {
 public:
-	IPhoneWindowingSystemInterface();
+	IOSWindowingSystemInterface();
 
 	/** dtor */
-	~IPhoneWindowingSystemInterface();
+	~IOSWindowingSystemInterface();
 
 
 	/** @return count of attached screens */
@@ -51,7 +51,7 @@ public:
 	/** returns screen-ndx containing rect x,y,w,h, NOT_TESTED@tom */
 	unsigned int getScreenContaining(int x, int y, int w, int h);
 
-	//IPhone specific
+	//IOS specific
 
 	//
 	//return the UIScreen object asscoiated with the passed ScreenIdentifier
@@ -75,26 +75,8 @@ protected:
 	//as it only has one mode (might change though and this should still handle it)
 	bool setScreenResolutionImpl(const osg::GraphicsContext::ScreenIdentifier& screenIdentifier, unsigned int width, unsigned int height);
 
-	/** implementation of setScreenRefreshRate, currently can't set refresh rate of IPhone*/
+	/** implementation of setScreenRefreshRate, currently can't set refresh rate of IOS*/
 	bool setScreenRefreshRateImpl(const osg::GraphicsContext::ScreenIdentifier& screenIdentifier, double refreshRate);
-
-
-	template<class PixelBufferImplementation, class GraphicsWindowImplementation>
-	osg::GraphicsContext* createGraphicsContextImplementation(osg::GraphicsContext::Traits* traits)
-	{
-		if (traits->pbuffer)
-		{
-			osg::ref_ptr<PixelBufferImplementation> pbuffer = new PixelBufferImplementation(traits);
-			if (pbuffer->valid()) return pbuffer.release();
-			else return 0;
-		}
-		else
-		{
-			osg::ref_ptr<GraphicsWindowImplementation> window = new GraphicsWindowImplementation(traits);
-			if (window->valid()) return window.release();
-			else return 0;
-		}
-	}
 
 
 private:

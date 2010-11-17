@@ -65,7 +65,7 @@ ELSE()
     IF(APPLE)
 	# IPHONE_PORT@tom
 	IF(OSG_BUILD_PLATFORM_IPHONE OR OSG_BUILD_PLATFORM_IPHONE_SIMULATOR)
-		SET(OSG_WINDOWING_SYSTEM "IPhone" CACHE STRING "Windowing system type for graphics window creation, options only IPhone.")
+		SET(OSG_WINDOWING_SYSTEM "IOS" CACHE STRING "Windowing system type for graphics window creation, options only IOS.")
 	ELSE()
         	SET(OSG_WINDOWING_SYSTEM "Carbon" CACHE STRING "Windowing system type for graphics window creation, options Carbon, Cocoa or X11.")
 	ENDIF()
@@ -130,29 +130,26 @@ ELSE()
         
         SET(LIB_EXTRA_LIBS ${COCOA_LIBRARY} ${LIB_EXTRA_LIBS})
     # IPHONE_PORT@tom
-    ELSEIF(${OSG_WINDOWING_SYSTEM} STREQUAL "IPhone")
-        ADD_DEFINITIONS(-DUSE_IPHONE_IMPLEMENTATION)     
+    ELSEIF(${OSG_WINDOWING_SYSTEM} STREQUAL "IOS")
+        ADD_DEFINITIONS(-DUSE_IOS_IMPLEMENTATION)     
  
         IF(OSG_COMPILE_FRAMEWORKS)
            SET(LIB_COMMON_FILES ${LIB_COMMON_FILES} 
-                 ${HEADER_PATH}/api/IPhone/GraphicsWindowIPhone
-                 #${HEADER_PATH}/api/IPhone/PixelBufferIPhone
+                 ${HEADER_PATH}/api/IOS/GraphicsWindowIOS
              )
 
-            SET_PROPERTY(SOURCE ${HEADER_PATH}/api/IPhone/GraphicsWindowIPhone PROPERTY MACOSX_PACKAGE_LOCATION Headers/api/IPhone)
-            #SET_PROPERTY(SOURCE ${HEADER_PATH}/api/IPhone/PixelBufferIPhone PROPERTY MACOSX_PACKAGE_LOCATION Headers/api/IPhone)
+            SET_PROPERTY(SOURCE ${HEADER_PATH}/api/IOS/GraphicsWindowIOS PROPERTY MACOSX_PACKAGE_LOCATION Headers/api/IOS)
         ELSE()
             SET(LIB_PUBLIC_HEADERS ${LIB_PUBLIC_HEADERS} 
-                ${HEADER_PATH}/api/IPhone/GraphicsWindowIPhone
-                #${HEADER_PATH}/api/IPhone/PixelBufferIPhone
+                ${HEADER_PATH}/api/IOS/GraphicsWindowIOS
+                #${HEADER_PATH}/api/IOS/PixelBufferIOS
             )
         ENDIF()   
  
         SET(LIB_COMMON_FILES ${LIB_COMMON_FILES} 
-            GraphicsWindowIPhone.mm
-            IPhoneUtils.h
-            IPhoneUtils.mm
-            #PixelBufferIPhone.mm
+            GraphicsWindowIOS.mm
+            IOSUtils.h
+            IOSUtils.mm
         )
         
         SET(LIB_EXTRA_LIBS ${COCOA_LIBRARY} ${LIB_EXTRA_LIBS})
@@ -196,7 +193,7 @@ ELSE()
         # X11 on Apple requires X11 library plus OpenGL linking hack on Leopard
         IF(APPLE)
 	    #IPHONE_PORT@tom, hacK for finding the iphone opengl es lib
-	    IF(OSG_BUILD_PLATFORM_IPHONE)
+	    IF(OSG_BUILD_PLATFORM_IOS)
                 SET(OPENGL_INCLUDE_DIR ${IPHONE_SDKROOT}System/Library/Frameworks)
                 SET(OPENGL_LIBRARIES ${IPHONE_SDKROOT}System/Library/Frameworks/OpenGLES)
 	    ELSE()

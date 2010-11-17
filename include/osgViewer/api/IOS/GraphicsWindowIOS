@@ -22,16 +22,16 @@
 #ifdef __APPLE__
 
 #ifdef __OBJC__
-@class GraphicsWindowIPhoneWindow;
-@class GraphicsWindowIPhoneGLView;
-@class GraphicsWindowIPhoneGLViewController;
+@class GraphicsWindowIOSWindow;
+@class GraphicsWindowIOSGLView;
+@class GraphicsWindowIOSGLViewController;
 @class EAGLContext;
 @class UIWindow;
 @class UIView;
 #else
-class GraphicsWindowIPhoneGLView;
-class GraphicsWindowIPhoneWindow;
-class GraphicsWindowIPhoneGLViewController;
+class GraphicsWindowIOSGLView;
+class GraphicsWindowIOSWindow;
+class GraphicsWindowIOSGLViewController;
 class EAGLContext;
 class UIWindow;
 class UIView;
@@ -44,12 +44,12 @@ class UIView;
 namespace osgViewer
 {
 
-class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
+class GraphicsWindowIOS : public osgViewer::GraphicsWindow
 {
     public:
     class Implementation;
 
-        GraphicsWindowIPhone(osg::GraphicsContext::Traits* traits)
+        GraphicsWindowIOS(osg::GraphicsContext::Traits* traits)
 			: GraphicsWindow(),
             _valid(false),
             _initialized(false),
@@ -81,7 +81,7 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
             }
         }
     
-        virtual bool isSameKindAs(const Object* object) const { return dynamic_cast<const GraphicsWindowIPhone*>(object)!=0; }
+        virtual bool isSameKindAs(const Object* object) const { return dynamic_cast<const GraphicsWindowIOS*>(object)!=0; }
         virtual const char* libraryName() const { return "osgViewer"; }
         virtual const char* className() const { return "GraphicsWindowCarbon"; }
 
@@ -151,12 +151,12 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
                 bool          _adaptToDeviceOrientation;
 				float         _viewContentScaleFactor; 
         
-            friend class GraphicsWindowIPhone;
+            friend class GraphicsWindowIOS;
 
         };
         
         EAGLContext* getContext() { return _context; }
-        GraphicsWindowIPhoneWindow* getWindow() { return _window; }
+        GraphicsWindowIOSWindow* getWindow() { return _window; }
                 
         void setVSync(bool f);
         
@@ -180,7 +180,7 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
         
         void transformMouseXY(float& x, float& y);
 
-        virtual ~GraphicsWindowIPhone();
+        virtual ~GraphicsWindowIOS();
 
 
         bool            _valid;
@@ -191,9 +191,9 @@ class GraphicsWindowIPhone : public osgViewer::GraphicsWindow
          
     private:        
        
-        GraphicsWindowIPhoneWindow*      _window;
-        GraphicsWindowIPhoneGLView*      _view;
-        GraphicsWindowIPhoneGLViewController* _viewController;
+        GraphicsWindowIOSWindow*      _window;
+        GraphicsWindowIOSGLView*      _view;
+        GraphicsWindowIOSGLViewController* _viewController;
         EAGLContext*					_context;
         bool                            _updateContext;
 		

@@ -11,10 +11,10 @@
 #include <osg/DeleteHandler>
 #include <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#include "IPhoneUtils.h"
+#include "IOSUtils.h"
 
 
-namespace osgIPhone {
+namespace osgIOS {
 
 
 class AutoReleasePoolHelper {
@@ -30,13 +30,13 @@ private:
 
 
 /** ctor, get a list of all attached displays */
-IPhoneWindowingSystemInterface::IPhoneWindowingSystemInterface()
+IOSWindowingSystemInterface::IOSWindowingSystemInterface()
 :   osg::GraphicsContext::WindowingSystemInterface()
 {
 }
 
 /** dtor */
-IPhoneWindowingSystemInterface::~IPhoneWindowingSystemInterface()
+IOSWindowingSystemInterface::~IOSWindowingSystemInterface()
 {
     if (osg::Referenced::getDeleteHandler())
     {
@@ -48,13 +48,13 @@ IPhoneWindowingSystemInterface::~IPhoneWindowingSystemInterface()
 
 
 /** @return count of attached screens */
-unsigned int IPhoneWindowingSystemInterface::getNumScreens(const osg::GraphicsContext::ScreenIdentifier& si) 
+unsigned int IOSWindowingSystemInterface::getNumScreens(const osg::GraphicsContext::ScreenIdentifier& si) 
 {
     AutoReleasePoolHelper auto_release_pool_helper;
     return [[UIScreen screens] count];
 }
 
-void IPhoneWindowingSystemInterface::getScreenSettings(const osg::GraphicsContext::ScreenIdentifier& si, osg::GraphicsContext::ScreenSettings & resolution)
+void IOSWindowingSystemInterface::getScreenSettings(const osg::GraphicsContext::ScreenIdentifier& si, osg::GraphicsContext::ScreenSettings & resolution)
 {
     AutoReleasePoolHelper auto_release_pool_helper;
     
@@ -105,7 +105,7 @@ void IPhoneWindowingSystemInterface::getScreenSettings(const osg::GraphicsContex
 
 //
 //Due to the weird
-void IPhoneWindowingSystemInterface::enumerateScreenSettings(const osg::GraphicsContext::ScreenIdentifier& si, 
+void IOSWindowingSystemInterface::enumerateScreenSettings(const osg::GraphicsContext::ScreenIdentifier& si, 
 															 osg::GraphicsContext::ScreenSettingsList & resolutionList) 
 {
     AutoReleasePoolHelper auto_release_pool_helper;
@@ -162,7 +162,7 @@ void IPhoneWindowingSystemInterface::enumerateScreenSettings(const osg::Graphics
 
 
 
-bool IPhoneWindowingSystemInterface::setScreenSettings(const osg::GraphicsContext::ScreenIdentifier &si, const osg::GraphicsContext::ScreenSettings & settings)
+bool IOSWindowingSystemInterface::setScreenSettings(const osg::GraphicsContext::ScreenIdentifier &si, const osg::GraphicsContext::ScreenSettings & settings)
 {
     bool result = setScreenResolutionImpl(si, settings.width, settings.height);
     if (result)
@@ -178,7 +178,7 @@ bool IPhoneWindowingSystemInterface::setScreenSettings(const osg::GraphicsContex
 //the main screen screenNum 0 can not currently have its res changed
 //as it only has one mode (might change though and this should still handle it)
 //
-bool IPhoneWindowingSystemInterface::setScreenResolutionImpl(const osg::GraphicsContext::ScreenIdentifier& si, unsigned int width, unsigned int height) 
+bool IOSWindowingSystemInterface::setScreenResolutionImpl(const osg::GraphicsContext::ScreenIdentifier& si, unsigned int width, unsigned int height) 
 {
 	AutoReleasePoolHelper auto_release_pool_helper;
     
@@ -206,24 +206,24 @@ bool IPhoneWindowingSystemInterface::setScreenResolutionImpl(const osg::Graphics
 		if(size.width == width && size.height == height)
 		{
 			screen.currentMode = mode;
-			OSG_INFO << "IPhoneWindowingSystemInterface::setScreenResolutionImpl: Set resolution of screen '" << si.screenNum << "', to '" << width << ", " << height << "'." << std::endl;
+			OSG_INFO << "IOSWindowingSystemInterface::setScreenResolutionImpl: Set resolution of screen '" << si.screenNum << "', to '" << width << ", " << height << "'." << std::endl;
 			return true;
 		}
 		
 	}
 
-	OSG_WARN << "IPhoneWindowingSystemInterface::setScreenResolutionImpl: Failed to set resolution of screen '" << si.screenNum << "', to '" << width << ", " << height << "'." << std::endl;
+	OSG_WARN << "IOSWindowingSystemInterface::setScreenResolutionImpl: Failed to set resolution of screen '" << si.screenNum << "', to '" << width << ", " << height << "'." << std::endl;
 	return false; 
 }
 
-/** implementation of setScreenRefreshRate, don't think you can do this on IPhone */
-bool IPhoneWindowingSystemInterface::setScreenRefreshRateImpl(const osg::GraphicsContext::ScreenIdentifier& screenIdentifier, double refreshRate) { 
+/** implementation of setScreenRefreshRate, don't think you can do this on IOS */
+bool IOSWindowingSystemInterface::setScreenRefreshRateImpl(const osg::GraphicsContext::ScreenIdentifier& screenIdentifier, double refreshRate) { 
     
     return true;
 }
 
 
-unsigned int IPhoneWindowingSystemInterface::getScreenContaining(int x, int y, int w, int h)
+unsigned int IOSWindowingSystemInterface::getScreenContaining(int x, int y, int w, int h)
 {
     return 1;
 }
@@ -232,7 +232,7 @@ unsigned int IPhoneWindowingSystemInterface::getScreenContaining(int x, int y, i
 //return the UIScreen object asscoiated with the passed ScreenIdentifier
 //returns nil if si isn't found
 //
-UIScreen* IPhoneWindowingSystemInterface::getUIScreen(const osg::GraphicsContext::ScreenIdentifier& si)
+UIScreen* IOSWindowingSystemInterface::getUIScreen(const osg::GraphicsContext::ScreenIdentifier& si)
 {
 	AutoReleasePoolHelper auto_release_pool_helper;
     
@@ -246,7 +246,7 @@ UIScreen* IPhoneWindowingSystemInterface::getUIScreen(const osg::GraphicsContext
 //Returns the contents scale factor of the screen, this is the scale factor required
 //to convert points to pixels on this screen
 //
-bool IPhoneWindowingSystemInterface::getScreenContentScaleFactor(const osg::GraphicsContext::ScreenIdentifier& si, float& scaleFactor)
+bool IOSWindowingSystemInterface::getScreenContentScaleFactor(const osg::GraphicsContext::ScreenIdentifier& si, float& scaleFactor)
 {
 	AutoReleasePoolHelper auto_release_pool_helper;
     
@@ -268,7 +268,7 @@ bool IPhoneWindowingSystemInterface::getScreenContentScaleFactor(const osg::Grap
 //
 //Returns the screens size in points, docs state a point is roughly 1/160th of an inch
 //
-bool IPhoneWindowingSystemInterface::getScreenSizeInPoints(const osg::GraphicsContext::ScreenIdentifier& si, osg::Vec2& pointSize)
+bool IOSWindowingSystemInterface::getScreenSizeInPoints(const osg::GraphicsContext::ScreenIdentifier& si, osg::Vec2& pointSize)
 {
 	AutoReleasePoolHelper auto_release_pool_helper;
     

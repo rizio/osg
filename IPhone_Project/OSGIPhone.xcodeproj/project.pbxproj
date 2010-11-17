@@ -259,8 +259,8 @@
 		903421AE10B7D4590082188B /* libOpenThreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90BD410B37B5100E10618 /* libOpenThreads.a */; };
 		903421B010B7D4590082188B /* libosgUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 908EC61B10B5F8FF0024EAD9 /* libosgUtils.a */; };
 		903421B110B7D4590082188B /* libosgDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 908EC85F10B78AFD0024EAD9 /* libosgDB.a */; };
-		906D31E810BE018800042D38 /* IPhoneUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 906D318410BDD9B700042D38 /* IPhoneUtils.h */; };
-		906D31E910BE018F00042D38 /* IPhoneUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 906D318510BDD9B700042D38 /* IPhoneUtils.mm */; };
+		906D31E810BE018800042D38 /* IOSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 906D318410BDD9B700042D38 /* IOSUtils.h */; };
+		906D31E910BE018F00042D38 /* IOSUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 906D318510BDD9B700042D38 /* IOSUtils.mm */; };
 		906D33BB10BE24E500042D38 /* libosgViewer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90E0E10B3A08D00E10618 /* libosgViewer.a */; };
 		906D8D4B10B8FD400089D3C3 /* AnisotropicLighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 906D8D4010B8FD400089D3C3 /* AnisotropicLighting.cpp */; };
 		906D8D4C10B8FD400089D3C3 /* BumpMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 906D8D4110B8FD400089D3C3 /* BumpMapping.cpp */; };
@@ -1380,13 +1380,13 @@
 		90B90E4310B3A16600E10618 /* Viewer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B90E3610B3A16600E10618 /* Viewer.cpp */; };
 		90B90E4410B3A16600E10618 /* ViewerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B90E3710B3A16600E10618 /* ViewerBase.cpp */; };
 		90B90E4510B3A16600E10618 /* ViewerEventHandlers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B90E3810B3A16600E10618 /* ViewerEventHandlers.cpp */; };
-		90B90E4F10B3A60E00E10618 /* GraphicsWindowIPhone.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90B90E4E10B3A60E00E10618 /* GraphicsWindowIPhone.mm */; };
-		90B90E5410B3A6F000E10618 /* GraphicsWindowIPhone in Headers */ = {isa = PBXBuildFile; fileRef = 90B90E4D10B3A5E400E10618 /* GraphicsWindowIPhone */; };
+		90B90E4F10B3A60E00E10618 /* GraphicsWindowIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90B90E4E10B3A60E00E10618 /* GraphicsWindowIOS.mm */; };
+		90B90E5410B3A6F000E10618 /* GraphicsWindowIOS in Headers */ = {isa = PBXBuildFile; fileRef = 90B90E4D10B3A5E400E10618 /* GraphicsWindowIOS */; };
 		90B90EA110B3BF5600E10618 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90CA510B38FF200E10618 /* UIKit.framework */; };
 		90B90EE010B3BF5E00E10618 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90CBA10B3925800E10618 /* QuartzCore.framework */; };
 		90CAB9E810C3992A00F8B606 /* arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90CAB9E710C3992A00F8B606 /* arial.ttf */; };
 		90EEDE6110B9F071007F0292 /* libosgGA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8E4B10B901570089D3C3 /* libosgGA.a */; };
-		90EEDE7E10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */; };
+		90EEDE7E10B9F554007F0292 /* ReaderWriterImageIO_IOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IOS.cpp */; };
 		90EEDF6110BA01CB007F0292 /* libosgdb_imageio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDE7310B9F4F1007F0292 /* libosgdb_imageio.a */; };
 		90EEDFBF10BA07B8007F0292 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */; };
 		D408D59E123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D408D59D123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp */; };
@@ -2167,8 +2167,8 @@
 		90341F5210B7B4050082188B /* OBJWriterNodeVisitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OBJWriterNodeVisitor.cpp; path = ../src/osgPlugins/obj/OBJWriterNodeVisitor.cpp; sourceTree = SOURCE_ROOT; };
 		90341F5310B7B4050082188B /* OBJWriterNodeVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBJWriterNodeVisitor.h; path = ../src/osgPlugins/obj/OBJWriterNodeVisitor.h; sourceTree = SOURCE_ROOT; };
 		90341F5410B7B4050082188B /* ReaderWriterOBJ.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReaderWriterOBJ.cpp; path = ../src/osgPlugins/obj/ReaderWriterOBJ.cpp; sourceTree = SOURCE_ROOT; };
-		906D318410BDD9B700042D38 /* IPhoneUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPhoneUtils.h; path = ../src/osgViewer/IPhoneUtils.h; sourceTree = SOURCE_ROOT; };
-		906D318510BDD9B700042D38 /* IPhoneUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IPhoneUtils.mm; path = ../src/osgViewer/IPhoneUtils.mm; sourceTree = SOURCE_ROOT; };
+		906D318410BDD9B700042D38 /* IOSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSUtils.h; path = ../src/osgViewer/IOSUtils.h; sourceTree = SOURCE_ROOT; };
+		906D318510BDD9B700042D38 /* IOSUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSUtils.mm; path = ../src/osgViewer/IOSUtils.mm; sourceTree = SOURCE_ROOT; };
 		906D8D2B10B8FAE70089D3C3 /* libosgdb_ive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosgdb_ive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		906D8D3A10B8FCED0089D3C3 /* libosgFX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosgFX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		906D8D4010B8FD400089D3C3 /* AnisotropicLighting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnisotropicLighting.cpp; path = ../src/osgFX/AnisotropicLighting.cpp; sourceTree = SOURCE_ROOT; };
@@ -3247,11 +3247,11 @@
 		90B90E3610B3A16600E10618 /* Viewer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Viewer.cpp; path = ../src/osgViewer/Viewer.cpp; sourceTree = SOURCE_ROOT; };
 		90B90E3710B3A16600E10618 /* ViewerBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ViewerBase.cpp; path = ../src/osgViewer/ViewerBase.cpp; sourceTree = SOURCE_ROOT; };
 		90B90E3810B3A16600E10618 /* ViewerEventHandlers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ViewerEventHandlers.cpp; path = ../src/osgViewer/ViewerEventHandlers.cpp; sourceTree = SOURCE_ROOT; };
-		90B90E4D10B3A5E400E10618 /* GraphicsWindowIPhone */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GraphicsWindowIPhone; path = ../include/osgViewer/api/IPhone/GraphicsWindowIPhone; sourceTree = SOURCE_ROOT; };
-		90B90E4E10B3A60E00E10618 /* GraphicsWindowIPhone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GraphicsWindowIPhone.mm; path = ../src/osgViewer/GraphicsWindowIPhone.mm; sourceTree = SOURCE_ROOT; };
+		90B90E4D10B3A5E400E10618 /* GraphicsWindowIOS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GraphicsWindowIOS; path = ../include/osgViewer/api/IOS/GraphicsWindowIOS; sourceTree = SOURCE_ROOT; };
+		90B90E4E10B3A60E00E10618 /* GraphicsWindowIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GraphicsWindowIOS.mm; path = ../src/osgViewer/GraphicsWindowIOS.mm; sourceTree = SOURCE_ROOT; };
 		90CAB9E710C3992A00F8B606 /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = arial.ttf; path = ../examples/osgviewerIPhone/Resources/arial.ttf; sourceTree = "<group>"; };
 		90EEDE7310B9F4F1007F0292 /* libosgdb_imageio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosgdb_imageio.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ReaderWriterImageIO_IPhone.cpp; path = ../src/osgPlugins/imageio/ReaderWriterImageIO_IPhone.cpp; sourceTree = "<group>"; };
+		90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IOS.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ReaderWriterImageIO_IOS.cpp; path = ../src/osgPlugins/imageio/ReaderWriterImageIO_IOS.cpp; sourceTree = "<group>"; };
 		90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libosg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosg.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -5332,8 +5332,8 @@
 				90B90E3010B3A16600E10618 /* Renderer.cpp */,
 				90B90E3110B3A16600E10618 /* Scene.cpp */,
 				90B90E3210B3A16600E10618 /* ScreenCaptureHandler.cpp */,
-				906D318410BDD9B700042D38 /* IPhoneUtils.h */,
-				906D318510BDD9B700042D38 /* IPhoneUtils.mm */,
+				906D318410BDD9B700042D38 /* IOSUtils.h */,
+				906D318510BDD9B700042D38 /* IOSUtils.mm */,
 				90B90E3310B3A16600E10618 /* StatsHandler.cpp */,
 				90B90E3410B3A16600E10618 /* Version.cpp */,
 				90B90E3510B3A16600E10618 /* View.cpp */,
@@ -5364,8 +5364,8 @@
 		90B90E4C10B3A5BB00E10618 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				90B90E4D10B3A5E400E10618 /* GraphicsWindowIPhone */,
-				90B90E4E10B3A60E00E10618 /* GraphicsWindowIPhone.mm */,
+				90B90E4D10B3A5E400E10618 /* GraphicsWindowIOS */,
+				90B90E4E10B3A60E00E10618 /* GraphicsWindowIOS.mm */,
 			);
 			name = api;
 			sourceTree = "<group>";
@@ -5380,7 +5380,7 @@
 		90EEDE7A10B9F525007F0292 /* osgdb_imageio */ = {
 			isa = PBXGroup;
 			children = (
-				90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp */,
+				90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IOS.cpp */,
 			);
 			name = osgdb_imageio;
 			sourceTree = "<group>";
@@ -6021,8 +6021,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				906D31E810BE018800042D38 /* IPhoneUtils.h in Headers */,
-				90B90E5410B3A6F000E10618 /* GraphicsWindowIPhone in Headers */,
+				906D31E810BE018800042D38 /* IOSUtils.h in Headers */,
+				90B90E5410B3A6F000E10618 /* GraphicsWindowIOS in Headers */,
 				90B90E2210B3A12500E10618 /* CompositeViewer in Headers */,
 				90B90E2310B3A12500E10618 /* Export in Headers */,
 				90B90E2410B3A12500E10618 /* GraphicsWindow in Headers */,
@@ -7461,8 +7461,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				906D31E910BE018F00042D38 /* IPhoneUtils.mm in Sources */,
-				90B90E4F10B3A60E00E10618 /* GraphicsWindowIPhone.mm in Sources */,
+				906D31E910BE018F00042D38 /* IOSUtils.mm in Sources */,
+				90B90E4F10B3A60E00E10618 /* GraphicsWindowIOS.mm in Sources */,
 				90B90E3910B3A16600E10618 /* CompositeViewer.cpp in Sources */,
 				90B90E3C10B3A16600E10618 /* HelpHandler.cpp in Sources */,
 				90B90E3D10B3A16600E10618 /* Renderer.cpp in Sources */,
@@ -7481,7 +7481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90EEDE7E10B9F554007F0292 /* ReaderWriterImageIO_IPhone.cpp in Sources */,
+				90EEDE7E10B9F554007F0292 /* ReaderWriterImageIO_IOS.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8985,7 +8985,6 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = osgViewer;
-				SDKROOT = iphoneos3.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;

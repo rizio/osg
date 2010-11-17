@@ -42,7 +42,7 @@ static NSString* toNSString(const std::string& text)
 
 
 //
-//really basic image io for iphone
+//really basic image io for IOS
 //
 osg::Image* ReadCoreGraphicsImageFromFile(std::string file)
 {

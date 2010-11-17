@@ -48,8 +48,8 @@ typedef char TCHAR;
     // without the AvailablilityMacros.
     #include <AvailabilityMacros.h>
 
-	//>OSG_IPHONE
-	//IPhone includes
+	//>OSG_IOS
+	//IOS includes
 	#include "TargetConditionals.h"
 	
     #if (TARGET_OS_IPHONE) 

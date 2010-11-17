@@ -1,7 +1,7 @@
 #ifndef OSG_CONFIG
 #define OSG_CONFIG 1
 
-//static link needed on IPhone
+//static link needed on IOS
 #define OSG_LIBRARY_STATIC
 
 #define OSG_USE_FLOAT_MATRIX 

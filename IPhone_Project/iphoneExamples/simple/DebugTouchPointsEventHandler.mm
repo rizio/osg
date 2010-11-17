@@ -1,6 +1,6 @@
 /*
  *  DebugTouchPointsEventHandler.cpp
- *  OSGIPhone
+ *  OSGIOS
  *
  *  Created by Stephan Huber on 13.09.10.
  *  Copyright 2010 Stephan Maximilian Huber, digital mind. All rights reserved.

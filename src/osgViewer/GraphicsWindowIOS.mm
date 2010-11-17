@@ -1,8 +1,7 @@
 
 
 #include <iostream>
-//#include <osgViewer/api/IPhone/PixelBufferIPhone>
-#include <osgViewer/api/IPhone/GraphicsWindowIPhone>
+#include <osgViewer/api/IOS/GraphicsWindowIOS>
 
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
@@ -11,20 +10,44 @@
 	#import <OpenGLES/ES1/glext.h>
 #else
 	#import <OpenGLES/ES2/glext.h>
-#endif
+	// in GLES2, the OES suffix if dropped from function names (from rti) 
+	#define glGenFramebuffersOES glGenFramebuffers 
+	#define glGenRenderbuffersOES glGenRenderbuffers 
+	#define glBindFramebufferOES glBindFramebuffer 
+	#define glBindRenderbufferOES glBindRenderbuffer 
+	#define glFramebufferRenderbufferOES glFramebufferRenderbuffer 
+	#define glGetRenderbufferParameterivOES glGetRenderbufferParameteriv 
+	#define glRenderbufferStorageOES glRenderbufferStorage 
+	#define glDeleteRenderbuffersOES glDeleteRenderbuffers 
+	#define glDeleteFramebuffersOES glDeleteFramebuffers 
+	#define glCheckFramebufferStatusOES glCheckFramebufferStatus 
 
-#include "IPhoneUtils.h"
+	#define GL_FRAMEBUFFER_OES GL_FRAMEBUFFER 
+	#define GL_RENDERBUFFER_OES GL_RENDERBUFFER 
+	#define GL_RENDERBUFFER_WIDTH_OES GL_RENDERBUFFER_WIDTH 
+	#define GL_RENDERBUFFER_HEIGHT_OES GL_RENDERBUFFER_HEIGHT 
+	#define GL_COLOR_ATTACHMENT0_OES GL_COLOR_ATTACHMENT0 
+	#define GL_DEPTH_ATTACHMENT_OES GL_DEPTH_ATTACHMENT 
+	#define GL_DEPTH_COMPONENT16_OES GL_DEPTH_COMPONENT16 
+	#define GL_STENCIL_INDEX8_OES GL_STENCIL_INDEX8 
+	#define GL_FRAMEBUFFER_COMPLETE_OES GL_FRAMEBUFFER_COMPLETE 
+	#define GL_STENCIL_ATTACHMENT_OES GL_STENCIL_ATTACHMENT 
+
+	#define GL_RGB5_A1_OES GL_RGB5_A1
+#endif 
+
+#include "IOSUtils.h"
 
 
 
 
-#pragma mark GraphicsWindowIPhoneWindow
+#pragma mark GraphicsWindowIOSWindow
 
 // ----------------------------------------------------------------------------------------------------------
-// GraphicsWindowIPhoneWindow, implements canBecomeKeyWindow + canBecomeMainWindow
+// GraphicsWindowIOSWindow, implements canBecomeKeyWindow + canBecomeMainWindow
 // ----------------------------------------------------------------------------------------------------------
 
-@interface GraphicsWindowIPhoneWindow : UIWindow
+@interface GraphicsWindowIOSWindow : UIWindow
 {
 }
 
@@ -33,7 +56,7 @@
 
 @end
 
-@implementation GraphicsWindowIPhoneWindow
+@implementation GraphicsWindowIOSWindow
 
 //
 //Implement dealloc 
@@ -55,17 +78,17 @@
 
 @end
 
-#pragma mark GraphicsWindowIPhoneGLView
+#pragma mark GraphicsWindowIOSGLView
 
 // ----------------------------------------------------------------------------------------------------------
-// GraphicsWindowIPhoneGLView
+// GraphicsWindowIOSGLView
 // custom UIView-class handling creation and display of frame/render buffers plus receives touch input
 // ----------------------------------------------------------------------------------------------------------
 
-@interface GraphicsWindowIPhoneGLView : UIView
+@interface GraphicsWindowIOSGLView : UIView
 {
     @private
-        osgViewer::GraphicsWindowIPhone* _win;
+        osgViewer::GraphicsWindowIOS* _win;
 		EAGLContext* _context;
 	
 		/* The pixel dimensions of the backbuffer */
@@ -87,8 +110,8 @@
 	
 }
 
-- (void)setGraphicsWindow: (osgViewer::GraphicsWindowIPhone*) win;
-- (osgViewer::GraphicsWindowIPhone*) getGraphicsWindow;
+- (void)setGraphicsWindow: (osgViewer::GraphicsWindowIOS*) win;
+- (osgViewer::GraphicsWindowIOS*) getGraphicsWindow;
 - (void)setOpenGLContext: (EAGLContext*) context;
 
 - (BOOL)createFramebuffer;
@@ -105,7 +128,7 @@
 
 @end
 
-@implementation GraphicsWindowIPhoneGLView 
+@implementation GraphicsWindowIOSGLView 
 
 - (osgGA::GUIEventAdapter::TouchPhase) convertTouchPhase: (UITouchPhase) phase 
 {
@@ -144,12 +167,12 @@
 	
 }
 
--(void) setGraphicsWindow: (osgViewer::GraphicsWindowIPhone*) win
+-(void) setGraphicsWindow: (osgViewer::GraphicsWindowIOS*) win
 {
     _win = win;
 }
 
-- (osgViewer::GraphicsWindowIPhone*) getGraphicsWindow {
+- (osgViewer::GraphicsWindowIOS*) getGraphicsWindow {
     return _win;
 }
 
@@ -166,7 +189,7 @@
 //
 //Called when the view is created using a frame for dimensions
 //
-- (id)initWithFrame:(CGRect)frame : (osgViewer::GraphicsWindowIPhone*)win{
+- (id)initWithFrame:(CGRect)frame : (osgViewer::GraphicsWindowIOS*)win{
 	
 	_win = win;
 
@@ -181,7 +204,7 @@
 			eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
 											[NSNumber numberWithBool:NO], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 		}else{
-			//else no alpha, iphone uses RBG565
+			//else no alpha, IOS uses RBG565
 			eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
 											[NSNumber numberWithBool:NO], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGB565, kEAGLDrawablePropertyColorFormat, nil];
 
@@ -231,7 +254,7 @@
     glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &_backingWidth);
     glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &_backingHeight);
 	
-	osg::notify(osg::DEBUG_INFO) << "GraphicsWindowIPhone::createFramebuffer INFO: Created GL RenderBuffer of size " << _backingWidth << ", " << _backingHeight << " ." << std::endl;
+	osg::notify(osg::DEBUG_INFO) << "GraphicsWindowIOS::createFramebuffer INFO: Created GL RenderBuffer of size " << _backingWidth << ", " << _backingHeight << " ." << std::endl;
 
 	//add depth if requested
 	if(_win->getTraits()->depth > 0) {
@@ -283,7 +306,7 @@
 #endif
     
     if(glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) != GL_FRAMEBUFFER_COMPLETE_OES) {
-		OSG_FATAL << "GraphicsWindowIPhone::createFramebuffer ERROR: Failed to create a GL RenderBuffer, glCheckFramebufferStatusOES returned '" 
+		OSG_FATAL << "GraphicsWindowIOS::createFramebuffer ERROR: Failed to create a GL RenderBuffer, glCheckFramebufferStatusOES returned '" 
 				  << glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) << "'." << std::endl;
         return NO;
     }
@@ -472,7 +495,7 @@
 
 
 
-@interface GraphicsWindowIPhoneGLViewController : UIViewController
+@interface GraphicsWindowIOSGLViewController : UIViewController
 {
 
 }
@@ -481,12 +504,12 @@
 
 @end
 
-@implementation GraphicsWindowIPhoneGLViewController
+@implementation GraphicsWindowIOSGLViewController
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    osgViewer::GraphicsWindowIPhone* win = [(GraphicsWindowIPhoneGLView*)(self.view) getGraphicsWindow];
+    osgViewer::GraphicsWindowIOS* win = [(GraphicsWindowIOSGLView*)(self.view) getGraphicsWindow];
    
     if ((win) && (win->adaptToDeviceOrientation() == false))
         return NO;
@@ -511,13 +534,13 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration 
 {
-    osgViewer::GraphicsWindowIPhone* win = [(GraphicsWindowIPhoneGLView*)(self.view) getGraphicsWindow];
+    osgViewer::GraphicsWindowIOS* win = [(GraphicsWindowIOSGLView*)(self.view) getGraphicsWindow];
     if (win) {
         CGRect frame = self.view.bounds;
 		osg::Vec2 pointOrigin = osg::Vec2(frame.origin.x,frame.origin.y);
 		osg::Vec2 pointSize = osg::Vec2(frame.size.width,frame.size.height);
-		osg::Vec2 pixelOrigin = [(GraphicsWindowIPhoneGLView*)(self.view) convertPointToPixel:pointOrigin];
-		osg::Vec2 pixelSize = [(GraphicsWindowIPhoneGLView*)(self.view) convertPointToPixel:pointSize];
+		osg::Vec2 pixelOrigin = [(GraphicsWindowIOSGLView*)(self.view) convertPointToPixel:pointOrigin];
+		osg::Vec2 pixelSize = [(GraphicsWindowIOSGLView*)(self.view) convertPointToPixel:pointSize];
        OSG_INFO << "willAnimateRotationToInterfaceOrientation, resize to " 
             <<  pixelOrigin.x() << " " << pixelOrigin.y() << " " 
             << pixelSize.x() << " " << pixelSize.y() 
@@ -533,12 +556,12 @@
 
 
 
-using namespace osgIPhone; 
+using namespace osgIOS; 
 namespace osgViewer {
 
 	
 	
-#pragma mark GraphicsWindowIPhone
+#pragma mark GraphicsWindowIOS
 
 
 
@@ -546,7 +569,7 @@ namespace osgViewer {
 // init
 // ----------------------------------------------------------------------------------------------------------
 
-void GraphicsWindowIPhone::init()
+void GraphicsWindowIOS::init()
 {
     if (_initialized) return;
 
@@ -564,7 +587,7 @@ void GraphicsWindowIPhone::init()
 // realizeImplementation, creates the window + context
 // ----------------------------------------------------------------------------------------------------------
 
-bool GraphicsWindowIPhone::realizeImplementation()
+bool GraphicsWindowIOS::realizeImplementation()
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     
@@ -578,7 +601,7 @@ bool GraphicsWindowIPhone::realizeImplementation()
 	#endif
 	
 	//Get info about the requested screen
-    IPhoneWindowingSystemInterface* wsi = dynamic_cast<IPhoneWindowingSystemInterface*>(osg::GraphicsContext::getWindowingSystemInterface());
+    IOSWindowingSystemInterface* wsi = dynamic_cast<IOSWindowingSystemInterface*>(osg::GraphicsContext::getWindowingSystemInterface());
     osg::Vec2 screenSizePoints;
 	osg::Vec2 screenSizePixels;
 	float screenScaleFactor = 1.0f;
@@ -591,7 +614,7 @@ bool GraphicsWindowIPhone::realizeImplementation()
 		wsi->getScreenSettings((*_traits), screenSettings);
 		screen = wsi->getUIScreen((*_traits));
     }else{
-		OSG_FATAL << "GraphicsWindowIPhone::realizeImplementation: ERROR: Failed to create IPhone windowing system, OSG will be unable to create a vaild gl context and will not be able to render." << std::endl;
+		OSG_FATAL << "GraphicsWindowIOS::realizeImplementation: ERROR: Failed to create IOS windowing system, OSG will be unable to create a vaild gl context and will not be able to render." << std::endl;
 		return false;
 	}
     
@@ -617,7 +640,7 @@ bool GraphicsWindowIPhone::realizeImplementation()
 	{_viewContentScaleFactor = screenScaleFactor;}
     
 
-	OSG_DEBUG << "GraphicsWindowIPhone::realizeImplementation / ownsWindow: " << _ownsWindow << std::endl;
+	OSG_DEBUG << "GraphicsWindowIOS::realizeImplementation / ownsWindow: " << _ownsWindow << std::endl;
 
 	
 	//Here's the confusing bit, the default traits use the screen res which is in pixels and the user will want to use pixels also
@@ -637,15 +660,15 @@ bool GraphicsWindowIPhone::realizeImplementation()
 	//if we own the window we need to create one
     if (_ownsWindow) 
     {
-		//create the IPhone window object using the viewbounds (in points) required for our context size
-        _window = [[GraphicsWindowIPhoneWindow alloc] initWithFrame: viewBounds];// styleMask: style backing: NSBackingStoreBuffered defer: NO];
+		//create the IOS window object using the viewbounds (in points) required for our context size
+        _window = [[GraphicsWindowIOSWindow alloc] initWithFrame: viewBounds];// styleMask: style backing: NSBackingStoreBuffered defer: NO];
         
         if (!_window) {
-            OSG_WARN << "GraphicsWindowIPhone::realizeImplementation: ERROR: Failed to create GraphicsWindowIPhoneWindow can not display gl view" << std::endl;
+            OSG_WARN << "GraphicsWindowIOS::realizeImplementation: ERROR: Failed to create GraphicsWindowIOSWindow can not display gl view" << std::endl;
             return false;
         }
 		
-		OSG_DEBUG << "GraphicsWindowIPhone::realizeImplementation: INFO: Created UIWindow with bounds '" << viewBounds.size.width << ", " << viewBounds.size.height << "' (points)." << std::endl;
+		OSG_DEBUG << "GraphicsWindowIOS::realizeImplementation: INFO: Created UIWindow with bounds '" << viewBounds.size.width << ", " << viewBounds.size.height << "' (points)." << std::endl;
 		
 		//if the user has requested a differnet screenNum from default 0 get the UIScreen object and
 		//apply to our window (this is for IPad external screens, I don't have one, so I've no idea if it works)
@@ -666,18 +689,18 @@ bool GraphicsWindowIPhone::realizeImplementation()
 	if (!_context || ![EAGLContext setCurrentContext:_context]) {
 		
 		#if OSG_GLES1_FEATURES
-		OSG_FATAL << "GraphicsWindowIPhone::realizeImplementation: ERROR: Failed to create a valid OpenGLES1 context" << std::endl;
+		OSG_FATAL << "GraphicsWindowIOS::realizeImplementation: ERROR: Failed to create a valid OpenGLES1 context" << std::endl;
 		#elif OSG_GLES2_FEATURES
-		OSG_FATAL << "GraphicsWindowIPhone::realizeImplementation: ERROR: Failed to create a valid OpenGLES2 context" << std::endl;
+		OSG_FATAL << "GraphicsWindowIOS::realizeImplementation: ERROR: Failed to create a valid OpenGLES2 context" << std::endl;
 		#endif
 		return false;
 	}
 
 	//create the view to display our context in our window
-    GraphicsWindowIPhoneGLView* theView = [[ GraphicsWindowIPhoneGLView alloc ] initWithFrame:[ _window frame ] : this ];
+    GraphicsWindowIOSGLView* theView = [[ GraphicsWindowIOSGLView alloc ] initWithFrame:[ _window frame ] : this ];
 	if(!theView)
 	{
-		OSG_FATAL << "GraphicsWindowIPhone::realizeImplementation: ERROR: Failed to create GraphicsWindowIPhoneGLView, can not create frame buffers." << std::endl;
+		OSG_FATAL << "GraphicsWindowIOS::realizeImplementation: ERROR: Failed to create GraphicsWindowIOSGLView, can not create frame buffers." << std::endl;
 		return false;
 	}
 	
@@ -693,10 +716,10 @@ bool GraphicsWindowIPhone::realizeImplementation()
     [theView setOpenGLContext:_context];
     _view = theView;
 	
-    OSG_DEBUG << "GraphicsWindowIPhone::realizeImplementation / view: " << theView << std::endl;
+    OSG_DEBUG << "GraphicsWindowIOS::realizeImplementation / view: " << theView << std::endl;
 
 	//
-	_viewController = [[GraphicsWindowIPhoneGLViewController alloc] init];
+	_viewController = [[GraphicsWindowIOSGLViewController alloc] init];
 	_viewController.view = _view;
 	
 	
@@ -712,7 +735,7 @@ bool GraphicsWindowIPhone::realizeImplementation()
 
     [pool release];
     
-    // iphones origin is top/left:
+    // IOSs origin is top/left:
     getEventQueue()->getCurrentEventState()->setMouseYOrientation(osgGA::GUIEventAdapter::Y_INCREASING_DOWNWARDS);
     
     _valid = _initialized = _realized = true;
@@ -725,9 +748,9 @@ bool GraphicsWindowIPhone::realizeImplementation()
 // ----------------------------------------------------------------------------------------------------------
 // closeImplementation
 // ----------------------------------------------------------------------------------------------------------
-void GraphicsWindowIPhone::closeImplementation()
+void GraphicsWindowIOS::closeImplementation()
 {
-	OSG_ALWAYS << "close iphone window" << std::endl;
+	OSG_ALWAYS << "close IOS window" << std::endl;
     _valid = false;
     _realized = false;
    
@@ -757,7 +780,7 @@ void GraphicsWindowIPhone::closeImplementation()
 // makeCurrentImplementation
 // ----------------------------------------------------------------------------------------------------------
 
-bool GraphicsWindowIPhone:: makeCurrentImplementation()
+bool GraphicsWindowIOS:: makeCurrentImplementation()
 {
     
     
@@ -782,7 +805,7 @@ bool GraphicsWindowIPhone:: makeCurrentImplementation()
 // releaseContextImplementation
 // ----------------------------------------------------------------------------------------------------------
 
-bool GraphicsWindowIPhone::releaseContextImplementation()
+bool GraphicsWindowIOS::releaseContextImplementation()
 {
 	if ([EAGLContext currentContext] == _context) {
         [EAGLContext setCurrentContext:nil];
@@ -795,7 +818,7 @@ bool GraphicsWindowIPhone::releaseContextImplementation()
 // swapBuffersImplementation
 // ----------------------------------------------------------------------------------------------------------
 
-void GraphicsWindowIPhone::swapBuffersImplementation()
+void GraphicsWindowIOS::swapBuffersImplementation()
 {
     //[_context flushBuffer];
 	[_view swapBuffers];
@@ -809,7 +832,7 @@ void GraphicsWindowIPhone::swapBuffersImplementation()
 // We will use this to toggle the status bar on IPhone, nearest thing to window decoration
 // ----------------------------------------------------------------------------------------------------------
 
-bool GraphicsWindowIPhone::setWindowDecorationImplementation(bool flag)
+bool GraphicsWindowIOS::setWindowDecorationImplementation(bool flag)
 {
     if (!_realized || !_ownsWindow) return false;
 
@@ -829,7 +852,7 @@ bool GraphicsWindowIPhone::setWindowDecorationImplementation(bool flag)
 // ----------------------------------------------------------------------------------------------------------
 // grabFocus
 // ----------------------------------------------------------------------------------------------------------
-void GraphicsWindowIPhone::grabFocus()
+void GraphicsWindowIOS::grabFocus()
 {
 	//i think make key is the equivalent of focus on iphone 
 	[_window makeKeyWindow];
@@ -839,16 +862,16 @@ void GraphicsWindowIPhone::grabFocus()
 // ----------------------------------------------------------------------------------------------------------
 // grabFocusIfPointerInWindow
 // ----------------------------------------------------------------------------------------------------------
-void GraphicsWindowIPhone::grabFocusIfPointerInWindow()
+void GraphicsWindowIOS::grabFocusIfPointerInWindow()
 {
-    OSG_INFO << "GraphicsWindowIPhone :: grabFocusIfPointerInWindow not implemented yet " << std::endl;
+    OSG_INFO << "GraphicsWindowIOS :: grabFocusIfPointerInWindow not implemented yet " << std::endl;
 }
 
 // ----------------------------------------------------------------------------------------------------------
 // raiseWindow
 // Raise the window to the top.
 // ----------------------------------------------------------------------------------------------------------
-void GraphicsWindowIPhone::raiseWindow()
+void GraphicsWindowIOS::raiseWindow()
 {
 	[_window bringSubviewToFront:_view];
 }
@@ -857,7 +880,7 @@ void GraphicsWindowIPhone::raiseWindow()
 // resizedImplementation
 // ----------------------------------------------------------------------------------------------------------
 
-void GraphicsWindowIPhone::resizedImplementation(int x, int y, int width, int height)
+void GraphicsWindowIOS::resizedImplementation(int x, int y, int width, int height)
 {
     GraphicsContext::resizedImplementation(x, y, width, height);
     
@@ -872,9 +895,9 @@ void GraphicsWindowIPhone::resizedImplementation(int x, int y, int width, int he
 // ----------------------------------------------------------------------------------------------------------
 // setWindowRectangleImplementation
 // ----------------------------------------------------------------------------------------------------------
-bool GraphicsWindowIPhone::setWindowRectangleImplementation(int x, int y, int width, int height)
+bool GraphicsWindowIOS::setWindowRectangleImplementation(int x, int y, int width, int height)
 {
-    OSG_INFO << "GraphicsWindowIPhone :: setWindowRectangleImplementation not implemented yet " << std::endl;
+    OSG_INFO << "GraphicsWindowIOS :: setWindowRectangleImplementation not implemented yet " << std::endl;
     if (!_ownsWindow)
         return false;
             
@@ -882,7 +905,7 @@ bool GraphicsWindowIPhone::setWindowRectangleImplementation(int x, int y, int wi
 }
 
 	
-void GraphicsWindowIPhone::checkEvents()
+void GraphicsWindowIOS::checkEvents()
 {
 	
 	
@@ -894,39 +917,39 @@ void GraphicsWindowIPhone::checkEvents()
 // setWindowName
 // ----------------------------------------------------------------------------------------------------------
 
-void GraphicsWindowIPhone::setWindowName (const std::string & name)
+void GraphicsWindowIOS::setWindowName (const std::string & name)
 {
-    OSG_INFO << "GraphicsWindowIPhone :: setWindowName not implemented yet " << std::endl;
+    OSG_INFO << "GraphicsWindowIOS :: setWindowName not implemented yet " << std::endl;
 }
 
 
 // ----------------------------------------------------------------------------------------------------------
-// useCursor, no cursor on IPhone
+// useCursor, no cursor on IOS
 // ----------------------------------------------------------------------------------------------------------
 
-void GraphicsWindowIPhone::useCursor(bool cursorOn)
+void GraphicsWindowIOS::useCursor(bool cursorOn)
 {
-    OSG_INFO << "GraphicsWindowIPhone :: useCursor not implemented yet " << std::endl;
+    OSG_INFO << "GraphicsWindowIOS :: useCursor not implemented yet " << std::endl;
 }
 
 
 // ----------------------------------------------------------------------------------------------------------
-// setCursor, no cursor on IPhone
+// setCursor, no cursor on IOS
 // ----------------------------------------------------------------------------------------------------------
 
-void GraphicsWindowIPhone::setCursor(MouseCursor mouseCursor)
+void GraphicsWindowIOS::setCursor(MouseCursor mouseCursor)
 {
-    OSG_INFO << "GraphicsWindowIPhone :: setCursor not implemented yet " << std::endl;
+    OSG_INFO << "GraphicsWindowIOS :: setCursor not implemented yet " << std::endl;
 }
 
 
 // ----------------------------------------------------------------------------------------------------------
-// setVSync, no vsync on IPhone
+// setVSync, no vsync on IOS
 // ----------------------------------------------------------------------------------------------------------
 
-void GraphicsWindowIPhone::setVSync(bool f) 
+void GraphicsWindowIOS::setVSync(bool f) 
 {
-    OSG_INFO << "GraphicsWindowIPhone :: setVSync not implemented yet " << std::endl;
+    OSG_INFO << "GraphicsWindowIOS :: setVSync not implemented yet " << std::endl;
 }
 	
 	
@@ -934,12 +957,12 @@ void GraphicsWindowIPhone::setVSync(bool f)
 // helper funcs for converting points to pixels taking into account the views contents scale factor
 // ----------------------------------------------------------------------------------------------------------
 
-osg::Vec2 GraphicsWindowIPhone::pointToPixel(const osg::Vec2& point)
+osg::Vec2 GraphicsWindowIOS::pointToPixel(const osg::Vec2& point)
 {
 	return point * _viewContentScaleFactor;
 }
 	
-osg::Vec2 GraphicsWindowIPhone::pixelToPoint(const osg::Vec2& pixel)
+osg::Vec2 GraphicsWindowIOS::pixelToPoint(const osg::Vec2& pixel)
 {
 	float scaler = 1.0f / _viewContentScaleFactor;
 	return pixel * scaler;
@@ -950,34 +973,44 @@ osg::Vec2 GraphicsWindowIPhone::pixelToPoint(const osg::Vec2& pixel)
 // d'tor
 // ----------------------------------------------------------------------------------------------------------
 
-GraphicsWindowIPhone::~GraphicsWindowIPhone() 
+GraphicsWindowIOS::~GraphicsWindowIOS() 
 {
     close();
 }
 
 
 
-class CocoaWindowingSystemInterface : public  IPhoneWindowingSystemInterface {
+class ConcreteIOSWindowingSystemInterface : public  IOSWindowingSystemInterface {
 public:
-    CocoaWindowingSystemInterface()
-    :    IPhoneWindowingSystemInterface()
+    ConcreteIOSWindowingSystemInterface()
+    :    IOSWindowingSystemInterface()
     {
     }
     
     virtual osg::GraphicsContext* createGraphicsContext(osg::GraphicsContext::Traits* traits) 
-    {											//osg::GraphicsContext
-        return createGraphicsContextImplementation<GraphicsWindowIPhone, GraphicsWindowIPhone>(traits);
-    }
+    {
+		if (traits->pbuffer)
+		{
+			// pbuffers not supported on iOS
+			return 0;
+		}
+		else
+		{
+			osg::ref_ptr<GraphicsWindowIOS> window = new GraphicsWindowIOS(traits);
+			if (window->valid()) return window.release();
+			else return 0;
+		}
+	}
 };
 
 }//end namspace
 
 
-RegisterWindowingSystemInterfaceProxy<osgViewer::CocoaWindowingSystemInterface> createWindowingSystemInterfaceProxy;
+RegisterWindowingSystemInterfaceProxy<osgViewer::ConcreteIOSWindowingSystemInterface> createWindowingSystemInterfaceProxy;
 
 
 // declare C entry point for static compilation.
-extern "C" void graphicswindow_IPhone(void)
+extern "C" void graphicswindow_IOS(void)
 {
-    osg::GraphicsContext::setWindowingSystemInterface(new osgViewer::CocoaWindowingSystemInterface());
+    osg::GraphicsContext::setWindowingSystemInterface(new osgViewer::ConcreteIOSWindowingSystemInterface());
 }
