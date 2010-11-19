@@ -527,7 +527,7 @@ void RenderStage::runCameraSetUp(osg::RenderInfo& renderInfo)
                 OSG_NOTICE<<"RenderStage::runCameraSetUp(), FBO setup failed, FBO status= 0x"<<std::hex<<status<<std::dec<<std::endl;
 
                 fbo_supported = false;
-                fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT,  getGraphicsContext()->getDefaultFboId());
+                fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT,  state.getGraphicsContext()->getDefaultFboId());
                 fbo = 0;
                 
                 // clean up.
@@ -1053,7 +1053,7 @@ void RenderStage::drawInner(osg::RenderInfo& renderInfo,RenderLeaf*& previous, b
         if (getDisableFboAfterRender())
         {
             // switch off the frame buffer object
-            fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, getGraphicsContext()->getDefaultFboId());
+            fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, state.getGraphicsContext()->getDefaultFboId());
         }
 
         doCopyTexture = true;
