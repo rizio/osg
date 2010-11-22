@@ -92,8 +92,9 @@ void DebugTouchPointsEventHandler::updateDebugNode(osgGA::GUIEventAdapter::Touch
 		(*_vertices)[ndx+0].set(i->x, 0, 0);
 		(*_vertices)[ndx+1].set(i->x, height, 0);
 		
-		(*_vertices)[ndx+2].set(0, i->y, 0);
-		(*_vertices)[ndx+3].set(width, i->y, 0);
+        // the origin of touch coordinates is in the topleft corner of the screen
+		(*_vertices)[ndx+2].set(0, height - i->y, 0);
+		(*_vertices)[ndx+3].set(width, height - i->y, 0);
 		
 		for(unsigned k = ndx; k < ndx +4; ++k) {
 			(*_colors)[k].set(
@@ -101,7 +102,6 @@ void DebugTouchPointsEventHandler::updateDebugNode(osgGA::GUIEventAdapter::Touch
 				(i->phase ==  osgGA::GUIEventAdapter::TOUCH_MOVED) || (i->phase ==  osgGA::GUIEventAdapter::TOUCH_STATIONERY),
 				(i->phase ==  osgGA::GUIEventAdapter::TOUCH_ENDED),
 				1.0);
-			
 		}
 		
 	}

@@ -257,7 +257,8 @@ public:
 		
 		enum TouchPhase 
 		{
-			TOUCH_BEGAN,
+			TOUCH_UNKNOWN,
+            TOUCH_BEGAN,
 			TOUCH_MOVED,
 			TOUCH_STATIONERY,
 			TOUCH_ENDED
@@ -271,7 +272,7 @@ public:
 				float x, y;
 				
 				unsigned int tapCount;
-				TouchPoint() : id(0), phase(TOUCH_ENDED), x(0.0f), y(0.0f), tapCount(0) {}
+				TouchPoint() : id(0), phase(TOUCH_UNKNOWN), x(0.0f), y(0.0f), tapCount(0) {}
 				TouchPoint(unsigned int in_id, TouchPhase in_phase, float in_x, float in_y, unsigned int in_tap_count) 
 				:	id(in_id), 
 					phase(in_phase),

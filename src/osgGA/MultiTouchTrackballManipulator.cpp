@@ -65,7 +65,7 @@ void MultiTouchTrackballManipulator::handleMultiTouchDrag(GUIEventAdapter::Touch
    
     // osg::notify(osg::ALWAYS) << "drag: " << delta << " scale: " << scale << std::endl;
    
-    panModel( delta.x() * scale, delta.y() * scale );
+    panModel( delta.x() * scale, delta.y() * scale * (-1)); // flip y-coord because of different origins.
 
     
 }
