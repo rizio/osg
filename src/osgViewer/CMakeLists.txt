@@ -63,17 +63,17 @@ IF(WIN32)
     )
 ELSE()
     IF(APPLE)
-	# IPHONE_PORT@tom
-	IF(OSG_BUILD_PLATFORM_IPHONE OR OSG_BUILD_PLATFORM_IPHONE_SIMULATOR)
-		SET(OSG_WINDOWING_SYSTEM "IOS" CACHE STRING "Windowing system type for graphics window creation, options only IOS.")
-	ELSE()
-        	SET(OSG_WINDOWING_SYSTEM "Carbon" CACHE STRING "Windowing system type for graphics window creation, options Carbon, Cocoa or X11.")
-	ENDIF()
-	# IPHONE_PORT@tom
+
+        IF(OSG_BUILD_PLATFORM_IPHONE OR OSG_BUILD_PLATFORM_IPHONE_SIMULATOR)
+            SET(OSG_WINDOWING_SYSTEM "IOS" CACHE STRING "Windowing system type for graphics window creation, options only IOS.")
+        ELSE()
+            SET(OSG_WINDOWING_SYSTEM "Carbon" CACHE STRING "Windowing system type for graphics window creation, options Carbon, Cocoa or X11.")
+        ENDIF()
+
     ELSE()
         SET(OSG_WINDOWING_SYSTEM "X11" CACHE STRING "Windowing system type for graphics window creation. options only X11")
     ENDIF()
-    
+
     IF(${OSG_WINDOWING_SYSTEM} STREQUAL "Cocoa")
         ADD_DEFINITIONS(-DUSE_DARWIN_COCOA_IMPLEMENTATION)    
  
@@ -101,6 +101,7 @@ ELSE()
             PixelBufferCocoa.mm
         )
         SET(LIB_EXTRA_LIBS ${COCOA_LIBRARY} ${LIB_EXTRA_LIBS})
+
     ELSEIF(${OSG_WINDOWING_SYSTEM} STREQUAL "Carbon")
         ADD_DEFINITIONS(-DUSE_DARWIN_CARBON_IMPLEMENTATION)     
  
@@ -119,18 +120,19 @@ ELSE()
                 ${HEADER_PATH}/api/Carbon/GraphicsWindowCarbon
                 ${HEADER_PATH}/api/Carbon/PixelBufferCarbon
             )
-        ENDIF()   
- 
+        ENDIF()
+
         SET(LIB_COMMON_FILES ${LIB_COMMON_FILES} 
             GraphicsWindowCarbon.cpp
             DarwinUtils.h
             DarwinUtils.mm
             PixelBufferCarbon.cpp
         )
-        
+
         SET(LIB_EXTRA_LIBS ${COCOA_LIBRARY} ${LIB_EXTRA_LIBS})
-    # IPHONE_PORT@tom
+
     ELSEIF(${OSG_WINDOWING_SYSTEM} STREQUAL "IOS")
+
         ADD_DEFINITIONS(-DUSE_IOS_IMPLEMENTATION)     
  
         IF(OSG_COMPILE_FRAMEWORKS)
@@ -151,9 +153,9 @@ ELSE()
             IOSUtils.h
             IOSUtils.mm
         )
-        
+
         SET(LIB_EXTRA_LIBS ${COCOA_LIBRARY} ${LIB_EXTRA_LIBS})
-     # IPHONE_PORT@tom
+
     ELSE()
         # X11 for everybody else
         INCLUDE(FindPkgConfig OPTIONAL)
@@ -192,25 +194,25 @@ ELSE()
 
         # X11 on Apple requires X11 library plus OpenGL linking hack on Leopard
         IF(APPLE)
-	    #IPHONE_PORT@tom, hacK for finding the iphone opengl es lib
-	    IF(OSG_BUILD_PLATFORM_IOS)
+            # hack for finding the iphone opengl es lib
+            IF(OSG_BUILD_PLATFORM_IOS)
                 SET(OPENGL_INCLUDE_DIR ${IPHONE_SDKROOT}System/Library/Frameworks)
                 SET(OPENGL_LIBRARIES ${IPHONE_SDKROOT}System/Library/Frameworks/OpenGLES)
-	    ELSE()
-            	# Find GL/glx.h 
-            	IF(EXISTS ${CMAKE_OSX_SYSROOT}/usr/X11/include/GL/glx.h)
-                	SET(OPENGL_INCLUDE_DIR /usr/X11/include)
-                	SET(OPENGL_LIBRARIES /usr/X11/lib/libGL.dylib)
-            	ELSEIF(EXISTS ${CMAKE_OSX_SYSROOT}/usr/X11R6/include/GL/glx.h)
-                	SET(OPENGL_INCLUDE_DIR /usr/X11R6/include)
-                	SET(OPENGL_LIBRARIES /usr/X11R6/lib/libGL.dylib)
-            	ENDIF()
-            	INCLUDE_DIRECTORIES(BEFORE SYSTEM ${OPENGL_INCLUDE_DIR})
+            ELSE()
+                # Find GL/glx.h
+                IF(EXISTS ${CMAKE_OSX_SYSROOT}/usr/X11/include/GL/glx.h)
+                    SET(OPENGL_INCLUDE_DIR /usr/X11/include)
+                    SET(OPENGL_LIBRARIES /usr/X11/lib/libGL.dylib)
+                ELSEIF(EXISTS ${CMAKE_OSX_SYSROOT}/usr/X11R6/include/GL/glx.h)
+                    SET(OPENGL_INCLUDE_DIR /usr/X11R6/include)
+                    SET(OPENGL_LIBRARIES /usr/X11R6/lib/libGL.dylib)
+                ENDIF()
+                INCLUDE_DIRECTORIES(BEFORE SYSTEM ${OPENGL_INCLUDE_DIR})
 
-            	SET(LIB_EXTRA_LIBS ${X11_X11_LIB} ${OPENGL_LIBRARIES} ${LIB_EXTRA_LIBS})
-            	SET(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -Wl,-dylib_file,/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib:${CMAKE_OSX_SYSROOT}/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib")
-	    ENDIF()
-	    #IPHONE_PORT@tom
+                SET(LIB_EXTRA_LIBS ${X11_X11_LIB} ${OPENGL_LIBRARIES} ${LIB_EXTRA_LIBS})
+                SET(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -Wl,-dylib_file,/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib:${CMAKE_OSX_SYSROOT}/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib")
+            ENDIF()
+
         ENDIF(APPLE)
     ENDIF()
 ENDIF()

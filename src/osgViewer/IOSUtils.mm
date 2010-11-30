@@ -59,12 +59,12 @@ void IOSWindowingSystemInterface::getScreenSettings(const osg::GraphicsContext::
     AutoReleasePoolHelper auto_release_pool_helper;
     
     if(si.screenNum >= [[UIScreen screens] count]){return;}
-	
-	
+    
+    
 
-	//get the screens array from the UIScreen class
-	NSArray* screens = [UIScreen screens];
-	//iterate to the desired screen num
+    //get the screens array from the UIScreen class
+    NSArray* screens = [UIScreen screens];
+    //iterate to the desired screen num
     UIScreen* screen = [screens objectAtIndex:si.screenNum];
     
     if (si.screenNum == 0) 
@@ -78,9 +78,9 @@ void IOSWindowingSystemInterface::getScreenSettings(const osg::GraphicsContext::
         
         
         resolution.width = [screen bounds].size.width * scale;
-		resolution.height = [screen bounds].size.height * scale;
-		resolution.colorDepth = 24; 
-		resolution.refreshRate = 60; //i've read 60 is max, not sure if thats true        
+        resolution.height = [screen bounds].size.height * scale;
+        resolution.colorDepth = 24; 
+        resolution.refreshRate = 60; //i've read 60 is max, not sure if thats true        
     } 
     else 
     {
@@ -106,15 +106,15 @@ void IOSWindowingSystemInterface::getScreenSettings(const osg::GraphicsContext::
 //
 //Due to the weird
 void IOSWindowingSystemInterface::enumerateScreenSettings(const osg::GraphicsContext::ScreenIdentifier& si, 
-															 osg::GraphicsContext::ScreenSettingsList & resolutionList) 
+                                                             osg::GraphicsContext::ScreenSettingsList & resolutionList) 
 {
     AutoReleasePoolHelper auto_release_pool_helper;
     
     if(si.screenNum >= [[UIScreen screens] count]){return;}
-	
-	//get the screens array from the UIScreen class
-	NSArray* screens = [UIScreen screens];
-	//get the desired screen num
+    
+    //get the screens array from the UIScreen class
+    NSArray* screens = [UIScreen screens];
+    //get the desired screen num
     UIScreen* screen = [screens objectAtIndex:si.screenNum];
 
     if (si.screenNum == 0) 
@@ -128,10 +128,10 @@ void IOSWindowingSystemInterface::enumerateScreenSettings(const osg::GraphicsCon
         #endif
         
         resolution.width = [screen bounds].size.width * scale;
-		resolution.height = [screen bounds].size.height * scale;
-		resolution.colorDepth = 24; 
-		resolution.refreshRate = 60; //i've read 60 is max, not sure if thats true
-		resolutionList.push_back(resolution);
+        resolution.height = [screen bounds].size.height * scale;
+        resolution.colorDepth = 24; 
+        resolution.refreshRate = 60; //i've read 60 is max, not sure if thats true
+        resolutionList.push_back(resolution);
         
         
     } 
@@ -180,40 +180,40 @@ bool IOSWindowingSystemInterface::setScreenSettings(const osg::GraphicsContext::
 //
 bool IOSWindowingSystemInterface::setScreenResolutionImpl(const osg::GraphicsContext::ScreenIdentifier& si, unsigned int width, unsigned int height) 
 {
-	AutoReleasePoolHelper auto_release_pool_helper;
+    AutoReleasePoolHelper auto_release_pool_helper;
     
     if(si.screenNum >= [[UIScreen screens] count]){return false;}
 
-	
-	//get the screens array from the UIScreen class
-	NSArray* screens = [UIScreen screens];
-	
-	//iterate to the desired screen num
+    
+    //get the screens array from the UIScreen class
+    NSArray* screens = [UIScreen screens];
+    
+    //iterate to the desired screen num
     UIScreen* screen = [screens objectAtIndex:si.screenNum];
 
-	//get the screen mode
-	NSArray* modesArray = [screen availableModes];
-	NSEnumerator* modesEnum = [modesArray objectEnumerator];
-	UIScreenMode* mode;
-	//iterate over modes and get their size property
-	while ( mode = [modesEnum nextObject] ) {
-		
-		osg::GraphicsContext::ScreenSettings resolution;
-		CGSize size = [mode size];
-		
-		//if the modes size/resolution matches the passed width/height then assign this
-		//mode as the screens current mode
-		if(size.width == width && size.height == height)
-		{
-			screen.currentMode = mode;
-			OSG_INFO << "IOSWindowingSystemInterface::setScreenResolutionImpl: Set resolution of screen '" << si.screenNum << "', to '" << width << ", " << height << "'." << std::endl;
-			return true;
-		}
-		
-	}
+    //get the screen mode
+    NSArray* modesArray = [screen availableModes];
+    NSEnumerator* modesEnum = [modesArray objectEnumerator];
+    UIScreenMode* mode;
+    //iterate over modes and get their size property
+    while ( mode = [modesEnum nextObject] ) {
+        
+        osg::GraphicsContext::ScreenSettings resolution;
+        CGSize size = [mode size];
+        
+        //if the modes size/resolution matches the passed width/height then assign this
+        //mode as the screens current mode
+        if(size.width == width && size.height == height)
+        {
+            screen.currentMode = mode;
+            OSG_INFO << "IOSWindowingSystemInterface::setScreenResolutionImpl: Set resolution of screen '" << si.screenNum << "', to '" << width << ", " << height << "'." << std::endl;
+            return true;
+        }
+        
+    }
 
-	OSG_WARN << "IOSWindowingSystemInterface::setScreenResolutionImpl: Failed to set resolution of screen '" << si.screenNum << "', to '" << width << ", " << height << "'." << std::endl;
-	return false; 
+    OSG_WARN << "IOSWindowingSystemInterface::setScreenResolutionImpl: Failed to set resolution of screen '" << si.screenNum << "', to '" << width << ", " << height << "'." << std::endl;
+    return false; 
 }
 
 /** implementation of setScreenRefreshRate, don't think you can do this on IOS */
@@ -234,12 +234,12 @@ unsigned int IOSWindowingSystemInterface::getScreenContaining(int x, int y, int 
 //
 UIScreen* IOSWindowingSystemInterface::getUIScreen(const osg::GraphicsContext::ScreenIdentifier& si)
 {
-	AutoReleasePoolHelper auto_release_pool_helper;
+    AutoReleasePoolHelper auto_release_pool_helper;
     
     if(si.screenNum >= [[UIScreen screens] count]){return nil;}
-	
+    
     UIScreen* screen = [[UIScreen screens] objectAtIndex:si.screenNum];
-	return screen;
+    return screen;
 }
 
 //
@@ -248,41 +248,41 @@ UIScreen* IOSWindowingSystemInterface::getUIScreen(const osg::GraphicsContext::S
 //
 bool IOSWindowingSystemInterface::getScreenContentScaleFactor(const osg::GraphicsContext::ScreenIdentifier& si, float& scaleFactor)
 {
-	AutoReleasePoolHelper auto_release_pool_helper;
+    AutoReleasePoolHelper auto_release_pool_helper;
     
     if(si.screenNum >= [[UIScreen screens] count]){return false;}
-	
+    
     UIScreen* screen = this->getUIScreen(si);
-	if(screen != nil)
-	{
-		scaleFactor = 1.0f;
+    if(screen != nil)
+    {
+        scaleFactor = 1.0f;
 #ifdef __IPHONE_4_0 && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_4_0)
-		CGFloat scale = [screen scale];
-		scaleFactor = scale;
+        CGFloat scale = [screen scale];
+        scaleFactor = scale;
 #endif
-		return true;
-	}
-	return false;
+        return true;
+    }
+    return false;
 }
-	
+    
 //
 //Returns the screens size in points, docs state a point is roughly 1/160th of an inch
 //
 bool IOSWindowingSystemInterface::getScreenSizeInPoints(const osg::GraphicsContext::ScreenIdentifier& si, osg::Vec2& pointSize)
 {
-	AutoReleasePoolHelper auto_release_pool_helper;
+    AutoReleasePoolHelper auto_release_pool_helper;
     
     if(si.screenNum >= [[UIScreen screens] count]){return false;}
-	
+    
     UIScreen* screen = this->getUIScreen(si);
-	if(screen != nil)
-	{
-		CGRect bounds = [screen bounds];
-		pointSize.x() = bounds.size.width;
-		pointSize.y() = bounds.size.height;
-		return true;
-	}
-	return false;	
+    if(screen != nil)
+    {
+        CGRect bounds = [screen bounds];
+        pointSize.x() = bounds.size.width;
+        pointSize.y() = bounds.size.height;
+        return true;
+    }
+    return false;    
 }
 
 }

@@ -10,8 +10,8 @@
 
 int main(int argc, char *argv[]) {
     
-	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	UIApplicationMain(argc, argv, nil, @"iphoneViewerAppDelegate");
-	[pool release];
-	return 0;
+    NSAutoreleasePool *pool = [NSAutoreleasePool new];
+    UIApplicationMain(argc, argv, nil, @"iphoneViewerAppDelegate");
+    [pool release];
+    return 0;
 }

@@ -445,7 +445,7 @@ GraphicsContext::GraphicsContext():
     _clearMask(0),
     _threadOfLastMakeCurrent(0),
     _lastClearTick(0),
-	_defaultFboId(0)
+    _defaultFboId(0)
 {
     setThreadSafeRefUnref(true);
     _operationsBlock = new RefBlock;
@@ -458,7 +458,7 @@ GraphicsContext::GraphicsContext(const GraphicsContext&, const osg::CopyOp&):
     _clearMask(0),
     _threadOfLastMakeCurrent(0),
     _lastClearTick(0),
-	_defaultFboId(0)
+    _defaultFboId(0)
 {
     setThreadSafeRefUnref(true);
     _operationsBlock = new RefBlock;
@@ -619,7 +619,7 @@ void GraphicsContext::swapBuffers()
 {
     if (isCurrent())
     {
-        swapBuffersImplementation();
+        swapBuffersCallbackOrImplemenation();
         clear();
     }
     else if (_graphicsThread.valid() && 
@@ -630,12 +630,10 @@ void GraphicsContext::swapBuffers()
     else
     {
         makeCurrent();
-        swapBuffersImplementation();
+        swapBuffersCallbackOrImplemenation();
         clear();
     }
 }
-
-
 
 void GraphicsContext::createGraphicsThread()
 {

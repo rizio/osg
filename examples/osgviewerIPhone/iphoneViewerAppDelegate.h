@@ -14,14 +14,14 @@
 
 
 @interface iphoneViewerAppDelegate : NSObject <UIApplicationDelegate, UIAccelerometerDelegate> {
-	
-	UIWindow* _window; //main application window
-	
-	UIAccelerationValue		accel[3];
-	
-	osg::ref_ptr<osgViewer::Viewer> _viewer;
-	osg::ref_ptr<osg::MatrixTransform> _root;
-	
+    
+    UIWindow* _window; //main application window
+    
+    UIAccelerationValue        accel[3];
+    
+    osg::ref_ptr<osgViewer::Viewer> _viewer;
+    osg::ref_ptr<osg::MatrixTransform> _root;
+    
 }
 
 @property (nonatomic, retain) /*IBOutlet*/ UIWindow *_window;

@@ -347,53 +347,53 @@ void EventQueue::keyRelease(int key, double time)
 
 GUIEventAdapter*  EventQueue::touchBegan(unsigned int id, GUIEventAdapter::TouchPhase phase, float x, float y, double time)
 {
-	// emulate left mouse button press
-	
-	_accumulateEventState->setButtonMask((1) | _accumulateEventState->getButtonMask());
-	_accumulateEventState->setX(x);
-	_accumulateEventState->setY(y);
-	
-	GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
+    // emulate left mouse button press
+    
+    _accumulateEventState->setButtonMask((1) | _accumulateEventState->getButtonMask());
+    _accumulateEventState->setX(x);
+    _accumulateEventState->setY(y);
+    
+    GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
     event->setEventType(GUIEventAdapter::PUSH);
     event->setTime(time);
-	event->addTouchPoint(id, phase, x, y, 0);
+    event->addTouchPoint(id, phase, x, y, 0);
   
     addEvent(event);
-	
-	return event;
+    
+    return event;
 }
-		
-		
+        
+        
 GUIEventAdapter*  EventQueue::touchMoved(unsigned int id, GUIEventAdapter::TouchPhase phase, float x, float y, double time)
 {
-	_accumulateEventState->setX(x);
-	_accumulateEventState->setY(y);
+    _accumulateEventState->setX(x);
+    _accumulateEventState->setY(y);
 
-	
-	GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
+    
+    GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
     event->setEventType(GUIEventAdapter::DRAG);
     event->setTime(time);
-	event->addTouchPoint(id, phase, x, y, 0);
+    event->addTouchPoint(id, phase, x, y, 0);
     addEvent(event);
-	
-	return event;
+    
+    return event;
 }
 
 GUIEventAdapter*  EventQueue::touchEnded(unsigned int id, GUIEventAdapter::TouchPhase phase, float x, float y, unsigned int tap_count, double time)
 {
-	_accumulateEventState->setButtonMask(~(1) & _accumulateEventState->getButtonMask());
-	_accumulateEventState->setX(x);
-	_accumulateEventState->setY(y);
-	
-	GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
+    _accumulateEventState->setButtonMask(~(1) & _accumulateEventState->getButtonMask());
+    _accumulateEventState->setX(x);
+    _accumulateEventState->setY(y);
+    
+    GUIEventAdapter* event = new GUIEventAdapter(*_accumulateEventState);
     event->setEventType(GUIEventAdapter::RELEASE);
     event->setTime(time);
-	event->addTouchPoint(id, phase, x, y, tap_count);
+    event->addTouchPoint(id, phase, x, y, tap_count);
     addEvent(event);
-	
-	return event;
+    
+    return event;
 }
-		
+        
 
 void EventQueue::closeWindow(double time)
 {

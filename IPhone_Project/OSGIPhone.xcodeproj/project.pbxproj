@@ -1425,7 +1425,6 @@
 		D47D50CA123A7C61002289EA /* Glyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D47D50C6123A7C61002289EA /* Glyph.cpp */; };
 		D47D50CB123A7C61002289EA /* GlyphGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D47D50C7123A7C61002289EA /* GlyphGeometry.cpp */; };
 		D47D50CC123A7C61002289EA /* GlyphGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = D47D50C8123A7C61002289EA /* GlyphGeometry.h */; };
-		D47D50CD123A7C61002289EA /* TextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D47D50C9123A7C61002289EA /* TextNode.cpp */; };
 		D4854073123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D4854071123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h */; };
 		D4854074123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4854072123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm */; };
 		D4AE30E21176598000B8E6FB /* StackedMatrixElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30D91176598000B8E6FB /* StackedMatrixElement.cpp */; };
@@ -3307,9 +3306,7 @@
 		D47D50C6123A7C61002289EA /* Glyph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Glyph.cpp; path = ../src/osgText/Glyph.cpp; sourceTree = SOURCE_ROOT; };
 		D47D50C7123A7C61002289EA /* GlyphGeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GlyphGeometry.cpp; path = ../src/osgText/GlyphGeometry.cpp; sourceTree = SOURCE_ROOT; };
 		D47D50C8123A7C61002289EA /* GlyphGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlyphGeometry.h; path = ../src/osgText/GlyphGeometry.h; sourceTree = SOURCE_ROOT; };
-		D47D50C9123A7C61002289EA /* TextNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextNode.cpp; path = ../src/osgText/TextNode.cpp; sourceTree = SOURCE_ROOT; };
 		D47D50CE123A7CA2002289EA /* Glyph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Glyph; path = ../include/osgText/Glyph; sourceTree = SOURCE_ROOT; };
-		D47D50CF123A7CA2002289EA /* TextNode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TextNode; path = ../include/osgText/TextNode; sourceTree = SOURCE_ROOT; };
 		D4854071123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugTouchPointsEventHandler.h; path = iphoneExamples/simple/DebugTouchPointsEventHandler.h; sourceTree = "<group>"; };
 		D4854072123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = DebugTouchPointsEventHandler.mm; path = iphoneExamples/simple/DebugTouchPointsEventHandler.mm; sourceTree = "<group>"; };
 		D4AE30D91176598000B8E6FB /* StackedMatrixElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedMatrixElement.cpp; path = ../src/osgAnimation/StackedMatrixElement.cpp; sourceTree = SOURCE_ROOT; };
@@ -4004,7 +4001,6 @@
 				D47D50C6123A7C61002289EA /* Glyph.cpp */,
 				D47D50C7123A7C61002289EA /* GlyphGeometry.cpp */,
 				D47D50C8123A7C61002289EA /* GlyphGeometry.h */,
-				D47D50C9123A7C61002289EA /* TextNode.cpp */,
 				906D8D9410B8FE850089D3C3 /* headers */,
 				906D8D9F10B8FF0E0089D3C3 /* DefaultFont.cpp */,
 				906D8DA110B8FF0E0089D3C3 /* FadeText.cpp */,
@@ -4022,7 +4018,6 @@
 			isa = PBXGroup;
 			children = (
 				D47D50CE123A7CA2002289EA /* Glyph */,
-				D47D50CF123A7CA2002289EA /* TextNode */,
 				906D8DA010B8FF0E0089D3C3 /* DefaultFont.h */,
 				906D8D9510B8FEAB0089D3C3 /* Export */,
 				906D8D9610B8FEAB0089D3C3 /* FadeText */,
@@ -7093,7 +7088,6 @@
 				906D8DB210B8FF0E0089D3C3 /* Version.cpp in Sources */,
 				D47D50CA123A7C61002289EA /* Glyph.cpp in Sources */,
 				D47D50CB123A7C61002289EA /* GlyphGeometry.cpp in Sources */,
-				D47D50CD123A7C61002289EA /* TextNode.cpp in Sources */,
 				D411C7C61258C4DC0076F148 /* Style.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
