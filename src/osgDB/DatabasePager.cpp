@@ -777,20 +777,7 @@ double DatabasePager::DatabaseThread::getTimeSinceStartOfIteration() const
 void DatabasePager::DatabaseThread::run()
 {
     OSG_INFO<<_name<<": DatabasePager::DatabaseThread::run"<<std::endl;
-    
-#if 1
-    // need to set the texture object manager to be able to reuse textures
-    osg::Texture::setMinimumNumberOfTextureObjectsToRetainInCache(100);
-    
-    // need to set the display list manager to be able to reuse display lists
-    osg::Drawable::setMinimumNumberOfDisplayListsToRetainInCache(100);
-#else
-    // need to set the texture object manager to be able to reuse textures
-    osg::Texture::setMinimumNumberOfTextureObjectsToRetainInCache(0);
-    
-    // need to set the display list manager to be able to reuse display lists
-    osg::Drawable::setMinimumNumberOfDisplayListsToRetainInCache(0);
-#endif
+
 
     bool firstTime = true;
     
@@ -827,17 +814,21 @@ void DatabasePager::DatabaseThread::run()
         OSG_INFO<<_name<<": _pager->size()= "<<read_queue->size()<<" to delete = "<<read_queue->_childrenToDeleteList.size()<<std::endl;
 
 
+        
         //
         // delete any children if required.
         //
-        if (_pager->_deleteRemovedSubgraphsInDatabaseThread && !(read_queue->_childrenToDeleteList.empty()))
+        if (_pager->_deleteRemovedSubgraphsInDatabaseThread/* && !(read_queue->_childrenToDeleteList.empty())*/)
         {
             ObjectList deleteList;
 
             {
                 OpenThreads::ScopedLock<OpenThreads::Mutex> lock(read_queue->_childrenToDeleteListMutex);
-                deleteList.swap(read_queue->_childrenToDeleteList);
-                read_queue->updateBlock();
+                if (!read_queue->_childrenToDeleteList.empty())
+                {
+                    deleteList.swap(read_queue->_childrenToDeleteList);
+                    read_queue->updateBlock();
+                }
             }
         }
 
@@ -1017,7 +1008,7 @@ void DatabasePager::DatabaseThread::run()
                 {
                     if (_pager->_incrementalCompileOperation.valid())
                     {
-                        OSG_NOTICE<<"Using IncrementalCompileOperation"<<std::endl;
+                        //OSG_NOTICE<<"Using IncrementalCompileOperation"<<std::endl;
 
                         osgUtil::IncrementalCompileOperation::CompileSet* compileSet = new osgUtil::IncrementalCompileOperation::CompileSet(databaseRequest->_loadedModel.get());
                         compileSet->_compileCompletedCallback = new DatabasePagerCompileCompletedCallback(_pager, databaseRequest.get());
@@ -1295,6 +1286,20 @@ DatabasePager::DatabasePager(const DatabasePager& rhs)
 
     _activePagedLODList = rhs._activePagedLODList->clone();
     _inactivePagedLODList = rhs._inactivePagedLODList->clone();
+
+#if 1
+    // need to set the texture object manager to be able to reuse textures
+    osg::Texture::setMinimumNumberOfTextureObjectsToRetainInCache(100);
+
+    // need to set the display list manager to be able to reuse display lists
+    osg::Drawable::setMinimumNumberOfDisplayListsToRetainInCache(100);
+#else
+    // need to set the texture object manager to be able to reuse textures
+    osg::Texture::setMinimumNumberOfTextureObjectsToRetainInCache(0);
+
+    // need to set the display list manager to be able to reuse display lists
+    osg::Drawable::setMinimumNumberOfDisplayListsToRetainInCache(0);
+#endif
 
     // initialize the stats variables
     resetStats();
@@ -1987,7 +1992,7 @@ bool DatabasePager::requiresExternalCompileGLObjects(unsigned int contextID) con
 
 void DatabasePager::compileCompleted(DatabaseRequest* databaseRequest)
 {
-    OSG_NOTICE<<"DatabasePager::compileCompleted("<<databaseRequest<<")"<<std::endl;
+    //OSG_NOTICE<<"DatabasePager::compileCompleted("<<databaseRequest<<")"<<std::endl;
     _dataToMergeList->add(databaseRequest);
 }
 

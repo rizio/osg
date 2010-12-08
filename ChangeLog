@@ -1,3 +1,282 @@
+2010-12-03 17:50  robert
+
+	* src/osgText/Text.cpp: From Johannes Bauerle, "When trying to use
+	  the osgText functionality in an osg application built without
+	  support for the fixed function pipeline I got a lot of warning
+	  messages about invalid calls.
+	  I found two indirect calls to the glTexEnv in the file Text.cpp:
+	  
+	  state.applyTextureAttribute(0,getActiveFont()->getTexEnv());
+	  
+	  In the attached fix I surrounded these calls with #ifdef's
+	  checking for OSG_GL_FIXED_FUNCTION_AVAILABLE to ensure that the
+	  above function is only called when the fixed function pipeline is
+	  available.
+	  "
+
+2010-12-03 17:20  robert
+
+	* src/osg/Texture2D.cpp: Removed redundent call.
+
+2010-12-03 14:24  robert
+
+	* src/osg/Texture2D.cpp: Commented out debug message
+
+2010-12-03 14:18  robert
+
+	* include/osg/Texture2D, src/osg/Texture2D.cpp: Introduced bool
+	  Texture2D::textureObjectValid(State) and bool
+	  SubloadCallback::textureObjectValid(Texture2D&,State&) method to
+	  make it tell Texture2D::apply() whether the texture object is
+	  still valid or whether it's no longed valid for the any changes
+	  to the image attached to the Texture
+
+2010-12-02 14:20  robert
+
+	* CMakeLists.txt, examples/osgviewerIPhone/CMakeLists.txt,
+	  src/osgDB/CMakeLists.txt, src/osgPlugins/freetype/CMakeLists.txt,
+	  src/osgPlugins/imageio/CMakeLists.txt,
+	  src/osgViewer/CMakeLists.txt: From Ulrich Hertlein, "Attached;
+	  here's a summary of the changes:
+	  - CMakeLists.txt
+	  -- don't look for GL when compiling for iOS (device or
+	  simulator), look for OGLES instead
+	  -- use architecture i386 for simulator
+	  -- removed iphoneos-version-min for simulator
+	  
+	  - examples/osgviewerIPhone/CMakeLists.txt
+	  -- added build dependencies for osgdb_osg, osgdb_freetype,
+	  osgdb_imageio
+	  -- added framework QuartzCore link dependency
+	  
+	  - src/osgDB/CMakeLists.txt
+	  -- don't link against Carbon on iOS (device or simulator)
+	  
+	  - src/osgPlugins/freetype/CMakeLists.txt
+	  -- don't link against OpenGL on iOS device or simulator
+	  
+	  - src/osgViewer/CMakeLists.txt
+	  -- link against OpenGLES on iOS (device or simulator)
+	  
+	  - src/osgPlugins/imageio/CMakeLists.txt
+	  -- compile ReaderWriterImageIO_IOS.cpp as Objective-C++
+	  
+	  "
+
+2010-12-02 14:13  robert
+
+	* applications/present3D/CMakeLists.txt,
+	  examples/osgQtWidgets/osgQtWidgets.cpp,
+	  examples/osgcluster/CMakeLists.txt,
+	  examples/osgmultiviewpaging/osgmultiviewpaging.cpp,
+	  examples/osgtext3D/TextNode.cpp, include/osg/State,
+	  include/osgText/Style, src/OpenThreads/pthreads/PThread.c++,
+	  src/osgGA/MultiTouchTrackballManipulator.cpp,
+	  src/osgPlugins/3ds/lib3ds/lib3ds_impl.h,
+	  src/osgPlugins/pvr/ReaderWriterPVR.cpp,
+	  src/osgUtil/IncrementalCompileOperation.cpp,
+	  src/osgWidget/Input.cpp: From Mathias Froehlich, "Attached are
+	  most of the fixes that are required to build osg on solaris and
+	  hpux. I have skipped irix this time as irix is too dead to keep
+	  osg building
+	  there.
+	  
+	  As usual, solaris does not like member templates in stl
+	  containers.
+	  Some headers missing and link problems due to missing libraries."
+
+2010-12-02 14:01  robert
+
+	* examples/osgmultiviewpaging/osgmultiviewpaging.cpp: Ran dos2unix
+	  to fix line endings
+
+2010-12-02 13:53  robert
+
+	* src/osgDB/DatabasePager.cpp: From Brad Christiansen, commented
+	  out debug messages
+
+2010-12-02 09:39  robert
+
+	* src/osgViewer/PixelBufferWin32.cpp: Removed redudent
+	  makeCurrentImplementation() that was causing a crash in
+	  osgscreencapture.
+
+2010-12-01 20:14  robert
+
+	* AUTHORS.txt, applications/osgversion/Contributors.cpp: Updated
+	  AUTHORS and Contributors.cpp to reflect new ChangeLog correctly
+
+2010-12-01 19:49  robert
+
+	* examples/CMakeLists.txt: From Jason Daly, "OK, I dug a bit into
+	  the CMake scripts and found a fairly obvious solution to the
+	  QtWebkit issue on RHEL 6 (see my other message on osg-users). I
+	  just moved the osgQtWidgets example in examples/CMakeLists.txt
+	  under the check for QtWebKit.
+	  
+	  Fix is attached:"
+
+2010-12-01 14:03  robert
+
+	* ChangeLog: Updated ChangeLog
+
+2010-12-01 13:33  robert
+
+	* src/osg/Texture2D.cpp: From Fabien Lavignotte, "I use
+	  Texture2D::copyTexImage2D to generate some textures at each frame
+	  on a PagedLOD databases.
+	  There was some performance problems after a long run, because
+	  textures created with copyTexImage2D were not reused.
+	  After investigation, there is a problem with the Texture Pool
+	  when a texture object is created with an empty profile, and then
+	  move after creation to TextureObjectSet with good profile using
+	  setAllocated method.
+	  I have just changed a little bit the code of
+	  Texture2D::copyTexImage2D, to generate the texture object with
+	  the good profile at the start."
+
+2010-11-30 16:22  robert
+
+	* src/osgWrappers/serializers/osg/Texture2DArray.cpp: From "Matthew
+	  Roberso, I've attached a small fix to the
+	  src/osgWrappers/serializers/osg/Texture2DArray.cpp against the
+	  svn head r11965 it simply calls setTextureDepth before attempting
+	  to load the individual textures into the array. Currently without
+	  that the loading fails with the following printout "Warning:
+	  Texture2DArray::setImage(..) failed, the given layer number is
+	  bigger then the size of the texture array." and the texture array
+	  is empty if loaded from an osga/b."
+
+2010-11-30 14:36  robert
+
+	* src/osgPlugins/osg/ReaderWriterOSG2.cpp: Fixed the readObject
+	  method so it could handle reading from a file contains any valid
+	  type of osg::Object
+
+2010-11-30 12:34  robert
+
+	* src/osgDB/InputStream.cpp: Added passing of existingObj parameter
+
+2010-11-30 11:34  robert
+
+	* src/osgPlugins/imageio/CMakeLists.txt: From Stephan Huber,
+	  compile fix for iOS
+
+2010-11-30 09:26  robert
+
+	* README.txt, examples/CMakeLists.txt,
+	  examples/osgviewerIPhone/CMakeLists.txt,
+	  include/osgViewer/api/IOS/GraphicsWindowIOS,
+	  src/osgDB/CMakeLists.txt: From Ulrich Hertlein and Stephan Huber,
+	  improves to iOS build
+
+2010-11-30 08:12  robert
+
+	* include/osg/BufferIndexBinding, include/osg/BufferObject: From
+	  Wang Rui, Compile fixes
+
+2010-11-29 17:43  robert
+
+	* examples/CMakeLists.txt, examples/osguniformbuffer,
+	  examples/osguniformbuffer/CMakeLists.txt,
+	  examples/osguniformbuffer/osguniformbuffer.cpp,
+	  include/osg/BufferIndexBinding, include/osg/BufferObject,
+	  include/osg/GL2Extensions, include/osg/Program,
+	  include/osg/StateAttribute, src/osg/BufferIndexBinding.cpp,
+	  src/osg/BufferObject.cpp, src/osg/CMakeLists.txt,
+	  src/osg/GL2Extensions.cpp, src/osg/Program.cpp: From Tim Moore,
+	  "Here is initial support for uniform buffer objects. The binding
+	  between a buffer object and an indexed target is implemented as a
+	  new StateAttribute, UniformBufferBinding. I've included an
+	  example program based on the code in the
+	  ARB_uniform_buffer_object specification.
+	  
+	  A few things remain to do:
+	  * The binding between a uniform block in a shader program and a
+	  buffer indexed target number is fixed, like a vertex attribute
+	  binding. This is too restrictive because that binding can be
+	  changed without relinking the program. This mapping should be
+	  done by name in the same way that uniform values are handled
+	  i.e., like a pseudo state attribute;
+	  
+	  * There's no direct way yet to query for the offset of uniforms
+	  in uniform block, so only the std140 layout is really usable. A
+	  helper class that implemented the std140 rules would be quite
+	  helpful for setting up uniform blocks without having to link a
+	  program first;
+	  
+	  * There's no direct support for querying parameters such as the
+	  maximum block length, minimum offset alignment, etc. Having that
+	  information available outside of the draw thread would make
+	  certain instancing techniques easier to implement."
+
+2010-11-29 09:32  robert
+
+	* include/osgDB/DatabasePager, src/osgDB/DatabasePager.cpp: Removed
+	  deperecated variables that are no longer used.
+
+2010-11-26 18:19  robert
+
+	* CMakeLists.txt, README.txt, examples/CMakeLists.txt,
+	  examples/osgviewerIPhone,
+	  examples/osgviewerIPhone/CMakeLists.txt,
+	  examples/osgviewerIPhone/iphoneViewerAppDelegate.h,
+	  examples/osgviewerIPhone/iphoneViewerAppDelegate.mm,
+	  examples/osgviewerIPhone/main.m,
+	  examples/osgviewerIPhone/osgIPhoneViewer-Info.plist,
+	  examples/osgviewerIPhone/osgPlugins.h, include/osgViewer/api/IOS,
+	  include/osgViewer/api/IOS/GraphicsWindowIOS,
+	  src/osgPlugins/imageio/ReaderWriterImageIO_IOS.cpp,
+	  src/osgViewer/CMakeLists.txt, src/osgViewer/GraphicsWindowIOS.mm,
+	  src/osgViewer/IOSUtils.h, src/osgViewer/IOSUtils.mm: From Tomas
+	  Holgarth and Stephan Huber, "
+	  attached you'll find the second part of the IOS-submission. It
+	  contains
+	  
+	  * GraphicsWindowIOS, which supports external and "retina"
+	  displays,
+	  multisample-buffers (for IOS > 4.0) and multi-touch-events
+	  * an ios-specific implementation of the imageio-plugin
+	  * an iphone-viewer example
+	  * cMake support for creating a xcode-project
+	  * an updated ReadMe-file describing the necessary steps to get a
+	  working xcode-project-file from CMake
+	  
+	  Please credit Thomas Hogarth and Stephan Huber for these changes.
+	  
+	  This brings the ios-support in line with the git-fork on github.
+	  It
+	  needs some more testing and some more love, the cmake-process is
+	  still a
+	  little complicated.
+	  
+	  You'll need a special version of the freetype lib compiled for
+	  IOS,
+	  there's one bundled in the OpenFrameworks-distribution, which can
+	  be used."
+	  
+	  Notes, from Robert Osfield, modified CMakeLists.txt files so that
+	  the IOS specific paths are within IF(APPLE) blocks.
+
+2010-11-26 17:37  robert
+
+	* src/osgPlugins/OpenFlight/FltExportVisitor.h,
+	  src/osgPlugins/OpenFlight/expGeometryRecords.cpp: From Katharina
+	  Plugge, fix for regression in handling of multitexturing.
+
+2010-11-26 17:35  robert
+
+	* include/osgSim/MultiSwitch,
+	  src/osgPlugins/OpenFlight/AncillaryRecords.cpp,
+	  src/osgPlugins/OpenFlight/PrimaryRecords.cpp,
+	  src/osgPlugins/OpenFlight/Record.h, src/osgSim/MultiSwitch.cpp:
+	  From Eduardo Poyart, OSG patch: made it read ancillary
+	  IndexedStrings into MultiSwitch
+
+2010-11-26 17:32  robert
+
+	* ChangeLog: Updated ChangeLog
+
 2010-11-26 13:54  robert
 
 	* include/osg/Object, include/osg/Uniform, src/osg/Uniform.cpp:

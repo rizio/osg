@@ -1,7 +1,16 @@
 IF(OSG_BUILD_PLATFORM_IPHONE OR OSG_BUILD_PLATFORM_IPHONE_SIMULATOR)
-	SET(TARGET_SRC ReaderWriterImageIO_IOS.cpp )
+    SET(TARGET_SRC ReaderWriterImageIO_IOS.cpp )
 ELSE()
-	SET(TARGET_SRC ReaderWriterImageIO.cpp )
+    SET(TARGET_SRC ReaderWriterImageIO.cpp )
+ENDIF()
+
+IF (APPLE) 
+   IF(OSG_BUILD_PLATFORM_IPHONE OR OSG_BUILD_PLATFORM_IPHONE_SIMULATOR)
+     # compile FileUtils.cpp as objective-c++
+     SET_SOURCE_FILES_PROPERTIES(ReaderWriterImageIO_IOS.cpp
+       PROPERTIES COMPILE_FLAGS "-x objective-c++"
+     )
+   ENDIF()
 ENDIF()
 
 SET(TARGET_ADDED_LIBRARIES)
