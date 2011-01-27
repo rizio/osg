@@ -1462,6 +1462,12 @@
 		D4B7ED71125F0A2D00AA5895 /* tessmono.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED59125F0A2D00AA5895 /* tessmono.h */; };
 		D4B7ED74125F0A4100AA5895 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED72125F0A4100AA5895 /* error.cpp */; };
 		D4B7ED75125F0A4100AA5895 /* mipmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED73125F0A4100AA5895 /* mipmap.cpp */; };
+		D4FC8DA912F1733F00E433A5 /* BufferIndexBinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DA812F1733F00E433A5 /* BufferIndexBinding.cpp */; };
+		D4FC8DAF12F173AE00E433A5 /* Outline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DAE12F173AE00E433A5 /* Outline.cpp */; };
+		D4FC8DBA12F1744200E433A5 /* Texture2DArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DB812F1744200E433A5 /* Texture2DArray.cpp */; };
+		D4FC8DBB12F1744200E433A5 /* Texture2DArray.h in Headers */ = {isa = PBXBuildFile; fileRef = D4FC8DB912F1744200E433A5 /* Texture2DArray.h */; };
+		D4FC8DC012F1768A00E433A5 /* GraphicsCostEstimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DBF12F1768A00E433A5 /* GraphicsCostEstimator.cpp */; };
+		D4FC8DD812F17A9D00E433A5 /* libosgdb_ive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8D2B10B8FAE70089D3C3 /* libosgdb_ive.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1954,6 +1960,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 90AF62E010C325CF0041F6A7;
 			remoteInfo = osgdb_osg;
+		};
+		D4FC8DCC12F17A7300E433A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 906D8D2A10B8FAE70089D3C3 /* osgdb_ive */;
+			remoteInfo = osgdb_ive;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -3355,6 +3368,23 @@
 		D4B7ED59125F0A2D00AA5895 /* tessmono.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tessmono.h; path = ../src/osg/glu/libtess/tessmono.h; sourceTree = SOURCE_ROOT; };
 		D4B7ED72125F0A4100AA5895 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = error.cpp; path = ../src/osg/glu/libutil/error.cpp; sourceTree = SOURCE_ROOT; };
 		D4B7ED73125F0A4100AA5895 /* mipmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mipmap.cpp; path = ../src/osg/glu/libutil/mipmap.cpp; sourceTree = SOURCE_ROOT; };
+		D4FC8DA712F1733400E433A5 /* BufferIndexBinding */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BufferIndexBinding; path = ../include/osg/BufferIndexBinding; sourceTree = SOURCE_ROOT; };
+		D4FC8DA812F1733F00E433A5 /* BufferIndexBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BufferIndexBinding.cpp; path = ../src/osg/BufferIndexBinding.cpp; sourceTree = SOURCE_ROOT; };
+		D4FC8DAB12F1738000E433A5 /* Style */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Style; path = ../include/osgText/Style; sourceTree = SOURCE_ROOT; };
+		D4FC8DAD12F173A200E433A5 /* Outline */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Outline; path = ../include/osgFX/Outline; sourceTree = SOURCE_ROOT; };
+		D4FC8DAE12F173AE00E433A5 /* Outline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Outline.cpp; path = ../src/osgFX/Outline.cpp; sourceTree = SOURCE_ROOT; };
+		D4FC8DB012F173DE00E433A5 /* AngularDampingOperator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AngularDampingOperator; path = ../include/osgParticle/AngularDampingOperator; sourceTree = SOURCE_ROOT; };
+		D4FC8DB112F173DE00E433A5 /* BounceOperator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BounceOperator; path = ../include/osgParticle/BounceOperator; sourceTree = SOURCE_ROOT; };
+		D4FC8DB212F173DE00E433A5 /* CompositePlacer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CompositePlacer; path = ../include/osgParticle/CompositePlacer; sourceTree = SOURCE_ROOT; };
+		D4FC8DB312F173DE00E433A5 /* DampingOperator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DampingOperator; path = ../include/osgParticle/DampingOperator; sourceTree = SOURCE_ROOT; };
+		D4FC8DB412F173DE00E433A5 /* DomainOperator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DomainOperator; path = ../include/osgParticle/DomainOperator; sourceTree = SOURCE_ROOT; };
+		D4FC8DB512F173DE00E433A5 /* ExplosionOperator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ExplosionOperator; path = ../include/osgParticle/ExplosionOperator; sourceTree = SOURCE_ROOT; };
+		D4FC8DB612F173DE00E433A5 /* OrbitOperator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OrbitOperator; path = ../include/osgParticle/OrbitOperator; sourceTree = SOURCE_ROOT; };
+		D4FC8DB712F173DE00E433A5 /* SinkOperator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SinkOperator; path = ../include/osgParticle/SinkOperator; sourceTree = SOURCE_ROOT; };
+		D4FC8DB812F1744200E433A5 /* Texture2DArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture2DArray.cpp; path = ../src/osgPlugins/ive/Texture2DArray.cpp; sourceTree = SOURCE_ROOT; };
+		D4FC8DB912F1744200E433A5 /* Texture2DArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture2DArray.h; path = ../src/osgPlugins/ive/Texture2DArray.h; sourceTree = SOURCE_ROOT; };
+		D4FC8DBE12F1767700E433A5 /* GraphicsCostEstimator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GraphicsCostEstimator; path = ../include/osgUtil/GraphicsCostEstimator; sourceTree = SOURCE_ROOT; };
+		D4FC8DBF12F1768A00E433A5 /* GraphicsCostEstimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GraphicsCostEstimator.cpp; path = ../src/osgUtil/GraphicsCostEstimator.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3528,6 +3558,7 @@
 				906D33BB10BE24E500042D38 /* libosgViewer.a in Frameworks */,
 				90AF63C510C329F20041F6A7 /* libosgdb_osg.a in Frameworks */,
 				90EEDF6110BA01CB007F0292 /* libosgdb_imageio.a in Frameworks */,
+				D4FC8DD812F17A9D00E433A5 /* libosgdb_ive.a in Frameworks */,
 				90B90C8D10B3898D00E10618 /* OpenGLES.framework in Frameworks */,
 				90B90C6210B3840C00E10618 /* Foundation.framework in Frameworks */,
 				90B90CA610B38FF200E10618 /* UIKit.framework in Frameworks */,
@@ -3575,10 +3606,10 @@
 				908EC61B10B5F8FF0024EAD9 /* libosgUtils.a */,
 				908EC85F10B78AFD0024EAD9 /* libosgDB.a */,
 				90341F3310B7B34E0082188B /* libosgdb_obj.a */,
-				906D8D2B10B8FAE70089D3C3 /* libosgdb_ive.a */,
 				906D8D3A10B8FCED0089D3C3 /* libosgFX.a */,
 				906D8D8F10B8FE690089D3C3 /* libosgText.a */,
 				906D8DC810B9000C0089D3C3 /* libosgSim.a */,
+				906D8D2B10B8FAE70089D3C3 /* libosgdb_ive.a */,
 				906D8E4B10B901570089D3C3 /* libosgGA.a */,
 				906D8EAF10B904200089D3C3 /* libosgParticle.a */,
 				906D8F5510B9073F0089D3C3 /* libosgTerrain.a */,
@@ -3959,6 +3990,7 @@
 		906D8D3D10B8FD090089D3C3 /* osgFX */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC8DAE12F173AE00E433A5 /* Outline.cpp */,
 				906D8D3F10B8FD1A0089D3C3 /* headers */,
 				906D8D4010B8FD400089D3C3 /* AnisotropicLighting.cpp */,
 				906D8D4110B8FD400089D3C3 /* BumpMapping.cpp */,
@@ -3978,6 +4010,7 @@
 		906D8D3F10B8FD1A0089D3C3 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC8DAD12F173A200E433A5 /* Outline */,
 				906D8D5610B8FD5A0089D3C3 /* AnisotropicLighting */,
 				906D8D5710B8FD5A0089D3C3 /* BumpMapping */,
 				906D8D5810B8FD5A0089D3C3 /* Cartoon */,
@@ -4017,6 +4050,7 @@
 		906D8D9410B8FE850089D3C3 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC8DAB12F1738000E433A5 /* Style */,
 				D47D50CE123A7CA2002289EA /* Glyph */,
 				906D8DA010B8FF0E0089D3C3 /* DefaultFont.h */,
 				906D8D9510B8FEAB0089D3C3 /* Export */,
@@ -4189,6 +4223,14 @@
 		906D8EC310B904C50089D3C3 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC8DB012F173DE00E433A5 /* AngularDampingOperator */,
+				D4FC8DB112F173DE00E433A5 /* BounceOperator */,
+				D4FC8DB212F173DE00E433A5 /* CompositePlacer */,
+				D4FC8DB312F173DE00E433A5 /* DampingOperator */,
+				D4FC8DB412F173DE00E433A5 /* DomainOperator */,
+				D4FC8DB512F173DE00E433A5 /* ExplosionOperator */,
+				D4FC8DB612F173DE00E433A5 /* OrbitOperator */,
+				D4FC8DB712F173DE00E433A5 /* SinkOperator */,
 				906D8EC410B9054C0089D3C3 /* AccelOperator */,
 				906D8EC510B9054C0089D3C3 /* AngularAccelOperator */,
 				906D8EC610B9054C0089D3C3 /* BoxPlacer */,
@@ -4301,6 +4343,8 @@
 		906D914410B923C30089D3C3 /* osgdb_ive */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC8DB812F1744200E433A5 /* Texture2DArray.cpp */,
+				D4FC8DB912F1744200E433A5 /* Texture2DArray.h */,
 				906D925210B926650089D3C3 /* AlphaFunc.cpp */,
 				906D925410B926650089D3C3 /* AnimationPath.cpp */,
 				906D925610B926650089D3C3 /* AnimationPathCallback.cpp */,
@@ -4563,6 +4607,7 @@
 		908EC61E10B5F9040024EAD9 /* osgUtils */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC8DBF12F1768A00E433A5 /* GraphicsCostEstimator.cpp */,
 				D43C18B91168D45F00C537EA /* MeshOptimizers.cpp */,
 				D43C18C21168D45F00C537EA /* connectivity_graph.cpp */,
 				D43C18C31168D45F00C537EA /* policy.cpp */,
@@ -4611,6 +4656,7 @@
 		908EC62010B75F440024EAD9 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC8DBE12F1767700E433A5 /* GraphicsCostEstimator */,
 				D43C18D31168D54B00C537EA /* detail */,
 				D43C18DA1168D54B00C537EA /* public_types.h */,
 				D43C18DB1168D54B00C537EA /* tri_stripper.h */,
@@ -4922,6 +4968,7 @@
 		90B9089210B36AF400E10618 /* osg */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC8DA812F1733F00E433A5 /* BufferIndexBinding.cpp */,
 				D4B7ED72125F0A4100AA5895 /* error.cpp */,
 				D4B7ED73125F0A4100AA5895 /* mipmap.cpp */,
 				D4B7ED42125F0A2D00AA5895 /* dict-list.h */,
@@ -5132,6 +5179,7 @@
 		90B908A010B36B4F00E10618 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC8DA712F1733400E433A5 /* BufferIndexBinding */,
 				D45A15A111ECBE2A00EBB947 /* ShaderAttribute */,
 				D45A15A211ECBE2A00EBB947 /* ShaderComposer */,
 				D471FD8D11EBBC3000F3BD97 /* Texture2DMultisample */,
@@ -5689,6 +5737,7 @@
 				906D93D110B926AD0089D3C3 /* VolumeSwitchProperty.h in Headers */,
 				906D93D210B926AD0089D3C3 /* VolumeTile.h in Headers */,
 				906D93D310B926AD0089D3C3 /* VolumeTransferFunctionProperty.h in Headers */,
+				D4FC8DBB12F1744200E433A5 /* Texture2DArray.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6620,6 +6669,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D4FC8DCD12F17A7300E433A5 /* PBXTargetDependency */,
 				903421A110B7CDC30082188B /* PBXTargetDependency */,
 				903421A310B7CDC30082188B /* PBXTargetDependency */,
 				903421A510B7CDC30082188B /* PBXTargetDependency */,
@@ -7053,6 +7103,7 @@
 				906D944F10B926C40089D3C3 /* VolumeSwitchProperty.cpp in Sources */,
 				906D945010B926C40089D3C3 /* VolumeTile.cpp in Sources */,
 				906D945110B926C40089D3C3 /* VolumeTransferFunctionProperty.cpp in Sources */,
+				D4FC8DBA12F1744200E433A5 /* Texture2DArray.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7071,6 +7122,7 @@
 				906D8D5310B8FD400089D3C3 /* Technique.cpp in Sources */,
 				906D8D5410B8FD400089D3C3 /* Validator.cpp in Sources */,
 				906D8D5510B8FD400089D3C3 /* Version.cpp in Sources */,
+				D4FC8DAF12F173AE00E433A5 /* Outline.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7282,6 +7334,7 @@
 				D43C18CE1168D45F00C537EA /* connectivity_graph.cpp in Sources */,
 				D43C18CF1168D45F00C537EA /* policy.cpp in Sources */,
 				D43C18D01168D45F00C537EA /* tri_stripper.cpp in Sources */,
+				D4FC8DC012F1768A00E433A5 /* GraphicsCostEstimator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7633,6 +7686,7 @@
 				D4B7ED70125F0A2D00AA5895 /* tessmono.cpp in Sources */,
 				D4B7ED74125F0A4100AA5895 /* error.cpp in Sources */,
 				D4B7ED75125F0A4100AA5895 /* mipmap.cpp in Sources */,
+				D4FC8DA912F1733F00E433A5 /* BufferIndexBinding.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7988,6 +8042,11 @@
 			isa = PBXTargetDependency;
 			target = 90AF62E010C325CF0041F6A7 /* osgdb_osg */;
 			targetProxy = D4D20A711172227E0026B2AB /* PBXContainerItemProxy */;
+		};
+		D4FC8DCD12F17A7300E433A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 906D8D2A10B8FAE70089D3C3 /* osgdb_ive */;
+			targetProxy = D4FC8DCC12F17A7300E433A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
