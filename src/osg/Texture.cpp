@@ -47,8 +47,11 @@
 #define GL_STORAGE_SHARED_APPLE           0x85BF
 #endif
 
-// #define DO_TIMING
-// #define CHECK_CONSISTENCY
+#if 0
+    #define CHECK_CONSISTENCY checkConsistency();
+#else
+    #define CHECK_CONSISTENCY
+#endif
 
 namespace osg {
 
@@ -56,18 +59,6 @@ ApplicationUsageProxy Texture_e0(ApplicationUsage::ENVIRONMENTAL_VARIABLE,"OSG_M
 
 typedef buffered_value< ref_ptr<Texture::Extensions> > BufferedExtensions;
 static BufferedExtensions s_extensions;
-
-unsigned int s_minimumNumberOfTextureObjectsToRetainInCache = 0;
-
-void Texture::setMinimumNumberOfTextureObjectsToRetainInCache(unsigned int minimum)
-{
-    s_minimumNumberOfTextureObjectsToRetainInCache = minimum;
-}
-
-unsigned int Texture::getMinimumNumberOfTextureObjectsToRetainInCache()
-{
-    return s_minimumNumberOfTextureObjectsToRetainInCache;
-}
 
 
 Texture::TextureObject::~TextureObject()
@@ -190,10 +181,7 @@ Texture::TextureObjectSet::~TextureObjectSet()
 
 bool Texture::TextureObjectSet::checkConsistency() const
 {
-#ifndef CHECK_CONSISTENCY
-    return true;
-#else
-    // OSG_NOTICE<<"TextureObjectSet::checkConsistency()"<<std::endl;
+    OSG_NOTICE<<"TextureObjectSet::checkConsistency()"<<std::endl;
     // check consistency of linked list.
     unsigned int numInList = 0;
     Texture::TextureObject* to = _head;
@@ -232,8 +220,9 @@ bool Texture::TextureObjectSet::checkConsistency() const
         return false;
     }
 
+    _parent->checkConsistency();
+
     return true;
-#endif
 }
 
 void Texture::TextureObjectSet::handlePendingOrphandedTextureObjects()
@@ -253,14 +242,6 @@ void Texture::TextureObjectSet::handlePendingOrphandedTextureObjects()
         _orphanedTextureObjects.push_back(to);
 
         remove(to);
-
-#if 0
-        OSG_NOTICE<<"  HPOTO  after  _head = "<<_head<<std::endl;
-        OSG_NOTICE<<"  HPOTO  after _tail = "<<_tail<<std::endl;
-        OSG_NOTICE<<"  HPOTO  after to->_previous = "<<to->_previous<<std::endl;
-        OSG_NOTICE<<"  HPOTO  after to->_next = "<<to->_next<<std::endl;
-#endif
-
     }
 
 
@@ -270,7 +251,7 @@ void Texture::TextureObjectSet::handlePendingOrphandedTextureObjects()
 
     _pendingOrphanedTextureObjects.clear();
 
-    checkConsistency();
+    CHECK_CONSISTENCY
 }
 
 
@@ -278,10 +259,19 @@ void Texture::TextureObjectSet::deleteAllTextureObjects()
 {
     // OSG_NOTICE<<"Texture::TextureObjectSet::deleteAllTextureObjects()"<<std::endl;
 
-    // move the pending orhpans into the orhans list
-    handlePendingOrphandedTextureObjects();
+    {
+        OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
+        if (!_pendingOrphanedTextureObjects.empty())
+        {
+            // OSG_NOTICE<<"Texture::TextureObjectSet::flushDeletedTextureObjects(..) handling orphans"<<std::endl;
+            handlePendingOrphandedTextureObjects();
+        }
+    }
+
+    CHECK_CONSISTENCY
 
     // detect all the active texture objects from their Textures
+    unsigned int numOrphaned = 0;
     TextureObject* to = _head;
     while(to!=0)
     {
@@ -290,7 +280,10 @@ void Texture::TextureObjectSet::deleteAllTextureObjects()
         to = to->_next;
 
         _orphanedTextureObjects.push_back(glto.get());
+
         remove(glto.get());
+
+        ++numOrphaned;
 
         ref_ptr<Texture> original_texture = glto->getTexture();
         if (original_texture.valid())
@@ -298,6 +291,9 @@ void Texture::TextureObjectSet::deleteAllTextureObjects()
             original_texture->setTextureObject(_contextID,0);
         }
     }
+
+    _parent->getNumberOrphanedTextureObjects() += numOrphaned;
+    _parent->getNumberActiveTextureObjects() -= numOrphaned;
 
     // now do the actual delete.
     flushAllDeletedTextureObjects();
@@ -343,6 +339,14 @@ void Texture::TextureObjectSet::discardAllTextureObjects()
 void Texture::TextureObjectSet::flushAllDeletedTextureObjects()
 {
     // OSG_NOTICE<<"Texture::TextureObjectSet::flushAllDeletedTextureObjects()"<<std::endl;
+    {
+        OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
+        if (!_pendingOrphanedTextureObjects.empty())
+        {
+            // OSG_NOTICE<<"Texture::TextureObjectSet::flushDeletedTextureObjects(..) handling orphans"<<std::endl;
+            handlePendingOrphandedTextureObjects();
+        }
+    }
 
     for(TextureObjectList::iterator itr = _orphanedTextureObjects.begin();
         itr != _orphanedTextureObjects.end();
@@ -371,19 +375,25 @@ void Texture::TextureObjectSet::discardAllDeletedTextureObjects()
     // OSG_NOTICE<<"Texture::TextureObjectSet::discardAllDeletedTextureObjects()"<<std::endl;
 
     // clean up the pending orphans.
-    handlePendingOrphandedTextureObjects();
+    {
+        OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
+        if (!_pendingOrphanedTextureObjects.empty())
+        {
+            // OSG_NOTICE<<"Texture::TextureObjectSet::flushDeletedTextureObjects(..) handling orphans"<<std::endl;
+            handlePendingOrphandedTextureObjects();
+        }
+    }
 
     unsigned int numDiscarded = _orphanedTextureObjects.size();
 
     _numOfTextureObjects -= numDiscarded;
 
     // update the TextureObjectManager's running total of current pool size
-    _parent->setCurrTexturePoolSize( _parent->getCurrTexturePoolSize() - numDiscarded*_profile._size );
+    _parent->getCurrTexturePoolSize() -= numDiscarded*_profile._size;
 
     // update the number of active and orphaned TextureOjects
-    _parent->getNumberOrphanedTextureObjects() -= 1;
-    _parent->getNumberActiveTextureObjects() += 1;
-    _parent->getNumberDeleted() += 1;
+    _parent->getNumberOrphanedTextureObjects() -= numDiscarded;
+    _parent->getNumberDeleted() += numDiscarded;
 
     // just clear the list as there is nothing else we can do with them when discarding them
     _orphanedTextureObjects.clear();
@@ -393,22 +403,20 @@ void Texture::TextureObjectSet::flushDeletedTextureObjects(double currentTime, d
 {
     // OSG_NOTICE<<"Texture::TextureObjectSet::flushDeletedTextureObjects(..)"<<std::endl;
 
-
+    {
+        OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
+        if (!_pendingOrphanedTextureObjects.empty())
+        {
+            // OSG_NOTICE<<"Texture::TextureObjectSet::flushDeletedTextureObjects(..) handling orphans"<<std::endl;
+            handlePendingOrphandedTextureObjects();
+        }
+    }
 
     if (_parent->getCurrTexturePoolSize()<=_parent->getMaxTexturePoolSize())
     {
-        // OSG_NOTICE<<"Plenty of space in TexturePool"<<std::endl;
+        // OSG_NOTICE<<"Plenty of space in TextureObject pool"<<std::endl;
         return;
     }
-
-#if 1
-    if (!_pendingOrphanedTextureObjects.empty())
-    {
-        // OSG_NOTICE<<"Texture::TextureObjectSet::flushDeletedTextureObjects(..) handling orphans"<<std::endl;
-        OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
-        handlePendingOrphandedTextureObjects();
-    }
-#endif
 
     // if nothing to delete return
     if (_orphanedTextureObjects.empty())
@@ -419,23 +427,11 @@ void Texture::TextureObjectSet::flushDeletedTextureObjects(double currentTime, d
     // if no time available don't try to flush objects.
     if (availableTime<=0.0) return;
 
-#if 0
-    // if we don't have too many orphaned texture objects then don't bother deleting them, as we can potentially reuse them later.
-    if (_parent->getNumberOrphanedTextureObjects()<=s_minimumNumberOfTextureObjectsToRetainInCache) return;
-
-    unsigned int numDeleted = 0;
-    unsigned int maxNumObjectsToDelete = _parent->getNumberOrphanedTextureObjects()-s_minimumNumberOfTextureObjectsToRetainInCache;
-    if (maxNumObjectsToDelete>4) maxNumObjectsToDelete = 4;
-
-#else
-
     unsigned int numDeleted = 0;
     unsigned int sizeRequired = _parent->getCurrTexturePoolSize() - _parent->getMaxTexturePoolSize();
     unsigned int maxNumObjectsToDelete = static_cast<unsigned int>(ceil(double(sizeRequired) / double(_profile._size)));
-    // OSG_NOTICE<<"_parent->getCurrTexturePoolSize()="<<_parent->getCurrTexturePoolSize() <<" _parent->getMaxTexturePoolSize()="<< _parent->getMaxTexturePoolSize()<<std::endl;
-    // OSG_NOTICE<<"Looking to reclaim "<<sizeRequired<<", going to look to remove "<<maxNumObjectsToDelete<<" from "<<_orphanedTextureObjects.size()<<" orhpans"<<std::endl;
-
-#endif
+    OSG_INFO<<"_parent->getCurrTexturePoolSize()="<<_parent->getCurrTexturePoolSize() <<" _parent->getMaxTexturePoolSize()="<< _parent->getMaxTexturePoolSize()<<std::endl;
+    OSG_INFO<<"Looking to reclaim "<<sizeRequired<<", going to look to remove "<<maxNumObjectsToDelete<<" from "<<_orphanedTextureObjects.size()<<" orhpans"<<std::endl;
 
     ElapsedTime timer;
 
@@ -460,7 +456,7 @@ void Texture::TextureObjectSet::flushDeletedTextureObjects(double currentTime, d
     // update the number of TO's in this TextureObjectSet
     _numOfTextureObjects -= numDeleted;
 
-    _parent->setCurrTexturePoolSize( _parent->getCurrTexturePoolSize() - numDeleted*_profile._size );
+    _parent->getCurrTexturePoolSize() -= numDeleted*_profile._size;
 
     // update the number of active and orphaned TextureOjects
     _parent->getNumberOrphanedTextureObjects() -= numDeleted;
@@ -471,14 +467,14 @@ void Texture::TextureObjectSet::flushDeletedTextureObjects(double currentTime, d
 
 bool Texture::TextureObjectSet::makeSpace(unsigned int& size)
 {
-#if 1
-    if (!_pendingOrphanedTextureObjects.empty())
     {
-        // OSG_NOTICE<<"Texture::TextureObjectSet::Texture::TextureObjectSet::makeSpace(..) handling orphans"<<std::endl;
         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
-        handlePendingOrphandedTextureObjects();
+        if (!_pendingOrphanedTextureObjects.empty())
+        {
+            // OSG_NOTICE<<"Texture::TextureObjectSet::Texture::TextureObjectSet::makeSpace(..) handling orphans"<<std::endl;
+            handlePendingOrphandedTextureObjects();
+        }
     }
-#endif
 
     if (!_orphanedTextureObjects.empty())
     {
@@ -510,7 +506,7 @@ Texture::TextureObject* Texture::TextureObjectSet::takeFromOrphans(Texture* text
     // place at back of active list
     addToBack(to.get());
 
-    // OSG_INFO<<"Reusing orhpahned TextureObject, _numOfTextureObjects="<<_numOfTextureObjects<<std::endl;
+    OSG_INFO<<"Reusing orphaned TextureObject, _numOfTextureObjects="<<_numOfTextureObjects<<std::endl;
 
     return to.release();
 }
@@ -518,14 +514,17 @@ Texture::TextureObject* Texture::TextureObjectSet::takeFromOrphans(Texture* text
 
 Texture::TextureObject* Texture::TextureObjectSet::takeOrGenerate(Texture* texture)
 {
-    // see if we can recyle TextureObject from the orphane list
-    if (!_pendingOrphanedTextureObjects.empty())
+    // see if we can recyle TextureObject from the orphan list
     {
         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
-        handlePendingOrphandedTextureObjects();
-        return takeFromOrphans(texture);
+        if (!_pendingOrphanedTextureObjects.empty())
+        {
+            handlePendingOrphandedTextureObjects();
+            return takeFromOrphans(texture);
+        }
     }
-    else if (!_orphanedTextureObjects.empty())
+
+    if (!_orphanedTextureObjects.empty())
     {
         return takeFromOrphans(texture);
     }
@@ -644,7 +643,7 @@ void Texture::TextureObjectSet::moveToBack(Texture::TextureObject* to)
     OSG_NOTICE<<"  m2B   after to->_previous = "<<to->_previous<<std::endl;
     OSG_NOTICE<<"  m2B   after to->_next = "<<to->_next<<std::endl;
 #endif
-    checkConsistency();
+    CHECK_CONSISTENCY
 }
 
 void Texture::TextureObjectSet::addToBack(Texture::TextureObject* to)
@@ -677,7 +676,7 @@ void Texture::TextureObjectSet::addToBack(Texture::TextureObject* to)
     OSG_NOTICE<<"  a2B   after to->_previous = "<<to->_previous<<std::endl;
     OSG_NOTICE<<"  a2B   after to->_next = "<<to->_next<<std::endl;
 #endif
-    checkConsistency();
+    CHECK_CONSISTENCY
 }
 
 void Texture::TextureObjectSet::orphan(Texture::TextureObject* to)
@@ -742,6 +741,18 @@ void Texture::TextureObjectSet::moveToSet(TextureObject* to, TextureObjectSet* s
     to->_set = set;
     ++set->_numOfTextureObjects;
     set->addToBack(to);
+}
+
+unsigned int Texture::TextureObjectSet::computeNumTextureObjectsInList() const
+{
+    unsigned int num=0;
+    TextureObject* obj = _head;
+    while(obj!=NULL)
+    {
+        ++num;
+        obj = obj->_next;
+    }
+    return num;
 }
 
 
@@ -882,14 +893,6 @@ void Texture::TextureObjectManager::flushDeletedTextureObjects(double currentTim
 {
     ElapsedTime elapsedTime(&(getDeleteTime()));
 
-    static double max_ratio = 0.0f;
-    double ratio = double(getCurrTexturePoolSize())/double(getMaxTexturePoolSize());
-    if (ratio>max_ratio)
-    {
-        max_ratio = ratio;
-    }
-    // OSG_NOTICE<<"TexturePool Size ratio "<<ratio<<", max ratio "<<max_ratio<<std::endl;
-
     for(TextureSetMap::iterator itr = _textureSetMap.begin();
         (itr != _textureSetMap.end()) && (availableTime > 0.0);
         ++itr)
@@ -913,14 +916,16 @@ void Texture::TextureObjectManager::newFrame(osg::FrameStamp* fs)
     ++_numFrames;
 }
 
-void Texture::TextureObjectManager::reportStats()
+void Texture::TextureObjectManager::reportStats(std::ostream& out)
 {
     double numFrames(_numFrames==0 ? 1.0 : _numFrames);
-    OSG_NOTICE<<"TextureObjectMananger::reportStats()"<<std::endl;
-    OSG_NOTICE<<"   total _numOfTextureObjects="<<_numActiveTextureObjects<<", _numOrphanedTextureObjects="<<_numOrphanedTextureObjects<<" _currTexturePoolSize="<<_currTexturePoolSize<<std::endl;
-    OSG_NOTICE<<"   total _numGenerated="<<_numGenerated<<", _generateTime="<<_generateTime<<", averagePerFrame="<<_generateTime/numFrames*1000.0<<"ms"<<std::endl;
-    OSG_NOTICE<<"   total _numDeleted="<<_numDeleted<<", _deleteTime="<<_deleteTime<<", averagePerFrame="<<_deleteTime/numFrames*1000.0<<"ms"<<std::endl;
-    OSG_NOTICE<<"   total _numApplied="<<_numApplied<<", _applyTime="<<_applyTime<<", averagePerFrame="<<_applyTime/numFrames*1000.0<<"ms"<<std::endl;
+    out<<"TextureObjectMananger::reportStats()"<<std::endl;
+    out<<"   total _numOfTextureObjects="<<_numActiveTextureObjects<<", _numOrphanedTextureObjects="<<_numOrphanedTextureObjects<<" _currTexturePoolSize="<<_currTexturePoolSize<<std::endl;
+    out<<"   total _numGenerated="<<_numGenerated<<", _generateTime="<<_generateTime<<", averagePerFrame="<<_generateTime/numFrames*1000.0<<"ms"<<std::endl;
+    out<<"   total _numDeleted="<<_numDeleted<<", _deleteTime="<<_deleteTime<<", averagePerFrame="<<_deleteTime/numFrames*1000.0<<"ms"<<std::endl;
+    out<<"   total _numApplied="<<_numApplied<<", _applyTime="<<_applyTime<<", averagePerFrame="<<_applyTime/numFrames*1000.0<<"ms"<<std::endl;
+    out<<"   getMaxTexturePoolSize()="<<getMaxTexturePoolSize()<<" current/max size = "<<double(_currTexturePoolSize)/double(getMaxTexturePoolSize())<<std::endl;
+    recomputeStats(out);
 }
 
 void Texture::TextureObjectManager::resetStats()
@@ -936,6 +941,65 @@ void Texture::TextureObjectManager::resetStats()
     _applyTime = 0;
 }
 
+
+void Texture::TextureObjectManager::recomputeStats(std::ostream& out) const
+{
+    out<<"Texture::TextureObjectManager::recomputeStats()"<<std::endl;
+    unsigned int numObjectsInLists = 0;
+    unsigned int numActive = 0;
+    unsigned int numOrphans = 0;
+    unsigned int numPendingOrphans = 0;
+    unsigned int currentSize = 0;
+    for(TextureSetMap::const_iterator itr = _textureSetMap.begin();
+        itr != _textureSetMap.end();
+        ++itr)
+    {
+         const TextureObjectSet* os = itr->second.get();
+         numObjectsInLists += os->computeNumTextureObjectsInList();
+         numActive += os->getNumOfTextureObjects();
+         numOrphans += os->getNumOrphans();
+         numPendingOrphans += os->getNumPendingOrphans();
+         currentSize += os->getProfile()._size * (os->computeNumTextureObjectsInList()+os->getNumOrphans());
+         out<<"   size="<<os->getProfile()._size
+           <<", os->computeNumTextureObjectsInList()"<<os->computeNumTextureObjectsInList()
+           <<", os->getNumOfTextureObjects()"<<os->getNumOfTextureObjects()
+           <<", os->getNumOrphans()"<<os->getNumOrphans()
+           <<", os->getNumPendingOrphans()"<<os->getNumPendingOrphans()
+           <<std::endl;
+    }
+    out<<"   numObjectsInLists="<<numObjectsInLists<<", numActive="<<numActive<<", numOrphans="<<numOrphans<<" currentSize="<<currentSize<<std::endl;
+    out<<"   getMaxTexturePoolSize()="<<getMaxTexturePoolSize()<<" current/max size = "<<double(currentSize)/double(getMaxTexturePoolSize())<<std::endl;
+    if (currentSize != _currTexturePoolSize) out<<"   WARNING: _currTexturePoolSize("<<_currTexturePoolSize<<") != currentSize, delta = "<<int(_currTexturePoolSize)-int(currentSize)<<std::endl;
+}
+
+bool Texture::TextureObjectManager::checkConsistency() const
+{
+    unsigned int numObjectsInLists = 0;
+    unsigned int numActive = 0;
+    unsigned int numOrphans = 0;
+    unsigned int numPendingOrphans = 0;
+    unsigned int currentSize = 0;
+    for(TextureSetMap::const_iterator itr = _textureSetMap.begin();
+        itr != _textureSetMap.end();
+        ++itr)
+    {
+         const TextureObjectSet* os = itr->second.get();
+         numObjectsInLists += os->computeNumTextureObjectsInList();
+         numActive += os->getNumOfTextureObjects();
+         numOrphans += os->getNumOrphans();
+         numPendingOrphans += os->getNumPendingOrphans();
+         currentSize += os->getProfile()._size * (os->computeNumTextureObjectsInList()+os->getNumOrphans());
+    }
+
+    if (currentSize != _currTexturePoolSize)
+    {
+        recomputeStats(osg::notify(osg::NOTICE));
+
+        throw "Texture::TextureObjectManager::checkConsistency()  sizes inconsistent";
+        return false;
+    }
+    return true;
+}
 
 
 osg::ref_ptr<Texture::TextureObjectManager>& Texture::getTextureObjectManager(unsigned int contextID)

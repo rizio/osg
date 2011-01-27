@@ -71,7 +71,8 @@ namespace osgDAE {
 
 /// Convert value to string using it's stream operator
 template <typename T>
-std::string toString(T value) {
+std::string toString(T value)
+{
     std::stringstream str;
     str << value;
     return str.str();
@@ -135,7 +136,7 @@ class daeWriter : public osg::NodeVisitor
 protected:
     class ArrayNIndices;
 public:
-    daeWriter( DAE *dae_, const std::string &fileURI, bool usePolygons=false, bool googleMode = false, TraversalMode tm=TRAVERSE_ALL_CHILDREN, bool writeExtras = true, bool earthTex = false, bool zUpAxis=false, bool forceTexture=false);
+    daeWriter( DAE *dae_, const std::string &fileURI, const std::string & directory, const std::string & srcDirectory, const osgDB::ReaderWriter::Options * options, bool usePolygons=false, bool googleMode = false, TraversalMode tm=TRAVERSE_ALL_CHILDREN, bool writeExtras = true, bool earthTex = false, bool zUpAxis=false, bool linkOrignialTextures=false, bool forceTexture=false, bool namesUseCodepage=false);
     virtual ~daeWriter();
 
     void setRootNode( const osg::Node &node );
@@ -248,41 +249,35 @@ protected: //members
 
     osg::StateSet* CleanStateSet(osg::StateSet* pStateSet) const;
 
+    void updateCurrentDaeNode();
+
 protected: //inner classes
     class ArrayNIndices
     {
     public:
-        enum Mode { NONE = 0, VEC2 = 2, VEC3 = 3, VEC4 = 4 };
-        osg::Vec2Array *vec2;
-        osg::Vec3Array *vec3;
-        osg::Vec4Array *vec4;
-        osg::IndexArray *inds;
-        Mode mode;
+        enum Mode { NONE, VEC2F, VEC2D, VEC3F, VEC3D, VEC4F, VEC4D, VEC4_UB };
 
-        ArrayNIndices( osg::Array *array, osg::IndexArray *ind ) : vec2(0), vec3(0), vec4(0), inds( ind ), mode(NONE)
-        {
-            if ( array != NULL )
-            {
-                switch( array->getType() )
-                {
-                case osg::Array::Vec2ArrayType:
-                    mode = VEC2;
-                    vec2 = (osg::Vec2Array*)array;
-                    break;
-                case osg::Array::Vec3ArrayType:
-                    mode = VEC3;
-                    vec3 = (osg::Vec3Array*)array;
-                    break;
-                case osg::Array::Vec4ArrayType:
-                    mode = VEC4;
-                    vec4 = (osg::Vec4Array*)array;
-                    break;
-                default:
-                    OSG_WARN << "Array is unsupported vector type" << std::endl;
-                    break;
-                }
-            }
-        }
+        osg::Vec2Array*         vec2;
+        osg::Vec3Array*         vec3;
+        osg::Vec4Array*         vec4;
+        osg::Vec2dArray*        vec2d;
+        osg::Vec3dArray*        vec3d;
+        osg::Vec4dArray*        vec4d;
+        osg::Vec4ubArray*       vec4ub;
+
+        osg::Array*             valArray;
+        osg::IndexArray*        inds;
+
+        ArrayNIndices( osg::Array* valArray, osg::IndexArray* ind );
+
+        Mode getMode() const { return mode; }
+
+        unsigned int getDAESize();
+
+        /// Appends the contained OSG vector array to a domListOfFloats
+        bool append(domListOfFloats & list);
+    protected:
+        Mode mode;
     };
 
 private: //members
@@ -315,7 +310,10 @@ private: //members
         /** indicates if the up axis is on Z axis*/
         bool m_ZUpAxis;
 
-        /** force the use an image for a texture, even if the file is not found*/
+        /** link to original images instead of exporting */
+        bool m_linkOrignialTextures;
+
+        /** force the use an image for a texture, even if the file is not found (when m_linkOrignialTextures). */
         bool m_ForceTexture;
 
         /** Current RenderingHint */
@@ -323,6 +321,18 @@ private: //members
         int m_CurrentRenderingHint;
 
         FindAnimatedNodeVisitor _animatedNodeCollector;
+
+        /** Number used when writing images with no name, to generate a file name. */
+        unsigned int _lastGeneratedImageFileName;
+        std::string _directory;
+        std::string _srcDirectory;
+        const osgDB::ReaderWriter::Options * _options;
+        bool _namesUseCodepage;
+
+        typedef std::map<const osg::Image*, std::string> ImageSet;
+        typedef std::set<std::string> ImageFilenameSet;        // Sub-optimal because strings are doubled (in ImageSet). Moreover, an unordered_set (= hashset) would be more efficient (Waiting for unordered_set to be included in C++ standard ;) ).
+        ImageSet                            _imageSet;
+        ImageFilenameSet                    _imageFilenameSet;
 };
 
 }

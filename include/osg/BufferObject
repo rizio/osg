@@ -19,6 +19,7 @@
 #include <osg/buffered_value>
 #include <osg/FrameStamp>
 
+#include <iosfwd>
 #include <list>
 #include <map>
 
@@ -365,6 +366,8 @@ class OSG_EXPORT GLBufferObjectSet : public Referenced
     public:
         GLBufferObjectSet(GLBufferObjectManager* parent, const BufferObjectProfile& profile);
 
+        const BufferObjectProfile& getProfile() const { return _profile; }
+
         void handlePendingOrphandedGLBufferObjects();
 
         void deleteAllGLBufferObjects();
@@ -389,6 +392,11 @@ class OSG_EXPORT GLBufferObjectSet : public Referenced
         bool checkConsistency() const;
 
         GLBufferObjectManager* getParent() { return _parent; }
+
+        unsigned int computeNumGLBufferObjectsInList() const;
+        unsigned int getNumOfGLBufferObjects() const { return _numOfGLBufferObjects; }
+        unsigned int getNumOrphans() const { return _orphanedGLBufferObjects.size(); }
+        unsigned int getNumPendingOrphans() const { return _pendingOrphanedGLBufferObjects.size(); }
 
 
     protected:
@@ -449,7 +457,8 @@ class OSG_EXPORT GLBufferObjectManager : public osg::Referenced
 
         void newFrame(osg::FrameStamp* fs);
         void resetStats();
-        void reportStats();
+        void reportStats(std::ostream& out);
+        void recomputeStats(std::ostream& out);
 
         unsigned int& getFrameNumber() { return _frameNumber; }
         unsigned int& getNumberFrames() { return _numFrames; }
@@ -631,7 +640,15 @@ class OSG_EXPORT BufferData : public Object
         /** Get modified count value.*/
         inline unsigned int getModifiedCount() const { return _modifiedCount; }
 
-    protected:
+        /** Resize any per context GLObject buffers to specified size. */
+        virtual void resizeGLObjectBuffers(unsigned int maxSize);
+
+        /** If State is non-zero, this function releases OpenGL objects for
+          * the specified graphics context. Otherwise, releases OpenGL objects
+          * for all graphics contexts. */
+        void releaseGLObjects(State* state=0) const;
+
+protected:
 
         virtual ~BufferData();
 

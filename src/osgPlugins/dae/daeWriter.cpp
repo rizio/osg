@@ -19,9 +19,57 @@
 #include <dom/domConstants.h>
 
 #include <sstream>
+#include <osgDB/ConvertUTF>
 
 
 namespace osgDAE {
+
+daeWriter::ArrayNIndices::ArrayNIndices( osg::Array* valArray, osg::IndexArray* ind ) :
+    vec2(0),  vec3(0),  vec4(0),
+    vec2d(0), vec3d(0), vec4d(0),
+    vec4ub(0),
+    valArray(valArray),
+    inds( ind ), mode(NONE)
+{
+    if ( valArray != NULL )
+    {
+        switch( valArray->getType() )
+        {
+        case osg::Array::Vec2ArrayType:
+            mode = VEC2F;
+            vec2 = (osg::Vec2Array*)valArray;
+            break;
+        case osg::Array::Vec3ArrayType:
+            mode = VEC3F;
+            vec3 = (osg::Vec3Array*)valArray;
+            break;
+        case osg::Array::Vec4ArrayType:
+            mode = VEC4F;
+            vec4 = (osg::Vec4Array*)valArray;
+            break;
+        case osg::Array::Vec2dArrayType:
+            mode = VEC2D;
+            vec2d = (osg::Vec2dArray*)valArray;
+            break;
+        case osg::Array::Vec3dArrayType:
+            mode = VEC3D;
+            vec3d = (osg::Vec3dArray*)valArray;
+            break;
+        case osg::Array::Vec4dArrayType:
+            mode = VEC4D;
+            vec4d = (osg::Vec4dArray*)valArray;
+            break;
+        case osg::Array::Vec4ubArrayType:
+            mode = VEC4_UB;
+            vec4ub = (osg::Vec4ubArray*)valArray;
+            break;
+        default:
+            OSG_WARN << "Array is unsupported vector type" << std::endl;
+            break;
+        }
+    }
+}
+
 
 std::string toString(const osg::Vec3f& value)
 {
@@ -48,7 +96,7 @@ std::string toString(const osg::Matrix& value)
 }
 
 
-daeWriter::daeWriter( DAE *dae_, const std::string &fileURI, bool _usePolygons,  bool googleMode, TraversalMode tm, bool _writeExtras, bool earthTex, bool zUpAxis, bool forceTexture) : osg::NodeVisitor( tm ),
+daeWriter::daeWriter( DAE *dae_, const std::string & fileURI, const std::string & directory, const std::string & srcDirectory, const osgDB::ReaderWriter::Options * options, bool _usePolygons,  bool googleMode, TraversalMode tm, bool _writeExtras, bool earthTex, bool zUpAxis, bool linkOrignialTextures, bool forceTexture, bool namesUseCodepage) : osg::NodeVisitor( tm ),
                                         dae(dae_),
                                         _domLibraryAnimations(NULL),
                                         writeExtras(_writeExtras),
@@ -57,8 +105,14 @@ daeWriter::daeWriter( DAE *dae_, const std::string &fileURI, bool _usePolygons, 
                                         m_GoogleMode(googleMode),
                                         m_EarthTex(earthTex),
                                         m_ZUpAxis(zUpAxis),
+                                        m_linkOrignialTextures(linkOrignialTextures),
                                         m_ForceTexture(forceTexture),
-                                        m_CurrentRenderingHint(osg::StateSet::DEFAULT_BIN)
+                                        _namesUseCodepage(namesUseCodepage),
+                                        m_CurrentRenderingHint(osg::StateSet::DEFAULT_BIN),
+                                        _lastGeneratedImageFileName(0),
+                                        _directory(directory),
+                                        _srcDirectory(srcDirectory),
+                                        _options(options)
 {
     success = true;
 
@@ -141,9 +195,19 @@ void daeWriter::apply( osg::Node &node )
     traverse( node );
 }
 
-
-std::string daeWriter::uniquify( const std::string &name )
+void daeWriter::updateCurrentDaeNode()
 {
+    while ( lastDepth >= _nodePath.size() )
+    {
+        //We are not a child of previous node
+        currentNode = daeSafeCast< domNode >( currentNode->getParentElement() );
+        --lastDepth;
+    }
+}
+
+std::string daeWriter::uniquify( const std::string &_name )
+{
+    const std::string name( _namesUseCodepage ? osgDB::convertStringFromCurrentCodePageToUTF8(_name) : _name );
     std::map< std::string, int >::iterator iter = uniqueNames.find( name );
     if ( iter != uniqueNames.end() )
     {

@@ -61,6 +61,7 @@ IF(DYNAMIC_OPENSCENEGRAPH)
     ADD_SUBDIRECTORY(osglogicop)
     ADD_SUBDIRECTORY(osglogo)
     ADD_SUBDIRECTORY(osggpx)
+    ADD_SUBDIRECTORY(osggraphicscost)
     ADD_SUBDIRECTORY(osgmanipulator)
     ADD_SUBDIRECTORY(osgmovie)
     ADD_SUBDIRECTORY(osgmultiplerendertargets)
@@ -80,6 +81,7 @@ IF(DYNAMIC_OPENSCENEGRAPH)
     ADD_SUBDIRECTORY(osgplanets)
     ADD_SUBDIRECTORY(osgpoints)
     ADD_SUBDIRECTORY(osgpointsprite)
+    ADD_SUBDIRECTORY(osgposter)
     ADD_SUBDIRECTORY(osgprecipitation)
     ADD_SUBDIRECTORY(osgprerender)
     ADD_SUBDIRECTORY(osgprerendercubemap)
@@ -131,7 +133,6 @@ IF(DYNAMIC_OPENSCENEGRAPH)
     ADD_SUBDIRECTORY(osganimationsolid)
     ADD_SUBDIRECTORY(osganimationviewer)
     ADD_SUBDIRECTORY(osganimationeasemotion)
-    ADD_SUBDIRECTORY(osgbrowser)
     ADD_SUBDIRECTORY(osgwidgetaddremove)
     ADD_SUBDIRECTORY(osgwidgetbox)
     ADD_SUBDIRECTORY(osgwidgetcanvas)
@@ -192,19 +193,14 @@ IF(DYNAMIC_OPENSCENEGRAPH)
         OPTION(BUILD_QT_EXAMPLES "Enable the build of the examples that depend on Qt" ON)
 
         IF (BUILD_QT_EXAMPLES AND QT_QTOPENGL_LIBRARY)
-            ADD_SUBDIRECTORY(osgviewerQT)
-            ADD_SUBDIRECTORY(osgviewerQtContext)
+            ADD_SUBDIRECTORY(osgviewerQt)
         ENDIF()
 
-        IF (BUILD_QT_EXAMPLES AND QT4_FOUND)
-            ADD_SUBDIRECTORY(osgviewerQtWidget)
-
-            IF (QT_QTWEBKIT_FOUND)
-                ADD_SUBDIRECTORY(osgQtWidgets)
-                ADD_SUBDIRECTORY(osgQtBrowser)
-            ENDIF()
-
+        IF (BUILD_QT_EXAMPLES AND QT4_FOUND AND QT_QTWEBKIT_FOUND)
+            ADD_SUBDIRECTORY(osgQtWidgets)
+            ADD_SUBDIRECTORY(osgQtBrowser)
         ENDIF()
+
     ENDIF()
 
     IF   (FLTK_FOUND)
@@ -225,14 +221,13 @@ IF(DYNAMIC_OPENSCENEGRAPH)
         ADD_SUBDIRECTORY(osgviewerCocoa)
     ENDIF(APPLE)
 
-
+    IF(DIRECTINPUT_FOUND)
+       ADD_SUBDIRECTORY(osgdirectinput)
+    ENDIF(DIRECTINPUT_FOUND)
 
     IF   (LIBVNCSERVER_FOUND)
         ADD_SUBDIRECTORY(osgvnc)
     ENDIF(LIBVNCSERVER_FOUND)
-
-
-    #ADD_SUBDIRECTORY(osgcegui)
 
     #to add subject to find socket#ADD_SUBDIRECTORY(osgcluster)
 

@@ -31,7 +31,7 @@ PROJECT(OpenSceneGraph)
 SET(OPENSCENEGRAPH_MAJOR_VERSION 2)
 SET(OPENSCENEGRAPH_MINOR_VERSION 9)
 SET(OPENSCENEGRAPH_PATCH_VERSION 11)
-SET(OPENSCENEGRAPH_SOVERSION 69)
+SET(OPENSCENEGRAPH_SOVERSION 71)
 
 # set to 0 when not a release candidate, non zero means that any generated 
 # svn tags will be treated as release candidates of given number
@@ -416,13 +416,14 @@ FIND_PACKAGE(ITK)
 FIND_PACKAGE(LibVNCServer)
 FIND_PACKAGE(OurDCMTK)
 FIND_PACKAGE(OpenAL)
-FIND_PACKAGE(XUL)
 FIND_PACKAGE(FFmpeg)
 FIND_PACKAGE(DirectShow)
 FIND_PACKAGE(SDL)
 FIND_PACKAGE(Poppler-glib)
 FIND_PACKAGE(RSVG)
 FIND_PACKAGE(GtkGl)
+FIND_PACKAGE(DirectInput)
+FIND_PACKAGE(NVTT)
 
 # Include macro utilities here
 INCLUDE(OsgMacroUtils)

@@ -18,14 +18,16 @@ public:
         // Collada zip archive (contains one or more dae files and a manifest.xml)
         supportsExtension("zae","COLLADA 1.4.x ZAE format");
 
-        supportsOption("polygon", "Use polygons instead of polylists for element (Write option)");
-        supportsOption("GoogleMode", "Write files suitable for use by Google products");
-        supportsOption("NoExtras", "Write option (Undocumented)");
-        supportsOption("DaeEarthTex", "DAE settings for writing earth textures");
-        supportsOption("ZUpAxis", "indicates if the up axis is on Z axis");
-        supportsOption("ForceTexture", "force the use an image for a texture, even if the file is not found");
+        supportsOption("polygon",         "(Write option) Use polygons instead of polylists for element");
+        supportsOption("GoogleMode",      "(Write option) Write files suitable for use by Google products");
+        supportsOption("NoExtras",        "(Write option) Undocumented");
+        supportsOption("daeEarthTex",     "(Write option) DAE settings for writing earth textures");
+        supportsOption("daeZUpAxis",      "(Write option) Indicates the up axis is Z instead of Y");
+        supportsOption("daeLinkOriginalTexturesNoForce", "(Write option) Writes reference to the original image if found, instead of writing the image in memory");
+        supportsOption("daeLinkOriginalTexturesForce",   "(Write option) Writes reference to the original image even if not found, instead of writing the image in memory");
+        supportsOption("daeNamesUseCodepage",            "(Write option) All names except filenames (materials, animation, geometries...) should be considered as encoded using current codepage (UTF8 if not). Filenames follow OSG_USE_UTF8_FILENAME.");
 
-        supportsOption("StrictTransparency", "Read option (Undocumented)");
+        supportsOption("StrictTransparency", "(Read option) Undocumented");
     }
 
     const char* className() const { return "COLLADA 1.4.x DAE reader/writer"; }

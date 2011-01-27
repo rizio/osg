@@ -308,10 +308,6 @@ class OSG_EXPORT Texture : public osg::StateAttribute
 {
 
     public :
-    
-        static unsigned int s_numberTextureReusedLastInLastFrame;
-        static unsigned int s_numberNewTextureInLastFrame;
-        static unsigned int s_numberDeletedTextureInLastFrame;
 
         Texture();
 
@@ -1095,6 +1091,8 @@ class OSG_EXPORT Texture : public osg::StateAttribute
         public:
             TextureObjectSet(TextureObjectManager* parent, const TextureProfile& profile);
 
+            const TextureProfile& getProfile() const { return _profile; }
+
             void handlePendingOrphandedTextureObjects();
 
             void deleteAllTextureObjects();
@@ -1118,6 +1116,11 @@ class OSG_EXPORT Texture : public osg::StateAttribute
             bool checkConsistency() const;
 
             TextureObjectManager* getParent() { return _parent; }
+
+            unsigned int computeNumTextureObjectsInList() const;
+            unsigned int getNumOfTextureObjects() const { return _numOfTextureObjects; }
+            unsigned int getNumOrphans() const { return _orphanedTextureObjects.size(); }
+            unsigned int getNumPendingOrphans() const { return _pendingOrphanedTextureObjects.size(); }
 
         protected:
 
@@ -1185,7 +1188,9 @@ class OSG_EXPORT Texture : public osg::StateAttribute
 
             void newFrame(osg::FrameStamp* fs);
             void resetStats();
-            void reportStats();
+            void reportStats(std::ostream& out);
+            void recomputeStats(std::ostream& out) const;
+            bool checkConsistency() const;
 
             unsigned int& getFrameNumber() { return _frameNumber; }
             unsigned int& getNumberFrames() { return _numFrames; }
@@ -1237,13 +1242,6 @@ class OSG_EXPORT Texture : public osg::StateAttribute
                                                      GLsizei   height,
                                                      GLsizei   depth,
                                                      GLint     border);
-
-
-        /** Set the minimum number of texture objects to retain in the deleted display list cache. */
-        static void setMinimumNumberOfTextureObjectsToRetainInCache(unsigned int minimum);
-
-        /** Get the minimum number of display lists to retain in the deleted display list cache. */
-        static unsigned int getMinimumNumberOfTextureObjectsToRetainInCache();
 
         static void deleteAllTextureObjects(unsigned int contextID);
         static void discardAllTextureObjects(unsigned int contextID);
