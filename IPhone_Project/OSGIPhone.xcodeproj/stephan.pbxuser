@@ -5,7 +5,7 @@
 		activeBuildConfigurationName = Debug;
 		activeExecutable = D4D6E9F211689F5D00DD6941 /* simpleExample */;
 		activeSDKPreference = iphonesimulator3.2;
-		activeTarget = 90B90C5B10B383F800E10618 /* simpleExample */;
+		activeTarget = D4FC8E1212F17D2B00E433A5 /* ALL */;
 		addToTargets = (
 			908EC61A10B5F8FF0024EAD9 /* osgUtils */,
 		);
@@ -107,8 +107,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 317813534;
-			PBXWorkspaceStateSaveDate = 317813534;
+			PBXPerProjectTemplateStateSaveDate = 317816068;
+			PBXWorkspaceStateSaveDate = 317816068;
 		};
 		perUserProjectItems = {
 			D4059910123EAC930018EC87 /* PBXTextBookmark */ = D4059910123EAC930018EC87 /* PBXTextBookmark */;
@@ -191,8 +191,8 @@
 			D4DA953912A50A8A008569E8 /* PBXTextBookmark */ = D4DA953912A50A8A008569E8 /* PBXTextBookmark */;
 			D4FC8DC512F176C600E433A5 /* PBXTextBookmark */ = D4FC8DC512F176C600E433A5 /* PBXTextBookmark */;
 			D4FC8DC612F176C600E433A5 /* PBXTextBookmark */ = D4FC8DC612F176C600E433A5 /* PBXTextBookmark */;
-			D4FC8DC712F176C600E433A5 /* PBXBookmark */ = D4FC8DC712F176C600E433A5 /* PBXBookmark */;
 			D4FC8DDD12F17B2400E433A5 /* PBXTextBookmark */ = D4FC8DDD12F17B2400E433A5 /* PBXTextBookmark */;
+			D4FC8E3212F17EB900E433A5 /* PBXTextBookmark */ = D4FC8E3212F17EB900E433A5 /* PBXTextBookmark */;
 		};
 		sourceControlManager = D4D6EA0111689F6F00DD6941 /* Source Control */;
 		userBuildSettings = {
@@ -1973,11 +1973,20 @@
 		vrLen = 1956;
 		vrLoc = 0;
 	};
-	D4FC8DC712F176C600E433A5 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = D411C7C91258C4F10076F148 /* SinkOperator.cpp */;
-	};
 	D4FC8DDD12F17B2400E433A5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D411C7C91258C4F10076F148 /* SinkOperator.cpp */;
+		name = "SinkOperator.cpp: 26";
+		rLen = 0;
+		rLoc = 981;
+		rType = 0;
+		vrLen = 2135;
+		vrLoc = 0;
+	};
+	D4FC8E1212F17D2B00E433A5 /* ALL */ = {
+		activeExec = 0;
+	};
+	D4FC8E3212F17EB900E433A5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = D411C7C91258C4F10076F148 /* SinkOperator.cpp */;
 		name = "SinkOperator.cpp: 26";
