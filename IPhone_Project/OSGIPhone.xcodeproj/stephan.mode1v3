@@ -268,6 +268,7 @@
 								<string>0867D691FE84028FC02AAC07</string>
 								<string>90B90C6310B3841600E10618</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>D499884712F1AEDD00028A1B</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
@@ -326,7 +327,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D4FC8E3212F17EB900E433A5</string>
+										<string>D499884812F1AEDD00028A1B</string>
 										<key>history</key>
 										<array>
 											<string>D45D31EB1169EA9D001C8838</string>
@@ -409,7 +410,7 @@
 											<string>D4DA953912A50A8A008569E8</string>
 											<string>D4FC8DC512F176C600E433A5</string>
 											<string>D4FC8DC612F176C600E433A5</string>
-											<string>D4FC8DDD12F17B2400E433A5</string>
+											<string>D4FC8E3212F17EB900E433A5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -421,14 +422,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1094, 857}}</string>
+								<string>{{0, 0}, {1094, 854}}</string>
 								<key>RubberWindowFrame</key>
 								<string>146 63 1442 1039 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>857pt</string>
+							<string>854pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -441,14 +442,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 862}, {1094, 136}}</string>
+								<string>{{0, 859}, {1094, 139}}</string>
 								<key>RubberWindowFrame</key>
 								<string>146 63 1442 1039 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>136pt</string>
+							<string>139pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -467,9 +468,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D4FC8E3312F17EB900E433A5</string>
+				<string>D499884912F1AEDD00028A1B</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>D4FC8E3412F17EB900E433A5</string>
+				<string>D499884A12F1AEDD00028A1B</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -607,7 +608,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>D4D6E9FF11689F6F00DD6941</string>
 		<string>/Users/stephan/Documents/Projekte/iphone/osg/IPhone_Project/OSGIPhone.xcodeproj</string>
 	</array>
@@ -650,8 +650,6 @@
 							<string>535pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -691,7 +689,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>D4D6E9FF11689F6F00DD6941</string>
-				<string>D4FC8E2B12F17EB700E433A5</string>
+				<string>D499884B12F1AEDD00028A1B</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

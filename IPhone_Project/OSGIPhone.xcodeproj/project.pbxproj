@@ -57,8 +57,6 @@
 			dependencies = (
 				D4FC8E2012F17D3300E433A5 /* PBXTargetDependency */,
 				D4FC8E2212F17D3500E433A5 /* PBXTargetDependency */,
-				D4FC8E2412F17D4900E433A5 /* PBXTargetDependency */,
-				D4FC8E2612F17D4B00E433A5 /* PBXTargetDependency */,
 			);
 			name = ALL;
 			productName = ALL;
@@ -1986,29 +1984,15 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D4D20A3D1172224E0026B2AB /* osg core */;
+			remoteGlobalIDString = D4D20A3D1172224E0026B2AB;
 			remoteInfo = "osg core";
 		};
 		D4FC8E2112F17D3500E433A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D4D20A651172226F0026B2AB /* osg plugins */;
+			remoteGlobalIDString = D4D20A651172226F0026B2AB;
 			remoteInfo = "osg plugins";
-		};
-		D4FC8E2312F17D4900E433A5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 90B90C5B10B383F800E10618 /* simpleExample */;
-			remoteInfo = simpleExample;
-		};
-		D4FC8E2512F17D4B00E433A5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 90AF63D710C33FA20041F6A7 /* osgIPhoneViewer */;
-			remoteInfo = osgIPhoneViewer;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -8100,16 +8084,6 @@
 			isa = PBXTargetDependency;
 			target = D4D20A651172226F0026B2AB /* osg plugins */;
 			targetProxy = D4FC8E2112F17D3500E433A5 /* PBXContainerItemProxy */;
-		};
-		D4FC8E2412F17D4900E433A5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 90B90C5B10B383F800E10618 /* simpleExample */;
-			targetProxy = D4FC8E2312F17D4900E433A5 /* PBXContainerItemProxy */;
-		};
-		D4FC8E2612F17D4B00E433A5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 90AF63D710C33FA20041F6A7 /* osgIPhoneViewer */;
-			targetProxy = D4FC8E2512F17D4B00E433A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
