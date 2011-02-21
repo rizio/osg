@@ -159,6 +159,8 @@ State::State():
     _glBeginEndAdapter.setState(this);
     _arrayDispatchers.setState(this);
 
+    _graphicsCostEstimator = new GraphicsCostEstimator;
+
     _startTick = 0;
     _gpuTick = 0;
     _gpuTimestamp = 0;
@@ -939,6 +941,12 @@ void State::initializeExtensionProcs()
 
 
     _extensionProcsInitialized = true;
+
+    if (_graphicsCostEstimator.valid())
+    {
+        RenderInfo renderInfo(this,0);
+        _graphicsCostEstimator->calibrate(renderInfo);
+    }
 }
 
 bool State::setClientActiveTextureUnit( unsigned int unit )

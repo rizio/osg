@@ -15,7 +15,7 @@
 #define OSGUTIL_INCREMENTALCOMPILEOPERATOR
 
 #include <osgUtil/GLObjectsVisitor>
-#include <osgUtil/GraphicsCostEstimator>
+#include <osg/Geometry>
 
 namespace osgUtil {
 
@@ -36,8 +36,10 @@ class OSGUTIL_EXPORT StateToCompile : public osg::NodeVisitor
 
         GLObjectsVisitor::Mode _mode;
         DrawableSet _drawables;
-        TextureSet _textures;
-        ProgramSet _programs;
+        TextureSet  _textures;
+        ProgramSet  _programs;
+        bool        _assignPBOToImages;
+        osg::ref_ptr<osg::PixelBufferObject> _pbo;
 
         bool empty() const { return _textures.empty() &&  _programs.empty() && _drawables.empty(); }
 
@@ -47,6 +49,7 @@ class OSGUTIL_EXPORT StateToCompile : public osg::NodeVisitor
         virtual void apply(osg::Drawable& drawable);
         virtual void apply(osg::StateSet& stateset);
         virtual void apply(osg::Texture& texture);
+
 };
 
 class OSGUTIL_EXPORT IncrementalCompileOperation : public osg::GraphicsOperation
@@ -117,10 +120,6 @@ class OSGUTIL_EXPORT IncrementalCompileOperation : public osg::GraphicsOperation
         void setForceTextureDownloadGeometry(osg::Geometry* geom) { _forceTextureDownloadGeometry = geom; }
         osg::Geometry* getForceTextureDownloadGeometry() { return _forceTextureDownloadGeometry.get(); }
         const osg::Geometry* getForceTextureDownloadGeometry() const { return _forceTextureDownloadGeometry.get(); }
-
-        GraphicsCostEstimator* getGraphicsCostEstimator() { return _graphicsCostEstimator.get(); }
-        const GraphicsCostEstimator* getGraphicsCostEstimator() const { return _graphicsCostEstimator.get(); }
-
 
         typedef std::vector<osg::GraphicsContext*> Contexts;
         void assignContexts(Contexts& contexts);
@@ -277,7 +276,6 @@ class OSGUTIL_EXPORT IncrementalCompileOperation : public osg::GraphicsOperation
         double                              _conservativeTimeRatio;
 
         osg::ref_ptr<osg::Geometry>         _forceTextureDownloadGeometry;
-        osg::ref_ptr<GraphicsCostEstimator> _graphicsCostEstimator;
 
         OpenThreads::Mutex                  _toCompileMutex;
         CompileSets                         _toCompile;

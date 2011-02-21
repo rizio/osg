@@ -11,10 +11,15 @@
  * OpenSceneGraph Public License for more details.
 */
 
-#include <osgUtil/GraphicsCostEstimator>
+#include <osg/GraphicsCostEstimator>
+
+#include <osg/RenderInfo>
+#include <osg/Geometry>
+#include <osg/Texture>
+#include <osg/Program>
 #include <osg/Geode>
 
-namespace osgUtil
+namespace osg
 {
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +51,6 @@ void GeometryCostEstimator::calibrate(osg::RenderInfo& renderInfo)
 
 CostPair GeometryCostEstimator::estimateCompileCost(const osg::Geometry* geometry) const
 {
-    OSG_INFO<<"GeometryCostEstimator::estimateCompileCost(..)"<<std::endl;
 
     bool usesVBO = geometry->getUseVertexBufferObjects() && geometry->areFastPathsUsed();
     bool usesDL = !usesVBO && geometry->getUseDisplayList() && geometry->getSupportsDisplayList();
@@ -79,7 +83,7 @@ CostPair GeometryCostEstimator::estimateCompileCost(const osg::Geometry* geometr
             cost.first = _displayListCompileConstant + _displayListCompileFactor * cost.first ;
         }
 
-        OSG_INFO<<"   cost.first="<<cost.first<<std::endl;
+        OSG_NOTICE<<"GeometryCostEstimator::estimateCompileCost(..) size="<<cost.first<<std::endl;
 
         return cost;
     }
@@ -185,7 +189,7 @@ void GraphicsCostEstimator::setDefaults()
 
 void GraphicsCostEstimator::calibrate(osg::RenderInfo& renderInfo)
 {
-    OSG_NOTICE<<"GraphicsCostEstimator::calibrate(..)"<<std::endl;
+    OSG_INFO<<"GraphicsCostEstimator::calibrate(..)"<<std::endl;
 }
 
 class CollectCompileCosts : public osg::NodeVisitor

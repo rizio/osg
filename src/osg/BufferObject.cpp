@@ -145,7 +145,7 @@ void GLBufferObject::compileBuffer()
             BufferEntry entry;
             entry.offset = newTotalSize;
             entry.modifiedCount = 0xffffff;
-            entry.dataSize = bd->getTotalDataSize();
+            entry.dataSize = bd ? bd->getTotalDataSize() : 0;
             entry.dataSource = bd;
 #if 0
             OSG_NOTICE<<"entry"<<std::endl;
@@ -199,7 +199,7 @@ void GLBufferObject::compileBuffer()
         ++itr)
     {
         BufferEntry& entry = *itr;
-        if (compileAll || entry.modifiedCount != entry.dataSource->getModifiedCount())
+        if (entry.dataSource && (compileAll || entry.modifiedCount != entry.dataSource->getModifiedCount()))
         {
             // OSG_NOTICE<<"GLBufferObject::compileBuffer(..) downloading BufferEntry "<<&entry<<std::endl;
             entry.modifiedCount = entry.dataSource->getModifiedCount();
@@ -741,7 +741,7 @@ GLBufferObject* GLBufferObjectSet::takeFromOrphans(BufferObject* bufferObject)
     // place at back of active list
     addToBack(glbo.get());
 
-    OSG_INFO<<"Reusing orphaned GLBufferObject, _numOfGLBufferObjects="<<_numOfGLBufferObjects<<std::endl;
+    //OSG_NOTICE<<"Reusing orphaned GLBufferObject, _numOfGLBufferObjects="<<_numOfGLBufferObjects<<" target="<<std::hex<<_profile._target<<std::dec<<std::endl;
 
     return glbo.release();
 }
@@ -1231,12 +1231,14 @@ void GLBufferObject::releaseGLBufferObject(unsigned int contextID, GLBufferObjec
 //
 // BufferObject
 //
-BufferObject::BufferObject()
+BufferObject::BufferObject():
+    _copyDataAndReleaseGLBufferObject(false)
 {
 }
 
 BufferObject::BufferObject(const BufferObject& bo,const CopyOp& copyop):
-    Object(bo,copyop)
+    Object(bo,copyop),
+    _copyDataAndReleaseGLBufferObject(bo._copyDataAndReleaseGLBufferObject)
 {
 }
 
@@ -1307,7 +1309,7 @@ unsigned int BufferObject::addBufferData(BufferData* bd)
 
     _bufferDataList.push_back(bd);
 
-    // OSG_NOTICE<<"BufferObject "<<this<<":"<<className()<<"::addBufferData("<<bd<<"), bufferIndex= "<<_bufferDataList.size()-1<<std::endl;
+    //OSG_NOTICE<<"BufferObject "<<this<<":"<<className()<<"::addBufferData("<<bd<<"), bufferIndex= "<<_bufferDataList.size()-1<<std::endl;
 
     return _bufferDataList.size()-1;
 }
@@ -1320,7 +1322,7 @@ void BufferObject::removeBufferData(unsigned int index)
         return;
     }
 
-    // OSG_NOTICE<<"BufferObject::"<<this<<":"<<className()<<"::removeBufferData("<<index<<"), size= "<<_bufferDataList.size()<<std::endl;
+    //OSG_NOTICE<<"BufferObject::"<<this<<":"<<className()<<"::removeBufferData("<<index<<"), size= "<<_bufferDataList.size()<<std::endl;
 
     // alter the indices of the BufferData after the entry to be removed so their indices are correctly placed.
     for(unsigned int i=index+1; i<_bufferDataList.size(); ++i)
@@ -1340,7 +1342,7 @@ void BufferObject::removeBufferData(unsigned int index)
 
 void BufferObject::removeBufferData(BufferData* bd)
 {
-    // OSG_NOTICE<<"BufferObject::"<<this<<":"<<className()<<"::removeBufferData("<<bd<<"), index="<<bd->getBufferIndex()<<" size= "<<_bufferDataList.size()<<std::endl;
+    //OSG_NOTICE<<"BufferObject::"<<this<<":"<<className()<<"::removeBufferData("<<bd<<"), index="<<bd->getBufferIndex()<<" size= "<<_bufferDataList.size()<<std::endl;
 
     if (!bd || bd->getBufferObject()!=this) return;
 
@@ -1355,8 +1357,13 @@ unsigned int BufferObject::computeRequiredBufferSize() const
         ++itr)
     {
         BufferData* bd = *itr;
-        newTotalSize += bd->getTotalDataSize();
+        if (bd) newTotalSize += bd->getTotalDataSize();
+        else
+        {
+            OSG_NOTICE<<"BufferObject::"<<this<<":"<<className()<<"::BufferObject::computeRequiredBufferSize() error, BufferData is 0x0"<<std::endl;
+        }
     }
+    //OSG_NOTICE<<"BufferObject::"<<this<<":"<<className()<<"::BufferObject::computeRequiredBufferSize() size="<<newTotalSize<<std::endl;
     return newTotalSize;
 }
 
@@ -1527,7 +1534,7 @@ PixelBufferObject::PixelBufferObject(osg::Image* image):
 
     OSG_INFO<<"Constructing PixelBufferObject for image="<<image<<std::endl;
 
-    setBufferData(0, image);
+    if (image) setBufferData(0, image);
 }
 
 PixelBufferObject::PixelBufferObject(const PixelBufferObject& buffer,const CopyOp& copyop):
