@@ -1474,11 +1474,22 @@
 		D4B7ED71125F0A2D00AA5895 /* tessmono.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B7ED59125F0A2D00AA5895 /* tessmono.h */; };
 		D4B7ED74125F0A4100AA5895 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED72125F0A4100AA5895 /* error.cpp */; };
 		D4B7ED75125F0A4100AA5895 /* mipmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B7ED73125F0A4100AA5895 /* mipmap.cpp */; };
+		D4C0F6A813129B1F00BE4A39 /* GraphicsCostEstimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4C0F6A713129B1F00BE4A39 /* GraphicsCostEstimator.cpp */; };
+		D4C0F85013129FFA00BE4A39 /* libosgFX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8D3A10B8FCED0089D3C3 /* libosgFX.a */; };
+		D4C0F85113129FFA00BE4A39 /* libosgText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8D8F10B8FE690089D3C3 /* libosgText.a */; };
+		D4C0F85213129FFA00BE4A39 /* libosgParticle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8EAF10B904200089D3C3 /* libosgParticle.a */; };
+		D4C0F85313129FFA00BE4A39 /* libosgTerrain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8F5510B9073F0089D3C3 /* libosgTerrain.a */; };
+		D4C0F85413129FFA00BE4A39 /* libosgVolume.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D909E10B914270089D3C3 /* libosgVolume.a */; };
+		D4C0F85513129FFA00BE4A39 /* libosgShadow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9014B4F210C3647200947117 /* libosgShadow.a */; };
+		D4C0F8581312A01400BE4A39 /* libosgSim.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8DC810B9000C0089D3C3 /* libosgSim.a */; };
+		D4C0F85D1312A05E00BE4A39 /* Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4C0F85B1312A05E00BE4A39 /* Terrain.cpp */; };
+		D4C0F85E1312A05E00BE4A39 /* Terrain.h in Headers */ = {isa = PBXBuildFile; fileRef = D4C0F85C1312A05E00BE4A39 /* Terrain.h */; };
+		D4C0F8BA1312A39500BE4A39 /* skydome.ive in Resources */ = {isa = PBXBuildFile; fileRef = D4C0F8B91312A39500BE4A39 /* skydome.ive */; };
+		D4C0F8C01312A3FC00BE4A39 /* teapot.ive in Resources */ = {isa = PBXBuildFile; fileRef = D4C0F8BF1312A3FC00BE4A39 /* teapot.ive */; };
 		D4FC8DA912F1733F00E433A5 /* BufferIndexBinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DA812F1733F00E433A5 /* BufferIndexBinding.cpp */; };
 		D4FC8DAF12F173AE00E433A5 /* Outline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DAE12F173AE00E433A5 /* Outline.cpp */; };
 		D4FC8DBA12F1744200E433A5 /* Texture2DArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DB812F1744200E433A5 /* Texture2DArray.cpp */; };
 		D4FC8DBB12F1744200E433A5 /* Texture2DArray.h in Headers */ = {isa = PBXBuildFile; fileRef = D4FC8DB912F1744200E433A5 /* Texture2DArray.h */; };
-		D4FC8DC012F1768A00E433A5 /* GraphicsCostEstimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DBF12F1768A00E433A5 /* GraphicsCostEstimator.cpp */; };
 		D4FC8DD812F17A9D00E433A5 /* libosgdb_ive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8D2B10B8FAE70089D3C3 /* libosgdb_ive.a */; };
 /* End PBXBuildFile section */
 
@@ -3394,6 +3405,12 @@
 		D4B7ED59125F0A2D00AA5895 /* tessmono.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tessmono.h; path = ../src/osg/glu/libtess/tessmono.h; sourceTree = SOURCE_ROOT; };
 		D4B7ED72125F0A4100AA5895 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = error.cpp; path = ../src/osg/glu/libutil/error.cpp; sourceTree = SOURCE_ROOT; };
 		D4B7ED73125F0A4100AA5895 /* mipmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mipmap.cpp; path = ../src/osg/glu/libutil/mipmap.cpp; sourceTree = SOURCE_ROOT; };
+		D4C0F6A713129B1F00BE4A39 /* GraphicsCostEstimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GraphicsCostEstimator.cpp; path = ../src/osg/GraphicsCostEstimator.cpp; sourceTree = SOURCE_ROOT; };
+		D4C0F6A913129B2F00BE4A39 /* GraphicsCostEstimator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GraphicsCostEstimator; path = ../include/osg/GraphicsCostEstimator; sourceTree = SOURCE_ROOT; };
+		D4C0F85B1312A05E00BE4A39 /* Terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Terrain.cpp; path = ../src/osgPlugins/ive/Terrain.cpp; sourceTree = SOURCE_ROOT; };
+		D4C0F85C1312A05E00BE4A39 /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terrain.h; path = ../src/osgPlugins/ive/Terrain.h; sourceTree = SOURCE_ROOT; };
+		D4C0F8B91312A39500BE4A39 /* skydome.ive */ = {isa = PBXFileReference; lastKnownFileType = file; name = skydome.ive; path = iphoneExamples/simple/Resources/skydome.ive; sourceTree = "<group>"; };
+		D4C0F8BF1312A3FC00BE4A39 /* teapot.ive */ = {isa = PBXFileReference; lastKnownFileType = file; name = teapot.ive; path = iphoneExamples/simple/Resources/teapot.ive; sourceTree = "<group>"; };
 		D4FC8DA712F1733400E433A5 /* BufferIndexBinding */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BufferIndexBinding; path = ../include/osg/BufferIndexBinding; sourceTree = SOURCE_ROOT; };
 		D4FC8DA812F1733F00E433A5 /* BufferIndexBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BufferIndexBinding.cpp; path = ../src/osg/BufferIndexBinding.cpp; sourceTree = SOURCE_ROOT; };
 		D4FC8DAB12F1738000E433A5 /* Style */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Style; path = ../include/osgText/Style; sourceTree = SOURCE_ROOT; };
@@ -3409,8 +3426,6 @@
 		D4FC8DB712F173DE00E433A5 /* SinkOperator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SinkOperator; path = ../include/osgParticle/SinkOperator; sourceTree = SOURCE_ROOT; };
 		D4FC8DB812F1744200E433A5 /* Texture2DArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture2DArray.cpp; path = ../src/osgPlugins/ive/Texture2DArray.cpp; sourceTree = SOURCE_ROOT; };
 		D4FC8DB912F1744200E433A5 /* Texture2DArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture2DArray.h; path = ../src/osgPlugins/ive/Texture2DArray.h; sourceTree = SOURCE_ROOT; };
-		D4FC8DBE12F1767700E433A5 /* GraphicsCostEstimator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GraphicsCostEstimator; path = ../include/osgUtil/GraphicsCostEstimator; sourceTree = SOURCE_ROOT; };
-		D4FC8DBF12F1768A00E433A5 /* GraphicsCostEstimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GraphicsCostEstimator.cpp; path = ../src/osgUtil/GraphicsCostEstimator.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3576,6 +3591,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4C0F8581312A01400BE4A39 /* libosgSim.a in Frameworks */,
+				D4C0F85013129FFA00BE4A39 /* libosgFX.a in Frameworks */,
+				D4C0F85113129FFA00BE4A39 /* libosgText.a in Frameworks */,
+				D4C0F85213129FFA00BE4A39 /* libosgParticle.a in Frameworks */,
+				D4C0F85313129FFA00BE4A39 /* libosgTerrain.a in Frameworks */,
+				D4C0F85413129FFA00BE4A39 /* libosgVolume.a in Frameworks */,
+				D4C0F85513129FFA00BE4A39 /* libosgShadow.a in Frameworks */,
 				903421AE10B7D4590082188B /* libOpenThreads.a in Frameworks */,
 				903421AD10B7D4590082188B /* libosg.a in Frameworks */,
 				903421B110B7D4590082188B /* libosgDB.a in Frameworks */,
@@ -4002,6 +4024,8 @@
 		903420A410B7C0B10082188B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D4C0F8BF1312A3FC00BE4A39 /* teapot.ive */,
+				D4C0F8B91312A39500BE4A39 /* skydome.ive */,
 				90AF640410C345190041F6A7 /* eyeball_spherical copy.png */,
 				90AF640510C345190041F6A7 /* fur.png */,
 				90AF640610C345190041F6A7 /* hoof.png */,
@@ -4369,6 +4393,8 @@
 		906D914410B923C30089D3C3 /* osgdb_ive */ = {
 			isa = PBXGroup;
 			children = (
+				D4C0F85B1312A05E00BE4A39 /* Terrain.cpp */,
+				D4C0F85C1312A05E00BE4A39 /* Terrain.h */,
 				D4FC8DB812F1744200E433A5 /* Texture2DArray.cpp */,
 				D4FC8DB912F1744200E433A5 /* Texture2DArray.h */,
 				906D925210B926650089D3C3 /* AlphaFunc.cpp */,
@@ -4633,7 +4659,6 @@
 		908EC61E10B5F9040024EAD9 /* osgUtils */ = {
 			isa = PBXGroup;
 			children = (
-				D4FC8DBF12F1768A00E433A5 /* GraphicsCostEstimator.cpp */,
 				D43C18B91168D45F00C537EA /* MeshOptimizers.cpp */,
 				D43C18C21168D45F00C537EA /* connectivity_graph.cpp */,
 				D43C18C31168D45F00C537EA /* policy.cpp */,
@@ -4682,7 +4707,6 @@
 		908EC62010B75F440024EAD9 /* headers */ = {
 			isa = PBXGroup;
 			children = (
-				D4FC8DBE12F1767700E433A5 /* GraphicsCostEstimator */,
 				D43C18D31168D54B00C537EA /* detail */,
 				D43C18DA1168D54B00C537EA /* public_types.h */,
 				D43C18DB1168D54B00C537EA /* tri_stripper.h */,
@@ -4994,6 +5018,7 @@
 		90B9089210B36AF400E10618 /* osg */ = {
 			isa = PBXGroup;
 			children = (
+				D4C0F6A713129B1F00BE4A39 /* GraphicsCostEstimator.cpp */,
 				D4FC8DA812F1733F00E433A5 /* BufferIndexBinding.cpp */,
 				D4B7ED72125F0A4100AA5895 /* error.cpp */,
 				D4B7ED73125F0A4100AA5895 /* mipmap.cpp */,
@@ -5205,6 +5230,7 @@
 		90B908A010B36B4F00E10618 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D4C0F6A913129B2F00BE4A39 /* GraphicsCostEstimator */,
 				D4FC8DA712F1733400E433A5 /* BufferIndexBinding */,
 				D45A15A111ECBE2A00EBB947 /* ShaderAttribute */,
 				D45A15A211ECBE2A00EBB947 /* ShaderComposer */,
@@ -5764,6 +5790,7 @@
 				906D93D210B926AD0089D3C3 /* VolumeTile.h in Headers */,
 				906D93D310B926AD0089D3C3 /* VolumeTransferFunctionProperty.h in Headers */,
 				D4FC8DBB12F1744200E433A5 /* Texture2DArray.h in Headers */,
+				D4C0F85E1312A05E00BE4A39 /* Terrain.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6845,6 +6872,8 @@
 				90AF640D10C345190041F6A7 /* tusk.png in Resources */,
 				90AF642F10C346F00041F6A7 /* Default.png in Resources */,
 				90AF643010C346F00041F6A7 /* Icon.png in Resources */,
+				D4C0F8BA1312A39500BE4A39 /* skydome.ive in Resources */,
+				D4C0F8C01312A3FC00BE4A39 /* teapot.ive in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7131,6 +7160,7 @@
 				906D945010B926C40089D3C3 /* VolumeTile.cpp in Sources */,
 				906D945110B926C40089D3C3 /* VolumeTransferFunctionProperty.cpp in Sources */,
 				D4FC8DBA12F1744200E433A5 /* Texture2DArray.cpp in Sources */,
+				D4C0F85D1312A05E00BE4A39 /* Terrain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7361,7 +7391,6 @@
 				D43C18CE1168D45F00C537EA /* connectivity_graph.cpp in Sources */,
 				D43C18CF1168D45F00C537EA /* policy.cpp in Sources */,
 				D43C18D01168D45F00C537EA /* tri_stripper.cpp in Sources */,
-				D4FC8DC012F1768A00E433A5 /* GraphicsCostEstimator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7714,6 +7743,7 @@
 				D4B7ED74125F0A4100AA5895 /* error.cpp in Sources */,
 				D4B7ED75125F0A4100AA5895 /* mipmap.cpp in Sources */,
 				D4FC8DA912F1733F00E433A5 /* BufferIndexBinding.cpp in Sources */,
+				D4C0F6A813129B1F00BE4A39 /* GraphicsCostEstimator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

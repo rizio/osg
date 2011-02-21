@@ -19,10 +19,10 @@
 //
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
-    osg::setNotifyLevel(osg::INFO);
+    osg::setNotifyLevel(osg::DEBUG_INFO);
     
 	_root = new osg::MatrixTransform();	
-	osg::ref_ptr<osg::Node> model = (osgDB::readNodeFile("hog.osg"));
+	osg::ref_ptr<osg::Node> model = (osgDB::readNodeFile("skydome.ive"));
 	_root->addChild(model);
 	
     /*
