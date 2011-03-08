@@ -137,6 +137,26 @@ struct ProcessRow
             case(GL_RGBA): RGBA_to_RGBA(num, source, dest); break;
             }
             break;
+        case(GL_BGR):
+            switch(dest_pixelFormat)
+            {
+            case(GL_LUMINANCE):
+            case(GL_ALPHA): BGR_to_A(num, source, dest); break;
+            case(GL_LUMINANCE_ALPHA): BGR_to_LA(num, source, dest); break;
+            case(GL_RGB): BGR_to_RGB(num, source, dest); break;
+            case(GL_RGBA): BGR_to_RGBA(num, source, dest); break;
+            }
+            break;
+        case(GL_BGRA):
+            switch(dest_pixelFormat)
+            {
+            case(GL_LUMINANCE):
+            case(GL_ALPHA): BGRA_to_A(num, source, dest); break;
+            case(GL_LUMINANCE_ALPHA): BGRA_to_LA(num, source, dest); break;
+            case(GL_RGB): BGRA_to_RGB(num, source, dest); break;
+            case(GL_RGBA): BGRA_to_RGBA(num, source, dest); break;
+            }
+            break;
         }
     }
 
@@ -310,6 +330,109 @@ struct ProcessRow
             *dest++ = *source++;
         }
     }
+
+     ///////////////////////////////////////////////////////////////////////////////
+    // BGR sources..
+    virtual void BGR_to_A(unsigned int num, unsigned char* source, unsigned char* dest) const
+    {
+        for(unsigned int i=0;i<num;++i)
+        {
+            unsigned char val = *source;
+            *dest++ = val;
+            source += 3;
+        }
+    }
+
+    virtual void BGR_to_LA(unsigned int num, unsigned char* source, unsigned char* dest) const
+    {
+        for(unsigned int i=0;i<num;++i)
+        {
+            unsigned char val = *source;
+            *dest++ = val;
+            *dest++ = val;
+            source += 3;
+        }
+    }
+
+    virtual void BGR_to_RGB(unsigned int num, unsigned char* source, unsigned char* dest) const
+    {
+        for(unsigned int i=0;i<num;++i)
+        {
+            unsigned char blue = *source++;
+            unsigned char green = *source++;
+            unsigned char red = *source++;
+            *dest++ = red;
+            *dest++ = green;
+            *dest++ = blue;
+        }
+    }
+
+    virtual void BGR_to_RGBA(unsigned int num, unsigned char* source, unsigned char* dest) const
+    {
+        for(unsigned int i=0;i<num;++i)
+        {
+            unsigned char blue = *source++;
+            unsigned char green = *source++;
+            unsigned char red = *source++;
+            unsigned char val = (unsigned char)((int(red)+int(green)+int(blue))/3);
+            *dest++ = red;
+            *dest++ = green;
+            *dest++ = blue;
+            *dest++ = val;
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // BGRA sources..
+    virtual void BGRA_to_A(unsigned int num, unsigned char* source, unsigned char* dest) const
+    {
+        for(unsigned int i=0;i<num;++i)
+        {
+            source += 3;
+            *dest++ = *source++;
+        }
+    }
+
+    virtual void BGRA_to_LA(unsigned int num, unsigned char* source, unsigned char* dest) const
+    {
+        for(unsigned int i=0;i<num;++i)
+        {
+            unsigned char val = *source;
+            source += 3;
+            *dest++ = val;
+            *dest++ = *source++;
+        }
+    }
+
+    virtual void BGRA_to_RGB(unsigned int num, unsigned char* source, unsigned char* dest) const
+    {
+        for(unsigned int i=0;i<num;++i)
+        {
+            unsigned char blue = *source++;
+            unsigned char green = *source++;
+            unsigned char red = *source++;
+            *dest++ = red;
+            *dest++ = green;
+            *dest++ = blue;
+            ++source;
+        }
+    }
+
+    virtual void BGRA_to_RGBA(unsigned int num, unsigned char* source, unsigned char* dest) const
+    {
+        for(unsigned int i=0;i<num;++i)
+        {
+            unsigned char blue = *source++;
+            unsigned char green = *source++;
+            unsigned char red = *source++;
+            unsigned char alpha = *source++;
+            *dest++ = red;
+            *dest++ = green;
+            *dest++ = blue;
+            *dest++ = alpha;
+        }
+    }
+
 };
 
 
@@ -353,7 +476,9 @@ osg::Image* createTexture3D(ImageList& imageList, ProcessRow& processRow,
             pixelFormat==GL_LUMINANCE ||
             pixelFormat==GL_LUMINANCE_ALPHA ||
             pixelFormat==GL_RGB ||
-            pixelFormat==GL_RGBA)
+            pixelFormat==GL_RGBA ||
+            pixelFormat==GL_BGR ||
+            pixelFormat==GL_BGRA)
         {
             max_s = osg::maximum(image->s(), max_s);
             max_t = osg::maximum(image->t(), max_t);
@@ -362,8 +487,14 @@ osg::Image* createTexture3D(ImageList& imageList, ProcessRow& processRow,
         }
         else
         {
-            osg::notify(osg::NOTICE)<<"Image "<<image->getFileName()<<" has unsuitable pixel format"<< std::hex<< pixelFormat << std::dec << std::endl;
+            osg::notify(osg::NOTICE)<<"Image "<<image->getFileName()<<" has unsuitable pixel format 0x"<< std::hex<< pixelFormat << std::dec << std::endl;
         }
+    }
+
+    if (max_components==3)
+    {
+        // change RGB to a RGBA
+        max_components = 4;
     }
 
     if (numComponentsDesired!=0) max_components = numComponentsDesired;
@@ -435,7 +566,9 @@ osg::Image* createTexture3D(ImageList& imageList, ProcessRow& processRow,
             pixelFormat==GL_INTENSITY ||
             pixelFormat==GL_LUMINANCE_ALPHA ||
             pixelFormat==GL_RGB ||
-            pixelFormat==GL_RGBA)
+            pixelFormat==GL_RGBA ||
+            pixelFormat==GL_BGR ||
+            pixelFormat==GL_BGRA)
         {
 
             int num_r = osg::minimum(image->r(), (image_3d->r() - curr_dest_r));
@@ -845,20 +978,18 @@ int main( int argc, char **argv )
     arguments.getApplicationUsage()->setDescription(arguments.getApplicationName()+" is the example which demonstrates use of 3D textures.");
     arguments.getApplicationUsage()->setCommandLineUsage(arguments.getApplicationName()+" [options] filename ...");
     arguments.getApplicationUsage()->addCommandLineOption("-h or --help","Display this information");
-    arguments.getApplicationUsage()->addCommandLineOption("-s <numSlices>","Number of slices to create.");
     arguments.getApplicationUsage()->addCommandLineOption("--images [filenames]","Specify a stack of 2d images to build the 3d volume from.");
     arguments.getApplicationUsage()->addCommandLineOption("--shader","Use OpenGL Shading Language. (default)");
     arguments.getApplicationUsage()->addCommandLineOption("--no-shader","Disable use of OpenGL Shading Language.");
     arguments.getApplicationUsage()->addCommandLineOption("--gpu-tf","Aply the transfer function on the GPU. (default)");
     arguments.getApplicationUsage()->addCommandLineOption("--cpu-tf","Apply the transfer function on the CPU.");
     arguments.getApplicationUsage()->addCommandLineOption("--mip","Use Maximum Intensity Projection (MIP) filtering.");
+    arguments.getApplicationUsage()->addCommandLineOption("--isosurface","Use Iso surface render.");
+    arguments.getApplicationUsage()->addCommandLineOption("--light","Use normals computed on the GPU to render a lit volume.");
+    arguments.getApplicationUsage()->addCommandLineOption("-n","Use normals computed on the GPU to render a lit volume.");
     arguments.getApplicationUsage()->addCommandLineOption("--xSize <size>","Relative width of rendered brick.");
     arguments.getApplicationUsage()->addCommandLineOption("--ySize <size>","Relative length of rendered brick.");
     arguments.getApplicationUsage()->addCommandLineOption("--zSize <size>","Relative height of rendered brick.");
-    arguments.getApplicationUsage()->addCommandLineOption("--xMultiplier <multiplier>","Tex coord x mulitplier.");
-    arguments.getApplicationUsage()->addCommandLineOption("--yMultiplier <multiplier>","Tex coord y mulitplier.");
-    arguments.getApplicationUsage()->addCommandLineOption("--zMultiplier <multiplier>","Tex coord z mulitplier.");
-    arguments.getApplicationUsage()->addCommandLineOption("--clip <ratio>","clip volume as a ratio, 0.0 clip all, 1.0 clip none.");
     arguments.getApplicationUsage()->addCommandLineOption("--maxTextureSize <size>","Set the texture maximum resolution in the s,t,r (x,y,z) dimensions.");
     arguments.getApplicationUsage()->addCommandLineOption("--s_maxTextureSize <size>","Set the texture maximum resolution in the s (x) dimension.");
     arguments.getApplicationUsage()->addCommandLineOption("--t_maxTextureSize <size>","Set the texture maximum resolution in the t (y) dimension.");
@@ -938,12 +1069,30 @@ int main( int argc, char **argv )
         transferFunction->assign(transferFunction->getColorMap());
     }
 
-    unsigned int numSlices=500;
-    while (arguments.read("-s",numSlices)) {}
+    {
+        // deprecated options
+
+        bool invalidOption = false;
+
+        unsigned int numSlices=500;
+        while (arguments.read("-s",numSlices)) { OSG_NOTICE<<"Warning: -s option no longer supported."<<std::endl; invalidOption = true; }
+
+        float sliceEnd=1.0f;
+        while (arguments.read("--clip",sliceEnd)) { OSG_NOTICE<<"Warning: --clip option no longer supported."<<std::endl; invalidOption = true; }
 
 
-    float sliceEnd=1.0f;
-    while (arguments.read("--clip",sliceEnd)) {}
+        if (invalidOption) return 1;
+    }
+
+    float xMultiplier=1.0f;
+    while (arguments.read("--xMultiplier",xMultiplier)) {}
+
+    float yMultiplier=1.0f;
+    while (arguments.read("--yMultiplier",yMultiplier)) {}
+
+    float zMultiplier=1.0f;
+    while (arguments.read("--zMultiplier",zMultiplier)) {}
+
 
     float alphaFunc=0.02f;
     while (arguments.read("--alphaFunc",alphaFunc)) {}
@@ -953,9 +1102,9 @@ int main( int argc, char **argv )
     ShadingModel shadingModel = Standard;
     while(arguments.read("--mip")) shadingModel =  MaximumIntensityProjection;
 
-    while (arguments.read("--isosurface")) shadingModel = Isosurface;
+    while (arguments.read("--isosurface") || arguments.read("--iso-surface")) shadingModel = Isosurface;
 
-    while (arguments.read("--light")) shadingModel = Light;
+    while (arguments.read("--light") || arguments.read("-n")) shadingModel = Light;
 
     float xSize=0.0f, ySize=0.0f, zSize=0.0f;
     while (arguments.read("--xSize",xSize)) {}
@@ -1117,6 +1266,7 @@ int main( int argc, char **argv )
 
                     if(image)
                     {
+                        OSG_NOTICE<<"Read osg::Image FileName::"<<image->getFileName()<<", pixelFormat=0x"<<std::hex<<image->getPixelFormat()<<std::dec<<", s="<<image->s()<<", t="<<image->t()<<", r="<<image->r()<<std::endl;
                         imageList.push_back(image);
                     }
                 }
@@ -1128,6 +1278,7 @@ int main( int argc, char **argv )
 
                 if(image)
                 {
+                    OSG_NOTICE<<"Read osg::Image FileName::"<<image->getFileName()<<", pixelFormat=0x"<<std::hex<<image->getPixelFormat()<<std::dec<<", s="<<image->s()<<", t="<<image->t()<<", r="<<image->r()<<std::endl;
                     imageList.push_back(image);
                 }
             }
@@ -1138,7 +1289,10 @@ int main( int argc, char **argv )
         // pack the textures into a single texture.
         ProcessRow processRow;
         osg::Image* image = createTexture3D(imageList, processRow, numComponentsDesired, s_maximumTextureSize, t_maximumTextureSize, r_maximumTextureSize, resizeToPowerOfTwo);
-        if (image) images.push_back(image);
+        if (image)
+        {
+            images.push_back(image);
+        }
     }
 
 
@@ -1235,6 +1389,12 @@ int main( int argc, char **argv )
                                     0.0,   ySize, 0.0,   0.0,
                                     0.0,   0.0,   zSize, 0.0,
                                     0.0,   0.0,   0.0,   1.0);
+    }
+
+
+    if (xMultiplier!=1.0 || yMultiplier!=1.0 || zMultiplier!=1.0)
+    {
+        matrix->postMultScale(osg::Vec3d(fabs(xMultiplier), fabs(yMultiplier), fabs(zMultiplier)));
     }
 
     osg::Vec4 minValue(FLT_MAX, FLT_MAX, FLT_MAX, FLT_MAX);
@@ -1390,7 +1550,18 @@ int main( int argc, char **argv )
         }
     };
 
-    layer->setLocator(new osgVolume::Locator(*matrix));
+    if (xMultiplier<0.0 || yMultiplier<0.0 || zMultiplier<0.0)
+    {
+        layer->setLocator(new osgVolume::Locator(
+            osg::Matrix::translate(xMultiplier<0.0 ? -1.0 : 0.0, yMultiplier<0.0 ? -1.0 : 0.0, zMultiplier<0.0 ? -1.0 : 0.0) *
+            osg::Matrix::scale(xMultiplier<0.0 ? -1.0 : 1.0, yMultiplier<0.0 ? -1.0 : 1.0, zMultiplier<0.0 ? -1.0 : 1.0) *
+            (*matrix)
+            ));;
+    }
+    else
+    {
+        layer->setLocator(new osgVolume::Locator(*matrix));
+    }
     tile->setLocator(new osgVolume::Locator(*matrix));
 
     tile->setLayer(layer.get());
@@ -1540,5 +1711,4 @@ int main( int argc, char **argv )
     }
 
     return 0;
-
 }
