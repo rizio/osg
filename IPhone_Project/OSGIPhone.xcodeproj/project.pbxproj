@@ -1349,10 +1349,10 @@
 		90B90C8D10B3898D00E10618 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B909D210B36C8700E10618 /* OpenGLES.framework */; };
 		90B90CA610B38FF200E10618 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90CA510B38FF200E10618 /* UIKit.framework */; };
 		90B90CBB10B3925800E10618 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90CBA10B3925800E10618 /* QuartzCore.framework */; };
-		90B90D1410B399F100E10618 /* PThread.c++ in Sources */ = {isa = PBXBuildFile; fileRef = 90B90D0410B399CA00E10618 /* PThread.c++ */; };
-		90B90D1510B399F100E10618 /* PThreadBarrier.c++ in Sources */ = {isa = PBXBuildFile; fileRef = 90B90D0510B399CA00E10618 /* PThreadBarrier.c++ */; };
-		90B90D1610B399F100E10618 /* PThreadCondition.c++ in Sources */ = {isa = PBXBuildFile; fileRef = 90B90D0710B399CA00E10618 /* PThreadCondition.c++ */; };
-		90B90D1710B399F100E10618 /* PThreadMutex.c++ in Sources */ = {isa = PBXBuildFile; fileRef = 90B90D0910B399CA00E10618 /* PThreadMutex.c++ */; };
+		90B90D1410B399F100E10618 /* PThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B90D0410B399CA00E10618 /* PThread.cpp */; };
+		90B90D1510B399F100E10618 /* PThreadBarrier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B90D0510B399CA00E10618 /* PThreadBarrier.cpp */; };
+		90B90D1610B399F100E10618 /* PThreadCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B90D0710B399CA00E10618 /* PThreadCondition.cpp */; };
+		90B90D1710B399F100E10618 /* PThreadMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B90D0910B399CA00E10618 /* PThreadMutex.cpp */; };
 		90B90D1910B39B5700E10618 /* PThreadBarrierPrivateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B90D0610B399CA00E10618 /* PThreadBarrierPrivateData.h */; };
 		90B90D1A10B39B5700E10618 /* PThreadConditionPrivateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B90D0810B399CA00E10618 /* PThreadConditionPrivateData.h */; };
 		90B90D1B10B39B5700E10618 /* PThreadMutexPrivateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B90D0A10B399CA00E10618 /* PThreadMutexPrivateData.h */; };
@@ -3265,12 +3265,12 @@
 		90B90C5C10B383F800E10618 /* osg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = osg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B90CA510B38FF200E10618 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		90B90CBA10B3925800E10618 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		90B90D0410B399CA00E10618 /* PThread.c++ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "PThread.c++"; path = "../src/OpenThreads/pthreads/PThread.c++"; sourceTree = SOURCE_ROOT; };
-		90B90D0510B399CA00E10618 /* PThreadBarrier.c++ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "PThreadBarrier.c++"; path = "../src/OpenThreads/pthreads/PThreadBarrier.c++"; sourceTree = SOURCE_ROOT; };
+		90B90D0410B399CA00E10618 /* PThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PThread.cpp; path = ../src/OpenThreads/pthreads/PThread.cpp; sourceTree = SOURCE_ROOT; };
+		90B90D0510B399CA00E10618 /* PThreadBarrier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PThreadBarrier.cpp; path = ../src/OpenThreads/pthreads/PThreadBarrier.cpp; sourceTree = SOURCE_ROOT; };
 		90B90D0610B399CA00E10618 /* PThreadBarrierPrivateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PThreadBarrierPrivateData.h; path = ../src/OpenThreads/pthreads/PThreadBarrierPrivateData.h; sourceTree = SOURCE_ROOT; };
-		90B90D0710B399CA00E10618 /* PThreadCondition.c++ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "PThreadCondition.c++"; path = "../src/OpenThreads/pthreads/PThreadCondition.c++"; sourceTree = SOURCE_ROOT; };
+		90B90D0710B399CA00E10618 /* PThreadCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PThreadCondition.cpp; path = ../src/OpenThreads/pthreads/PThreadCondition.cpp; sourceTree = SOURCE_ROOT; };
 		90B90D0810B399CA00E10618 /* PThreadConditionPrivateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PThreadConditionPrivateData.h; path = ../src/OpenThreads/pthreads/PThreadConditionPrivateData.h; sourceTree = SOURCE_ROOT; };
-		90B90D0910B399CA00E10618 /* PThreadMutex.c++ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "PThreadMutex.c++"; path = "../src/OpenThreads/pthreads/PThreadMutex.c++"; sourceTree = SOURCE_ROOT; };
+		90B90D0910B399CA00E10618 /* PThreadMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PThreadMutex.cpp; path = ../src/OpenThreads/pthreads/PThreadMutex.cpp; sourceTree = SOURCE_ROOT; };
 		90B90D0A10B399CA00E10618 /* PThreadMutexPrivateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PThreadMutexPrivateData.h; path = ../src/OpenThreads/pthreads/PThreadMutexPrivateData.h; sourceTree = SOURCE_ROOT; };
 		90B90D0B10B399CA00E10618 /* PThreadPrivateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PThreadPrivateData.h; path = ../src/OpenThreads/pthreads/PThreadPrivateData.h; sourceTree = SOURCE_ROOT; };
 		90B90E0E10B3A08D00E10618 /* libosgViewer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosgViewer.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -5193,10 +5193,10 @@
 		90B9089310B36B0F00E10618 /* OpenThreads */ = {
 			isa = PBXGroup;
 			children = (
-				90B90D0410B399CA00E10618 /* PThread.c++ */,
-				90B90D0510B399CA00E10618 /* PThreadBarrier.c++ */,
-				90B90D0710B399CA00E10618 /* PThreadCondition.c++ */,
-				90B90D0910B399CA00E10618 /* PThreadMutex.c++ */,
+				90B90D0410B399CA00E10618 /* PThread.cpp */,
+				90B90D0510B399CA00E10618 /* PThreadBarrier.cpp */,
+				90B90D0710B399CA00E10618 /* PThreadCondition.cpp */,
+				90B90D0910B399CA00E10618 /* PThreadMutex.cpp */,
 				90B908A110B36BA400E10618 /* Atomic.cpp */,
 				90B908A310B36BA400E10618 /* Version.cpp */,
 				90B9089F10B36B3E00E10618 /* headers */,
@@ -7541,10 +7541,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90B90D1410B399F100E10618 /* PThread.c++ in Sources */,
-				90B90D1510B399F100E10618 /* PThreadBarrier.c++ in Sources */,
-				90B90D1610B399F100E10618 /* PThreadCondition.c++ in Sources */,
-				90B90D1710B399F100E10618 /* PThreadMutex.c++ in Sources */,
+				90B90D1410B399F100E10618 /* PThread.cpp in Sources */,
+				90B90D1510B399F100E10618 /* PThreadBarrier.cpp in Sources */,
+				90B90D1610B399F100E10618 /* PThreadCondition.cpp in Sources */,
+				90B90D1710B399F100E10618 /* PThreadMutex.cpp in Sources */,
 				90B90BE210B37B7300E10618 /* Atomic.cpp in Sources */,
 				90B90BE310B37B7300E10618 /* Version.cpp in Sources */,
 			);
