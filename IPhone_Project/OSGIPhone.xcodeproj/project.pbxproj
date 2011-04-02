@@ -8160,7 +8160,6 @@
 				);
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = osg;
-				SDKROOT = iphoneos3.1;
 			};
 			name = Release;
 		};
@@ -8174,7 +8173,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -8188,7 +8187,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -8824,7 +8823,6 @@
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = osgUtils;
-				SDKROOT = iphoneos3.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
