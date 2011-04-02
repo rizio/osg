@@ -38,7 +38,7 @@ SET(LIB_COMMON_FILES
 
 SET(LIB_EXTRA_LIBS)
 
-IF(WIN32)
+IF(WIN32 AND NOT ANDROID)
     #
     # Enable workaround for OpenGL driver issues when used in multithreaded/multiscreen with NVidia drivers on Windows XP 
     # For example: osgviewer dumptruck.osg was showing total garbage (screen looked like shattered, splashed hedgehog) 
@@ -160,7 +160,7 @@ ELSE()
 
         SET(LIB_EXTRA_LIBS ${COCOA_LIBRARY} ${LIB_EXTRA_LIBS})
 
-    ELSEIF(${OSG_WINDOWING_SYSTEM} STREQUAL "x11")
+    ELSEIF(${OSG_WINDOWING_SYSTEM} STREQUAL "X11")
         # X11 for everybody else
         INCLUDE(FindPkgConfig OPTIONAL)
         IF(PKG_CONFIG_FOUND)
@@ -249,13 +249,3 @@ IF(MINGW OR CYGWIN)
 ENDIF()
 
 SETUP_LIBRARY(${LIB_NAME})
-
-FOREACH(INCLUDEFILE ${TARGET_H} )
-   FILE(RELATIVE_PATH REL_INCLUDEFILE ${HEADER_PATH} ${INCLUDEFILE})
-   GET_FILENAME_COMPONENT(REL_INCLUDE_PATH ${REL_INCLUDEFILE} PATH)
-   INSTALL(
-   FILES        ${INCLUDEFILE}
-   DESTINATION ${INSTALL_INCDIR}/${LIB_NAME}/${REL_INCLUDE_PATH}
-   COMPONENT libopenscenegraph-dev
-   )
-ENDFOREACH()

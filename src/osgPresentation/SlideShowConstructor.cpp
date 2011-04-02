@@ -90,12 +90,74 @@ public:
     }        
 };
 
+
+HUDSettings::HUDSettings(double slideDistance, float eyeOffset, unsigned int leftMask, unsigned int rightMask):
+    _slideDistance(slideDistance),
+    _eyeOffset(eyeOffset),
+    _leftMask(leftMask),
+    _rightMask(rightMask)
+{
+}
+
+HUDSettings::~HUDSettings()
+{
+}
+
+bool HUDSettings::getModelViewMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const
+{
+    matrix.makeLookAt(osg::Vec3d(0.0,0.0,0.0),osg::Vec3d(0.0,_slideDistance,0.0),osg::Vec3d(0.0,0.0,1.0));
+
+    if (nv->getTraversalMask()==_leftMask)
+    {
+        matrix.postMultTranslate(osg::Vec3(_eyeOffset,0.0,0.0));
+    }
+    else if (nv->getTraversalMask()==_rightMask)
+    {
+        matrix.postMultTranslate(osg::Vec3(-_eyeOffset,0.0,0.0));
+    }
+    return true;
+}
+
+bool HUDSettings::getInverseModelViewMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const
+{
+    osg::Matrix modelView;
+    getModelViewMatrix(modelView,nv);
+    matrix.invert(modelView);
+    return true;
+}
+
+
+HUDTransform::HUDTransform(HUDSettings* hudSettings):
+    _hudSettings(hudSettings)
+{
+    setDataVariance(osg::Object::DYNAMIC);
+    setReferenceFrame(osg::Transform::ABSOLUTE_RF);
+}
+
+HUDTransform::~HUDTransform() {}
+
+bool HUDTransform::computeLocalToWorldMatrix(osg::Matrix& matrix,osg::NodeVisitor* nv) const
+{
+    return _hudSettings->getModelViewMatrix(matrix,nv);
+}
+
+bool HUDTransform::computeWorldToLocalMatrix(osg::Matrix& matrix,osg::NodeVisitor* nv) const
+{
+    return _hudSettings->getInverseModelViewMatrix(matrix,nv);
+}
+
 SlideShowConstructor::SlideShowConstructor(osgDB::Options* options):
     _options(options)
 {
-    _slideDistance = osg::DisplaySettings::instance()->getScreenDistance();
-    _slideHeight = osg::DisplaySettings::instance()->getScreenHeight();
-    _slideWidth = osg::DisplaySettings::instance()->getScreenWidth();
+    const osg::DisplaySettings* ds = osg::DisplaySettings::instance().get();
+    
+    _slideHeight = ds->getScreenHeight();
+    _slideWidth = ds->getScreenWidth();
+    _slideDistance = ds->getScreenDistance();
+    _leftEyeMask = 0x01;
+    _rightEyeMask = 0x02;
+
+    _hudSettings = new HUDSettings(_slideDistance, ds->getEyeSeparation()*0.5, _leftEyeMask, _rightEyeMask);
 
     _backgroundColor.set(0.0f,0.0f,0.0f,1.0f);
 
@@ -104,7 +166,7 @@ SlideShowConstructor::SlideShowConstructor(osgDB::Options* options):
     // set up title defaults
     _titleFontDataDefault.font = "fonts/arial.ttf";
     _titleFontDataDefault.color.set(1.0f,1.0f,1.0f,1.0f);
-    _titleFontDataDefault.layout = osgText::Text::LEFT_TO_RIGHT;
+    _titleFontDataDefault.layout =osgText::Text::LEFT_TO_RIGHT;
     _titleFontDataDefault.alignment = osgText::Text::CENTER_BASE_LINE;
     _titleFontDataDefault.axisAlignment = osgText::Text::XZ_PLANE;
     _titleFontDataDefault.characterSize = 0.06f;
@@ -125,6 +187,8 @@ SlideShowConstructor::SlideShowConstructor(osgDB::Options* options):
 
     _loopPresentation = false;
     _autoSteppingActive = false;
+
+    _slideBackgroundAsHUD = false;
 }
 
 void SlideShowConstructor::setPresentationAspectRatio(float aspectRatio)
@@ -367,7 +431,16 @@ void SlideShowConstructor::addLayer(bool inheritPreviousLayers, bool defineAsBas
 
             background->addDrawable(backgroundQuad);
 
-            _currentLayer->addChild(background);
+            if (_slideBackgroundAsHUD)
+            {
+                HUDTransform* hudTransform = new HUDTransform(_hudSettings.get());
+                hudTransform->addChild(background);
+                _currentLayer->addChild(hudTransform);
+            }
+            else
+            {
+                _currentLayer->addChild(background);
+            }
         }
         
         if (!_slideTitle.empty())
@@ -392,7 +465,7 @@ void SlideShowConstructor::addLayer(bool inheritPreviousLayers, bool defineAsBas
 
             geode->addDrawable(text);
 
-            _currentLayer->addChild(geode);
+            _currentLayer->addChild(decorateSubgraphForPosition(geode, _titlePositionData));
         }
         
     }
@@ -529,6 +602,39 @@ void SlideShowConstructor::layerClickEventOperation(const KeyPosition& keyPos, b
     
 }
 
+
+osg::Node* SlideShowConstructor::decorateSubgraphForPosition(osg::Node* node, PositionData& positionData)
+{
+    osg::Node* subgraph = node;
+    
+    if (positionData.requiresMaterialAnimation())
+    {
+        subgraph = attachMaterialAnimation(subgraph,positionData);
+    }
+
+    if (positionData.rotation[0]!=0.0)
+    {
+        osg::MatrixTransform* animation_transform = new osg::MatrixTransform;
+        animation_transform->setDataVariance(osg::Object::DYNAMIC);
+        animation_transform->setUpdateCallback(
+            new osgUtil::TransformCallback(subgraph->getBound().center(),
+                                           osg::Vec3(positionData.rotation[1],positionData.rotation[2],positionData.rotation[3]),
+                                           osg::DegreesToRadians(positionData.rotation[0])));
+        animation_transform->addChild(subgraph);
+
+        subgraph = animation_transform;
+    }
+
+    if (positionData.hud)
+    {
+        HUDTransform* hudTransform = new HUDTransform(_hudSettings.get());
+        hudTransform->addChild(subgraph);
+
+        subgraph = hudTransform;
+    }
+    return subgraph;
+}
+
 void SlideShowConstructor::addBullet(const std::string& bullet, PositionData& positionData, FontData& fontData)
 {
     if (!_currentLayer) addLayer();
@@ -542,13 +648,24 @@ void SlideShowConstructor::addBullet(const std::string& bullet, PositionData& po
     text->setFont(fontData.font);
     text->setColor(fontData.color);
     text->setCharacterSize(fontData.characterSize*_slideHeight);
+    text->setCharacterSizeMode(fontData.characterSizeMode);
     text->setFontResolution(110,120);
     text->setMaximumWidth(fontData.maximumWidth*_slideWidth);
     text->setLayout(fontData.layout);
     text->setAlignment(fontData.alignment);
     text->setAxisAlignment(fontData.axisAlignment);
     text->setPosition(localPosition);
-    
+
+    if (positionData.autoRotate)
+    {
+        text->setAxisAlignment(osgText::Text::SCREEN);
+    }
+
+    if (positionData.autoScale)
+    {
+        text->setCharacterSizeMode(osgText::Text::SCREEN_COORDS);
+    }
+
     text->setText(bullet);
 
     osg::BoundingBox bb = text->getBound();
@@ -559,27 +676,13 @@ void SlideShowConstructor::addBullet(const std::string& bullet, PositionData& po
     
     geode->addDrawable(text);
     
-    osg::Node* subgraph = geode;
-    
-    if (positionData.requiresMaterialAnimation())
-        subgraph = attachMaterialAnimation(subgraph,positionData);
+    _currentLayer->addChild( decorateSubgraphForPosition(geode, positionData) );
 
-    if (positionData.rotation[0]!=0.0)
+    bool needToApplyPosition = (_textPositionData.position == positionData.position);
+    if (needToApplyPosition)
     {
-        osg::MatrixTransform* animation_transform = new osg::MatrixTransform;
-        animation_transform->setDataVariance(osg::Object::DYNAMIC);
-        animation_transform->setUpdateCallback(
-            new osgUtil::TransformCallback(geode->getBound().center(),
-                                           osg::Vec3(positionData.rotation[1],positionData.rotation[2],positionData.rotation[3]),
-                                           osg::DegreesToRadians(positionData.rotation[0])));
-        animation_transform->addChild(subgraph);
-
-        subgraph = animation_transform;
+        updatePositionFromInModelCoords(localPosition, _textPositionData);
     }
-
-    _currentLayer->addChild(subgraph);
-
-    updatePositionFromInModelCoords(localPosition, positionData);
 }
 
 void SlideShowConstructor::addParagraph(const std::string& paragraph, PositionData& positionData, FontData& fontData)
@@ -595,6 +698,7 @@ void SlideShowConstructor::addParagraph(const std::string& paragraph, PositionDa
     text->setFont(fontData.font);
     text->setColor(fontData.color);
     text->setCharacterSize(fontData.characterSize*_slideHeight);
+    text->setCharacterSizeMode(fontData.characterSizeMode);
     text->setFontResolution(110,120);
     text->setMaximumWidth(fontData.maximumWidth*_slideWidth);
     text->setLayout(fontData.layout);
@@ -602,6 +706,15 @@ void SlideShowConstructor::addParagraph(const std::string& paragraph, PositionDa
     text->setAxisAlignment(fontData.axisAlignment);
     text->setPosition(localPosition);
     
+    if (positionData.autoRotate)
+    {
+        text->setAxisAlignment(osgText::Text::SCREEN);
+    }
+
+    if (positionData.autoScale)
+    {
+        text->setCharacterSizeMode(osgText::Text::SCREEN_COORDS);
+    }
     text->setText(paragraph);
 
     osg::BoundingBox bb = text->getBound();
@@ -612,27 +725,13 @@ void SlideShowConstructor::addParagraph(const std::string& paragraph, PositionDa
 
     geode->addDrawable(text);
     
-    osg::Node* subgraph = geode;
+    _currentLayer->addChild( decorateSubgraphForPosition(geode, positionData) );
 
-    if (positionData.requiresMaterialAnimation())
-        subgraph = attachMaterialAnimation(subgraph,positionData);
-
-    if (positionData.rotation[0]!=0.0)
+    bool needToApplyPosition = (_textPositionData.position == positionData.position);
+    if (needToApplyPosition)
     {
-        osg::MatrixTransform* animation_transform = new osg::MatrixTransform;
-        animation_transform->setDataVariance(osg::Object::DYNAMIC);
-        animation_transform->setUpdateCallback(
-            new osgUtil::TransformCallback(geode->getBound().center(),
-                                           osg::Vec3(positionData.rotation[1],positionData.rotation[2],positionData.rotation[3]),
-                                           osg::DegreesToRadians(positionData.rotation[0])));
-        animation_transform->addChild(subgraph);
-
-        subgraph = animation_transform;
+        updatePositionFromInModelCoords(localPosition, _textPositionData);
     }
-
-    _currentLayer->addChild(subgraph);
-
-    updatePositionFromInModelCoords(localPosition, positionData);
 }
 
 class FindImageStreamsVisitor : public osg::NodeVisitor
@@ -804,9 +903,6 @@ void SlideShowConstructor::addImage(const std::string& filename, const PositionD
     float s = image->s();
     float t = image->t();
 
-    // temporary hack
-    float height = 0.0f;
-
     float sx = imageData.region_in_pixel_coords ? 1.0f : s;
     float sy = imageData.region_in_pixel_coords ? 1.0f : t;
 
@@ -819,21 +915,36 @@ void SlideShowConstructor::addImage(const std::string& filename, const PositionD
 
     float image_width = _slideWidth*positionData.scale.x();
     float image_height = image_width*aspectRatio*positionData.scale.y()/positionData.scale.x();
-    float offset = height*image_height*0.1f;
+    float offset = 0.0f;
 
-    osg::Vec3 pos = computePositionInModelCoords(positionData) + osg::Vec3(-image_width*0.5f+offset,-offset,-image_height*0.5f-offset);
-
-    osg::Geode* picture = new osg::Geode;
-    osg::Node* subgraph = picture;
+    osg::Vec3 pos = computePositionInModelCoords(positionData);
+    osg::Vec3 image_local_pos = osg::Vec3(-image_width*0.5f+offset,-offset,-image_height*0.5f-offset);
+    osg::Vec3 image_pos = positionData.autoRotate ? image_local_pos : (pos+image_local_pos);
 
 
     bool usedTextureRectangle = false;
-    osg::Geometry* pictureQuad = createTexturedQuadGeometry(pos, positionData.rotate, image_width, image_height, image, usedTextureRectangle);
+    osg::Geometry* pictureQuad = createTexturedQuadGeometry(image_pos, positionData.rotate, image_width, image_height, image, usedTextureRectangle);
     osg::StateSet* pictureStateSet = pictureQuad->getOrCreateStateSet();
 
     attachTexMat(pictureStateSet, imageData, s, t, usedTextureRectangle);
 
-    picture->addDrawable(pictureQuad);
+    osg::Node* subgraph = 0;
+
+    if (positionData.autoRotate)
+    {
+        osg::Billboard* picture = new osg::Billboard;
+        picture->setMode(osg::Billboard::POINT_ROT_EYE);
+        picture->setNormal(osg::Vec3(0.0f,-1.0f,0.0f));
+        picture->setAxis(osg::Vec3(0.0f,0.0f,1.0f));
+        picture->addDrawable(pictureQuad,pos);
+        subgraph = picture;
+    }
+    else
+    {
+        osg::Geode* picture = new osg::Geode;
+        picture->addDrawable(pictureQuad);
+        subgraph = picture;
+    }
 
     // attach any meterial animation.
     if (positionData.requiresMaterialAnimation())
@@ -853,7 +964,7 @@ void SlideShowConstructor::addImage(const std::string& filename, const PositionD
         osg::MatrixTransform* animation_transform = new osg::MatrixTransform;
         animation_transform->setDataVariance(osg::Object::DYNAMIC);
         animation_transform->setUpdateCallback(
-            new osgUtil::TransformCallback(picture->getBound().center(),
+            new osgUtil::TransformCallback(subgraph->getBound().center(),
                                            osg::Vec3(positionData.rotation[1],positionData.rotation[2],positionData.rotation[3]),
                                            osg::DegreesToRadians(positionData.rotation[0])));
 
@@ -887,6 +998,14 @@ void SlideShowConstructor::addImage(const std::string& filename, const PositionD
         animation_transform->addChild(subgraph);
 
         subgraph = animation_transform;
+    }
+
+    if (positionData.hud)
+    {
+        HUDTransform* hudTransform = new HUDTransform(_hudSettings.get());
+        hudTransform->addChild(subgraph);
+
+        subgraph = hudTransform;
     }
 
     _currentLayer->addChild(subgraph);
@@ -937,10 +1056,8 @@ void SlideShowConstructor::addStereoImagePair(const std::string& filenameLeft, c
 
     float s = imageLeft->s();
     float t = imageLeft->t();
-    
-    // temporary hack
-    float height = 0.0f;
 
+    
     float sx = imageDataLeft.region_in_pixel_coords ? 1.0f : s;
     float sy = imageDataLeft.region_in_pixel_coords ? 1.0f : t;
 
@@ -954,18 +1071,18 @@ void SlideShowConstructor::addStereoImagePair(const std::string& filenameLeft, c
     float image_width = _slideWidth*positionData.scale.x();
     float image_height = image_width*aspectRatio*positionData.scale.y()/positionData.scale.x();
 
-    float offset = height*image_height*0.1f;
-    
+    float offset = 0.0f;
+
     bool usedTextureRectangle = false;
 
-    osg::Vec3 pos = computePositionInModelCoords(positionData) + 
-                    osg::Vec3(-image_width*0.5f+offset,-offset,-image_height*0.5f-offset);
+    osg::Vec3 pos = computePositionInModelCoords(positionData);
+    osg::Vec3 image_local_pos = osg::Vec3(-image_width*0.5f+offset,-offset,-image_height*0.5f-offset);
+    osg::Vec3 image_pos = positionData.autoRotate ? image_local_pos : (pos+image_local_pos);
 
-    osg::Geode* pictureLeft = new osg::Geode;
+
+    osg::Node* pictureLeft = 0;
     {
-        pictureLeft->setNodeMask(0x01);
-
-        osg::Geometry* pictureLeftQuad = createTexturedQuadGeometry(pos, positionData.rotate, image_width,image_height,imageLeft.get(),usedTextureRectangle);
+        osg::Geometry* pictureLeftQuad = createTexturedQuadGeometry(image_pos, positionData.rotate, image_width,image_height,imageLeft.get(),usedTextureRectangle);
         osg::StateSet* pictureLeftStateSet = pictureLeftQuad->getOrCreateStateSet();
 
         if (isImageTranslucent)
@@ -975,15 +1092,28 @@ void SlideShowConstructor::addStereoImagePair(const std::string& filenameLeft, c
 
         attachTexMat(pictureLeftStateSet, imageDataLeft, s, t, usedTextureRectangle);
 
-        pictureLeft->addDrawable(pictureLeftQuad);
+        if (positionData.autoRotate)
+        {
+            osg::Billboard* billboard = new osg::Billboard;
+            billboard->setMode(osg::Billboard::POINT_ROT_EYE);
+            billboard->setNormal(osg::Vec3(0.0f,-1.0f,0.0f));
+            billboard->setAxis(osg::Vec3(0.0f,0.0f,1.0f));
+            billboard->addDrawable(pictureLeftQuad,pos);
+            pictureLeft = billboard;
+        }
+        else
+        {
+            osg::Geode* geode = new osg::Geode;
+            geode->addDrawable(pictureLeftQuad);
+            pictureLeft = geode;
+        }
 
+        pictureLeft->setNodeMask(_leftEyeMask);
     }
 
-    osg::Geode* pictureRight = new osg::Geode;
+    osg::Node* pictureRight = 0;
     {
-        pictureRight->setNodeMask(0x02);
-
-        osg::Geometry* pictureRightQuad = createTexturedQuadGeometry(pos, positionData.rotate, image_width,image_height,imageRight.get(),usedTextureRectangle);
+        osg::Geometry* pictureRightQuad = createTexturedQuadGeometry(image_pos, positionData.rotate, image_width,image_height,imageRight.get(),usedTextureRectangle);
         osg::StateSet* pictureRightStateSet = pictureRightQuad->getOrCreateStateSet();
 
         if (isImageTranslucent)
@@ -993,7 +1123,23 @@ void SlideShowConstructor::addStereoImagePair(const std::string& filenameLeft, c
 
         attachTexMat(pictureRightStateSet, imageDataRight, s, t, usedTextureRectangle);
 
-        pictureRight->addDrawable(pictureRightQuad);
+        if (positionData.autoRotate)
+        {
+            osg::Billboard* billboard = new osg::Billboard;
+            billboard->setMode(osg::Billboard::POINT_ROT_EYE);
+            billboard->setNormal(osg::Vec3(0.0f,-1.0f,0.0f));
+            billboard->setAxis(osg::Vec3(0.0f,0.0f,1.0f));
+            billboard->addDrawable(pictureRightQuad,pos);
+            pictureRight = billboard;
+        }
+        else
+        {
+            osg::Geode* geode = new osg::Geode;
+            geode->addDrawable(pictureRightQuad);
+            pictureRight = geode;
+        }
+
+        pictureRight->setNodeMask(_rightEyeMask);
     }
 
     osg::Group* subgraph = new osg::Group;
@@ -1049,6 +1195,14 @@ void SlideShowConstructor::addStereoImagePair(const std::string& filenameLeft, c
         animation_transform->addChild(subgraph);
 
         subgraph = animation_transform;
+    }
+
+    if (positionData.hud)
+    {
+        HUDTransform* hudTransform = new HUDTransform(_hudSettings.get());
+        hudTransform->addChild(subgraph);
+
+        subgraph = hudTransform;
     }
 
     _currentLayer->addChild(subgraph);
@@ -1174,10 +1328,7 @@ osg::Image* SlideShowConstructor::addInteractiveImage(const std::string& filenam
     
     float s = image->s();
     float t = image->t();
-    
-    // temporary hack
-    float height = 0.0f;
-    
+
     float sx = imageData.region_in_pixel_coords ? 1.0f : s;
     float sy = imageData.region_in_pixel_coords ? 1.0f : t;
 
@@ -1190,16 +1341,14 @@ osg::Image* SlideShowConstructor::addInteractiveImage(const std::string& filenam
 
     float image_width = _slideWidth*positionData.scale.x();
     float image_height = image_width*aspectRatio*positionData.scale.y()/positionData.scale.x();
-    float offset = height*image_height*0.1f;
-    
-    osg::Vec3 pos = computePositionInModelCoords(positionData) + osg::Vec3(-image_width*0.5f+offset,-offset,-image_height*0.5f-offset);
+    float offset = 0.0f;
 
-    osg::Geode* picture = new osg::Geode;
-    osg::Node* subgraph = picture;
-
+    osg::Vec3 pos = computePositionInModelCoords(positionData);
+    osg::Vec3 image_local_pos = osg::Vec3(-image_width*0.5f+offset,-offset,-image_height*0.5f-offset);
+    osg::Vec3 image_pos = positionData.autoRotate ? image_local_pos : (pos+image_local_pos);
 
     bool usedTextureRectangle = false;
-    osg::Geometry* pictureQuad = createTexturedQuadGeometry(pos, positionData.rotate, image_width, image_height, image, usedTextureRectangle);
+    osg::Geometry* pictureQuad = createTexturedQuadGeometry(image_pos, positionData.rotate, image_width, image_height, image, usedTextureRectangle);
 
     osg::ref_ptr<osgViewer::InteractiveImageHandler> handler = new osgViewer::InteractiveImageHandler(image);
     pictureQuad->setEventCallback(handler.get());
@@ -1211,7 +1360,23 @@ osg::Image* SlideShowConstructor::addInteractiveImage(const std::string& filenam
 
     pictureStateSet->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
 
-    picture->addDrawable(pictureQuad);
+    osg::Node* subgraph = 0;
+
+    if (positionData.autoRotate)
+    {
+        osg::Billboard* picture = new osg::Billboard;
+        picture->setMode(osg::Billboard::POINT_ROT_EYE);
+        picture->setNormal(osg::Vec3(0.0f,-1.0f,0.0f));
+        picture->setAxis(osg::Vec3(0.0f,0.0f,1.0f));
+        picture->addDrawable(pictureQuad,pos);
+        subgraph = picture;
+    }
+    else
+    {
+        osg::Geode* picture = new osg::Geode;
+        picture->addDrawable(pictureQuad);
+        subgraph = picture;
+    }
 
     // attach any meterial animation.
     if (positionData.requiresMaterialAnimation())
@@ -1224,7 +1389,7 @@ osg::Image* SlideShowConstructor::addInteractiveImage(const std::string& filenam
         osg::MatrixTransform* animation_transform = new osg::MatrixTransform;
         animation_transform->setDataVariance(osg::Object::DYNAMIC);
         animation_transform->setUpdateCallback(
-            new osgUtil::TransformCallback(picture->getBound().center(),
+            new osgUtil::TransformCallback(subgraph->getBound().center(),
                                            osg::Vec3(positionData.rotation[1],positionData.rotation[2],positionData.rotation[3]),
                                            osg::DegreesToRadians(positionData.rotation[0])));
                                            
@@ -1260,8 +1425,16 @@ osg::Image* SlideShowConstructor::addInteractiveImage(const std::string& filenam
         subgraph = animation_transform;
     }
 
+    if (positionData.hud)
+    {
+        HUDTransform* hudTransform = new HUDTransform(_hudSettings.get());
+        hudTransform->addChild(subgraph);
+
+        subgraph = hudTransform;
+    }
+
     _currentLayer->addChild(subgraph);
-    
+
     osgWidget::PdfImage* pdfImage = dynamic_cast<osgWidget::PdfImage*>(image);
     if (pdfImage && imageData.page>=0)
     {
@@ -1638,6 +1811,7 @@ void SlideShowConstructor::addVolume(const std::string& filename, const Position
     osgVolume::AlphaFuncProperty* ap = new osgVolume::AlphaFuncProperty(volumeData.cutoffValue);
     osgVolume::TransparencyProperty* tp = new osgVolume::TransparencyProperty(volumeData.alphaValue);
     osgVolume::SampleDensityProperty* sd = new osgVolume::SampleDensityProperty(volumeData.sampleDensityValue);
+    osgVolume::SampleDensityWhenMovingProperty* sdm = (volumeData.sampleDensityWhenMovingValue > 0.0f) ? (new osgVolume::SampleDensityWhenMovingProperty(volumeData.sampleDensityWhenMovingValue)) : 0;
     osgVolume::TransferFunctionProperty* tfp = volumeData.transferFunction.valid() ? new osgVolume::TransferFunctionProperty(volumeData.transferFunction.get()) : 0;
 
     {
@@ -1646,6 +1820,7 @@ void SlideShowConstructor::addVolume(const std::string& filename, const Position
         cp->addProperty(ap);
         cp->addProperty(sd);
         cp->addProperty(tp);
+        if (sdm) cp->addProperty(sdm);
         if (tfp) cp->addProperty(tfp);
 
         sp->addProperty(cp);
