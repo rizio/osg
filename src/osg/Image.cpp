@@ -633,18 +633,7 @@ void Image::setInternalTextureFormat(GLint internalFormat)
 
 void Image::setPixelFormat(GLenum pixelFormat)
 {
-    if (_pixelFormat==pixelFormat) return; // do nothing if the same.
-
-    if (_pixelFormat==0 || computeNumComponents(_pixelFormat)==computeNumComponents(pixelFormat))
-    {
-       // if the two formats have the same number of componets then
-       // we can do a straight swap.
-        _pixelFormat = pixelFormat;
-    }
-    else
-    {
-        OSG_WARN<<"Image::setPixelFormat(..) - warning, attempt to reset the pixel format with a different number of components."<<std::endl;
-    }
+    _pixelFormat = pixelFormat;
 }
 
 void Image::setDataType(GLenum dataType)
@@ -1251,6 +1240,16 @@ bool Image::isImageTranslucent() const
             offset = 3;
             delta = 4;
             break;
+        case(GL_RGB):
+            return false;
+        case(GL_BGR):
+            return false;
+        case(GL_COMPRESSED_RGB_S3TC_DXT1_EXT):
+            return false;
+        case(GL_COMPRESSED_RGBA_S3TC_DXT1_EXT):
+        case(GL_COMPRESSED_RGBA_S3TC_DXT3_EXT):
+        case(GL_COMPRESSED_RGBA_S3TC_DXT5_EXT):
+            return dxtc_tool::CompressedImageTranslucent(_s, _t, _pixelFormat, _data);
         default:
             return false;
     }
