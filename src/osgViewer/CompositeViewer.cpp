@@ -688,6 +688,10 @@ void CompositeViewer::eventTraversal()
     Contexts contexts;
     getContexts(contexts);
 
+    // set done if there are no windows
+    checkWindowStatus(contexts);
+    if (_done) return;
+
     Scenes scenes;
     getScenes(scenes);
 
@@ -1095,7 +1099,7 @@ void CompositeViewer::updateTraversal()
             {
                 osg::View::Slave& slave = view->getSlave(i);
                 osg::Camera* camera = slave._camera.get();
-                if(camera && !slave._useMastersSceneData) 
+                if(camera && !slave._useMastersSceneData)
                 {
                     camera->accept(*_updateVisitor);
                 }

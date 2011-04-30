@@ -796,7 +796,7 @@ void Geometry::setUseVertexBufferObjects(bool flag)
 
             VertexBufferObjectList vboList;
             
-            osg::VertexBufferObject* vbo = 0;
+            osg::ref_ptr<osg::VertexBufferObject> vbo;
 
             ArrayList::iterator vitr;
             for(vitr = arrayList.begin();
@@ -814,7 +814,7 @@ void Geometry::setUseVertexBufferObjects(bool flag)
                 ++vitr)
             {
                 osg::Array* array = *vitr;
-                if (!array->getVertexBufferObject()) array->setVertexBufferObject(vbo);
+                if (!array->getVertexBufferObject()) array->setVertexBufferObject(vbo.get());
             }
         }
 
@@ -822,7 +822,7 @@ void Geometry::setUseVertexBufferObjects(bool flag)
         {
             ElementBufferObjectList eboList;
             
-            osg::ElementBufferObject* ebo = 0;
+            osg::ref_ptr<osg::ElementBufferObject> ebo;
 
             DrawElementsList::iterator deitr;
             for(deitr = drawElementsList.begin();
@@ -840,7 +840,7 @@ void Geometry::setUseVertexBufferObjects(bool flag)
                 ++deitr)
             {
                 osg::DrawElements* elements = *deitr;
-                if (!elements->getElementBufferObject()) elements->setElementBufferObject(ebo);
+                if (!elements->getElementBufferObject()) elements->setElementBufferObject(ebo.get());
             }
         }
     }
@@ -1764,7 +1764,7 @@ void Geometry::accept(PrimitiveIndexFunctor& functor) const
         return;
     }
 
-    if (!_vertexData.indices.valid())
+    if (!indices)
     {
         for(PrimitiveSetList::const_iterator itr=_primitives.begin();
             itr!=_primitives.end();
@@ -1793,7 +1793,7 @@ void Geometry::accept(PrimitiveIndexFunctor& functor) const
                         vindex<indexEnd;
                         ++vindex)
                     {
-                        functor.vertex(_vertexData.indices->index(vindex));
+                        functor.vertex(indices->index(vindex));
                     }
                     
                     functor.end();
@@ -1813,7 +1813,7 @@ void Geometry::accept(PrimitiveIndexFunctor& functor) const
 
                         for(GLsizei primCount=0;primCount<*primItr;++primCount)
                         {
-                            functor.vertex(_vertexData.indices->index(vindex));
+                            functor.vertex(indices->index(vindex));
                             ++vindex;
                         }
                         
@@ -1833,7 +1833,7 @@ void Geometry::accept(PrimitiveIndexFunctor& functor) const
                         ++primCount,++primItr)
                     {
                         unsigned int vindex=*primItr;
-                        functor.vertex(_vertexData.indices->index(vindex));
+                        functor.vertex(indices->index(vindex));
                     }
 
                     functor.end();
@@ -1849,7 +1849,7 @@ void Geometry::accept(PrimitiveIndexFunctor& functor) const
                         ++primItr)
                     {
                         unsigned int vindex=*primItr;
-                        functor.vertex(_vertexData.indices->index(vindex));
+                        functor.vertex(indices->index(vindex));
                     }
 
                     functor.end();
@@ -1865,7 +1865,7 @@ void Geometry::accept(PrimitiveIndexFunctor& functor) const
                         ++primItr)
                     {
                         unsigned int vindex=*primItr;
-                        functor.vertex(_vertexData.indices->index(vindex));
+                        functor.vertex(indices->index(vindex));
                     }
 
                     functor.end();

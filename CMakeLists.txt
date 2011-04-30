@@ -31,7 +31,7 @@ PROJECT(OpenSceneGraph)
 
 SET(OPENSCENEGRAPH_MAJOR_VERSION 2)
 SET(OPENSCENEGRAPH_MINOR_VERSION 9)
-SET(OPENSCENEGRAPH_PATCH_VERSION 12)
+SET(OPENSCENEGRAPH_PATCH_VERSION 14)
 SET(OPENSCENEGRAPH_SOVERSION 73)
 
 # set to 0 when not a release candidate, non zero means that any generated 
@@ -84,6 +84,15 @@ IF(OSG_BUILD_PLATFORM_ANDROID)
 
     ADD_CUSTOM_TARGET(ndk ALL echo
           DEPENDS Android-OpenSceneGraph
+    )
+    install(DIRECTORY include/ DESTINATION include/
+        PATTERN ".svn" EXCLUDE
+    )
+    install(DIRECTORY ${CMAKE_BINARY_DIR}/include/ DESTINATION include/
+    )
+    install(DIRECTORY ${CMAKE_BINARY_DIR}/obj/ DESTINATION obj/
+        PATTERN ".svn" EXCLUDE
+        PATTERN "objs" EXCLUDE
     )
 
     ADD_DEFINITIONS(-DANDROID)
@@ -434,7 +443,7 @@ IF(WIN32 AND NOT ANDROID)
 ENDIF()
 
 IF(ANDROID)
-# FIXME: add here any platform find
+    ANDROID_3RD_PARTY()
 ELSE()
 # Common to all platforms except android:
     FIND_PACKAGE(FreeType)

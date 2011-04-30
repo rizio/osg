@@ -49,6 +49,7 @@ GLBufferObject::GLBufferObject(unsigned int contextID, BufferObject* bufferObjec
     _set(0),
     _previous(0),
     _next(0),
+    _frameLastUsed(0),
     _extensions(0)
 {
     assign(bufferObject);
@@ -188,12 +189,6 @@ void GLBufferObject::compileBuffer()
         _extensions->glBufferData(_profile._target, _profile._size, NULL, _profile._usage);
     }
 
-    char* vboMemory = 0;
-
-#if 0
-    vboMemory = extensions->glMapBuffer(_target, GL_WRITE_ONLY_ARB);
-#endif
-
     for(BufferEntries::iterator itr = _bufferEntries.begin();
         itr != _bufferEntries.end();
         ++itr)
@@ -204,18 +199,10 @@ void GLBufferObject::compileBuffer()
             // OSG_NOTICE<<"GLBufferObject::compileBuffer(..) downloading BufferEntry "<<&entry<<std::endl;
             entry.modifiedCount = entry.dataSource->getModifiedCount();
 
-            if (vboMemory)
-                memcpy(vboMemory + (GLsizeiptrARB)entry.offset, entry.dataSource->getDataPointer(), entry.dataSize);
-            else
-                _extensions->glBufferSubData(_profile._target, (GLintptrARB)entry.offset, (GLsizeiptrARB)entry.dataSize, entry.dataSource->getDataPointer());
+            _extensions->glBufferSubData(_profile._target, (GLintptrARB)entry.offset, (GLsizeiptrARB)entry.dataSize, entry.dataSource->getDataPointer());
 
         }
     }
-
-    // Unmap the texture image buffer
-    if (vboMemory) _extensions->glUnmapBuffer(_profile._target);
-
-
 }
 
 void GLBufferObject::deleteGLObject()
