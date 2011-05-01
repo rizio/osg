@@ -1439,6 +1439,7 @@
 		D47D50CC123A7C61002289EA /* GlyphGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = D47D50C8123A7C61002289EA /* GlyphGeometry.h */; };
 		D4854073123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D4854071123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h */; };
 		D4854074123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4854072123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm */; };
+		D4992EA1136C33F100635EAD /* GraphicsWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4992EA0136C33F100635EAD /* GraphicsWindow.cpp */; };
 		D4AE30E21176598000B8E6FB /* StackedMatrixElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30D91176598000B8E6FB /* StackedMatrixElement.cpp */; };
 		D4AE30E31176598000B8E6FB /* StackedQuaternionElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30DA1176598000B8E6FB /* StackedQuaternionElement.cpp */; };
 		D4AE30E41176598000B8E6FB /* StackedRotateAxisElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30DB1176598000B8E6FB /* StackedRotateAxisElement.cpp */; };
@@ -3359,6 +3360,7 @@
 		D47D50CE123A7CA2002289EA /* Glyph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Glyph; path = ../include/osgText/Glyph; sourceTree = SOURCE_ROOT; };
 		D4854071123E60EC00BD2D65 /* DebugTouchPointsEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugTouchPointsEventHandler.h; path = iphoneExamples/simple/DebugTouchPointsEventHandler.h; sourceTree = "<group>"; };
 		D4854072123E60EC00BD2D65 /* DebugTouchPointsEventHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = DebugTouchPointsEventHandler.mm; path = iphoneExamples/simple/DebugTouchPointsEventHandler.mm; sourceTree = "<group>"; };
+		D4992EA0136C33F100635EAD /* GraphicsWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GraphicsWindow.cpp; path = ../src/osgViewer/GraphicsWindow.cpp; sourceTree = SOURCE_ROOT; };
 		D4AE30D91176598000B8E6FB /* StackedMatrixElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedMatrixElement.cpp; path = ../src/osgAnimation/StackedMatrixElement.cpp; sourceTree = SOURCE_ROOT; };
 		D4AE30DA1176598000B8E6FB /* StackedQuaternionElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedQuaternionElement.cpp; path = ../src/osgAnimation/StackedQuaternionElement.cpp; sourceTree = SOURCE_ROOT; };
 		D4AE30DB1176598000B8E6FB /* StackedRotateAxisElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StackedRotateAxisElement.cpp; path = ../src/osgAnimation/StackedRotateAxisElement.cpp; sourceTree = SOURCE_ROOT; };
@@ -5420,6 +5422,7 @@
 		90B90E1610B3A0DF00E10618 /* osgViewer */ = {
 			isa = PBXGroup;
 			children = (
+				D4992EA0136C33F100635EAD /* GraphicsWindow.cpp */,
 				90B90E1710B3A0F200E10618 /* header */,
 				90B90E4C10B3A5BB00E10618 /* api */,
 				90B90E2C10B3A16600E10618 /* CompositeViewer.cpp */,
@@ -7577,6 +7580,7 @@
 				90B90E4310B3A16600E10618 /* Viewer.cpp in Sources */,
 				90B90E4410B3A16600E10618 /* ViewerBase.cpp in Sources */,
 				90B90E4510B3A16600E10618 /* ViewerEventHandlers.cpp in Sources */,
+				D4992EA1136C33F100635EAD /* GraphicsWindow.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8173,7 +8177,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -8187,7 +8191,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
