@@ -269,7 +269,7 @@
 		90341F5910B7B4050082188B /* ReaderWriterOBJ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90341F5410B7B4050082188B /* ReaderWriterOBJ.cpp */; };
 		903421AD10B7D4590082188B /* libosg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libosg.a */; };
 		903421AE10B7D4590082188B /* libOpenThreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90BD410B37B5100E10618 /* libOpenThreads.a */; };
-		903421B010B7D4590082188B /* libosgUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 908EC61B10B5F8FF0024EAD9 /* libosgUtils.a */; };
+		903421B010B7D4590082188B /* libosgUtil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 908EC61B10B5F8FF0024EAD9 /* libosgUtil.a */; };
 		903421B110B7D4590082188B /* libosgDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 908EC85F10B78AFD0024EAD9 /* libosgDB.a */; };
 		906D31E810BE018800042D38 /* IOSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 906D318410BDD9B700042D38 /* IOSUtils.h */; };
 		906D31E910BE018F00042D38 /* IOSUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 906D318510BDD9B700042D38 /* IOSUtils.mm */; };
@@ -1176,7 +1176,7 @@
 		90AF63DF10C33FDC0041F6A7 /* libosg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libosg.a */; };
 		90AF63E010C33FDC0041F6A7 /* libosgDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 908EC85F10B78AFD0024EAD9 /* libosgDB.a */; };
 		90AF63E110C33FDC0041F6A7 /* libosgGA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D8E4B10B901570089D3C3 /* libosgGA.a */; };
-		90AF63E210C33FDC0041F6A7 /* libosgUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 908EC61B10B5F8FF0024EAD9 /* libosgUtils.a */; };
+		90AF63E210C33FDC0041F6A7 /* libosgUtil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 908EC61B10B5F8FF0024EAD9 /* libosgUtil.a */; };
 		90AF63E310C33FDC0041F6A7 /* libosgViewer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90E0E10B3A08D00E10618 /* libosgViewer.a */; };
 		90AF63E410C33FDC0041F6A7 /* libosgdb_imageio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDE7310B9F4F1007F0292 /* libosgdb_imageio.a */; };
 		90AF63E510C33FDC0041F6A7 /* libosgdb_osg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AF62E110C325CF0041F6A7 /* libosgdb_osg.a */; };
@@ -2701,7 +2701,7 @@
 		906D934E10B926670089D3C3 /* VolumeTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VolumeTile.h; path = ../src/osgPlugins/ive/VolumeTile.h; sourceTree = SOURCE_ROOT; };
 		906D934F10B926670089D3C3 /* VolumeTransferFunctionProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VolumeTransferFunctionProperty.cpp; path = ../src/osgPlugins/ive/VolumeTransferFunctionProperty.cpp; sourceTree = SOURCE_ROOT; };
 		906D935010B926670089D3C3 /* VolumeTransferFunctionProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VolumeTransferFunctionProperty.h; path = ../src/osgPlugins/ive/VolumeTransferFunctionProperty.h; sourceTree = SOURCE_ROOT; };
-		908EC61B10B5F8FF0024EAD9 /* libosgUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosgUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		908EC61B10B5F8FF0024EAD9 /* libosgUtil.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosgUtil.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		908EC62110B75FAC0024EAD9 /* ConvertVec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ConvertVec; path = ../include/osgUtil/ConvertVec; sourceTree = SOURCE_ROOT; };
 		908EC62210B75FAC0024EAD9 /* CubeMapGenerator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CubeMapGenerator; path = ../include/osgUtil/CubeMapGenerator; sourceTree = SOURCE_ROOT; };
 		908EC62310B75FAC0024EAD9 /* CullVisitor */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CullVisitor; path = ../include/osgUtil/CullVisitor; sourceTree = SOURCE_ROOT; };
@@ -3568,7 +3568,7 @@
 				90AF63DF10C33FDC0041F6A7 /* libosg.a in Frameworks */,
 				90AF63E010C33FDC0041F6A7 /* libosgDB.a in Frameworks */,
 				90AF63E110C33FDC0041F6A7 /* libosgGA.a in Frameworks */,
-				90AF63E210C33FDC0041F6A7 /* libosgUtils.a in Frameworks */,
+				90AF63E210C33FDC0041F6A7 /* libosgUtil.a in Frameworks */,
 				90AF63E310C33FDC0041F6A7 /* libosgViewer.a in Frameworks */,
 				90AF63E410C33FDC0041F6A7 /* libosgdb_imageio.a in Frameworks */,
 				90AF63E510C33FDC0041F6A7 /* libosgdb_osg.a in Frameworks */,
@@ -3603,7 +3603,7 @@
 				903421AE10B7D4590082188B /* libOpenThreads.a in Frameworks */,
 				903421AD10B7D4590082188B /* libosg.a in Frameworks */,
 				903421B110B7D4590082188B /* libosgDB.a in Frameworks */,
-				903421B010B7D4590082188B /* libosgUtils.a in Frameworks */,
+				903421B010B7D4590082188B /* libosgUtil.a in Frameworks */,
 				90EEDE6110B9F071007F0292 /* libosgGA.a in Frameworks */,
 				906D33BB10BE24E500042D38 /* libosgViewer.a in Frameworks */,
 				90AF63C510C329F20041F6A7 /* libosgdb_osg.a in Frameworks */,
@@ -3653,7 +3653,7 @@
 				90B90BD410B37B5100E10618 /* libOpenThreads.a */,
 				90B90C5C10B383F800E10618 /* osg.app */,
 				90B90E0E10B3A08D00E10618 /* libosgViewer.a */,
-				908EC61B10B5F8FF0024EAD9 /* libosgUtils.a */,
+				908EC61B10B5F8FF0024EAD9 /* libosgUtil.a */,
 				908EC85F10B78AFD0024EAD9 /* libosgDB.a */,
 				90341F3310B7B34E0082188B /* libosgdb_obj.a */,
 				906D8D3A10B8FCED0089D3C3 /* libosgFX.a */,
@@ -6612,9 +6612,9 @@
 			productReference = 906D909E10B914270089D3C3 /* libosgVolume.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		908EC61A10B5F8FF0024EAD9 /* osgUtils */ = {
+		908EC61A10B5F8FF0024EAD9 /* osgUtil */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 908EC61F10B5F9040024EAD9 /* Build configuration list for PBXNativeTarget "osgUtils" */;
+			buildConfigurationList = 908EC61F10B5F9040024EAD9 /* Build configuration list for PBXNativeTarget "osgUtil" */;
 			buildPhases = (
 				908EC61710B5F8FF0024EAD9 /* Headers */,
 				908EC61810B5F8FF0024EAD9 /* Sources */,
@@ -6626,9 +6626,9 @@
 				903422F910B7FA050082188B /* PBXTargetDependency */,
 				903422FB10B7FA050082188B /* PBXTargetDependency */,
 			);
-			name = osgUtils;
+			name = osgUtil;
 			productName = osgUtils;
-			productReference = 908EC61B10B5F8FF0024EAD9 /* libosgUtils.a */;
+			productReference = 908EC61B10B5F8FF0024EAD9 /* libosgUtil.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		908EC85E10B78AFD0024EAD9 /* osgDB */ = {
@@ -6819,7 +6819,7 @@
 				90B90BD310B37B5100E10618 /* OpenThreads */,
 				D2AAC07D0554694100DB518D /* osg */,
 				908EC85E10B78AFD0024EAD9 /* osgDB */,
-				908EC61A10B5F8FF0024EAD9 /* osgUtils */,
+				908EC61A10B5F8FF0024EAD9 /* osgUtil */,
 				90B90E0D10B3A08D00E10618 /* osgViewer */,
 				906D8E4A10B901570089D3C3 /* osgGA */,
 				906D8D8E10B8FE690089D3C3 /* osgText */,
@@ -7766,7 +7766,7 @@
 		};
 		903421A510B7CDC30082188B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 908EC61A10B5F8FF0024EAD9 /* osgUtils */;
+			target = 908EC61A10B5F8FF0024EAD9 /* osgUtil */;
 			targetProxy = 903421A410B7CDC30082188B /* PBXContainerItemProxy */;
 		};
 		903421A710B7CDC30082188B /* PBXTargetDependency */ = {
@@ -7781,7 +7781,7 @@
 		};
 		903422F110B7F9DE0082188B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 908EC61A10B5F8FF0024EAD9 /* osgUtils */;
+			target = 908EC61A10B5F8FF0024EAD9 /* osgUtil */;
 			targetProxy = 903422F010B7F9DE0082188B /* PBXContainerItemProxy */;
 		};
 		903422F310B7F9DE0082188B /* PBXTargetDependency */ = {
@@ -7831,7 +7831,7 @@
 		};
 		906D8D7B10B8FDDF0089D3C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 908EC61A10B5F8FF0024EAD9 /* osgUtils */;
+			target = 908EC61A10B5F8FF0024EAD9 /* osgUtil */;
 			targetProxy = 906D8D7A10B8FDDF0089D3C3 /* PBXContainerItemProxy */;
 		};
 		906D8D7D10B8FDDF0089D3C3 /* PBXTargetDependency */ = {
@@ -7856,7 +7856,7 @@
 		};
 		906D8DD510B9002C0089D3C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 908EC61A10B5F8FF0024EAD9 /* osgUtils */;
+			target = 908EC61A10B5F8FF0024EAD9 /* osgUtil */;
 			targetProxy = 906D8DD410B9002C0089D3C3 /* PBXContainerItemProxy */;
 		};
 		906D8DD710B9002C0089D3C3 /* PBXTargetDependency */ = {
@@ -7876,7 +7876,7 @@
 		};
 		906D8E5810B901E50089D3C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 908EC61A10B5F8FF0024EAD9 /* osgUtils */;
+			target = 908EC61A10B5F8FF0024EAD9 /* osgUtil */;
 			targetProxy = 906D8E5710B901E50089D3C3 /* PBXContainerItemProxy */;
 		};
 		906D8E5A10B901E50089D3C3 /* PBXTargetDependency */ = {
@@ -7901,7 +7901,7 @@
 		};
 		906D90A410B914430089D3C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 908EC61A10B5F8FF0024EAD9 /* osgUtils */;
+			target = 908EC61A10B5F8FF0024EAD9 /* osgUtil */;
 			targetProxy = 906D90A310B914430089D3C3 /* PBXContainerItemProxy */;
 		};
 		906D90A610B914430089D3C3 /* PBXTargetDependency */ = {
@@ -7946,7 +7946,7 @@
 		};
 		90CAB96C10C385AD00F8B606 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 908EC61A10B5F8FF0024EAD9 /* osgUtils */;
+			target = 908EC61A10B5F8FF0024EAD9 /* osgUtil */;
 			targetProxy = 90CAB96B10C385AD00F8B606 /* PBXContainerItemProxy */;
 		};
 		90CAB96E10C385AD00F8B606 /* PBXTargetDependency */ = {
@@ -8061,7 +8061,7 @@
 		};
 		D4D20A5E117222620026B2AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 908EC61A10B5F8FF0024EAD9 /* osgUtils */;
+			target = 908EC61A10B5F8FF0024EAD9 /* osgUtil */;
 			targetProxy = D4D20A5D117222620026B2AB /* PBXContainerItemProxy */;
 		};
 		D4D20A60117222620026B2AB /* PBXTargetDependency */ = {
@@ -8806,7 +8806,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
-				PRODUCT_NAME = osgUtils;
+				PRODUCT_NAME = osgUtil;
 			};
 			name = Debug;
 		};
@@ -8826,7 +8826,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
-				PRODUCT_NAME = osgUtils;
+				PRODUCT_NAME = osgUtil;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -9367,7 +9367,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		908EC61F10B5F9040024EAD9 /* Build configuration list for PBXNativeTarget "osgUtils" */ = {
+		908EC61F10B5F9040024EAD9 /* Build configuration list for PBXNativeTarget "osgUtil" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				908EC61C10B5F9000024EAD9 /* Debug */,
