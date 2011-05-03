@@ -266,27 +266,31 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>0867D691FE84028FC02AAC07</string>
-								<string>90AF642C10C346C50041F6A7</string>
-								<string>90AF63E810C340620041F6A7</string>
-								<string>90B9089310B36B0F00E10618</string>
-								<string>90B90E1610B3A0DF00E10618</string>
 								<string>90B90C6310B3841600E10618</string>
 								<string>90AF63E610C340250041F6A7</string>
 								<string>908EC99A10B79FB50024EAD9</string>
-								<string>034768DFFF38A50411DB9C8B</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>D43FAEF1136FE2AD00303B2E</string>
+								<string>D43FAEF2136FE2AD00303B2E</string>
+								<string>D43FAEF3136FE2AD00303B2E</string>
+								<string>D43FAEF4136FE2AD00303B2E</string>
+								<string>D43FAEF5136FE2AD00303B2E</string>
+								<string>D43FAEF6136FE2AD00303B2E</string>
+								<string>D43FAEF7136FE2AD00303B2E</string>
+								<string>D43FAEF8136FE2AD00303B2E</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>96</integer>
-									<integer>89</integer>
+									<integer>50</integer>
+									<integer>46</integer>
+									<integer>23</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1382}, {326, 760}}</string>
+							<string>{{0, 666}, {326, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -333,7 +337,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D43FADDD136F496A00303B2E</string>
+										<string>D43FAEF9136FE2AD00303B2E</string>
 										<key>history</key>
 										<array>
 											<string>D45D31EB1169EA9D001C8838</string>
@@ -391,7 +395,6 @@
 											<string>D49E8DEC1240E7CD00DDDA99</string>
 											<string>D4BDAC081259FAC300867A90</string>
 											<string>D4BDACC8125A135700867A90</string>
-											<string>D4BDACC9125A135700867A90</string>
 											<string>D4B7EDB3125F1AF600AA5895</string>
 											<string>D4B7EDB4125F1AF600AA5895</string>
 											<string>D4B7EDB5125F1AF600AA5895</string>
@@ -402,7 +405,6 @@
 											<string>D44E0699129AC0870082212D</string>
 											<string>D44E06A2129AD9250082212D</string>
 											<string>D44E06A3129AD9250082212D</string>
-											<string>D44E06A4129AD9250082212D</string>
 											<string>D4DA953912A50A8A008569E8</string>
 											<string>D4FC8DC512F176C600E433A5</string>
 											<string>D4FC8DC612F176C600E433A5</string>
@@ -415,7 +417,7 @@
 											<string>D4992ED3136C41F800635EAD</string>
 											<string>D4992ED4136C41F800635EAD</string>
 											<string>D4992ED5136C41F800635EAD</string>
-											<string>D4993555136F44AF00635EAD</string>
+											<string>D43FAEE0136F604900303B2E</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -427,14 +429,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1092, 631}}</string>
+								<string>{{0, 0}, {1092, 623}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1440 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>631pt</string>
+							<string>623pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -447,14 +449,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 636}, {1092, 142}}</string>
+								<string>{{0, 628}, {1092, 150}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1440 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>142pt</string>
+							<string>150pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -473,9 +475,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D43FADD5136F46D900303B2E</string>
+				<string>D43FAEFA136FE2AD00303B2E</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>D43FADD6136F46D900303B2E</string>
+				<string>D43FAEFB136FE2AD00303B2E</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -694,7 +696,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>D4D6E9FF11689F6F00DD6941</string>
-				<string>D43FADD7136F46D900303B2E</string>
+				<string>D43FAEFC136FE2AD00303B2E</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

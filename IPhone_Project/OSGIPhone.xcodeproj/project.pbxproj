@@ -1081,8 +1081,6 @@
 		908EC8F910B78BA20024EAD9 /* XmlParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 908EC8BF10B78B990024EAD9 /* XmlParser.cpp */; };
 		908EC93D10B793F60024EAD9 /* Config in Headers */ = {isa = PBXBuildFile; fileRef = 908EC93C10B793B90024EAD9 /* Config */; };
 		908EC93F10B794560024EAD9 /* Config in Headers */ = {isa = PBXBuildFile; fileRef = 908EC93E10B7944F0024EAD9 /* Config */; };
-		90AF631210C326480041F6A7 /* libosg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libosg.a */; };
-		90AF631310C326480041F6A7 /* libosgDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 908EC85F10B78AFD0024EAD9 /* libosgDB.a */; };
 		90AF636C10C3269A0041F6A7 /* AlphaFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90AF631410C3269A0041F6A7 /* AlphaFunc.cpp */; };
 		90AF636D10C3269A0041F6A7 /* AnimationPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90AF631510C3269A0041F6A7 /* AnimationPath.cpp */; };
 		90AF636E10C3269A0041F6A7 /* AutoTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90AF631610C3269A0041F6A7 /* AutoTransform.cpp */; };
@@ -3555,8 +3553,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90AF631210C326480041F6A7 /* libosg.a in Frameworks */,
-				90AF631310C326480041F6A7 /* libosgDB.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
