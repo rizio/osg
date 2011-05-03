@@ -40,10 +40,10 @@ for i in \
   osgSim \
   osgParticle \
   osgPresentation \
-  osgdb_imageio
-  osgdb_obj
-  osgdb_ive
-  osgdb_osg
+  osgdb_imageio \
+  osgdb_obj \
+  osgdb_ive \
+  osgdb_osg \
 ; do
    create_universal_lib $i
 done
