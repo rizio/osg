@@ -221,7 +221,7 @@
 //
 - (void) dealloc
 {
-	std::cout << "GraphicsWindowIOSGLView::dealloc" << std::endl;
+	OSG_INFO << "GraphicsWindowIOSGLView::dealloc" << std::endl;
 	
 	[super dealloc];
 }
@@ -763,7 +763,7 @@ bool GraphicsWindowIOS::realizeImplementation()
 // ----------------------------------------------------------------------------------------------------------
 void GraphicsWindowIOS::closeImplementation()
 {
-    OSG_ALWAYS << "close IOS window" << std::endl;
+    OSG_INFO << "close IOS window" << std::endl;
     _valid = false;
     _realized = false;
    
