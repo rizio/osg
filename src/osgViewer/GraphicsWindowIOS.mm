@@ -125,7 +125,7 @@
 
 - (osgGA::GUIEventAdapter::TouchPhase) convertTouchPhase: (UITouchPhase) phase;
 - (osg::Vec2) convertPointToPixel: (osg::Vec2) point;
-
+- (void) dealloc;
 @end
 
 @implementation GraphicsWindowIOSGLView 
@@ -181,6 +181,7 @@
     _context = context;
 }
 
+
 // You must implement this method
 + (Class)layerClass {
     return [CAEAGLLayer class];
@@ -220,11 +221,9 @@
 //
 - (void) dealloc
 {
-    //[self destroyFramebuffer];
-    //[_context release];//OBJC_TEST
-    //_context = nil;
-    //_win = NULL;
-    [super dealloc];
+	std::cout << "GraphicsWindowIOSGLView::dealloc" << std::endl;
+	
+	[super dealloc];
 }
 
 - (void)layoutSubviews {
@@ -769,24 +768,30 @@ void GraphicsWindowIOS::closeImplementation()
     _realized = false;
    
     
-    if (_view) {
-        [_view setGraphicsWindow: NULL];
-        [_view release];
+    if (_view) 
+	{
+		[_view setOpenGLContext: NULL];
+		[_context release];
+        [_view removeFromSuperview];
+		[_view setGraphicsWindow: NULL];
     }
     
-    if (_viewController) {
+    if (_viewController) 
+	{
         [_viewController release];
         _viewController = NULL;
     }
         
-    if (_window && _ownsWindow) {  
+    if (_window && _ownsWindow) 
+	{  
         [_window release];
         //[glView release];
     }
 
     
     _window = NULL;
-    _view = NULL;    
+    _view = NULL;  
+	_context = NULL;  
 }
 
 
