@@ -24,7 +24,7 @@
 	unsigned int w = lFrame.size.width;
 	unsigned int h = lFrame.size.height;
 	
-	osg::ref_ptr<osg::Referenced> windata = new osgViewer::GraphicsWindowIOS::WindowData(self.view);
+	osg::ref_ptr<osg::Referenced> windata = new osgViewer::GraphicsWindowIOS::WindowData(self.view, osgViewer::GraphicsWindowIOS::WindowData::IGNORE_ORIENTATION);
 	
 	// Setup the traits parameters
 	traits->x = 0;

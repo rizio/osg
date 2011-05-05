@@ -589,6 +589,9 @@ void GraphicsWindowIOS::init()
     _ownsWindow = false;
     _context = NULL;
     _window = NULL;
+	_view = NULL;
+	_viewController = NULL;
+	
     _updateContext = true;
     //if -1.0 we use the screens scale factor
     _viewContentScaleFactor = -1.0f;
@@ -731,17 +734,19 @@ bool GraphicsWindowIOS::realizeImplementation()
     
     OSG_DEBUG << "GraphicsWindowIOS::realizeImplementation / view: " << theView << std::endl;
 
-    //
-    _viewController = [[GraphicsWindowIOSGLViewController alloc] init];
-    _viewController.view = _view;
-    
+    if (getDeviceOrientationFlags() != WindowData::IGNORE_ORIENTATION) 
+	{
+		_viewController = [[GraphicsWindowIOSGLViewController alloc] init];
+		_viewController.view = _view;
+    }
     
     // Attach view to window
     [_window addSubview: _view];
     [theView release];
     
     //if we own the window also make it visible
-    if (_ownsWindow) {
+    if (_ownsWindow) 
+	{
         //show window
         [_window makeKeyAndVisible];
     }

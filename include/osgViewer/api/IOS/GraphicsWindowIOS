@@ -136,6 +136,7 @@ class GraphicsWindowIOS : public osgViewer::GraphicsWindow
         {
             public:
                 enum DeviceOrientation{
+					IGNORE_ORIENTATION = 0,
                     PORTRAIT_ORIENTATION = 1<<0,
                     PORTRAIT_UPSIDEDOWN_ORIENTATION  = 1<<1,
                     LANDSCAPE_LEFT_ORIENTATION  = 1<<2,
@@ -177,7 +178,7 @@ class GraphicsWindowIOS : public osgViewer::GraphicsWindow
         
         WindowData::DeviceOrientationFlags getDeviceOrientationFlags() const { return _deviceOrientationFlags; }
         
-        void getDeviceOrientationFlags(WindowData::DeviceOrientationFlags flags) { _deviceOrientationFlags = flags; }
+        void setDeviceOrientationFlags(WindowData::DeviceOrientationFlags flags) { _deviceOrientationFlags = flags; }
         
         
         //

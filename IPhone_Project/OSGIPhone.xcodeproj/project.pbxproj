@@ -6989,13 +6989,13 @@
 				9014C4CE10C3680F00947117 /* osgManipulator */,
 				9014C45710C3663900947117 /* osgWidget */,
 				9014C53010C3694300947117 /* osgPresentation */,
-				90B90C5B10B383F800E10618 /* simpleExample */,
-				90AF63D710C33FA20041F6A7 /* osgIPhoneViewer */,
 				90AF62E010C325CF0041F6A7 /* osgdb_osg */,
 				906D8D2A10B8FAE70089D3C3 /* osgdb_ive */,
 				90EEDE7210B9F4F1007F0292 /* osgdb_imageio */,
 				9014C5AE10C36FD100947117 /* osgdb_freetype */,
 				90341F3210B7B34E0082188B /* osgdb_obj */,
+				90B90C5B10B383F800E10618 /* simpleExample */,
+				90AF63D710C33FA20041F6A7 /* osgIPhoneViewer */,
 				D489B59A1371D22C0008758E /* view_test */,
 			);
 		};
