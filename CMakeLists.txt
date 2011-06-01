@@ -31,8 +31,8 @@ PROJECT(OpenSceneGraph)
 
 SET(OPENSCENEGRAPH_MAJOR_VERSION 2)
 SET(OPENSCENEGRAPH_MINOR_VERSION 9)
-SET(OPENSCENEGRAPH_PATCH_VERSION 14)
-SET(OPENSCENEGRAPH_SOVERSION 73)
+SET(OPENSCENEGRAPH_PATCH_VERSION 15)
+SET(OPENSCENEGRAPH_SOVERSION 76)
 
 # set to 0 when not a release candidate, non zero means that any generated 
 # svn tags will be treated as release candidates of given number
@@ -212,8 +212,9 @@ IF(APPLE)
         FIND_LIBRARY(CARBON_LIBRARY Carbon)
         FIND_LIBRARY(COCOA_LIBRARY Cocoa)
 
-        # Apple OS X: Find OpenGL
+        # Apple OS X: Find OpenGL and AGL
         FIND_PACKAGE(OpenGL)
+        FIND_LIBRARY(AGL_LIBRARY AGL)
     ENDIF ()
 
     OPTION(OSG_COMPILE_FRAMEWORKS "compile frameworks instead of dylibs (experimental)" OFF)
@@ -915,9 +916,12 @@ IF(BUILD_DOCUMENTATION)
     ADD_CUSTOM_TARGET(doc_openscenegraph ${DOXYGEN}
         ${PROJECT_BINARY_DIR}/doc/openscenegraph.doxyfile
     )
+    SET_TARGET_PROPERTIES(doc_openscenegraph PROPERTIES FOLDER "Documentation")
+    
     ADD_CUSTOM_TARGET(doc_openthreads ${DOXYGEN}
         ${PROJECT_BINARY_DIR}/doc/openthreads.doxyfile
     )
+    SET_TARGET_PROPERTIES(doc_openthreads PROPERTIES FOLDER "Documentation")
 ENDIF(BUILD_DOCUMENTATION)
 
 OPTION(BUILD_DASHBOARD_REPORTS "Set to ON to activate reporting of OpenSceneGraph builds here http://www.cdash.org/CDashPublic/index.php?project=OpenSceneGraph" OFF)

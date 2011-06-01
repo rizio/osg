@@ -221,9 +221,9 @@
 //
 - (void) dealloc
 {
-	OSG_INFO << "GraphicsWindowIOSGLView::dealloc" << std::endl;
-	
-	[super dealloc];
+    OSG_INFO << "GraphicsWindowIOSGLView::dealloc" << std::endl;
+    
+    [super dealloc];
 }
 
 - (void)layoutSubviews {
@@ -589,9 +589,9 @@ void GraphicsWindowIOS::init()
     _ownsWindow = false;
     _context = NULL;
     _window = NULL;
-	_view = NULL;
-	_viewController = NULL;
-	
+    _view = NULL;
+    _viewController = NULL;
+    
     _updateContext = true;
     //if -1.0 we use the screens scale factor
     _viewContentScaleFactor = -1.0f;
@@ -735,9 +735,9 @@ bool GraphicsWindowIOS::realizeImplementation()
     OSG_DEBUG << "GraphicsWindowIOS::realizeImplementation / view: " << theView << std::endl;
 
     if (getDeviceOrientationFlags() != WindowData::IGNORE_ORIENTATION) 
-	{
-		_viewController = [[GraphicsWindowIOSGLViewController alloc] init];
-		_viewController.view = _view;
+    {
+        _viewController = [[GraphicsWindowIOSGLViewController alloc] init];
+        _viewController.view = _view;
     }
     
     // Attach view to window
@@ -746,7 +746,7 @@ bool GraphicsWindowIOS::realizeImplementation()
     
     //if we own the window also make it visible
     if (_ownsWindow) 
-	{
+    {
         //show window
         [_window makeKeyAndVisible];
     }
@@ -774,21 +774,21 @@ void GraphicsWindowIOS::closeImplementation()
    
     
     if (_view) 
-	{
-		[_view setOpenGLContext: NULL];
-		[_context release];
+    {
+        [_view setOpenGLContext: NULL];
+        [_context release];
         [_view removeFromSuperview];
-		[_view setGraphicsWindow: NULL];
+        [_view setGraphicsWindow: NULL];
     }
     
     if (_viewController) 
-	{
+    {
         [_viewController release];
         _viewController = NULL;
     }
         
     if (_window && _ownsWindow) 
-	{  
+    {  
         [_window release];
         //[glView release];
     }
@@ -796,7 +796,7 @@ void GraphicsWindowIOS::closeImplementation()
     
     _window = NULL;
     _view = NULL;  
-	_context = NULL;  
+    _context = NULL;  
 }
 
 

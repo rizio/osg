@@ -809,8 +809,17 @@ void GraphicsWindowX11::init()
 
     if (_valid == false)
     {
-        XCloseDisplay( _display );
-        _display = 0;
+        if (_display)
+        {
+            XCloseDisplay( _display );
+            _display = 0;
+        }
+
+        if (_eventDisplay)
+        {
+            XCloseDisplay( _eventDisplay );
+            _eventDisplay = 0;
+        }
     }
 
 
@@ -1090,6 +1099,25 @@ void GraphicsWindowX11::swapBuffersImplementation()
 #endif
         glXSwapBuffers( _display, _window );
     #endif
+
+
+    while( XPending(_display) )
+    {
+        XEvent ev;
+        XNextEvent( _display, &ev );
+
+        switch( ev.type )
+        {
+            case ClientMessage:
+            {
+                if (static_cast<Atom>(ev.xclient.data.l[0]) == _deleteWindow)
+                {
+                    OSG_INFO<<"DeleteWindow event received"<<std::endl;
+                    getEventQueue()->closeWindow();
+                }
+            }
+        }
+    }
 }
 
 void GraphicsWindowX11::checkEvents()
@@ -1132,6 +1160,7 @@ void GraphicsWindowX11::checkEvents()
                     destroyWindowRequested = true;
                     getEventQueue()->closeWindow(eventTime);
                 }
+                break;
             }
             case Expose :
                 OSG_INFO<<"Expose x="<<ev.xexpose.x<<" y="<<ev.xexpose.y<<" width="<<ev.xexpose.width<<", height="<<ev.xexpose.height<<std::endl;
@@ -1457,28 +1486,6 @@ void GraphicsWindowX11::checkEvents()
             windowHeight != _traits->height)
         {
             requestRedraw();
-        }
-    }
-
-
-    //
-    // process events of _display
-    //
-    while( XPending(_display) )
-    {
-        XEvent ev;
-        XNextEvent( _display, &ev );
-
-        switch( ev.type )
-        {
-            case ClientMessage:
-            {
-                if (static_cast<Atom>(ev.xclient.data.l[0]) == _deleteWindow)
-                {
-                    OSG_INFO<<"DeleteWindow event received"<<std::endl;
-                    getEventQueue()->closeWindow();
-                }
-            }
         }
     }
 
