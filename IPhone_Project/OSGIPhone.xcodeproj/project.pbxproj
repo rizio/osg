@@ -1504,6 +1504,7 @@
 		D4C0F85E1312A05E00BE4A39 /* Terrain.h in Headers */ = {isa = PBXBuildFile; fileRef = D4C0F85C1312A05E00BE4A39 /* Terrain.h */; };
 		D4C0F8BA1312A39500BE4A39 /* skydome.ive in Resources */ = {isa = PBXBuildFile; fileRef = D4C0F8B91312A39500BE4A39 /* skydome.ive */; };
 		D4C0F8C01312A3FC00BE4A39 /* teapot.ive in Resources */ = {isa = PBXBuildFile; fileRef = D4C0F8BF1312A3FC00BE4A39 /* teapot.ive */; };
+		D4C10AFD139A27C900166A23 /* ExternalFileWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4C10AFC139A27C900166A23 /* ExternalFileWriter.cpp */; };
 		D4FC8DA912F1733F00E433A5 /* BufferIndexBinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DA812F1733F00E433A5 /* BufferIndexBinding.cpp */; };
 		D4FC8DAF12F173AE00E433A5 /* Outline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DAE12F173AE00E433A5 /* Outline.cpp */; };
 		D4FC8DBA12F1744200E433A5 /* Texture2DArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8DB812F1744200E433A5 /* Texture2DArray.cpp */; };
@@ -3491,6 +3492,9 @@
 		D4C0F85C1312A05E00BE4A39 /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terrain.h; path = ../src/osgPlugins/ive/Terrain.h; sourceTree = SOURCE_ROOT; };
 		D4C0F8B91312A39500BE4A39 /* skydome.ive */ = {isa = PBXFileReference; lastKnownFileType = file; name = skydome.ive; path = iphoneExamples/simple/Resources/skydome.ive; sourceTree = "<group>"; };
 		D4C0F8BF1312A3FC00BE4A39 /* teapot.ive */ = {isa = PBXFileReference; lastKnownFileType = file; name = teapot.ive; path = iphoneExamples/simple/Resources/teapot.ive; sourceTree = "<group>"; };
+		D4C10AFB139A27B600166A23 /* ValueObject */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ValueObject; path = ../include/osg/ValueObject; sourceTree = SOURCE_ROOT; };
+		D4C10AFC139A27C900166A23 /* ExternalFileWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExternalFileWriter.cpp; path = ../src/osgDB/ExternalFileWriter.cpp; sourceTree = SOURCE_ROOT; };
+		D4C10AFE139A27DA00166A23 /* ExternalFileWriter */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ExternalFileWriter; path = ../include/osgDB/ExternalFileWriter; sourceTree = SOURCE_ROOT; };
 		D4FC8DA712F1733400E433A5 /* BufferIndexBinding */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BufferIndexBinding; path = ../include/osg/BufferIndexBinding; sourceTree = SOURCE_ROOT; };
 		D4FC8DA812F1733F00E433A5 /* BufferIndexBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BufferIndexBinding.cpp; path = ../src/osg/BufferIndexBinding.cpp; sourceTree = SOURCE_ROOT; };
 		D4FC8DAB12F1738000E433A5 /* Style */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Style; path = ../include/osgText/Style; sourceTree = SOURCE_ROOT; };
@@ -4857,6 +4861,7 @@
 		908EC86210B78B0B0024EAD9 /* osgDB */ = {
 			isa = PBXGroup;
 			children = (
+				D4C10AFC139A27C900166A23 /* ExternalFileWriter.cpp */,
 				D43C19701168F09800C537EA /* Compressors.cpp */,
 				D43C19711168F09800C537EA /* InputStream.cpp */,
 				D43C19721168F09800C537EA /* ObjectWrapper.cpp */,
@@ -4898,6 +4903,7 @@
 		908EC86410B78B130024EAD9 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D4C10AFE139A27DA00166A23 /* ExternalFileWriter */,
 				D43C196B1168F08000C537EA /* DataTypes */,
 				D43C196C1168F08000C537EA /* InputStream */,
 				D43C196D1168F08000C537EA /* ObjectWrapper */,
@@ -5329,6 +5335,7 @@
 		90B908A010B36B4F00E10618 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D4C10AFB139A27B600166A23 /* ValueObject */,
 				D4C0F6A913129B2F00BE4A39 /* GraphicsCostEstimator */,
 				D4FC8DA712F1733400E433A5 /* BufferIndexBinding */,
 				D45A15A111ECBE2A00EBB947 /* ShaderAttribute */,
@@ -7601,6 +7608,7 @@
 				D43C19751168F09800C537EA /* InputStream.cpp in Sources */,
 				D43C19761168F09800C537EA /* ObjectWrapper.cpp in Sources */,
 				D43C19771168F09800C537EA /* OutputStream.cpp in Sources */,
+				D4C10AFD139A27C900166A23 /* ExternalFileWriter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
