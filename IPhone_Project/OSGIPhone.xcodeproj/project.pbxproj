@@ -1404,6 +1404,7 @@
 		D411C7CA1258C4F10076F148 /* BounceOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C71258C4F10076F148 /* BounceOperator.cpp */; };
 		D411C7CB1258C4F10076F148 /* DomainOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C81258C4F10076F148 /* DomainOperator.cpp */; };
 		D411C7CC1258C4F10076F148 /* SinkOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C91258C4F10076F148 /* SinkOperator.cpp */; };
+		D4178F3A13A2642900637CF0 /* UserDataContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4178F3913A2642900637CF0 /* UserDataContainer.cpp */; };
 		D43C18C51168D45F00C537EA /* MeshOptimizers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18B91168D45F00C537EA /* MeshOptimizers.cpp */; };
 		D43C18CE1168D45F00C537EA /* connectivity_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18C21168D45F00C537EA /* connectivity_graph.cpp */; };
 		D43C18CF1168D45F00C537EA /* policy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43C18C31168D45F00C537EA /* policy.cpp */; };
@@ -3378,6 +3379,8 @@
 		D411C7C71258C4F10076F148 /* BounceOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BounceOperator.cpp; path = ../src/osgParticle/BounceOperator.cpp; sourceTree = SOURCE_ROOT; };
 		D411C7C81258C4F10076F148 /* DomainOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DomainOperator.cpp; path = ../src/osgParticle/DomainOperator.cpp; sourceTree = SOURCE_ROOT; };
 		D411C7C91258C4F10076F148 /* SinkOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SinkOperator.cpp; path = ../src/osgParticle/SinkOperator.cpp; sourceTree = SOURCE_ROOT; };
+		D4178F3913A2642900637CF0 /* UserDataContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UserDataContainer.cpp; path = ../src/osg/UserDataContainer.cpp; sourceTree = SOURCE_ROOT; };
+		D4178F3B13A2643900637CF0 /* UserDataContainer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = UserDataContainer; path = ../include/osg/UserDataContainer; sourceTree = SOURCE_ROOT; };
 		D43C18B81168D43200C537EA /* MeshOptimizers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MeshOptimizers; path = ../include/osgUtil/MeshOptimizers; sourceTree = SOURCE_ROOT; };
 		D43C18B91168D45F00C537EA /* MeshOptimizers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeshOptimizers.cpp; path = ../src/osgUtil/MeshOptimizers.cpp; sourceTree = SOURCE_ROOT; };
 		D43C18C21168D45F00C537EA /* connectivity_graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = connectivity_graph.cpp; path = ../src/osgUtil/tristripper/src/connectivity_graph.cpp; sourceTree = SOURCE_ROOT; };
@@ -5123,6 +5126,7 @@
 		90B9089210B36AF400E10618 /* osg */ = {
 			isa = PBXGroup;
 			children = (
+				D4178F3913A2642900637CF0 /* UserDataContainer.cpp */,
 				D4C0F6A713129B1F00BE4A39 /* GraphicsCostEstimator.cpp */,
 				D4FC8DA812F1733F00E433A5 /* BufferIndexBinding.cpp */,
 				D4B7ED72125F0A4100AA5895 /* error.cpp */,
@@ -5335,6 +5339,7 @@
 		90B908A010B36B4F00E10618 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				D4178F3B13A2643900637CF0 /* UserDataContainer */,
 				D4C10AFB139A27B600166A23 /* ValueObject */,
 				D4C0F6A913129B2F00BE4A39 /* GraphicsCostEstimator */,
 				D4FC8DA712F1733400E433A5 /* BufferIndexBinding */,
@@ -7923,6 +7928,7 @@
 				D4B7ED75125F0A4100AA5895 /* mipmap.cpp in Sources */,
 				D4FC8DA912F1733F00E433A5 /* BufferIndexBinding.cpp in Sources */,
 				D4C0F6A813129B1F00BE4A39 /* GraphicsCostEstimator.cpp in Sources */,
+				D4178F3A13A2642900637CF0 /* UserDataContainer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
