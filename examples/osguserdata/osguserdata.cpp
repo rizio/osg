@@ -21,9 +21,52 @@
 
 #include <osgDB/ReadFile>
 #include <osgDB/WriteFile>
+
 #include <osg/io_utils>
+#include <osg/ArgumentParser>
+#include <osg/UserDataContainer>
 
 #include <osg/ValueObject>
+
+namespace MyNamespace
+{
+
+/** Provide an simple example of customizing the default UserDataContainer.*/
+class MyUserDataContainer : public osg::DefaultUserDataContainer
+{
+    public:
+        MyUserDataContainer() {}
+        MyUserDataContainer(const MyUserDataContainer& udc, const osg::CopyOp& copyop=osg::CopyOp::SHALLOW_COPY):
+            DefaultUserDataContainer(udc, copyop) {}
+
+        META_Object(MyNamespace, MyUserDataContainer)
+
+        virtual Object* getUserObject(unsigned int i)
+        {
+            OSG_NOTICE<<"MyUserDataContainer::getUserObject("<<i<<")"<<std::endl;
+            return  osg::DefaultUserDataContainer::getUserObject(i);
+        }
+
+        virtual const Object* getUserObject(unsigned int i) const
+        {
+            OSG_NOTICE<<"MyUserDataContainer::getUserObject("<<i<<") const"<<std::endl;
+            return osg::DefaultUserDataContainer::getUserObject(i);
+        }
+
+
+    protected:
+        virtual ~MyUserDataContainer() {}
+};
+
+}
+
+/** Provide basic example of providing serialization support for the MyUserDataContainer.*/
+REGISTER_OBJECT_WRAPPER( MyUserDataContainer,
+                         new MyNamespace::MyUserDataContainer,
+                         MyNamespace::MyUserDataContainer,
+                         "osg::Object osg::UserDataContainer osg::DefaultUserDataContainer MyNamespace::MyUserDataContainer" )
+{
+}
 
 class MyGetValueVisitor : public osg::ValueObject::GetValueVisitor
 {
@@ -117,41 +160,52 @@ void testResults(osg::Node* node)
         OSG_NOTICE<<"Height not found"<<std::endl;
     }
 
-    OSG_NOTICE<<"node->getNumUserObjects()="<<node->getNumUserObjects()<<std::endl;
-    for(unsigned int i=0; i<node->getNumUserObjects(); ++i)
+    osg::UserDataContainer* udc = node->getUserDataContainer();
+    if (udc)
     {
-        MyGetValueVisitor mgvv;
-        osg::Object* userObject = node->getUserObject(i);
-        osg::ValueObject* valueObject = dynamic_cast<osg::ValueObject*>(userObject);
-        OSG_NOTICE<<"userObject="<<userObject<<", className="<<userObject->className()<<", getName()="<<userObject->getName()<<" valueObject="<<valueObject<<" getNumeric "<<getNumeric<float>(userObject)<<" ";
-        if (valueObject) valueObject->get(mgvv);
-        OSG_NOTICE<<std::endl;
+        OSG_NOTICE<<"udc->getNumUserObjects()="<<udc->getNumUserObjects()<<std::endl;
+        for(unsigned int i=0; i<udc->getNumUserObjects(); ++i)
+        {
+            MyGetValueVisitor mgvv;
+            osg::Object* userObject = udc->getUserObject(i);
+            osg::ValueObject* valueObject = dynamic_cast<osg::ValueObject*>(userObject);
+            OSG_NOTICE<<"userObject="<<userObject<<", className="<<userObject->className()<<", getName()="<<userObject->getName()<<" valueObject="<<valueObject<<" getNumeric "<<getNumeric<float>(userObject)<<" ";
+            if (valueObject) valueObject->get(mgvv);
+            OSG_NOTICE<<std::endl;
+        }
     }
-
+    
     OSG_NOTICE<<std::endl<<std::endl;
 }
 
 
 int main(int argc, char** argv)
 {
+    osg::ArgumentParser arguments(&argc, argv);
+    
     osg::ref_ptr<osg::Group> node = new osg::Group;
 
+    if (arguments.read("--MyUserDataContainer") || arguments.read("--mydc"))
+    {
+        node->setUserDataContainer(new MyNamespace::MyUserDataContainer);
+    }
+    
     int i = 10;
     node->setUserValue("Int value",i);
 
     std::string testString("All seems fine");
     node->setUserValue("Status",testString);
 
-    node->setUserValue<float>("Height",1.4);
+    node->setUserValue("Height",float(1.4));
 
     osg::ref_ptr<osg::Drawable> drawable = new osg::Geometry;
     drawable->setName("myDrawable");
-    node->addUserObject(drawable.get());
+    node->getOrCreateUserDataContainer()->addUserObject(drawable.get());
 
     node->setUserValue("fred",12);
     node->setUserValue("john",1.1);
     node->setUserValue("david",1.9f);
-    node->setUserValue<char>("char",65);
+    node->setUserValue("char",char(65));
     node->setUserValue("matrixd",osg::Matrixd::translate(1.0,2.0,3.0));
     node->setUserValue("flag-on",true);
     node->setUserValue("flag-off",false);

@@ -15,6 +15,7 @@
 #define OSG_VALUEOBJECT 1
 
 #include <osg/Object>
+#include <osg/UserDataContainer>
 
 namespace osg {
 
@@ -166,12 +167,16 @@ META_ValueObject(Plane, PlaneValueObject)
 META_ValueObject(Matrixf, MatrixfValueObject)
 META_ValueObject(Matrixd, MatrixdValueObject)
 
-/** provide implementation og osg::Object::getUserValue(..) template*/
+/** provide implementation of osg::Object::getUserValue(..) template*/
 template<typename T>
 bool osg::Object::getUserValue(const std::string& name, T& value) const
 {
     typedef TemplateValueObject<T> UserValueObject;
-    const UserValueObject* uvo = dynamic_cast<const UserValueObject*>(getUserObject(name));
+    
+    const osg::UserDataContainer* udc = dynamic_cast<const osg::UserDataContainer*>(this);
+    if (!udc) udc = _userDataContainer;
+    
+    const UserValueObject* uvo = udc ? dynamic_cast<const UserValueObject*>(udc->getUserObject(name)) : 0;
     if (uvo)
     {
         value = uvo->getValue();
@@ -183,15 +188,22 @@ bool osg::Object::getUserValue(const std::string& name, T& value) const
     }
 }
 
-/** provide implementation og osg::Object::setUserValue(..) template.*/
+/** provide implementation of osg::Object::setUserValue(..) template.*/
 template<typename T>
 void osg::Object::setUserValue(const std::string& name, const T& value)
 {
     typedef TemplateValueObject<T> UserValueObject;
 
-    unsigned int i = getUserObjectIndex(name);
-    if (i<getNumUserObjects()) setUserObject(i, new UserValueObject(name,value));
-    else addUserObject(new UserValueObject(name,value));
+    osg::UserDataContainer* udc = dynamic_cast<osg::UserDataContainer*>(this);
+    if (!udc)
+    {
+        getOrCreateUserDataContainer();
+        udc = _userDataContainer;
+    }
+    
+    unsigned int i = udc->getUserObjectIndex(name);
+    if (i<udc->getNumUserObjects()) udc->setUserObject(i, new UserValueObject(name,value));
+    else udc->addUserObject(new UserValueObject(name,value));
 }
 
 }

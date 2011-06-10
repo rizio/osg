@@ -1,6 +1,6 @@
-OpenSceneGraph Library 2.9.15
+OpenSceneGraph Library 2.9.16
 
-460 Contributors:
+461 Contributors:
 
 Firstname Surname
 -----------------
@@ -151,6 +151,7 @@ Maria Ten
 Liang Aibin
 Leandro Motta Barros
 Katharina Plugge
+Jorge Ciges
 John Vidar Larring
 John Kelso
 John Ivar
@@ -234,6 +235,7 @@ Mathew May
 Martin Spott
 Martijn Kragtwijk
 Marius Heise
+Marcin Hajder
 Lukasz Izdebski
 Lilith Bryant
 Lars Nilsson
@@ -363,7 +365,6 @@ Mario Guimaraes
 Marco Sciabica
 Marco Lehmann
 Marcin Prus
-Marcin Hajder
 Maik Keller
 Lukas Diduch
 Louis Hamilton
@@ -380,7 +381,6 @@ Jutta Sauer
 Julian Scheid
 Juan Hernando
 Josh Portway
-Jorge Ciges
 John Tan
 John Grant
 John Donovan
@@ -406,6 +406,7 @@ Graeme Harkness
 Gian Lorenzetto
 George Papagiannakis
 Galen Faidley
+Frida Schlaug
 Frederic Smith
 Frank Warmerdam
 Frank Midgley
