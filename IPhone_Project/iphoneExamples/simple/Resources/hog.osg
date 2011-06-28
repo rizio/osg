@@ -55,7 +55,7 @@ MatrixTransform {
             GL_TEXTURE_2D ON
             Texture2D {
               DataVariance STATIC
-              file "fur.png"
+              file "Images/fur.png"
               wrap_s CLAMP_TO_EDGE
               wrap_t CLAMP_TO_EDGE
               wrap_r CLAMP_TO_EDGE
@@ -17853,7 +17853,7 @@ MatrixTransform {
             GL_TEXTURE_2D ON
             Texture2D {
               DataVariance STATIC
-              file "eyeball_spherical copy.png"
+              file "Images/eyeball_spherical copy.png"
               wrap_s CLAMP_TO_EDGE
               wrap_t CLAMP_TO_EDGE
               wrap_r CLAMP_TO_EDGE
@@ -18556,7 +18556,7 @@ MatrixTransform {
             GL_TEXTURE_2D ON
             Texture2D {
               DataVariance STATIC
-              file "tusk.png"
+              file "Images/tusk.png"
               wrap_s CLAMP_TO_EDGE
               wrap_t CLAMP_TO_EDGE
               wrap_r CLAMP_TO_EDGE
@@ -21002,7 +21002,7 @@ MatrixTransform {
             GL_TEXTURE_2D ON
             Texture2D {
               DataVariance STATIC
-              file "mouth.png"
+              file "Images/mouth.png"
               wrap_s CLAMP_TO_EDGE
               wrap_t CLAMP_TO_EDGE
               wrap_r CLAMP_TO_EDGE
@@ -22276,7 +22276,7 @@ MatrixTransform {
             GL_TEXTURE_2D ON
             Texture2D {
               DataVariance STATIC
-              file "hoof.png"
+              file "Images/hoof.png"
               wrap_s CLAMP_TO_EDGE
               wrap_t CLAMP_TO_EDGE
               wrap_r CLAMP_TO_EDGE
