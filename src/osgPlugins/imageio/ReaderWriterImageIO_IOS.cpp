@@ -1,4 +1,3 @@
-#pragma once 
 #include <osg/GL>
 #include <osg/Notify>
 #include <osg/Image>
