@@ -64,6 +64,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4AF9FB7213B8CE18002D1077 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9FB6B13B8CE18002D1077 /* images */; };
+		4AF9FB7313B8CE2C002D1077 /* hog.osg in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640210C344F80041F6A7 /* hog.osg */; };
 		9014B4AB10C363BE00947117 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9014B47710C3630700947117 /* Action.cpp */; };
 		9014B4AC10C363BE00947117 /* ActionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9014B47810C3630700947117 /* ActionAnimation.cpp */; };
 		9014B4AD10C363BE00947117 /* ActionBlendIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9014B47910C3630700947117 /* ActionBlendIn.cpp */; };
@@ -1184,12 +1186,6 @@
 		90AF63FA10C343F40041F6A7 /* osgAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90AF63F410C343F40041F6A7 /* osgAppDelegate.mm */; };
 		90AF63FB10C343F40041F6A7 /* osgIPhoneExample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90AF63F510C343F40041F6A7 /* osgIPhoneExample-Info.plist */; };
 		90AF63FC10C343F40041F6A7 /* osgPlugins.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AF63F610C343F40041F6A7 /* osgPlugins.h */; };
-		90AF640310C344F80041F6A7 /* hog.osg in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640210C344F80041F6A7 /* hog.osg */; };
-		90AF640910C345190041F6A7 /* eyeball_spherical copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640410C345190041F6A7 /* eyeball_spherical copy.png */; };
-		90AF640A10C345190041F6A7 /* fur.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640510C345190041F6A7 /* fur.png */; };
-		90AF640B10C345190041F6A7 /* hoof.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640610C345190041F6A7 /* hoof.png */; };
-		90AF640C10C345190041F6A7 /* mouth.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640710C345190041F6A7 /* mouth.png */; };
-		90AF640D10C345190041F6A7 /* tusk.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640810C345190041F6A7 /* tusk.png */; };
 		90AF642F10C346F00041F6A7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF642D10C346F00041F6A7 /* Default.png */; };
 		90AF643010C346F00041F6A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF642E10C346F00041F6A7 /* Icon.png */; };
 		90AF643510C347450041F6A7 /* iphoneViewerAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90AF643210C347450041F6A7 /* iphoneViewerAppDelegate.mm */; };
@@ -1197,11 +1193,6 @@
 		90AF643810C3477B0041F6A7 /* iphoneViewerAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AF643110C347450041F6A7 /* iphoneViewerAppDelegate.h */; };
 		90AF643910C3477B0041F6A7 /* osgPlugins.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AF643410C347450041F6A7 /* osgPlugins.h */; };
 		90AF643B10C347DB0041F6A7 /* hog.osg in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640210C344F80041F6A7 /* hog.osg */; };
-		90AF643C10C347DB0041F6A7 /* eyeball_spherical copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640410C345190041F6A7 /* eyeball_spherical copy.png */; };
-		90AF643D10C347DB0041F6A7 /* fur.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640510C345190041F6A7 /* fur.png */; };
-		90AF643E10C347DB0041F6A7 /* hoof.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640610C345190041F6A7 /* hoof.png */; };
-		90AF643F10C347DB0041F6A7 /* mouth.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640710C345190041F6A7 /* mouth.png */; };
-		90AF644010C347DB0041F6A7 /* tusk.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640810C345190041F6A7 /* tusk.png */; };
 		90AF644110C347DB0041F6A7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF642D10C346F00041F6A7 /* Default.png */; };
 		90AF644210C347DB0041F6A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AF642E10C346F00041F6A7 /* Icon.png */; };
 		90AF651710C348A70041F6A7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B909D210B36C8700E10618 /* OpenGLES.framework */; };
@@ -1248,7 +1239,7 @@
 		90B908CB10B36BC900E10618 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B907AD10B36AE900E10618 /* Drawable.cpp */; };
 		90B908CC10B36BC900E10618 /* DrawPixels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B907AE10B36AE900E10618 /* DrawPixels.cpp */; };
 		90B908CD10B36BC900E10618 /* dxtctool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B907AF10B36AE900E10618 /* dxtctool.cpp */; };
-		90B908CE10B36BC900E10618 /* dxtctool.h in Sources */ = {isa = PBXBuildFile; fileRef = 90B907B010B36AE900E10618 /* dxtctool.h */; };
+		90B908CE10B36BC900E10618 /* dxtctool.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B907B010B36AE900E10618 /* dxtctool.h */; };
 		90B908CF10B36BC900E10618 /* Fog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B907B110B36AE900E10618 /* Fog.cpp */; };
 		90B908D010B36BC900E10618 /* FragmentProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B907B210B36AE900E10618 /* FragmentProgram.cpp */; };
 		90B908D110B36BC900E10618 /* FrameBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90B907B310B36AE900E10618 /* FrameBufferObject.cpp */; };
@@ -2077,6 +2068,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4AF9FB6B13B8CE18002D1077 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = iphoneExamples/simple/Resources/images; sourceTree = "<group>"; };
 		9014B45010C362C900947117 /* Action */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Action; path = ../include/osgAnimation/Action; sourceTree = SOURCE_ROOT; };
 		9014B45110C362C900947117 /* ActionAnimation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ActionAnimation; path = ../include/osgAnimation/ActionAnimation; sourceTree = SOURCE_ROOT; };
 		9014B45210C362C900947117 /* ActionBlendIn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ActionBlendIn; path = ../include/osgAnimation/ActionBlendIn; sourceTree = SOURCE_ROOT; };
@@ -3006,11 +2998,6 @@
 		90AF63F510C343F40041F6A7 /* osgIPhoneExample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "osgIPhoneExample-Info.plist"; path = "iphoneExamples/simple/osgIPhoneExample-Info.plist"; sourceTree = "<group>"; };
 		90AF63F610C343F40041F6A7 /* osgPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = osgPlugins.h; path = iphoneExamples/simple/osgPlugins.h; sourceTree = "<group>"; };
 		90AF640210C344F80041F6A7 /* hog.osg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hog.osg; path = iphoneExamples/simple/Resources/hog.osg; sourceTree = "<group>"; };
-		90AF640410C345190041F6A7 /* eyeball_spherical copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eyeball_spherical copy.png"; path = "iphoneExamples/simple/Resources/images/eyeball_spherical copy.png"; sourceTree = "<group>"; };
-		90AF640510C345190041F6A7 /* fur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fur.png; path = iphoneExamples/simple/Resources/images/fur.png; sourceTree = "<group>"; };
-		90AF640610C345190041F6A7 /* hoof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hoof.png; path = iphoneExamples/simple/Resources/images/hoof.png; sourceTree = "<group>"; };
-		90AF640710C345190041F6A7 /* mouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mouth.png; path = iphoneExamples/simple/Resources/images/mouth.png; sourceTree = "<group>"; };
-		90AF640810C345190041F6A7 /* tusk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tusk.png; path = iphoneExamples/simple/Resources/images/tusk.png; sourceTree = "<group>"; };
 		90AF642D10C346F00041F6A7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		90AF642E10C346F00041F6A7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		90AF643110C347450041F6A7 /* iphoneViewerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iphoneViewerAppDelegate.h; path = ../examples/osgviewerIPhone/iphoneViewerAppDelegate.h; sourceTree = "<group>"; };
@@ -4130,13 +4117,9 @@
 		903420A410B7C0B10082188B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4AF9FB6B13B8CE18002D1077 /* images */,
 				D4C0F8BF1312A3FC00BE4A39 /* teapot.ive */,
 				D4C0F8B91312A39500BE4A39 /* skydome.ive */,
-				90AF640410C345190041F6A7 /* eyeball_spherical copy.png */,
-				90AF640510C345190041F6A7 /* fur.png */,
-				90AF640610C345190041F6A7 /* hoof.png */,
-				90AF640710C345190041F6A7 /* mouth.png */,
-				90AF640810C345190041F6A7 /* tusk.png */,
 				90AF640210C344F80041F6A7 /* hog.osg */,
 				90AF63F510C343F40041F6A7 /* osgIPhoneExample-Info.plist */,
 			);
@@ -6291,6 +6274,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90B908CE10B36BC900E10618 /* dxtctool.h in Headers */,
 				908EC93D10B793F60024EAD9 /* Config in Headers */,
 				908EC6FC10B776150024EAD9 /* AlphaFunc in Headers */,
 				908EC6FD10B776150024EAD9 /* AnimationPath in Headers */,
@@ -7019,11 +7003,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				90AF643B10C347DB0041F6A7 /* hog.osg in Resources */,
-				90AF643C10C347DB0041F6A7 /* eyeball_spherical copy.png in Resources */,
-				90AF643D10C347DB0041F6A7 /* fur.png in Resources */,
-				90AF643E10C347DB0041F6A7 /* hoof.png in Resources */,
-				90AF643F10C347DB0041F6A7 /* mouth.png in Resources */,
-				90AF644010C347DB0041F6A7 /* tusk.png in Resources */,
 				90AF644110C347DB0041F6A7 /* Default.png in Resources */,
 				90AF644210C347DB0041F6A7 /* Icon.png in Resources */,
 				90AF653210C3493D0041F6A7 /* osgIPhoneViewer-Info.plist in Resources */,
@@ -7036,16 +7015,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				90AF63FB10C343F40041F6A7 /* osgIPhoneExample-Info.plist in Resources */,
-				90AF640310C344F80041F6A7 /* hog.osg in Resources */,
-				90AF640910C345190041F6A7 /* eyeball_spherical copy.png in Resources */,
-				90AF640A10C345190041F6A7 /* fur.png in Resources */,
-				90AF640B10C345190041F6A7 /* hoof.png in Resources */,
-				90AF640C10C345190041F6A7 /* mouth.png in Resources */,
-				90AF640D10C345190041F6A7 /* tusk.png in Resources */,
 				90AF642F10C346F00041F6A7 /* Default.png in Resources */,
 				90AF643010C346F00041F6A7 /* Icon.png in Resources */,
 				D4C0F8BA1312A39500BE4A39 /* skydome.ive in Resources */,
 				D4C0F8C01312A3FC00BE4A39 /* teapot.ive in Resources */,
+				4AF9FB7313B8CE2C002D1077 /* hog.osg in Resources */,
+				4AF9FB7213B8CE18002D1077 /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7814,7 +7789,6 @@
 				90B908CB10B36BC900E10618 /* Drawable.cpp in Sources */,
 				90B908CC10B36BC900E10618 /* DrawPixels.cpp in Sources */,
 				90B908CD10B36BC900E10618 /* dxtctool.cpp in Sources */,
-				90B908CE10B36BC900E10618 /* dxtctool.h in Sources */,
 				90B908CF10B36BC900E10618 /* Fog.cpp in Sources */,
 				90B908D010B36BC900E10618 /* FragmentProgram.cpp in Sources */,
 				90B908D110B36BC900E10618 /* FrameBufferObject.cpp in Sources */,
@@ -8397,12 +8371,16 @@
 		1DEB922308733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO;";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8412,11 +8390,15 @@
 		1DEB922408733DC00010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO;";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
