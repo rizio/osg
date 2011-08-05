@@ -106,8 +106,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 330941965;
-			PBXWorkspaceStateSaveDate = 330941965;
+			PBXPerProjectTemplateStateSaveDate = 334226322;
+			PBXWorkspaceStateSaveDate = 334226322;
 		};
 		perUserProjectItems = {
 			D405994B123EB9390018EC87 /* PBXBookmark */ = D405994B123EB9390018EC87 /* PBXBookmark */;
@@ -136,10 +136,6 @@
 			D4530AEF119A9274007453BC /* PBXTextBookmark */ = D4530AEF119A9274007453BC /* PBXTextBookmark */;
 			D45B60D111861C6D0099F3BC /* PBXTextBookmark */ = D45B60D111861C6D0099F3BC /* PBXTextBookmark */;
 			D45B60D211861C6D0099F3BC /* PBXTextBookmark */ = D45B60D211861C6D0099F3BC /* PBXTextBookmark */;
-			D45B8F6713B9CAC000280AEA /* PBXTextBookmark */ = D45B8F6713B9CAC000280AEA /* PBXTextBookmark */;
-			D45B8F9013B9CCCA00280AEA /* PBXTextBookmark */ = D45B8F9013B9CCCA00280AEA /* PBXTextBookmark */;
-			D45B8F9113B9CCCA00280AEA /* PBXTextBookmark */ = D45B8F9113B9CCCA00280AEA /* PBXTextBookmark */;
-			D45B8F9713B9CDF100280AEA /* PBXTextBookmark */ = D45B8F9713B9CDF100280AEA /* PBXTextBookmark */;
 			D45D31EB1169EA9D001C8838 /* PBXTextBookmark */ = D45D31EB1169EA9D001C8838 /* PBXTextBookmark */;
 			D45D31EC1169EA9D001C8838 /* PBXTextBookmark */ = D45D31EC1169EA9D001C8838 /* PBXTextBookmark */;
 			D45D31ED1169EA9D001C8838 /* PBXTextBookmark */ = D45D31ED1169EA9D001C8838 /* PBXTextBookmark */;
@@ -1146,43 +1142,6 @@
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 2769;
-	};
-	D45B8F6713B9CAC000280AEA /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 90B907C310B36AE900E10618 /* ImageUtils.cpp */;
-		name = "ImageUtils.cpp: 549";
-		rLen = 0;
-		rLoc = 20160;
-		rType = 0;
-		vrLen = 1358;
-		vrLoc = 14530;
-	};
-	D45B8F9013B9CCCA00280AEA /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 90EEDE7D10B9F554007F0292 /* ReaderWriterImageIO_IOS.cpp */;
-		name = "ReaderWriterImageIO_IOS.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1145;
-		vrLoc = 3259;
-	};
-	D45B8F9113B9CCCA00280AEA /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 906D8D6010B8FD5A0089D3C3 /* Validator */;
-		rLen = 0;
-		rLoc = 64;
-		rType = 1;
-	};
-	D45B8F9713B9CDF100280AEA /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 906D8D6010B8FD5A0089D3C3 /* Validator */;
-		name = "Validator: 50";
-		rLen = 0;
-		rLoc = 1722;
-		rType = 0;
-		vrLen = 1443;
-		vrLoc = 851;
 	};
 	D45D31EB1169EA9D001C8838 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;

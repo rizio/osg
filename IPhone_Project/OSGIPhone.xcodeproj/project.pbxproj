@@ -1391,6 +1391,9 @@
 		90EEDF6110BA01CB007F0292 /* libosgdb_imageio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDE7310B9F4F1007F0292 /* libosgdb_imageio.a */; };
 		90EEDFBF10BA07B8007F0292 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */; };
 		D408D59E123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D408D59D123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp */; };
+		D40F227A13EBE534004553FE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F227913EBE534004553FE /* ImageIO.framework */; };
+		D40F227B13EBE534004553FE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F227913EBE534004553FE /* ImageIO.framework */; };
+		D40F227C13EBE534004553FE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F227913EBE534004553FE /* ImageIO.framework */; };
 		D411C7C61258C4DC0076F148 /* Style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C51258C4DC0076F148 /* Style.cpp */; };
 		D411C7CA1258C4F10076F148 /* BounceOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C71258C4F10076F148 /* BounceOperator.cpp */; };
 		D411C7CB1258C4F10076F148 /* DomainOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D411C7C81258C4F10076F148 /* DomainOperator.cpp */; };
@@ -3362,6 +3365,7 @@
 		D2AAC07E0554694100DB518D /* libosg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libosg.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D408D59C123F8BD100AABF93 /* MultiTouchTrackballManipulator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MultiTouchTrackballManipulator; path = ../include/osgGA/MultiTouchTrackballManipulator; sourceTree = SOURCE_ROOT; };
 		D408D59D123F8C2600AABF93 /* MultiTouchTrackballManipulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MultiTouchTrackballManipulator.cpp; path = ../src/osgGA/MultiTouchTrackballManipulator.cpp; sourceTree = SOURCE_ROOT; };
+		D40F227913EBE534004553FE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		D411C7C51258C4DC0076F148 /* Style.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Style.cpp; path = ../src/osgText/Style.cpp; sourceTree = SOURCE_ROOT; };
 		D411C7C71258C4F10076F148 /* BounceOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BounceOperator.cpp; path = ../src/osgParticle/BounceOperator.cpp; sourceTree = SOURCE_ROOT; };
 		D411C7C81258C4F10076F148 /* DomainOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DomainOperator.cpp; path = ../src/osgParticle/DomainOperator.cpp; sourceTree = SOURCE_ROOT; };
@@ -3649,6 +3653,7 @@
 				90AF651B10C348A70041F6A7 /* CoreGraphics.framework in Frameworks */,
 				9014C5C310C3721400947117 /* libosgdb_freetype.a in Frameworks */,
 				9014CA6910C382A200947117 /* libosgText.a in Frameworks */,
+				D40F227B13EBE534004553FE /* ImageIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3684,6 +3689,7 @@
 				90B90CA610B38FF200E10618 /* UIKit.framework in Frameworks */,
 				90B90CBB10B3925800E10618 /* QuartzCore.framework in Frameworks */,
 				90EEDFBF10BA07B8007F0292 /* CoreGraphics.framework in Frameworks */,
+				D40F227A13EBE534004553FE /* ImageIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3729,6 +3735,7 @@
 				D489B5CD1371D2DE0008758E /* libosgText.a in Frameworks */,
 				D489B5CE1371D2DE0008758E /* libosgUtil.a in Frameworks */,
 				D489B5CF1371D2DE0008758E /* libosgViewer.a in Frameworks */,
+				D40F227C13EBE534004553FE /* ImageIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3785,6 +3792,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D40F227913EBE534004553FE /* ImageIO.framework */,
 				D45A159511ECB7CB00EBB947 /* libFreeType_iphone_universal.a */,
 				90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */,
 				90B90E1410B3A0D600E10618 /* OpenGLES.framework */,
