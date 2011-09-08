@@ -3,9 +3,9 @@
 	0867D690FE84028FC02AAC07 /* Project object */ = {
 		activeArchitecturePreference = armv7;
 		activeBuildConfigurationName = Debug;
-		activeExecutable = D4D6E9F211689F5D00DD6941 /* simpleExample */;
-		activeSDKPreference = iphoneos4.1;
-		activeTarget = 90B90C5B10B383F800E10618 /* simpleExample */;
+		activeExecutable = D4D6E9F311689F5D00DD6941 /* osgIPhoneViewer */;
+		activeSDKPreference = iphonesimulator4.3;
+		activeTarget = 90AF63D710C33FA20041F6A7 /* osgIPhoneViewer */;
 		addToTargets = (
 			90B90C5B10B383F800E10618 /* simpleExample */,
 			90AF63D710C33FA20041F6A7 /* osgIPhoneViewer */,
@@ -106,8 +106,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 334226322;
-			PBXWorkspaceStateSaveDate = 334226322;
+			PBXPerProjectTemplateStateSaveDate = 337166731;
+			PBXWorkspaceStateSaveDate = 337166731;
 		};
 		perUserProjectItems = {
 			D405994B123EB9390018EC87 /* PBXBookmark */ = D405994B123EB9390018EC87 /* PBXBookmark */;

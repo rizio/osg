@@ -270,20 +270,19 @@
 								<string>908EC99A10B79FB50024EAD9</string>
 								<string>0867D69AFE84028FC02AAC07</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>D40F227713EBE520004553FE</string>
-								<string>D40F227813EBE520004553FE</string>
+								<string>D4AE04F91418C993003B52D7</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>28</integer>
-									<integer>0</integer>
+									<integer>69</integer>
+									<integer>39</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {326, 760}}</string>
+							<string>{{0, 617}, {326, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -425,14 +424,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1092, 582}}</string>
+								<string>{{0, 0}, {1092, 572}}</string>
 								<key>RubberWindowFrame</key>
 								<string>176 271 1440 819 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>582pt</string>
+							<string>572pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -445,14 +444,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 587}, {1092, 191}}</string>
+								<string>{{0, 577}, {1092, 201}}</string>
 								<key>RubberWindowFrame</key>
 								<string>176 271 1440 819 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>191pt</string>
+							<string>201pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -471,9 +470,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D40F224813EBE3B9004553FE</string>
+				<string>D4AE04FB1418C993003B52D7</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>D40F224913EBE3B9004553FE</string>
+				<string>D4AE04FC1418C993003B52D7</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -611,8 +610,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>D4D6E9FF11689F6F00DD6941</string>
 		<string>/Users/stephan/Documents/Projekte/cefix-for-iphone/osg/IPhone_Project/OSGIPhone.xcodeproj</string>
 	</array>
@@ -696,7 +693,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>D4D6E9FF11689F6F00DD6941</string>
-				<string>D40F224A13EBE3B9004553FE</string>
+				<string>D4AE04E21418C442003B52D7</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

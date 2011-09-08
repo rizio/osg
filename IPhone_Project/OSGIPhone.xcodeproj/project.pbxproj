@@ -1452,6 +1452,7 @@
 		D489B6E61371D4FC0008758E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B90CA510B38FF200E10618 /* UIKit.framework */; };
 		D489B6E71371D4FC0008758E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		D4992EA1136C33F100635EAD /* GraphicsWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4992EA0136C33F100635EAD /* GraphicsWindow.cpp */; };
+		D4AE04F61418C97A003B52D7 /* libFreeType_iphone_universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D45A159511ECB7CB00EBB947 /* libFreeType_iphone_universal.a */; };
 		D4AE30E21176598000B8E6FB /* StackedMatrixElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30D91176598000B8E6FB /* StackedMatrixElement.cpp */; };
 		D4AE30E31176598000B8E6FB /* StackedQuaternionElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30DA1176598000B8E6FB /* StackedQuaternionElement.cpp */; };
 		D4AE30E41176598000B8E6FB /* StackedRotateAxisElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4AE30DB1176598000B8E6FB /* StackedRotateAxisElement.cpp */; };
@@ -3638,6 +3639,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4AE04F61418C97A003B52D7 /* libFreeType_iphone_universal.a in Frameworks */,
 				90AF63DE10C33FDC0041F6A7 /* libOpenThreads.a in Frameworks */,
 				90AF63DF10C33FDC0041F6A7 /* libosg.a in Frameworks */,
 				90AF63E010C33FDC0041F6A7 /* libosgDB.a in Frameworks */,
@@ -9147,9 +9149,10 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../3rdPartyIphone/freetype/lib\"",
+					"\"$(SRCROOT)/3rdParty/lib\"",
 				);
 				OTHER_LDFLAGS = (
+					"-lz",
 					"-framework",
 					Foundation,
 					"-framework",
@@ -9182,9 +9185,10 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../3rdPartyIphone/freetype/lib\"",
+					"\"$(SRCROOT)/3rdParty/lib\"",
 				);
 				OTHER_LDFLAGS = (
+					"-lz",
 					"-framework",
 					Foundation,
 					"-framework",
