@@ -1,0 +1,271 @@
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c "/Applications/CMake 2.8-6.app/Contents/share/cmake-2.8/Modules/CheckFunctionExists.c"
+Linking C executable cmTryCompileExec
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=pthread_create -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec  -lpthreads 
+ld: library not found for -lpthreads
+collect2: ld returned 1 exit status
+make[1]: *** [cmTryCompileExec] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+
+Performing C++ SOURCE FILE Test _OPENTHREADS_ATOMIC_USE_MIPOSPRO_BUILTINS failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/src.cxx.o
+/usr/bin/c++    -D_OPENTHREADS_ATOMIC_USE_MIPOSPRO_BUILTINS   -o CMakeFiles/cmTryCompileExec.dir/src.cxx.o -c /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main(int, const char**)’:
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:8: error: ‘__add_and_fetch’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:9: error: ‘__synchronize’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:10: error: ‘__sub_and_fetch’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:11: error: ‘__compare_and_swap’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:14: error: ‘__compare_and_swap’ was not declared in this scope
+make[1]: *** [CMakeFiles/cmTryCompileExec.dir/src.cxx.o] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+Return value: 1
+Source file was:
+
+    #include <stdlib.h>
+
+    int main(int, const char**)
+    {
+       unsigned value = 0;
+       void* ptr = &value;
+       __add_and_fetch(&value, 1);
+       __synchronize(value);
+       __sub_and_fetch(&value, 1);
+       if (!__compare_and_swap(&value, 0, 1))
+          return EXIT_FAILURE;
+
+       if (!__compare_and_swap((unsigned long*)&ptr, (unsigned long)ptr, (unsigned long)ptr))
+          return EXIT_FAILURE;
+
+       return EXIT_SUCCESS;
+    }
+    
+Performing C++ SOURCE FILE Test _OPENTHREADS_ATOMIC_USE_SUN failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/src.cxx.o
+/usr/bin/c++    -D_OPENTHREADS_ATOMIC_USE_SUN   -o CMakeFiles/cmTryCompileExec.dir/src.cxx.o -c /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:2:24: error: atomic.h: No such file or directory
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main(int, const char**)’:
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:7: error: ‘uint_t’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:7: error: expected `;' before ‘value’
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:8: error: ‘value’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:9: error: ‘atomic_inc_uint_nv’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:10: error: ‘membar_consumer’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:11: error: ‘atomic_dec_uint_nv’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:12: error: ‘atomic_cas_uint’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:15: error: ‘atomic_cas_ptr’ was not declared in this scope
+make[1]: *** [CMakeFiles/cmTryCompileExec.dir/src.cxx.o] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+Return value: 1
+Source file was:
+
+    #include <atomic.h>
+    #include <cstdlib>
+
+    int main(int, const char**)
+    {
+       uint_t value = 0;
+       void* ptr = &value;
+       atomic_inc_uint_nv(&value);
+       membar_consumer();
+       atomic_dec_uint_nv(&value);
+       if (0 != atomic_cas_uint(&value, 0, 1))
+          return EXIT_FAILURE;
+
+       if (ptr != atomic_cas_ptr(&ptr, ptr, ptr))
+          return EXIT_FAILURE;
+
+       return EXIT_SUCCESS;
+    }
+    
+Performing C++ SOURCE FILE Test _OPENTHREADS_ATOMIC_USE_WIN32_INTERLOCKED failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/src.cxx.o
+/usr/bin/c++    -D_OPENTHREADS_ATOMIC_USE_WIN32_INTERLOCKED   -o CMakeFiles/cmTryCompileExec.dir/src.cxx.o -c /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:2:25: error: windows.h: No such file or directory
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:3:24: error: intrin.h: No such file or directory
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main(int, const char**)’:
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:16: error: ‘InterlockedIncrement’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:17: error: ‘MemoryBarrier’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:18: error: ‘InterlockedDecrement’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:20: error: ‘InterlockedCompareExchange’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:23: error: ‘PVOID’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:23: error: expected `)' before ‘volatile’
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:24: error: expected `)' before ‘;’ token
+make[1]: *** [CMakeFiles/cmTryCompileExec.dir/src.cxx.o] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+Return value: 1
+Source file was:
+
+    #include <windows.h>
+    #include <intrin.h>
+    #include <cstdlib>
+
+    #pragma intrinsic(_InterlockedAnd)
+    #pragma intrinsic(_InterlockedOr)
+    #pragma intrinsic(_InterlockedXor)
+
+    int main(int, const char**)
+    {
+       volatile long value = 0;
+       long data = 0;
+       long* volatile ptr = &data;
+
+       InterlockedIncrement(&value);
+       MemoryBarrier();
+       InterlockedDecrement(&value);
+
+       if (0 != InterlockedCompareExchange(&value, 1, 0))
+          return EXIT_FAILURE;
+
+       if (ptr != InterlockedCompareExchangePointer((PVOID volatile*)&ptr, (PVOID)ptr, (PVOID)ptr))
+          return EXIT_FAILURE;
+
+       return EXIT_SUCCESS;
+    }
+    
+Determining if the function pthread_yield exists failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_yield   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c "/Applications/CMake 2.8-6.app/Contents/share/cmake-2.8/Modules/CheckFunctionExists.c"
+Linking C executable cmTryCompileExec
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=pthread_yield -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec  
+Undefined symbols for architecture x86_64:
+  "_pthread_yield", referenced from:
+      _main in CheckFunctionExists.c.o
+ld: symbol(s) not found for architecture x86_64
+collect2: ld returned 1 exit status
+make[1]: *** [cmTryCompileExec] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+
+Determining if the function pthread_setaffinity_np exists failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_setaffinity_np   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c "/Applications/CMake 2.8-6.app/Contents/share/cmake-2.8/Modules/CheckFunctionExists.c"
+Linking C executable cmTryCompileExec
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=pthread_setaffinity_np -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec  
+Undefined symbols for architecture x86_64:
+  "_pthread_setaffinity_np", referenced from:
+      _main in CheckFunctionExists.c.o
+ld: symbol(s) not found for architecture x86_64
+collect2: ld returned 1 exit status
+make[1]: *** [cmTryCompileExec] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+
+Performing C++ SOURCE FILE Test HAVE_THREE_PARAM_SCHED_SETAFFINITY failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_THREE_PARAM_SCHED_SETAFFINITY   -o CMakeFiles/cmTryCompileExec.dir/src.cxx.o -c /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:4: error: ‘cpu_set_t’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:4: error: expected `;' before ‘cpumask’
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:5: error: ‘cpumask’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:5: error: ‘sched_setaffinity’ was not declared in this scope
+make[1]: *** [CMakeFiles/cmTryCompileExec.dir/src.cxx.o] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+Source file was:
+
+            #include <sched.h>
+            int main() {
+            cpu_set_t cpumask;
+            sched_setaffinity( 0, sizeof(cpumask), &cpumask );
+            return 0;
+            }
+Performing C++ SOURCE FILE Test HAVE_TWO_PARAM_SCHED_SETAFFINITY failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_TWO_PARAM_SCHED_SETAFFINITY   -o CMakeFiles/cmTryCompileExec.dir/src.cxx.o -c /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:4: error: ‘cpu_set_t’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:4: error: expected `;' before ‘cpumask’
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:5: error: ‘cpumask’ was not declared in this scope
+/Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/src.cxx:5: error: ‘sched_setaffinity’ was not declared in this scope
+make[1]: *** [CMakeFiles/cmTryCompileExec.dir/src.cxx.o] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+Source file was:
+
+                #include <sched.h>
+                int main() {
+                  cpu_set_t cpumask;
+                  sched_setaffinity( 0, &cpumask );
+                  return 0;
+                }
+Determining if the function gethostbyname exists in the nsl failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c "/Applications/CMake 2.8-6.app/Contents/share/cmake-2.8/Modules/CheckFunctionExists.c"
+Linking C executable cmTryCompileExec
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=gethostbyname -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec  -lnsl 
+ld: library not found for -lnsl
+collect2: ld returned 1 exit status
+make[1]: *** [cmTryCompileExec] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+
+Determining if the function socket exists in the socket failed with the following output:
+Change Dir: /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_progress_report /Users/maurizio/work/t11/git/osg/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=socket   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c "/Applications/CMake 2.8-6.app/Contents/share/cmake-2.8/Modules/CheckFunctionExists.c"
+Linking C executable cmTryCompileExec
+"/Applications/CMake 2.8-6.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=socket -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec  -lsocket 
+ld: library not found for -lsocket
+collect2: ld returned 1 exit status
+make[1]: *** [cmTryCompileExec] Error 1
+make: *** [cmTryCompileExec/fast] Error 2
+
+
