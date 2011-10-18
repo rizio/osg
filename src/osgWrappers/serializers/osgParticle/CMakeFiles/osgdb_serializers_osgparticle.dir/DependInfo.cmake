@@ -1,0 +1,63 @@
+# The set of languages for which implicit dependencies are needed:
+SET(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+SET(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/AccelOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/AccelOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/AngularAccelOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/AngularAccelOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/AngularDampingOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/AngularDampingOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/BounceOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/BounceOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/BoxPlacer.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/BoxPlacer.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CenteredPlacer.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/CenteredPlacer.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CompositePlacer.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/CompositePlacer.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ConnectedParticleSystem.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ConnectedParticleSystem.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ConstantRateCounter.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ConstantRateCounter.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/Counter.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/Counter.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/DampingOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/DampingOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/DomainOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/DomainOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/Emitter.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/Emitter.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ExplosionDebrisEffect.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ExplosionDebrisEffect.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ExplosionEffect.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ExplosionEffect.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ExplosionOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ExplosionOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/FireEffect.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/FireEffect.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/FluidFrictionOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/FluidFrictionOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/FluidProgram.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/FluidProgram.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ForceOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ForceOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/Interpolator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/Interpolator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/LibraryWrapper.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/LibraryWrapper.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/LinearInterpolator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/LinearInterpolator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ModularEmitter.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ModularEmitter.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ModularProgram.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ModularProgram.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/MultiSegmentPlacer.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/MultiSegmentPlacer.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/Operator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/Operator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/OrbitOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/OrbitOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/Particle.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/Particle.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ParticleEffect.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ParticleEffect.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ParticleProcessor.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ParticleProcessor.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ParticleSystem.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ParticleSystem.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/ParticleSystemUpdater.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/ParticleSystemUpdater.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/Placer.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/Placer.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/PointPlacer.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/PointPlacer.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/PrecipitationEffect.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/PrecipitationEffect.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/Program.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/Program.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/RadialShooter.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/RadialShooter.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/RandomRateCounter.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/RandomRateCounter.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/SectorPlacer.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/SectorPlacer.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/SegmentPlacer.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/SegmentPlacer.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/Shooter.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/Shooter.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/SinkOperator.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/SinkOperator.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/SmokeEffect.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/SmokeEffect.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/SmokeTrailEffect.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/SmokeTrailEffect.cpp.o"
+  "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/VariableRateCounter.cpp" "/Users/maurizio/work/t11/git/osg/src/osgWrappers/serializers/osgParticle/CMakeFiles/osgdb_serializers_osgparticle.dir/VariableRateCounter.cpp.o"
+  )
+SET(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Targets to which this target links.
+SET(CMAKE_TARGET_LINKED_INFO_FILES
+  "/Users/maurizio/work/t11/git/osg/src/OpenThreads/pthreads/CMakeFiles/OpenThreads.dir/DependInfo.cmake"
+  "/Users/maurizio/work/t11/git/osg/src/osg/CMakeFiles/osg.dir/DependInfo.cmake"
+  "/Users/maurizio/work/t11/git/osg/src/osgDB/CMakeFiles/osgDB.dir/DependInfo.cmake"
+  "/Users/maurizio/work/t11/git/osg/src/osgUtil/CMakeFiles/osgUtil.dir/DependInfo.cmake"
+  "/Users/maurizio/work/t11/git/osg/src/osgParticle/CMakeFiles/osgParticle.dir/DependInfo.cmake"
+  )
