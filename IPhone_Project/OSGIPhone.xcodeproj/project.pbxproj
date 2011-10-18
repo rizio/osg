@@ -64,6 +64,28 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		145A27D0144C710100A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27D1144C711700A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27D2144C711D00A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27D3144C712300A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27D4144C712C00A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27D5144C713200A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27D6144C713C00A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27D7144C714300A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27D8144C714800A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27D9144C714D00A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27DA144C715100A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27DB144C715700A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27DC144C715D00A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27DD144C716200A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27DE144C716700A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27DF144C716B00A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27E0144C717000A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27E1144C717700A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27E2144C717C00A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27E3144C718100A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27E4144C718800A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
+		145A27E5144C718E00A53294 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A27CF144C710100A53294 /* AVFoundation.framework */; };
 		4AF9FB7213B8CE18002D1077 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9FB6B13B8CE18002D1077 /* images */; };
 		4AF9FB7313B8CE2C002D1077 /* hog.osg in Resources */ = {isa = PBXBuildFile; fileRef = 90AF640210C344F80041F6A7 /* hog.osg */; };
 		9014B4AB10C363BE00947117 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9014B47710C3630700947117 /* Action.cpp */; };
@@ -2072,6 +2094,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		145A27CF144C710100A53294 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4AF9FB6B13B8CE18002D1077 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = iphoneExamples/simple/Resources/images; sourceTree = "<group>"; };
 		9014B45010C362C900947117 /* Action */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Action; path = ../include/osgAnimation/Action; sourceTree = SOURCE_ROOT; };
 		9014B45110C362C900947117 /* ActionAnimation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ActionAnimation; path = ../include/osgAnimation/ActionAnimation; sourceTree = SOURCE_ROOT; };
@@ -3512,6 +3535,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27DC144C715D00A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3519,6 +3543,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27DB144C715700A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3526,6 +3551,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27DF144C716B00A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3533,6 +3559,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27DE144C716700A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3540,6 +3567,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27E0144C717000A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3547,6 +3575,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27E4144C718800A53294 /* AVFoundation.framework in Frameworks */,
 				D45A15AC11ED147800EBB947 /* libFreeType_iphone_universal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3555,6 +3584,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27E5144C718E00A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3562,6 +3592,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27E2144C717C00A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3569,6 +3600,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D7144C714300A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3576,6 +3608,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D6144C713C00A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3583,6 +3616,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D8144C714800A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3590,6 +3624,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D5144C713200A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3597,6 +3632,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27DA144C715100A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3604,6 +3640,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D9144C714D00A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3611,6 +3648,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27DD144C716200A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3618,6 +3656,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D3144C712300A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3625,6 +3664,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D2144C711D00A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3632,6 +3672,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27E1144C717700A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3663,6 +3704,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D0144C710100A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3699,6 +3741,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D4144C712C00A53294 /* AVFoundation.framework in Frameworks */,
 				90B90EE010B3BF5E00E10618 /* QuartzCore.framework in Frameworks */,
 				90B90EA110B3BF5600E10618 /* UIKit.framework in Frameworks */,
 				90B90E1110B3A0A500E10618 /* libosg.a in Frameworks */,
@@ -3711,6 +3754,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27E3144C718100A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3718,6 +3762,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A27D1144C711700A53294 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3794,6 +3839,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				145A27CF144C710100A53294 /* AVFoundation.framework */,
 				D40F227913EBE534004553FE /* ImageIO.framework */,
 				D45A159511ECB7CB00EBB947 /* libFreeType_iphone_universal.a */,
 				90EEDF4D10B9FCA1007F0292 /* CoreGraphics.framework */,
@@ -8386,7 +8432,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
@@ -8404,7 +8450,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
@@ -8660,6 +8706,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
 					./config,
 					../include,
@@ -8682,6 +8729,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
 					./config,
 					../include,

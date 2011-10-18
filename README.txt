@@ -52,7 +52,7 @@ configure script that'll run cmake for you.  The configure script
 simply runs 'cmake . -DCMAKE_BUILD_TYPE=Release' to ensure that you 
 get the best performance from your final libraries/applications.
  
-    cd OpenSceneGraph
+    cd OpenSceneGraph/Users/maurizio/work/t11/git/osg/include/osg/Config
     ./configure
     make
     sudo make install
